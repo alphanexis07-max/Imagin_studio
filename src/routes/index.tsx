@@ -1428,7 +1428,7 @@ function TrustSection() {
 /* ── Portfolio Section Components ── */
 function PortfolioHeroShowcase() {
   return (
-    <div className="py-6">
+    <div className="py-16">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-accent">first impressions</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1450,7 +1450,7 @@ function PortfolioHeroShowcase() {
 
 function PortfolioVideoEditing() {
   return (
-    <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
+    <div className="py-16 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-red-500 font-bold">motion editing</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1488,7 +1488,7 @@ function PortfolioGraphicDesign() {
   const badgeStyle = "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
 
   return (
-    <div className="py-6">
+    <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
           <span className="script text-3xl text-purple-600 dark:text-purple-400">visual assets</span>
@@ -1526,7 +1526,7 @@ function PortfolioGraphicDesign() {
           <motion.div
             key={idx}
             whileHover={{ y: -8, scale: 1.02 }}
-            className="relative max-w-[12rem] sm:min-w-[2rem] sm:max-w-[4rem] md:min-w-[17rem] lg:min-w-[19rem] lg:max-w-[25rem] aspect-[3/4] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827]"
+            className="relative min-w-[12rem] sm:min-w-[14rem] md:min-w-[17rem] lg:min-w-[19rem] aspect-[5/4] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827]"
           >
             <img src={slide.image} alt={slide.title} loading="lazy" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
@@ -1554,7 +1554,7 @@ function PortfolioGraphicDesign() {
 
 function PortfolioSoftwareSystems() {
   return (
-    <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
+    <div className="py-16 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-teal-400">intelligent stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
