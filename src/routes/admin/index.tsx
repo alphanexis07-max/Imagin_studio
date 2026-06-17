@@ -1,0 +1,277 @@
+import { createFileRoute, useRouter, Link, redirect } from "@tanstack/react-router";
+import { useState } from "react";
+import { LogOut, ExternalLink } from "lucide-react";
+import { logoutAdmin, adminStatus } from "@/lib/admin/auth.functions";
+import { AdminSidebar, type AdminTabId } from "@/components/admin/sidebar";
+import { ReelsTab } from "./sections/-ReelsTab";
+import { SiteTab } from "./sections/-SiteTab";
+import { CollectionTab } from "./sections/-CollectionTab";
+
+export const Route = createFileRoute("/admin/")({
+  beforeLoad: async () => {
+    const status = await adminStatus();
+    if (!status.loggedIn) {
+      throw redirect({ to: "/admin/login" });
+    }
+  },
+  component: AdminDashboard,
+});
+
+function AdminDashboard() {
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<AdminTabId>("reels");
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function handleLogout() {
+    setLoggingOut(true);
+    await logoutAdmin();
+    router.navigate({ to: "/admin/login" });
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Top bar */}
+      <div className="sticky top-0 z-40 border-b-2 border-ink bg-ink text-cream">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent font-display text-sm font-bold text-ink">H.</div>
+            <span className="font-display font-semibold">Alphanexis.Studio ·Admin</span>
+            <span className="rounded-full bg-accent/20 px-2 py-0.5 text-xs text-accent">Logged in</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link to="/" className="inline-flex items-center gap-1.5 rounded-full border border-cream/30 px-3 py-1.5 text-xs hover:bg-cream/10">
+              <ExternalLink className="h-3 w-3" /> View site
+            </Link>
+            <button
+              onClick={handleLogout}
+              disabled={loggingOut}
+              className="inline-flex items-center gap-1.5 rounded-full bg-destructive/80 px-3 py-1.5 text-xs font-medium text-cream hover:bg-destructive disabled:opacity-50"
+            >
+              <LogOut className="h-3 w-3" /> Logout
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <AdminSidebar activeTab={activeTab} onSelect={setActiveTab} onLogout={handleLogout}>
+        <div className="mx-auto max-w-7xl px-5 py-6">
+          <div key={activeTab}>
+            {activeTab === "reels" && <ReelsTab />}
+            {activeTab === "site" && <SiteTab />}
+            {activeTab === "capabilities" && (
+              <CollectionTab
+                collection="capabilities"
+                label="Capabilities"
+                fields={[
+                  { key: "key", label: "Key (e.g. 01)", type: "text" },
+                  { key: "title", label: "Title", type: "text" },
+                  { key: "description", label: "Description", type: "textarea" },
+                  { key: "chips", label: "Chips (comma-separated)", type: "chips" },
+                  { key: "metric", label: "Metric", type: "text" },
+                  { key: "metricLabel", label: "Metric Label", type: "text" },
+                  { key: "bg", label: "Background class (e.g. bg-accent)", type: "text" },
+                  { key: "icon", label: "Icon name (e.g. Target)", type: "text" },
+                ]}
+              />
+            )}
+            {activeTab === "process" && (
+              <CollectionTab
+                collection="process"
+                label="Process Steps"
+                fields={[
+                  { key: "number", label: "Number (e.g. 01)", type: "text" },
+                  { key: "title", label: "Title", type: "text" },
+                  { key: "description", label: "Description", type: "textarea" },
+                  { key: "icon", label: "Icon name", type: "text" },
+                  { key: "bg", label: "Background class", type: "text" },
+                ]}
+              />
+            )}
+            {activeTab === "cases" && (
+              <CollectionTab
+                collection="cases"
+                label="Case Studies"
+                fields={[
+                  { key: "name", label: "Client Name", type: "text" },
+                  { key: "sector", label: "Sector / Tags", type: "text" },
+                  { key: "year", label: "Year (e.g. '25)", type: "text" },
+                  { key: "word", label: "Big display word", type: "text" },
+                  { key: "problem", label: "Problem statement", type: "text" },
+                  { key: "color", label: "Card color class", type: "text" },
+                ]}
+              />
+            )}
+            {activeTab === "engagements" && (
+              <CollectionTab
+                collection="engagements"
+                label="Engagements"
+                fields={[
+                  { key: "name", label: "Name (e.g. Sprint)", type: "text" },
+                  { key: "duration", label: "Duration (e.g. 2–4 wks)", type: "text" },
+                  { key: "description", label: "Description", type: "textarea" },
+                  { key: "bullets", label: "Bullets (comma-separated)", type: "chips" },
+                  { key: "tag", label: "Corner tag (e.g. Fastest)", type: "text" },
+                  { key: "bg", label: "Background class", type: "text" },
+                ]}
+              />
+            )}
+            {activeTab === "testimonials" && (
+              <CollectionTab
+                collection="testimonials"
+                label="Testimonials"
+                fields={[
+                  { key: "quote", label: "Quote", type: "textarea" },
+                  { key: "author", label: "Author name", type: "text" },
+                  { key: "role", label: "Role / Company", type: "text" },
+                  { key: "stars", label: "Stars (1–5)", type: "text" },
+                ]}
+              />
+            )}
+            {activeTab === "stats" && (
+              <CollectionTab
+                collection="stats"
+                label="Stats"
+                fields={[
+                  { key: "value", label: "Value (e.g. 6+)", type: "text" },
+                  { key: "label", label: "Label (e.g. Years experience)", type: "text" },
+                ]}
+              />
+            )}
+            {activeTab === "marquee" && <MarqueeTab />}
+            {activeTab === "contact" && <ContactTab />}
+          </div>
+        </div>
+      </AdminSidebar>
+
+      <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
+        Single shared password. Anyone who knows it has full access. {" "}
+        Rotate by editing <code>.env</code> and restarting the server.
+      </div>
+    </div>
+  );
+}
+
+/* ─── Marquee Tab ─── */
+function MarqueeTab() {
+  const [top, setTop] = useState("");
+  const [bottom, setBottom] = useState("");
+  const [loaded, setLoaded] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  useState(() => {
+    import("@/lib/admin/site.functions").then(({ getSite }) =>
+      getSite().then((site) => {
+        setTop(site.marquee.top.join(", "));
+        setBottom(site.marquee.bottom.join(", "));
+        setLoaded(true);
+      })
+    );
+  });
+
+  async function handleSave() {
+    setSaving(true);
+    const { updateSite } = await import("@/lib/admin/site.functions");
+    await updateSite({
+      data: {
+        marquee: {
+          top: top.split(",").map((s) => s.trim()).filter(Boolean),
+          bottom: bottom.split(",").map((s) => s.trim()).filter(Boolean),
+        },
+      },
+    });
+    setSaving(false);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  }
+
+  if (!loaded) return <div className="py-10 text-center text-muted-foreground">Loading…</div>;
+
+  return (
+    <div className="max-w-xl space-y-4">
+      <h2 className="font-display text-2xl font-bold">Marquee Text</h2>
+      <div>
+        <label className="mb-1 block text-sm font-medium">Top row (comma-separated words)</label>
+        <input value={top} onChange={(e) => setTop(e.target.value)}
+          className="w-full rounded-xl border-2 border-ink bg-card px-4 py-2.5 text-sm outline-none focus:border-accent" />
+      </div>
+      <div>
+        <label className="mb-1 block text-sm font-medium">Bottom row (comma-separated words)</label>
+        <input value={bottom} onChange={(e) => setBottom(e.target.value)}
+          className="w-full rounded-xl border-2 border-ink bg-card px-4 py-2.5 text-sm outline-none focus:border-accent" />
+      </div>
+      <button onClick={handleSave} disabled={saving}
+        className="rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:opacity-80 disabled:opacity-40">
+        {saving ? "Saving…" : saved ? "Saved ✓" : "Save Marquee"}
+      </button>
+    </div>
+  );
+}
+
+/* ─── Contact & Footer Tab ─── */
+function ContactTab() {
+  const [form, setForm] = useState({
+    contact_eyebrow: "", contact_headline: "", contact_blurb: "",
+    contact_email: "", contact_bookCallUrl: "", footer_copyright: "",
+  });
+  const [loaded, setLoaded] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  useState(() => {
+    import("@/lib/admin/site.functions").then(({ getSite }) =>
+      getSite().then((site) => {
+        setForm({
+          contact_eyebrow: site.contact.eyebrow,
+          contact_headline: site.contact.headline,
+          contact_blurb: site.contact.blurb,
+          contact_email: site.contact.email,
+          contact_bookCallUrl: site.contact.bookCallUrl,
+          footer_copyright: site.footer.copyright,
+        });
+        setLoaded(true);
+      })
+    );
+  });
+
+  async function handleSave() {
+    setSaving(true);
+    const { updateSite } = await import("@/lib/admin/site.functions");
+    await updateSite({
+      data: {
+        contact: { eyebrow: form.contact_eyebrow, headline: form.contact_headline, blurb: form.contact_blurb, email: form.contact_email, bookCallUrl: form.contact_bookCallUrl },
+        footer: { copyright: form.footer_copyright },
+      },
+    });
+    setSaving(false); setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  }
+
+  if (!loaded) return <div className="py-10 text-center text-muted-foreground">Loading…</div>;
+
+  const fields = [
+    { key: "contact_eyebrow" as const, label: "Contact eyebrow" },
+    { key: "contact_headline" as const, label: "Contact headline" },
+    { key: "contact_blurb" as const, label: "Contact blurb" },
+    { key: "contact_email" as const, label: "Email address" },
+    { key: "contact_bookCallUrl" as const, label: "Book call URL" },
+    { key: "footer_copyright" as const, label: "Footer copyright text" },
+  ];
+
+  return (
+    <div className="max-w-xl space-y-4">
+      <h2 className="font-display text-2xl font-bold">Contact & Footer</h2>
+      {fields.map((f) => (
+        <div key={f.key}>
+          <label className="mb-1 block text-sm font-medium">{f.label}</label>
+          <input value={form[f.key]} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))}
+            className="w-full rounded-xl border-2 border-ink bg-card px-4 py-2.5 text-sm outline-none focus:border-accent" />
+        </div>
+      ))}
+      <button onClick={handleSave} disabled={saving}
+        className="rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:opacity-80 disabled:opacity-40">
+        {saving ? "Saving…" : saved ? "Saved ✓" : "Save"}
+      </button>
+    </div>
+  );
+}

@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "eyebrow": "",
+    "name": "",
+    "headline": "A Brand & Marketing Specialist",
+    "portraitUrl": "/portrait.png",
+    "sidebarStat": {
+      "value": "6+ Years",
+      "label": "in Brand & Marketing"
+    },
+    "sidebarQuote": "Working with Helmi, I can confidently say he's an exceptional marketer and brand strategist."
+  },
+  "about": {
+    "eyebrow": "a little about",
+    "title": "I help brands actually grow",
+    "body": "Marketing isn't magic — it's a system. I blend brand strategy, sharp creative, and performance data into campaigns that don't just look good, they move numbers.",
+    "tiles": [
+      "Strategist",
+      "Creative Director",
+      "Copy & Content",
+      "Data-driven"
+    ]
+  },
+  "contact": {
+    "eyebrow": "let's make something",
+    "headline": "Got a brand to grow? Let's talk.",
+    "blurb": "Reply within 24 hours · Open for projects Q3 2026",
+    "email": "hello@alphanexius.com",
+    "bookCallUrl": "tel:+1234567890"
+  },
+  "footer": {
+    "copyright": "© 2026 Helmi Studio · Crafted with care",
+    "socials": [
+      { "label": "Instagram", "url": "https://www.instagram.com/alphanexis/", "icon": "Instagram" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/company/alphanexis/posts/?feedView=all", "icon": "LinkedIn" },
+      { "label": "Website", "url": "https://www.alphanexis.com/", "icon": null }
+    ]
+  },
+  "marquee": {
+    "top": [
+      "Branding",
+      "Marketing",
+      "Social Media",
+      "Performance Ads",
+      "Strategy",
+      "Content"
+    ],
+    "bottom": [
+      "growth.",
+      "stories.",
+      "systems.",
+      "design.",
+      "engines.",
+      "loops.",
+      "ideas.",
+      "results."
+    ]
+  }
+}
