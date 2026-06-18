@@ -11,31 +11,29 @@ interface ThemeToggleProps {
 const THEME_STORAGE_KEY = "theme-preference";
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (savedTheme === "light") {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    } else if (savedTheme === "dark") {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setIsDark(prefersDark);
-      document.documentElement.classList.toggle("dark", prefersDark);
+  // Determine initial theme synchronously to avoid visual flips on navigation
+  const getInitial = () => {
+    if (typeof window === "undefined") return true;
+    try {
+      const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+      if (saved === "dark") return true;
+      if (saved === "light") return false;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    } catch {
+      return true;
     }
-  }, []);
+  };
+
+  const [isDark, setIsDark] = useState<boolean>(getInitial);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
-
     document.documentElement.classList.toggle("dark", isDark);
-    window.localStorage.setItem(THEME_STORAGE_KEY, isDark ? "dark" : "light");
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, isDark ? "dark" : "light");
+    } catch {
+      // ignore storage write errors
+    }
   }, [isDark]);
 
   return (

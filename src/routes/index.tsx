@@ -41,6 +41,7 @@ import {
 } from "lucide-react";
 import portrait from "@/assets/portrait.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -896,7 +897,7 @@ function CoreCapabilitiesSection() {
     <section id="capabilities" className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
-          <span className="script text-3xl text-accent">what we bring</span>
+          <span className="script text-3xl text-accent">What We Bring</span>
           <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
             Core <span className="italic">Capabilities</span>
             <span className="text-accent">.</span>
@@ -976,7 +977,7 @@ function ProcessSection() {
   return (
     <section id="process" className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-14 text-center">
-        <span className="script text-3xl text-accent">how we ship</span>
+        <span className="script text-3xl text-accent">How We Ship</span>
         <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
           6-Step <span className="italic">Delivery</span> Framework
           <span className="text-accent">.</span>
@@ -1057,7 +1058,7 @@ function FilmReelsSection() {
       <div className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="mb-10 grid items-end gap-6 md:grid-cols-[1fr_auto]">
           <div>
-            <span className="script text-3xl text-accent">the reel room</span>
+            <span className="script text-3xl text-accent">The Reel Room</span>
             <h2 className="font-display text-4xl font-bold leading-[1.04] md:text-6xl">
               Expert <em className="text-accent">editing</em> that brings
               <br />
@@ -1133,7 +1134,7 @@ function CaseStudiesSection() {
     <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <span className="script text-3xl text-accent">in the wild</span>
+          <span className="script text-3xl text-accent">In The Wild</span>
           <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
             Selected <span className="italic">Case Studies</span>
             <span className="text-accent">.</span>
@@ -1332,7 +1333,7 @@ function ROISection() {
   return (
     <section className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-12">
-        <span className="script text-3xl text-accent">the numbers</span>
+        <span className="script text-3xl text-accent">The Numbers</span>
         <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
           ROI & Value <span className="italic">Realisation</span>
           <span className="text-accent">.</span>
@@ -1406,7 +1407,7 @@ function PortfolioHeroShowcase() {
   return (
     <div className="py-6 " id="work">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-accent">first impressions</span>
+        <span className="script text-3xl text-accent">First Impressions</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 1 – HERO SHOWCASE
         </h2>
@@ -1428,7 +1429,7 @@ function PortfolioVideoEditing() {
   return (
     <div className="py-6">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-red-500 font-bold">motion editing</span>
+        <span className="script text-3xl text-red-500 font-bold">Motion Editing</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 2 – VIDEO EDITING
         </h2>
@@ -1467,7 +1468,7 @@ function PortfolioGraphicDesign() {
     <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
-          <span className="script text-3xl text-purple-600 dark:text-purple-400">visual assets</span>
+          <span className="script text-3xl text-purple-600 dark:text-purple-400">Visual Assets</span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
             SECTION 3 – GRAPHIC DESIGN
           </h2>
@@ -1537,7 +1538,7 @@ function PortfolioSoftwareSystems() {
   return (
     <div className="py-6">
       <div className="mb- text-center px-5">
-        <span className="script text-3xl text-teal-400">intelligent stacks</span>
+        <span className="script text-3xl text-teal-400">Intelligent Stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 4 – SOFTWARE & SYSTEMS
         </h2>
@@ -1559,7 +1560,7 @@ function PortfolioSEOAnalytics() {
   return (
     <div className="py-20">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-green-400">growth metrics</span>
+        <span className="script text-3xl text-green-400">Growth Metrics</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 5 – SEO & ANALYTICS
         </h2>
@@ -1582,7 +1583,7 @@ function PortfolioStrategicConsulting() {
   return (
     <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
-        <span className="script text-3xl text-amber-400">management consulting</span>
+        <span className="script text-3xl text-amber-400">Management Consulting</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 6 – STRATEGIC CONSULTING
         </h2>
@@ -1648,7 +1649,7 @@ function PortfolioContentWriting() {
   return (
     <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
-        <span className="script text-3xl text-orange-400 font-bold">copywriting</span>
+        <span className="script text-3xl text-orange-400 font-bold">Copywriting</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 7 – CONTENT WRITING
         </h2>
@@ -1702,7 +1703,7 @@ function PortfolioSection() {
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
-        <span className="script text-3xl text-accent">our global workspace</span>
+        <span className="script text-3xl text-accent">Our Global Workspace</span>
         <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground">
           Digital Agency <span className="italic text-accent">Portfolio</span>
         </h2>
@@ -1724,38 +1725,6 @@ function PortfolioSection() {
 
 /* ── Main Page ── */
 function Index() {
-  const [scrolled, setScrolled] = useState(false);
-  const [showNav, setShowNav] = useState(true);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 16);
-
-      const isScrollingDown = currentY > lastScrollY.current && currentY > 80;
-      const isScrollingUp = currentY < lastScrollY.current;
-
-      if (isScrollingUp) {
-        setShowNav(true);
-      } else if (isScrollingDown) {
-        setShowNav(false);
-      }
-
-      lastScrollY.current = Math.max(currentY, 0);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    const target = document.getElementById(id);
-    target?.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.pushState(null, "", `#${id}`);
-  };
 
   return (
     <main className="relative min-h-screen overflow-visible bg-background text-foreground">
@@ -1767,49 +1736,7 @@ function Index() {
       />
 
       {/* Nav */}
-      <motion.nav
-        initial={{ y: -30, opacity: 0 }}
-        animate={{ y: showNav ? 0 : -120, opacity: showNav ? 1 : 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/70 border-b border-border/80 shadow-xl shadow-black/5 backdrop-blur-xl" : "bg-background/70 border-b border-border/60 backdrop-blur-md"}`}
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <a href="#" className="flex items-center gap-2 font-display text-xl font-bold">
-            <motion.span
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-cream"
-            >
-              A.
-            </motion.span>
-            AlphaNexis<span className="text-accent">.</span>
-          </a>
-          <div className="hidden items-center gap-8 text-sm md:flex">
-            {["About", "Portfolio", "Work", "Services", "Contact"].map((l) => (
-              <a
-                key={l}
-                href={`#${l.toLowerCase()}`}
-                onClick={scrollToSection(l.toLowerCase())}
-                className="story-link text-foreground/70 transition-colors hover:text-foreground"
-              >
-                {l}
-              </a>
-            ))}
-          </div>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <a
-              href="#contact"
-              onClick={scrollToSection("contact")}
-              className="inline-flex items-center gap-1 rounded-full bg-ink px-3 py-1.5 text-xs font-medium text-cream transition-transform hover:scale-105 sm:gap-1.5 sm:px-4 sm:py-2 sm:text-sm"
-            >
-              <span className="hidden min-[390px]:inline">Start a project</span>
-              <span className="min-[390px]:hidden">Start</span>
-              <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            </a>
-          </div>
-        </div>
-      </motion.nav>
+      <Navbar />
 
       {/* HERO */}
       <section className="relative mx-auto max-w-6xl px-5 pt-12 pb-8 md:pt-20">
@@ -1827,10 +1754,10 @@ function Index() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="font-display text-[clamp(2.5rem,8vw,6rem)] font-bold leading-[1.05] tracking-tight"
+            className="font-display text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
           >
             We craft digital experiences that
-            <br />drive growth and leave a lasting <span className="text-accent">impact</span>.
+            <br />drive growth and leave a lasting <span className="text-accent">impact</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -1853,7 +1780,7 @@ function Index() {
             href="#work"
             className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
           >
-            View our work <ArrowUpRight className="h-4 w-4" />
+            View Our Work <ArrowUpRight className="h-4 w-4" />
           </a>
           <a
             href="#services"
@@ -1890,7 +1817,7 @@ function Index() {
           <Scribble className="pointer-events-none absolute left-4 top-2 h-8 w-14 text-ink animate-draw md:left-8" />
           <Scribble className="pointer-events-none absolute right-6 top-8 h-8 w-14 text-accent rotate-12 animate-draw md:right-16" />
           <Star4 className="pointer-events-none absolute left-2 top-1/3 h-5 w-5 text-accent animate-spin-slow md:left-10" />
-          <Star4 className="pointer-events-none absolute right-8 bottom-1/4 h-6 w-6 text-ink animate-spin-slow" />
+          <Star4 className="pointer-events-none absolute right-8 bottom-1/3 h-6 w-6 text-ink animate-spin-slow" />
 
           {/* Floating pill tags — same positions as original Helmi design */}
           {[
@@ -1904,11 +1831,11 @@ function Index() {
               r: "-6deg",
               d: "0s",
             },
-            { txt: <>🚀 Ads</>, pos: "-right-4 top-[32%] md:right-0", r: "8deg", d: "0.4s" },
+            { txt: <>🚀 Ads</>, pos: "-right-4 top-[36%] md:right-0", r: "8deg", d: "0.4s" },
             { txt: <>🌟 Brand</>, pos: "-left-6 top-[78%] md:left-12", r: "-4deg", d: "0.8s" },
             {
               txt: <>💎 Social Media</>,
-              pos: "-right-6 bottom-[20%] md:right-8",
+              pos: "-right-6 bottom-[15%] md:right-8",
               r: "6deg",
               d: "1.2s",
             },
@@ -1955,7 +1882,7 @@ function Index() {
       {/* STATS strip */}
       <section className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="mb-10 text-center">
-          <span className="script text-3xl text-accent">achievements</span>
+          <span className="script text-3xl text-accent">Achievements</span>
           <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
             Milestones that prove our work delivers impact.
           </h2>
@@ -1990,21 +1917,21 @@ function Index() {
               className="flex shrink-0 items-center gap-10 px-6 font-display text-3xl font-semibold"
             >
               {[
-                "Impact",
+                "IMPACT",
                 "/",
-                "Design",
+                "DESIGN",
                 "/",
-                "Innovate",
+                "INNOVATE",
                 "/",
-                "Create",
+                "CREATE",
                 "/",
-                "Strategize",
+                "STRATEGIZE",
                 "/",
-                "Impact",
+                "IMPACT",
                 "/",
-                "Design",
+                "DESIGN",
                 "/",
-                "Innovate",
+                "INNOVATE",
               ].map((w, i) => (
                 <span key={i} className={i % 2 === 0 ? "text-foreground" : "text-accent"}>
                   {w}
@@ -2059,7 +1986,7 @@ function Index() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="script text-3xl text-accent">who we are</span>
+            <span className="script text-3xl text-accent">Who We Are</span>
             <h2 className="mt-2 font-display text-5xl font-bold leading-tight md:text-6xl">
               We build brands
               <br />
@@ -2141,7 +2068,7 @@ function Index() {
       {/* TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="mb-12 text-center">
-          <span className="script text-3xl text-accent">what clients say</span>
+          <span className="script text-3xl text-accent">What Clients Say</span>
           <h2 className="font-display text-5xl font-bold md:text-6xl">
             Straight from <span className="italic">the source</span>
             <span className="text-accent">.</span>
