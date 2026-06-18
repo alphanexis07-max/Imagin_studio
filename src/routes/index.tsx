@@ -917,7 +917,7 @@ function CoreCapabilitiesSection() {
             whileHover={{ y: -6, rotate: i % 2 === 0 ? -0.6 : 0.6 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, type: "spring", stiffness: 90 }}
-            className={`group relative flex flex-col overflow-hidden rounded-[1.5rem] border-2 border-ink text-ink shadow-[5px_5px_0_0_var(--ink)] dark:border-cream/35 dark:text-ink dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)] ${c.bg} ${c.span}`}
+            className={`group relative flex flex-col overflow-hidden rounded-[1.5rem] border-2 border-ink text-ink shadow-[5px_5px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)] ${c.bg} ${c.span}`}
           >
             <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-background/40 blur-2xl transition-opacity duration-500 group-hover:opacity-80 dark:bg-accent/10" />
             <div className="absolute right-4 top-4 rounded-full border-2 border-ink bg-background/85 px-2 py-0.5 font-display text-xs font-bold dark:border-ink/60 dark:bg-cream/85 dark:text-ink">
@@ -1007,7 +1007,7 @@ function ProcessSection() {
               >
                 <motion.div
                   whileHover={{ scale: 1.04, rotate: left ? -1 : 1 }}
-                  className={`relative rounded-[1.5rem] border-2 border-ink p-6 text-ink shadow-[5px_5px_0_0_var(--ink)] dark:border-cream/35 dark:text-ink dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)] ${s.color} ${left ? "md:mr-10 md:text-right" : "md:ml-10"}`}
+                  className={`relative rounded-[1.5rem] border-2 border-ink p-6 text-ink shadow-[5px_5px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)] ${s.color} ${left ? "md:mr-10 md:text-right" : "md:ml-10"}`}
                 >
                   <div
                     className={`mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85 ${left ? "md:ml-auto" : ""}`}
@@ -1027,7 +1027,7 @@ function ProcessSection() {
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ type: "spring", delay: i * 0.05 + 0.1 }}
-                  className="absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-ink bg-background font-display text-sm font-black md:flex dark:border-cream/35 dark:bg-cream dark:text-ink"
+                  className="absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-ink bg-background font-display text-sm font-black md:flex dark:border-white/25 dark:bg-[oklch(0.93_0.018_78)] dark:text-[oklch(0.25_0.018_60)]"
                 >
                   {s.n}
                 </motion.div>
@@ -1181,7 +1181,7 @@ function CaseStudiesSection() {
             whileHover={{ rotate: 0, y: -6, scale: 1.01 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, type: "spring", stiffness: 90 }}
-            className={`group relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
+            className={`group relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
           >
             <div className="flex items-center justify-between border-b-2 border-ink/40 bg-background/50 px-5 py-2 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm dark:border-ink/35 dark:bg-cream/45">
               <span className="inline-flex items-center gap-1.5">
@@ -2041,7 +2041,7 @@ function Index() {
 
       {/* ABOUT */}
       <PortfolioSection />
-
+      
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="grid items-center gap-12 md:grid-cols-2">
