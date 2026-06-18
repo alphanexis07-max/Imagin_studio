@@ -619,7 +619,7 @@ function DiscoveryCallDialog() {
 
 function WorkSection() {
   return (
-    <section id="work" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section  className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">work that speaks</span>
         <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
@@ -1428,7 +1428,7 @@ function TrustSection() {
 /* ── Portfolio Section Components ── */
 function PortfolioHeroShowcase() {
   return (
-    <div className="py-6">
+    <div className="py-6 " id="work">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-accent">first impressions</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1555,7 +1555,7 @@ function PortfolioGraphicDesign() {
 function PortfolioSoftwareSystems() {
   return (
     <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
-      <div className="mb-10 text-center px-5">
+      <div className="mb- text-center px-5">
         <span className="script text-3xl text-teal-400">intelligent stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 4 – SOFTWARE & SYSTEMS
@@ -1568,7 +1568,7 @@ function PortfolioSoftwareSystems() {
         slides={softwareSystemsSlides}
         title="Software & Systems"
         subtitle="AUTOMATION & PLATFORMS"
-        description="Cylinder-style rotating visual carousel showcasing architecture details and business impact."
+        description="Cylinder-style rotating visual carousel showcasing architecture details and business impact"
       />
     </div>
   );
@@ -1744,6 +1744,32 @@ function PortfolioSection() {
 
 /* ── Main Page ── */
 function Index() {
+  const [scrolled, setScrolled] = useState(false);
+  const [showNav, setShowNav] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 16);
+
+      const isScrollingDown = currentY > lastScrollY.current && currentY > 80;
+      const isScrollingUp = currentY < lastScrollY.current;
+
+      if (isScrollingUp) {
+        setShowNav(true);
+      } else if (isScrollingDown) {
+        setShowNav(false);
+      }
+
+      lastScrollY.current = Math.max(currentY, 0);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToSection = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     const target = document.getElementById(id);
@@ -1752,7 +1778,7 @@ function Index() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="relative min-h-screen overflow-visible bg-background text-foreground">
       {/* ambient blobs */}
       <div className="pointer-events-none fixed -left-32 top-1/3 -z-0 h-96 w-96 bg-accent/20 animate-blob blur-3xl" />
       <div
@@ -1763,9 +1789,9 @@ function Index() {
       {/* Nav */}
       <motion.nav
         initial={{ y: -30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/60"
+        animate={{ y: showNav ? 0 : -120, opacity: showNav ? 1 : 0 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/70 border-b border-border/80 shadow-xl shadow-black/5 backdrop-blur-xl" : "bg-background/70 border-b border-border/60 backdrop-blur-md"}`}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <a href="#" className="flex items-center gap-2 font-display text-xl font-bold">
@@ -2042,6 +2068,9 @@ function Index() {
       {/* ABOUT */}
       <PortfolioSection />
       
+
+      
+
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="grid items-center gap-12 md:grid-cols-2">

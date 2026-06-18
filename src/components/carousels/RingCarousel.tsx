@@ -140,7 +140,7 @@ export function RingCarousel({
 
   return (
     <section aria-label="Ring carousel" className={moduleShellClass}>
-      <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <div className="mb-18 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <p className={moduleHeaderKickerClass}>{subtitle}</p>
           <h3 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground dark:text-white md:text-5xl">
