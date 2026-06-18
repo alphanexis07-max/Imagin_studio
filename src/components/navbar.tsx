@@ -51,7 +51,7 @@ export function Navbar() {
        <a href="#" className="flex items-center gap-2">
   <img src={logo} alt="AlphaNexis" className="h-8 w-8 object-contain" />
   <span className="font-display text-xl font-bold">
-    AlphaNexis<span className="text-accent">.</span>
+    AlphaNexis<span className="text-accent"></span>
   </span>
 </a>
         <div className="hidden items-center gap-8 text-sm md:flex">
