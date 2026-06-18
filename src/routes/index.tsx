@@ -1450,7 +1450,7 @@ function PortfolioHeroShowcase() {
 
 function PortfolioVideoEditing() {
   return (
-    <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
+    <div className="py-6">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-red-500 font-bold">motion editing</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1554,7 +1554,7 @@ function PortfolioGraphicDesign() {
 
 function PortfolioSoftwareSystems() {
   return (
-    <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
+    <div className="py-6">
       <div className="mb- text-center px-5">
         <span className="script text-3xl text-teal-400">intelligent stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1599,7 +1599,7 @@ function PortfolioSEOAnalytics() {
 function PortfolioStrategicConsulting() {
   const badgeStyle = "bg-amber-500/25 border-amber-500/40 text-amber-400";
   return (
-    <div className="py-20 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
+    <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-amber-400">management consulting</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1717,8 +1717,9 @@ function PortfolioSection() {
   return (
     <section
       id="portfolio"
-      className="relative overflow-hidden bg-transparent py-20 text-foreground"
+      className="relative isolate overflow-hidden bg-transparent py-20 text-foreground"
     >
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">our global workspace</span>
         <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground">
