@@ -714,7 +714,7 @@ const capabilities = [
     chips: ["Positioning", "Creative Direction", "Brand Voice"],
     metric: "–35%",
     metricLabel: "customer acq. cost",
-    bg: "bg-surface-1",
+    bg: "bg-surface-1 dark:bg-[oklch(0.88_0.1_75)]",
     span: "",
   },
   {
@@ -725,7 +725,7 @@ const capabilities = [
     chips: ["Short-form Video", "Editorial Calendar", "Community"],
     metric: "+312%",
     metricLabel: "organic reach",
-    bg: "bg-surface-2",
+    bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]",
     span: "",
   },
   {
@@ -736,7 +736,7 @@ const capabilities = [
     chips: ["AI Agents", "CRM Automation", "Analytics Dash"],
     metric: "85%",
     metricLabel: "task automation",
-    bg: "bg-surface-3",
+    bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
     span: "md:col-span-2",
   },
 ];
@@ -754,28 +754,28 @@ const steps = [
     t: "Strategize",
     d: "Positioning, KPIs, channel mix & north-star growth metric.",
     icon: Lightbulb,
-    color: "bg-surface-3",
+    color: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
   },
   {
     n: "03",
     t: "Create",
     d: "Brand identity, creative assets & content system built.",
     icon: Layers,
-    color: "bg-surface-4",
+    color: "bg-surface-4 dark:bg-[oklch(0.82_0.14_25)]",
   },
   {
     n: "04",
     t: "Deploy",
     d: "Launch ads, funnels, content & automation pipelines live.",
     icon: Rocket,
-    color: "bg-surface-2",
+    color: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]",
   },
   {
     n: "05",
     t: "Decode",
     d: "Full analytics, attribution modelling & insight extraction.",
     icon: LineChart,
-    color: "bg-surface-6",
+    color: "bg-surface-6 dark:bg-[oklch(0.78_0.14_280)]",
   },
   {
     n: "06",
@@ -807,7 +807,7 @@ const cases = [
     sector: "Healthcare · APAC",
     year: "2025",
     word: "HEALTH",
-    color: "bg-surface-4",
+    color: "bg-surface-4 dark:bg-[oklch(0.82_0.14_25)]",
     problem: "Zero digital presence entering 3 new markets simultaneously.",
     metrics: [
       { k: "4.2x", v: "ROAS" },
@@ -822,7 +822,7 @@ const cases = [
     sector: "Supply Chain · EU",
     year: "2024",
     word: "SUPPLY",
-    color: "bg-surface-3",
+    color: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
     problem: "Outdated identity attracting wrong-fit enterprise clients.",
     metrics: [
       { k: "3x", v: "Avg. deal size" },
@@ -837,7 +837,7 @@ const cases = [
     sector: "PropTech · AU",
     year: "2024",
     word: "PROPTECH",
-    color: "bg-surface-5",
+    color: "bg-surface-5 dark:bg-[oklch(0.78_0.13_140)]",
     problem: "Stagnant pipeline with $0 content ROI across all channels.",
     metrics: [
       { k: "1.2M", v: "Impressions" },
@@ -856,7 +856,7 @@ const engagements = [
     k: "2–4 wks",
     d: "Tight scope, one outcome. Brand audit, paid kick-off or content system build.",
     bullets: ["Daily standups", "Single deliverable", "Fixed price"],
-    bg: "bg-surface-3",
+    bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
     rot: -1.2,
     tag: "Fastest",
   },
@@ -877,7 +877,7 @@ const engagements = [
     k: "6–12 wks",
     d: "End-to-end builds: GTM launch, full brand system, funnel + automation stack.",
     bullets: ["Phased milestones", "Cross-discipline", "Full handoff docs"],
-    bg: "bg-surface-2",
+    bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]",
     rot: 1.4,
     tag: "Most depth",
   },
@@ -917,16 +917,16 @@ function CoreCapabilitiesSection() {
             whileHover={{ y: -6, rotate: i % 2 === 0 ? -0.6 : 0.6 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, type: "spring", stiffness: 90 }}
-            className={`group relative flex flex-col overflow-hidden rounded-[1.5rem] border-2 border-ink text-ink shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)] ${c.bg} ${c.span}`}
+            className={`group relative flex flex-col overflow-hidden rounded-[1.5rem] border-2 border-ink text-ink shadow-[5px_5px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)] ${c.bg} ${c.span}`}
           >
             <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-background/40 blur-2xl transition-opacity duration-500 group-hover:opacity-80 dark:bg-accent/10" />
-            <div className="absolute right-4 top-4 rounded-full border-2 border-ink bg-background px-2 py-0.5 font-display text-xs font-bold dark:border-border dark:bg-secondary dark:text-secondary-foreground">
+            <div className="absolute right-4 top-4 rounded-full border-2 border-ink bg-background/85 px-2 py-0.5 font-display text-xs font-bold dark:border-ink/60 dark:bg-cream/85 dark:text-ink">
               {c.k}
             </div>
             <div className="relative flex flex-1 flex-col gap-4 p-6 md:p-8">
               <motion.div
                 whileHover={{ rotate: -8, scale: 1.06 }}
-                className="flex h-12 w-12 items-center justify-center rounded-2xl border-2 border-ink bg-background dark:border-border dark:bg-secondary"
+                className="flex h-12 w-12 items-center justify-center rounded-2xl border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85"
               >
                 <c.icon className="h-6 w-6" />
               </motion.div>
@@ -935,27 +935,27 @@ function CoreCapabilitiesSection() {
               >
                 {c.t}
               </h3>
-              <p className="max-w-md text-sm text-ink/80 dark:text-card-foreground/75 md:text-base">{c.d}</p>
+              <p className="max-w-md text-sm text-ink/80 md:text-base">{c.d}</p>
               <div className="mt-auto flex flex-wrap gap-1.5">
                 {c.chips.map((b) => (
                   <span
                     key={b}
-                    className="rounded-full border border-ink/40 bg-background/75 px-2.5 py-0.5 text-xs font-medium dark:border-border dark:bg-secondary dark:text-secondary-foreground"
+                    className="rounded-full border border-ink/40 bg-background/75 px-2.5 py-0.5 text-xs font-medium dark:border-ink/40 dark:bg-cream/75 dark:text-ink"
                   >
                     {b}
                   </span>
                 ))}
               </div>
-              <div className="mt-3 flex items-end justify-between border-t-2 border-ink/30 pt-3 dark:border-border">
+              <div className="mt-3 flex items-end justify-between border-t-2 border-ink/30 pt-3 dark:border-ink/35">
                 <div>
                   <div className="font-display text-3xl font-black leading-none md:text-4xl">
                     {c.metric}
                   </div>
-                  <div className="text-[11px] uppercase tracking-wider text-ink/60 dark:text-card-foreground/55">
+                  <div className="text-[11px] uppercase tracking-wider text-ink/60">
                     {c.metricLabel}
                   </div>
                 </div>
-                <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-background transition-transform group-hover:rotate-45 dark:border-border dark:bg-secondary">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-background/85 transition-transform group-hover:rotate-45 dark:border-ink/60 dark:bg-cream/85">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
               </div>
@@ -1007,27 +1007,27 @@ function ProcessSection() {
               >
                 <motion.div
                   whileHover={{ scale: 1.04, rotate: left ? -1 : 1 }}
-                  className={`relative rounded-[1.5rem] border-2 border-ink p-6 text-ink shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)] ${s.color} ${left ? "md:mr-10 md:text-right" : "md:ml-10"}`}
+                  className={`relative rounded-[1.5rem] border-2 border-ink p-6 text-ink shadow-[5px_5px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)] ${s.color} ${left ? "md:mr-10 md:text-right" : "md:ml-10"}`}
                 >
                   <div
-                    className={`mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl border-2 border-ink bg-background dark:border-border dark:bg-secondary ${left ? "md:ml-auto" : ""}`}
+                    className={`mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85 ${left ? "md:ml-auto" : ""}`}
                   >
                     <s.icon className="h-6 w-6" />
                   </div>
-                  <div className="font-display text-sm font-bold uppercase tracking-widest text-ink/60 dark:text-card-foreground/55">
+                  <div className="font-display text-sm font-bold uppercase tracking-widest text-ink/60">
                     Step {s.n}
                   </div>
                   <h3 className="font-display text-3xl font-bold leading-tight md:text-4xl">
                     {s.t}
                   </h3>
-                  <p className="mt-1 text-ink/80 dark:text-card-foreground/75">{s.d}</p>
+                  <p className="mt-1 text-ink/80">{s.d}</p>
                 </motion.div>
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ type: "spring", delay: i * 0.05 + 0.1 }}
-                  className="absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-ink bg-background font-display text-sm font-black md:flex dark:border-border dark:bg-secondary"
+                  className="absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-ink bg-background font-display text-sm font-black md:flex dark:border-white/25 dark:bg-[oklch(0.93_0.018_78)] dark:text-[oklch(0.25_0.018_60)]"
                 >
                   {s.n}
                 </motion.div>
@@ -1181,9 +1181,9 @@ function CaseStudiesSection() {
             whileHover={{ rotate: 0, y: -6, scale: 1.01 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, type: "spring", stiffness: 90 }}
-            className={`group relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
+            className={`group relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
           >
-            <div className="flex items-center justify-between border-b-2 border-ink/40 bg-background/50 px-5 py-2 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm dark:border-border dark:bg-secondary/70">
+            <div className="flex items-center justify-between border-b-2 border-ink/40 bg-background/50 px-5 py-2 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm dark:border-ink/35 dark:bg-cream/45">
               <span className="inline-flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-ink animate-pulse" />
                 Case · {c.year}
@@ -1199,26 +1199,26 @@ function CaseStudiesSection() {
               </motion.span>
               <Star4 className="absolute right-5 top-5 h-6 w-6 text-ink/70 animate-spin-slow" />
             </div>
-            <div className="bg-background/70 p-6 backdrop-blur-sm dark:bg-secondary/45">
+            <div className="bg-background/70 p-6 backdrop-blur-sm dark:bg-cream/55">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h3 className="font-display text-2xl font-bold leading-tight">{c.name}</h3>
-                  <p className="mt-1 max-w-md text-sm text-ink/70 dark:text-card-foreground/70">
+                  <p className="mt-1 max-w-md text-sm text-ink/70">
                     <span className="font-semibold text-ink">Brief — </span>
                     {c.problem}
                   </p>
                 </div>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-background transition-transform group-hover:rotate-45 dark:border-border dark:bg-secondary">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-background/85 transition-transform group-hover:rotate-45 dark:border-ink/60 dark:bg-cream/85">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
               </div>
-              <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl border-2 border-ink bg-background p-3 dark:border-border dark:bg-card/70">
+              <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl border-2 border-ink bg-background/85 p-3 dark:border-ink/50 dark:bg-cream/85">
                 {c.metrics.map((m) => (
                   <div key={m.v} className="text-center">
                     <div className="font-display text-xl font-black leading-none md:text-2xl">
                       {m.k}
                     </div>
-                    <div className="mt-1 text-[10px] uppercase tracking-wider text-ink/60 dark:text-card-foreground/55">
+                    <div className="mt-1 text-[10px] uppercase tracking-wider text-ink/60">
                       {m.v}
                     </div>
                   </div>
@@ -1228,7 +1228,7 @@ function CaseStudiesSection() {
                 {c.tags.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-ink/40 bg-background px-2.5 py-0.5 text-[11px] font-semibold dark:border-border dark:bg-secondary"
+                    className="rounded-full border border-ink/40 bg-background/85 px-2.5 py-0.5 text-[11px] font-semibold dark:border-ink/40 dark:bg-cream/75"
                   >
                     {t}
                   </span>
@@ -1269,25 +1269,25 @@ function FlexibleSection() {
             whileHover={{ rotate: 0, y: -8 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.1, type: "spring", stiffness: 90 }}
-            className={`relative flex flex-col overflow-hidden rounded-[1.75rem] border-2 border-ink p-7 text-ink shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${e.bg} ${e.popular ? "md:-mt-4 md:scale-[1.04]" : ""}`}
+            className={`relative flex flex-col overflow-hidden rounded-[1.75rem] border-2 border-ink p-7 text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${e.bg} ${e.popular ? "md:-mt-4 md:scale-[1.04]" : ""}`}
           >
-            <div className="absolute -right-10 top-5 rotate-45 border-y-2 border-ink bg-ink px-12 py-0.5 text-[10px] font-bold uppercase tracking-widest text-cream">
+            <div className="absolute -right-10 top-5 rotate-45 border-y-2 border-ink bg-ink px-12 py-0.5 text-[10px] font-bold uppercase tracking-widest text-cream dark:bg-[oklch(0.25_0.018_60)] dark:text-[oklch(0.93_0.018_78)]">
               {e.tag}
             </div>
             <motion.div
               whileHover={{ rotate: -10, scale: 1.08 }}
-              className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-ink bg-background dark:border-border dark:bg-secondary"
+              className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85"
             >
               <e.icon className="h-7 w-7" />
             </motion.div>
             <div className="flex items-baseline gap-2">
               <h3 className="font-display text-4xl font-bold leading-none">{e.t}</h3>
-              <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-background px-2 py-0.5 text-xs font-semibold dark:border-border dark:bg-secondary">
+              <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-background/85 px-2 py-0.5 text-xs font-semibold dark:border-ink/60 dark:bg-cream/85">
                 <Clock className="h-3 w-3" />
                 {e.k}
               </span>
             </div>
-            <p className="mt-3 text-ink/80 dark:text-card-foreground/75">{e.d}</p>
+            <p className="mt-3 text-ink/80">{e.d}</p>
             <ul className="mt-5 space-y-2">
               {e.bullets.map((b, j) => (
                 <motion.li
@@ -1298,7 +1298,7 @@ function FlexibleSection() {
                   transition={{ delay: 0.2 + j * 0.06 }}
                   className="flex items-center gap-2 text-sm font-medium"
                 >
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-background dark:border-border dark:bg-secondary">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85">
                     <TrendingUp className="h-3 w-3" />
                   </span>
                   {b}
@@ -1555,7 +1555,7 @@ function PortfolioGraphicDesign() {
 function PortfolioSoftwareSystems() {
   return (
     <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
-      <div className="mb-10 text-center px-5">
+      <div className="mb- text-center px-5">
         <span className="script text-3xl text-teal-400">intelligent stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 4 – SOFTWARE & SYSTEMS
@@ -1568,7 +1568,7 @@ function PortfolioSoftwareSystems() {
         slides={softwareSystemsSlides}
         title="Software & Systems"
         subtitle="AUTOMATION & PLATFORMS"
-        description="Cylinder-style rotating visual carousel showcasing architecture details and business impact."
+        description="Cylinder-style rotating visual carousel showcasing architecture details and business impact"
       />
     </div>
   );
@@ -2067,6 +2067,7 @@ function Index() {
 
       {/* ABOUT */}
       <PortfolioSection />
+      
 
       
 
