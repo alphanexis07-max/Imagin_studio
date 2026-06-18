@@ -856,7 +856,7 @@ const engagements = [
     k: "2–4 wks",
     d: "Tight scope, one outcome. Brand audit, paid kick-off or content system build.",
     bullets: ["Daily standups", "Single deliverable", "Fixed price"],
-    bg: "bg-surface-3",
+    bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
     rot: -1.2,
     tag: "Fastest",
   },
@@ -877,7 +877,7 @@ const engagements = [
     k: "6–12 wks",
     d: "End-to-end builds: GTM launch, full brand system, funnel + automation stack.",
     bullets: ["Phased milestones", "Cross-discipline", "Full handoff docs"],
-    bg: "bg-surface-2",
+    bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]",
     rot: 1.4,
     tag: "Most depth",
   },
@@ -1269,25 +1269,25 @@ function FlexibleSection() {
             whileHover={{ rotate: 0, y: -8 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.1, type: "spring", stiffness: 90 }}
-            className={`relative flex flex-col overflow-hidden rounded-[1.75rem] border-2 border-ink p-7 text-ink shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${e.bg} ${e.popular ? "md:-mt-4 md:scale-[1.04]" : ""}`}
+            className={`relative flex flex-col overflow-hidden rounded-[1.75rem] border-2 border-ink p-7 text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${e.bg} ${e.popular ? "md:-mt-4 md:scale-[1.04]" : ""}`}
           >
-            <div className="absolute -right-10 top-5 rotate-45 border-y-2 border-ink bg-ink px-12 py-0.5 text-[10px] font-bold uppercase tracking-widest text-cream">
+            <div className="absolute -right-10 top-5 rotate-45 border-y-2 border-ink bg-ink px-12 py-0.5 text-[10px] font-bold uppercase tracking-widest text-cream dark:bg-[oklch(0.25_0.018_60)] dark:text-[oklch(0.93_0.018_78)]">
               {e.tag}
             </div>
             <motion.div
               whileHover={{ rotate: -10, scale: 1.08 }}
-              className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-ink bg-background dark:border-border dark:bg-secondary"
+              className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85"
             >
               <e.icon className="h-7 w-7" />
             </motion.div>
             <div className="flex items-baseline gap-2">
               <h3 className="font-display text-4xl font-bold leading-none">{e.t}</h3>
-              <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-background px-2 py-0.5 text-xs font-semibold dark:border-border dark:bg-secondary">
+              <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-background/85 px-2 py-0.5 text-xs font-semibold dark:border-ink/60 dark:bg-cream/85">
                 <Clock className="h-3 w-3" />
                 {e.k}
               </span>
             </div>
-            <p className="mt-3 text-ink/80 dark:text-card-foreground/75">{e.d}</p>
+            <p className="mt-3 text-ink/80">{e.d}</p>
             <ul className="mt-5 space-y-2">
               {e.bullets.map((b, j) => (
                 <motion.li
@@ -1298,7 +1298,7 @@ function FlexibleSection() {
                   transition={{ delay: 0.2 + j * 0.06 }}
                   className="flex items-center gap-2 text-sm font-medium"
                 >
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-background dark:border-border dark:bg-secondary">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85">
                     <TrendingUp className="h-3 w-3" />
                   </span>
                   {b}
