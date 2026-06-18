@@ -83,6 +83,7 @@ export function DiagonalWheel({
 
       <motion.div
         tabIndex={0}
+        onWheel={carousel.onWheel}
         onKeyDown={carousel.onKeyDown}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}

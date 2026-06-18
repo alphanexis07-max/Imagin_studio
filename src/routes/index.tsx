@@ -988,7 +988,7 @@ function ProcessSection() {
       </div>
 
       <div ref={ref} className="relative">
-        <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-ink/10 md:block" />
+        <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-ink/10 md:block dark:bg-white/24" />
         <motion.div
           style={{ scaleY: lineScale, transformOrigin: "top" }}
           className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-accent md:block"
@@ -1519,6 +1519,11 @@ function PortfolioGraphicDesign() {
 
       <div
         ref={scrollRef}
+        onWheel={(event) => {
+          if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+          event.preventDefault();
+          scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+        }}
         className="flex gap-6 overflow-x-auto px-6 md:px-20 scrollbar-none snap-x snap-mandatory py-4 "
         style={{ scrollbarWidth: "none" }}
       >
