@@ -989,7 +989,7 @@ function ProcessSection() {
       </div>
 
       <div ref={ref} className="relative">
-        <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-ink/10 md:block" />
+        <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-ink/10 md:block dark:bg-white/24" />
         <motion.div
           style={{ scaleY: lineScale, transformOrigin: "top" }}
           className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-accent md:block"
@@ -1045,10 +1045,7 @@ function ProcessSection() {
 /* ── Film Reels ── */
 function FilmReelsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
-    
-  const rotations = [-1.5, 1.5, -1, 1];
-  const sprocketHoles = Array.from({ length: 18 });
+  const rotations = [-0.5, 0.5, -0.35, 0.35];
 
   
   
@@ -1056,19 +1053,8 @@ function FilmReelsSection() {
     <section
       id="film"
       ref={sectionRef}
-      className="relative isolate overflow-hidden border-y border-border bg-background text-foreground dark:border-white/10 dark:bg-ink dark:text-cream"
+      className="relative isolate overflow-hidden bg-transparent text-foreground"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-multiply dark:opacity-[0.09] dark:mix-blend-screen"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.45) 0.5px, transparent 0.5px)",
-          backgroundSize: "3px 3px",
-        }}
-      />
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-accent/15 blur-[120px] dark:bg-accent/35" />
-      <div className="pointer-events-none absolute -bottom-20 right-0 h-[400px] w-[600px] rounded-full bg-surface-4/20 blur-[100px] dark:bg-[oklch(0.78_0.14_25)]/30" />
-
       <div className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="mb-10 grid items-end gap-6 md:grid-cols-[1fr_auto]">
           <div>
@@ -1080,31 +1066,20 @@ function FilmReelsSection() {
             </h2>
           </div>
           <div className="flex flex-col gap-4 md:items-end">
-            <p className="max-w-sm text-foreground/70 md:text-right dark:text-cream/70">
+            <p className="max-w-sm text-foreground/70 md:text-right">
               Real client cuts — autoplaying as you arrive. Tap a frame to unmute and feel the room.
             </p>
             <Link
               to="/reels"
-              className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-card px-6 py-2.5 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur transition-all hover:bg-ink hover:text-cream dark:border-cream/30 dark:bg-black/50 dark:text-cream dark:hover:bg-cream dark:hover:text-ink"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-card/70 px-6 py-2.5 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur transition-all hover:bg-ink hover:text-cream dark:border-white/10 dark:bg-card/70 dark:text-card-foreground dark:hover:bg-foreground dark:hover:text-background"
             >
               View All Reels <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
 
-        <div className="relative rounded-[2rem] border-2 border-ink/10 bg-card p-4 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.35)] md:p-6 dark:border-cream/15 dark:bg-film-bg dark:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]">
-          <div className="absolute inset-x-6 -top-1 flex h-2 justify-between">
-            {sprocketHoles.map((_, i) => (
-              <span key={`top-${i}`} className="block h-2 w-3 rounded-[3px] bg-ink/10 dark:bg-cream/15" />
-            ))}
-          </div>
-          <div className="absolute inset-x-6 -bottom-1 flex h-2 justify-between">
-            {sprocketHoles.map((_, i) => (
-              <span key={`bottom-${i}`} className="block h-2 w-3 rounded-[3px] bg-ink/10 dark:bg-cream/15" />
-            ))}
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
+        <div className="relative">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
             {filmReels.map((reel, i) => {
                             return (
                 <motion.div
@@ -1114,23 +1089,24 @@ function FilmReelsSection() {
                   whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ type: "spring", stiffness: 90, delay: i * 0.1 }}
-                  className="relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border-2 border-ink/10 bg-muted shadow-[6px_6px_0_0_var(--accent)] dark:border-cream/30 dark:bg-black"
+                  className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
                 >
                   <iframe
                     src={extractEmbedUrl(reel.src)}
-                    className="absolute inset-0 h-full w-full border-none"
+                    className="absolute inset-0 h-full w-full rounded-2xl border-none"
                     loading="lazy"
                     title={reel.title}
                     allowtransparency="true"
+                    scrolling="no"
                     allowFullScreen={true}
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30" />
+                  <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
                   
-                  <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-cream/40 bg-black/50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-cream backdrop-blur-md">
+                  <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
                     REC · {reel.tag}
                   </div>
-                  <h3 className="absolute bottom-3 left-3 right-12 font-display text-base font-bold text-cream drop-shadow-lg md:text-lg">
+                  <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
                     {reel.title}
                   </h3>
                   
@@ -1139,7 +1115,7 @@ function FilmReelsSection() {
             })}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-cream/15 pt-4 text-[11px] uppercase tracking-[0.2em] text-cream/60">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-ink/10 pt-4 text-[11px] uppercase tracking-[0.2em] text-foreground/55 dark:border-white/10">
             <div className="inline-flex items-center gap-2">
               <Film className="h-3.5 w-3.5 text-accent" />
               Cinematography · Cut · Color · Sound
@@ -1451,7 +1427,7 @@ function PortfolioHeroShowcase() {
 
 function PortfolioVideoEditing() {
   return (
-    <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
+    <div className="py-6">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-red-500 font-bold">motion editing</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1520,6 +1496,11 @@ function PortfolioGraphicDesign() {
 
       <div
         ref={scrollRef}
+        onWheel={(event) => {
+          if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+          event.preventDefault();
+          scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+        }}
         className="flex gap-6 overflow-x-auto px-6 md:px-20 scrollbar-none snap-x snap-mandatory py-4 "
         style={{ scrollbarWidth: "none" }}
       >
@@ -1555,7 +1536,7 @@ function PortfolioGraphicDesign() {
 
 function PortfolioSoftwareSystems() {
   return (
-    <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
+    <div className="py-6">
       <div className="mb- text-center px-5">
         <span className="script text-3xl text-teal-400">intelligent stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1600,7 +1581,7 @@ function PortfolioSEOAnalytics() {
 function PortfolioStrategicConsulting() {
   const badgeStyle = "bg-amber-500/25 border-amber-500/40 text-amber-400";
   return (
-    <div className="py-20 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
+    <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-amber-400">management consulting</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1716,18 +1697,17 @@ function PortfolioContentWriting() {
 
 function PortfolioSection() {
   return (
-    <section id="portfolio" className="relative overflow-hidden bg-surface-7 py-20 text-foreground dark:bg-[#0b0f14] dark:text-white">
-      {/* Background shapes */}
-      <div className="pointer-events-none absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-blue-500/5 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-40 top-2/4 h-96 w-96 rounded-full bg-purple-500/5 blur-[120px]" />
-      <div className="pointer-events-none absolute -left-40 top-3/4 h-96 w-96 rounded-full bg-emerald-500/5 blur-[120px]" />
-
+    <section
+      id="portfolio"
+      className="relative isolate overflow-hidden bg-transparent py-20 text-foreground"
+    >
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">our global workspace</span>
-        <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground">
           Digital Agency <span className="italic text-accent">Portfolio</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg dark:text-gray-400">
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">
           A premium showcase of creative services, marketing campaigns, software solutions, and strategic business consulting.
         </p>
       </div>
