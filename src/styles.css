@@ -87,6 +87,7 @@
 .dark {
   --cream: oklch(0.08 0.03 30);
   --ink: oklch(0.96 0.02 85);
+  --orange-pop: oklch(0.6 0.14 62);
   --orange-soft: oklch(0.4 0.15 60);
   
   --surface-1: oklch(0.15 0.04 75);

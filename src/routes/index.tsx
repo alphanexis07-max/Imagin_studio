@@ -1715,18 +1715,16 @@ function PortfolioContentWriting() {
 
 function PortfolioSection() {
   return (
-    <section id="portfolio" className="relative overflow-hidden bg-surface-7 py-20 text-foreground dark:bg-[#0b0f14] dark:text-white">
-      {/* Background shapes */}
-      <div className="pointer-events-none absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-blue-500/5 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-40 top-2/4 h-96 w-96 rounded-full bg-purple-500/5 blur-[120px]" />
-      <div className="pointer-events-none absolute -left-40 top-3/4 h-96 w-96 rounded-full bg-emerald-500/5 blur-[120px]" />
-
+    <section
+      id="portfolio"
+      className="relative overflow-hidden bg-transparent py-20 text-foreground"
+    >
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">our global workspace</span>
-        <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground">
           Digital Agency <span className="italic text-accent">Portfolio</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg dark:text-gray-400">
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">
           A premium showcase of creative services, marketing campaigns, software solutions, and strategic business consulting.
         </p>
       </div>
