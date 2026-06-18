@@ -897,7 +897,7 @@ function CoreCapabilitiesSection() {
     <section id="capabilities" className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
-          <span className="script text-3xl text-accent">what we bring</span>
+          <span className="script text-3xl text-accent">What We Bring</span>
           <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
             Core <span className="italic">Capabilities</span>
             <span className="text-accent">.</span>
@@ -977,7 +977,7 @@ function ProcessSection() {
   return (
     <section id="process" className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-14 text-center">
-        <span className="script text-3xl text-accent">how we ship</span>
+        <span className="script text-3xl text-accent">How We Ship</span>
         <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
           6-Step <span className="italic">Delivery</span> Framework
           <span className="text-accent">.</span>
@@ -1058,7 +1058,7 @@ function FilmReelsSection() {
       <div className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="mb-10 grid items-end gap-6 md:grid-cols-[1fr_auto]">
           <div>
-            <span className="script text-3xl text-accent">the reel room</span>
+            <span className="script text-3xl text-accent">The Reel Room</span>
             <h2 className="font-display text-4xl font-bold leading-[1.04] md:text-6xl">
               Expert <em className="text-accent">editing</em> that brings
               <br />
@@ -1134,7 +1134,7 @@ function CaseStudiesSection() {
     <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <span className="script text-3xl text-accent">in the wild</span>
+          <span className="script text-3xl text-accent">In The Wild</span>
           <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
             Selected <span className="italic">Case Studies</span>
             <span className="text-accent">.</span>
@@ -1333,7 +1333,7 @@ function ROISection() {
   return (
     <section className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-12">
-        <span className="script text-3xl text-accent">the numbers</span>
+        <span className="script text-3xl text-accent">The Numbers</span>
         <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
           ROI & Value <span className="italic">Realisation</span>
           <span className="text-accent">.</span>
@@ -1407,7 +1407,7 @@ function PortfolioHeroShowcase() {
   return (
     <div className="py-6 " id="work">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-accent">first impressions</span>
+        <span className="script text-3xl text-accent">First Impressions</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 1 – HERO SHOWCASE
         </h2>
@@ -1429,7 +1429,7 @@ function PortfolioVideoEditing() {
   return (
     <div className="py-6">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-red-500 font-bold">motion editing</span>
+        <span className="script text-3xl text-red-500 font-bold">Motion Editing</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 2 – VIDEO EDITING
         </h2>
@@ -1468,7 +1468,7 @@ function PortfolioGraphicDesign() {
     <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
-          <span className="script text-3xl text-purple-600 dark:text-purple-400">visual assets</span>
+          <span className="script text-3xl text-purple-600 dark:text-purple-400">Visual Assets</span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
             SECTION 3 – GRAPHIC DESIGN
           </h2>
@@ -1538,7 +1538,7 @@ function PortfolioSoftwareSystems() {
   return (
     <div className="py-6">
       <div className="mb- text-center px-5">
-        <span className="script text-3xl text-teal-400">intelligent stacks</span>
+        <span className="script text-3xl text-teal-400">Intelligent Stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 4 – SOFTWARE & SYSTEMS
         </h2>
@@ -1560,7 +1560,7 @@ function PortfolioSEOAnalytics() {
   return (
     <div className="py-20">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-green-400">growth metrics</span>
+        <span className="script text-3xl text-green-400">Growth Metrics</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 5 – SEO & ANALYTICS
         </h2>
@@ -1583,7 +1583,7 @@ function PortfolioStrategicConsulting() {
   return (
     <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
-        <span className="script text-3xl text-amber-400">management consulting</span>
+        <span className="script text-3xl text-amber-400">Management Consulting</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 6 – STRATEGIC CONSULTING
         </h2>
@@ -1649,7 +1649,7 @@ function PortfolioContentWriting() {
   return (
     <div className="py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
-        <span className="script text-3xl text-orange-400 font-bold">copywriting</span>
+        <span className="script text-3xl text-orange-400 font-bold">Copywriting</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 7 – CONTENT WRITING
         </h2>
@@ -1703,7 +1703,7 @@ function PortfolioSection() {
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
-        <span className="script text-3xl text-accent">our global workspace</span>
+        <span className="script text-3xl text-accent">Our Global Workspace</span>
         <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground">
           Digital Agency <span className="italic text-accent">Portfolio</span>
         </h2>
@@ -1780,7 +1780,7 @@ function Index() {
             href="#work"
             className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
           >
-            View our work <ArrowUpRight className="h-4 w-4" />
+            View Our Work <ArrowUpRight className="h-4 w-4" />
           </a>
           <a
             href="#services"
@@ -1817,7 +1817,7 @@ function Index() {
           <Scribble className="pointer-events-none absolute left-4 top-2 h-8 w-14 text-ink animate-draw md:left-8" />
           <Scribble className="pointer-events-none absolute right-6 top-8 h-8 w-14 text-accent rotate-12 animate-draw md:right-16" />
           <Star4 className="pointer-events-none absolute left-2 top-1/3 h-5 w-5 text-accent animate-spin-slow md:left-10" />
-          <Star4 className="pointer-events-none absolute right-8 bottom-1/4 h-6 w-6 text-ink animate-spin-slow" />
+          <Star4 className="pointer-events-none absolute right-8 bottom-1/3 h-6 w-6 text-ink animate-spin-slow" />
 
           {/* Floating pill tags — same positions as original Helmi design */}
           {[
@@ -1831,11 +1831,11 @@ function Index() {
               r: "-6deg",
               d: "0s",
             },
-            { txt: <>🚀 Ads</>, pos: "-right-4 top-[32%] md:right-0", r: "8deg", d: "0.4s" },
+            { txt: <>🚀 Ads</>, pos: "-right-4 top-[36%] md:right-0", r: "8deg", d: "0.4s" },
             { txt: <>🌟 Brand</>, pos: "-left-6 top-[78%] md:left-12", r: "-4deg", d: "0.8s" },
             {
               txt: <>💎 Social Media</>,
-              pos: "-right-6 bottom-[20%] md:right-8",
+              pos: "-right-6 bottom-[15%] md:right-8",
               r: "6deg",
               d: "1.2s",
             },
@@ -1882,7 +1882,7 @@ function Index() {
       {/* STATS strip */}
       <section className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="mb-10 text-center">
-          <span className="script text-3xl text-accent">achievements</span>
+          <span className="script text-3xl text-accent">Achievements</span>
           <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
             Milestones that prove our work delivers impact.
           </h2>
@@ -1986,7 +1986,7 @@ function Index() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="script text-3xl text-accent">who we are</span>
+            <span className="script text-3xl text-accent">Who We Are</span>
             <h2 className="mt-2 font-display text-5xl font-bold leading-tight md:text-6xl">
               We build brands
               <br />
@@ -2068,7 +2068,7 @@ function Index() {
       {/* TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-24">
         <div className="mb-12 text-center">
-          <span className="script text-3xl text-accent">what clients say</span>
+          <span className="script text-3xl text-accent">What Clients Say</span>
           <h2 className="font-display text-5xl font-bold md:text-6xl">
             Straight from <span className="italic">the source</span>
             <span className="text-accent">.</span>

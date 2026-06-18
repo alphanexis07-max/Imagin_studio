@@ -77,17 +77,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NOVARA — Future-forward marketing studio" },
-      { name: "description", content: "NOVARA is a futuristic marketing studio building bold brands, immersive campaigns, and growth systems for ambitious teams." },
-      { name: "author", content: "NOVARA Studio" },
-      { property: "og:title", content: "NOVARA — Future-forward marketing studio" },
-      { property: "og:description", content: "NOVARA is a futuristic marketing studio building bold brands, immersive campaigns, and growth systems for ambitious teams." },
+      { title: "AlphaNexis - Brand & Marketing Specialist" },
+      {
+        name: "description",
+        content:
+          "AlphaNexis helps brands grow with creative strategy, performance marketing, content systems, automation, and conversion-focused digital experiences.",
+      },
+      { name: "author", content: "AlphaNexis" },
+      { property: "og:title", content: "AlphaNexis - Brand & Marketing Specialist" },
+      {
+        property: "og:description",
+        content:
+          "Creative strategy, performance marketing, content systems, automation, and digital experiences built for brand growth.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "NOVARA — Future-forward marketing studio" },
-      { name: "twitter:description", content: "NOVARA is a futuristic marketing studio building bold brands, immersive campaigns, and growth systems for ambitious teams." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bbff5ea4-b3c0-4f27-8cbd-cc3448559e65/id-preview-211af478--a109885c-2535-41ee-95a2-6c4d4f7380af.lovable.app-1781331842801.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bbff5ea4-b3c0-4f27-8cbd-cc3448559e65/id-preview-211af478--a109885c-2535-41ee-95a2-6c4d4f7380af.lovable.app-1781331842801.png" },
+      { property: "og:url", content: "https://alphanexis.vercel.app/" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "AlphaNexis - Brand & Marketing Specialist" },
+      {
+        name: "twitter:description",
+        content:
+          "Creative strategy, performance marketing, content systems, automation, and digital experiences built for brand growth.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
