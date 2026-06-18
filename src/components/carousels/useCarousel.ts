@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { type MotionValue, useMotionValue, useReducedMotion, useSpring, type PanInfo } from "framer-motion";
 import { smooth } from "./motionSystem";
 
@@ -40,6 +40,7 @@ export function useCarousel({
   const [activeIndex, setActiveIndex] = useState(() => wrapIndex(initialIndex, count));
   const reducedMotion = useReducedMotion();
   const progress = useMotionValue(activeIndex);
+  const wheelLockRef = useRef(0);
   const spring = useSpring(progress, {
     stiffness: reducedMotion ? Math.max(stiffness, 280) : stiffness,
     damping: reducedMotion ? Math.max(damping, 38) : damping,
@@ -71,10 +72,28 @@ export function useCarousel({
     jumpTo(activeIndex - 1);
   }, [activeIndex, jumpTo]);
 
-  // disable wheel-based navigation to require explicit buttons
-  const onWheel = useCallback((event: React.WheelEvent) => {
-    // intentionally empty
-  }, []);
+  const onWheel = useCallback(
+    (event: React.WheelEvent) => {
+      const horizontalIntent =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.shiftKey ? event.deltaY : 0;
+
+      if (Math.abs(horizontalIntent) < 24) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const now = Date.now();
+      if (now - wheelLockRef.current < 420) return;
+      wheelLockRef.current = now;
+
+      if (horizontalIntent > 0) {
+        next();
+      } else {
+        prev();
+      }
+    },
+    [next, prev],
+  );
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
