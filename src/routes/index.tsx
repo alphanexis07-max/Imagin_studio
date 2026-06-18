@@ -1555,7 +1555,7 @@ function PortfolioGraphicDesign() {
 function PortfolioSoftwareSystems() {
   return (
     <div className="py-6 border-y border-ink/10 bg-background/55 dark:border-white/5 dark:bg-[#0e131b]/50">
-      <div className="mb-10 text-center px-5">
+      <div className="mb- text-center px-5">
         <span className="script text-3xl text-teal-400">intelligent stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 4 – SOFTWARE & SYSTEMS
@@ -1568,7 +1568,7 @@ function PortfolioSoftwareSystems() {
         slides={softwareSystemsSlides}
         title="Software & Systems"
         subtitle="AUTOMATION & PLATFORMS"
-        description="Cylinder-style rotating visual carousel showcasing architecture details and business impact."
+        description="Cylinder-style rotating visual carousel showcasing architecture details and business impact"
       />
     </div>
   );
