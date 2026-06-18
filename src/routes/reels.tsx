@@ -3,6 +3,7 @@ import { ArrowLeft, Film } from "lucide-react";
 import { motion } from "framer-motion";
 import { instagramPosts } from "@/data/instagramFeed";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import Navbar from "@/components/navbar";
 
 export const Route = createFileRoute("/reels")({ component: Reels });
 
@@ -20,7 +21,7 @@ function extractEmbedUrl(url: string) {
 
 function Reels() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-ink text-cream">
+    <main className="relative min-h-screen  overflow-hidden bg-ink text-cream">
       {/* Ambient background glow */}
       <div
         className="pointer-events-none fixed inset-0 opacity-[0.05] mix-blend-screen"
@@ -33,17 +34,7 @@ function Reels() {
       <div className="pointer-events-none fixed -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]" />
       <div className="pointer-events-none fixed -bottom-20 right-0 h-[400px] w-[600px] rounded-full bg-film-overlay/20 blur-[100px]" />
 
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 border-b border-cream/10 bg-ink/70 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm font-semibold text-cream/70 transition-colors hover:text-cream">
-            <ArrowLeft className="h-4 w-4" /> Back to Home
-          </Link>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <section className="relative mx-auto max-w-7xl px-5 py-16 md:py-24">
         <div className="mb-16 text-center">

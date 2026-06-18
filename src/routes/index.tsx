@@ -41,6 +41,7 @@ import {
 } from "lucide-react";
 import portrait from "@/assets/portrait.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -1744,38 +1745,6 @@ function PortfolioSection() {
 
 /* ── Main Page ── */
 function Index() {
-  const [scrolled, setScrolled] = useState(false);
-  const [showNav, setShowNav] = useState(true);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 16);
-
-      const isScrollingDown = currentY > lastScrollY.current && currentY > 80;
-      const isScrollingUp = currentY < lastScrollY.current;
-
-      if (isScrollingUp) {
-        setShowNav(true);
-      } else if (isScrollingDown) {
-        setShowNav(false);
-      }
-
-      lastScrollY.current = Math.max(currentY, 0);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    const target = document.getElementById(id);
-    target?.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.pushState(null, "", `#${id}`);
-  };
 
   return (
     <main className="relative min-h-screen overflow-visible bg-background text-foreground">
@@ -1787,49 +1756,7 @@ function Index() {
       />
 
       {/* Nav */}
-      <motion.nav
-        initial={{ y: -30, opacity: 0 }}
-        animate={{ y: showNav ? 0 : -120, opacity: showNav ? 1 : 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/70 border-b border-border/80 shadow-xl shadow-black/5 backdrop-blur-xl" : "bg-background/70 border-b border-border/60 backdrop-blur-md"}`}
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <a href="#" className="flex items-center gap-2 font-display text-xl font-bold">
-            <motion.span
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-cream"
-            >
-              A.
-            </motion.span>
-            AlphaNexis<span className="text-accent">.</span>
-          </a>
-          <div className="hidden items-center gap-8 text-sm md:flex">
-            {["About", "Portfolio", "Work", "Services", "Contact"].map((l) => (
-              <a
-                key={l}
-                href={`#${l.toLowerCase()}`}
-                onClick={scrollToSection(l.toLowerCase())}
-                className="story-link text-foreground/70 transition-colors hover:text-foreground"
-              >
-                {l}
-              </a>
-            ))}
-          </div>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <a
-              href="#contact"
-              onClick={scrollToSection("contact")}
-              className="inline-flex items-center gap-1 rounded-full bg-ink px-3 py-1.5 text-xs font-medium text-cream transition-transform hover:scale-105 sm:gap-1.5 sm:px-4 sm:py-2 sm:text-sm"
-            >
-              <span className="hidden min-[390px]:inline">Start a project</span>
-              <span className="min-[390px]:hidden">Start</span>
-              <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            </a>
-          </div>
-        </div>
-      </motion.nav>
+      <Navbar />
 
       {/* HERO */}
       <section className="relative mx-auto max-w-6xl px-5 pt-12 pb-8 md:pt-20">
@@ -1847,10 +1774,10 @@ function Index() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="font-display text-[clamp(2.5rem,8vw,6rem)] font-bold leading-[1.05] tracking-tight"
+            className="font-display text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
           >
             We craft digital experiences that
-            <br />drive growth and leave a lasting <span className="text-accent">impact</span>.
+            <br />drive growth and leave a lasting <span className="text-accent">impact</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -2010,21 +1937,21 @@ function Index() {
               className="flex shrink-0 items-center gap-10 px-6 font-display text-3xl font-semibold"
             >
               {[
-                "Impact",
+                "IMPACT",
                 "/",
-                "Design",
+                "DESIGN",
                 "/",
-                "Innovate",
+                "INNOVATE",
                 "/",
-                "Create",
+                "CREATE",
                 "/",
-                "Strategize",
+                "STRATEGIZE",
                 "/",
-                "Impact",
+                "IMPACT",
                 "/",
-                "Design",
+                "DESIGN",
                 "/",
-                "Innovate",
+                "INNOVATE",
               ].map((w, i) => (
                 <span key={i} className={i % 2 === 0 ? "text-foreground" : "text-accent"}>
                   {w}
