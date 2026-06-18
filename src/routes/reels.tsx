@@ -62,7 +62,6 @@ function Reels() {
             A cohesive collection of our visual storytelling.
           </motion.p>
         </div>
-        
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {instagramPosts.map((post, i) => (
