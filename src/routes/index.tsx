@@ -292,35 +292,35 @@ const videoEditingSlides = [
 const graphicDesignSlides = [
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Branding",
+    subcategory: "",
     title: "Lume Skincare Visual Identity",
     description: "Color system, custom typography, and premium brand voice.",
     image: screenshot2,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Packaging",
+    subcategory: "",
     title: "Premium Product Packaging",
     description: "Eco-friendly cosmetic bottle labels and box layouts.",
     image: screenshot1,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Social Media",
+    subcategory: "",
     title: "High-Retention Instagram Creatives",
     description: "Curated grids, posters, and stories designed for organic conversion.",
     image: screenshot3,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
+    subcategory: "",
     title: "Out-Of-Home Banner Campaigns",
     description: "High-contrast billboards and print advertisements for modern transport hubs.",
     image: screenshot4,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Print Design",
+    subcategory: "",
     title: "Editorial Brand Catalogs",
     description: "Premium booklets showcasing collection launches.",
     image: screenshot6,
@@ -1539,7 +1539,7 @@ function PortfolioSoftwareSystems() {
   return (
     <div className="py-6">
       <div className="mb- text-center px-5">
-        <span className="script text-3xl text-teal-400">Intelligent Stacks</span>
+        <span className="script text-3xl text-orange-400">Intelligent Stacks</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 4 – SOFTWARE & SYSTEMS
         </h2>
@@ -1561,7 +1561,7 @@ function PortfolioSEOAnalytics() {
   return (
     <div className="py-20">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-green-400">Growth Metrics</span>
+        <span className="script text-3xl text-blue-400">Growth Metrics</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 5 – SEO & ANALYTICS
         </h2>
@@ -1828,12 +1828,12 @@ function Index() {
                   <Megaphone className="h-4 w-4 text-accent" /> Marketing
                 </>
               ),
-              pos: "-left-4 top-[22%] md:left-0",
+              pos: "-left-4 top-[50%] md:left-0",
               r: "-6deg",
               d: "0s",
             },
             { txt: <>🚀 Ads</>, pos: "-right-4 top-[36%] md:right-0", r: "8deg", d: "0.4s" },
-            { txt: <>🌟 Brand</>, pos: "-left-6 top-[78%] md:left-12", r: "-4deg", d: "0.8s" },
+            { txt: <>🌟 Brand</>, pos: "-left-6 top-[87%] md:left-12", r: "-4deg", d: "0.8s" },
             {
               txt: <>💎 Social Media</>,
               pos: "-right-6 bottom-[15%] md:right-8",
@@ -1873,8 +1873,7 @@ function Index() {
           >
             <div className="font-display text-4xl text-foreground/40">"</div>
             <p className="text-sm leading-snug text-foreground/70">
-              AlphaNexis shipped our enterprise app three months ahead of schedule and captured a
-              critical market window.
+              
             </p>
           </motion.div>
         </div>
