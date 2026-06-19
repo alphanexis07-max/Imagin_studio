@@ -739,7 +739,7 @@ function ServicesSection() {
     >
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">services that drive digital growth</span>
-        <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
+        <h2 className="mt-3 font-display text-4xl font-bold md:text-7xl">
           Services built to move your business forward.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
@@ -975,7 +975,7 @@ function CoreCapabilitiesSection() {
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
           <span className="script text-3xl text-accent">What We Bring</span>
-          <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+          <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Core <span className="italic">Capabilities</span>
             <span className="text-accent">.</span>
           </h2>
@@ -1055,7 +1055,7 @@ function ProcessSection() {
     <section id="process" className="relative mx-auto max-w-6xl px-5 py-8 md:py-16">
       <div className="mb-14 text-center">
         <span className="script text-3xl text-accent">How We Ship</span>
-        <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+        <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
           6-Step <span className="italic">Delivery</span> Framework
           <span className="text-accent">.</span>
         </h2>
@@ -1134,7 +1134,7 @@ function FilmReelsSection() {
         <div className="mb-10 grid items-end gap-6 md:grid-cols-[1fr_auto]">
           <div>
             <span className="script text-3xl text-accent">The Reel Room</span>
-            <h2 className="font-display text-4xl font-bold leading-[1.04] md:text-6xl">
+            <h2 className="font-display text-3xl font-bold leading-[1.04] md:text-6xl">
               Expert <em className="text-accent">editing</em> that brings
               <br />
               <em>visuals</em>, sound & pacing into one cohesive film.
@@ -1209,7 +1209,7 @@ function CaseStudiesSection() {
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="script text-3xl text-accent">In The Wild</span>
-          <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+          <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Selected <span className="italic">Case Studies</span>
             <span className="text-accent">.</span>
           </h2>
@@ -1408,7 +1408,7 @@ function ROISection() {
     <section className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-12">
         <span className="script text-3xl text-accent">The Numbers</span>
-        <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+        <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
           ROI & Value <span className="italic">Realisation</span>
           <span className="text-accent">.</span>
         </h2>
@@ -1482,7 +1482,7 @@ function PortfolioHeroShowcase() {
     <div className="py-6 " id="work">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-accent">First Impressions</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 1 – HERO SHOWCASE
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1504,7 +1504,7 @@ function PortfolioVideoEditing() {
     <div className="py-6">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-red-500 font-bold">Motion Editing</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 2 – VIDEO EDITING
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1627,7 +1627,7 @@ function PortfolioSoftwareSystems() {
     <div className="py-6">
       <div className="mb- text-center px-5">
         <span className="script text-3xl text-orange-400">Intelligent Stacks</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 4 – SOFTWARE & SYSTEMS
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1649,7 +1649,7 @@ function PortfolioSEOAnalytics() {
     <div className="py-6 md:py-20">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-blue-400">Growth Metrics</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 5 – SEO & ANALYTICS
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1672,7 +1672,7 @@ function PortfolioStrategicConsulting() {
     <div className="py-6">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-amber-400">Management Consulting</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 6 – STRATEGIC CONSULTING
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1758,7 +1758,7 @@ function PortfolioContentWriting() {
     <div className="py-6 md:py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-orange-400 font-bold">Copywriting</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 7 – CONTENT WRITING
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1818,7 +1818,7 @@ function PortfolioSection() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">Our Global Workspace</span>
-        <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground">
+        <h2 className="mt-3 font-display text-4xl font-bold md:text-8xl tracking-tight text-foreground">
           Digital Agency <span className="italic text-accent">Portfolio</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">
@@ -1996,7 +1996,7 @@ function Index() {
       <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
         <div className="mb-10 text-center">
           <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
+          <h2 className="mt-3 font-display text-4xl font-bold md:text-7xl">
             Milestones that prove our work delivers impact.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
@@ -2015,7 +2015,7 @@ function Index() {
               transition={{ delay: i * 0.08, type: "spring" }}
               className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
             >
-              <div className="font-display text-5xl font-bold text-ink md:text-6xl">{s.k}</div>
+              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
               <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
             </motion.div>
           ))}
@@ -2182,7 +2182,7 @@ function Index() {
       <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
         <div className="mb-12 text-center">
           <span className="script text-3xl text-accent">What Clients Say</span>
-          <h2 className="font-display text-5xl font-bold md:text-6xl">
+          <h2 className="font-display text-4xl font-bold md:text-6xl">
             Straight from <span className="italic">the source</span>
             <span className="text-accent">.</span>
           </h2>
