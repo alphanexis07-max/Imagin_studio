@@ -1979,13 +1979,14 @@ function Index() {
           {/* Mini testimonial snippet — top left, same as original */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 1  }}
             transition={{ delay: 1.5 }}
-            className="absolute -left-2 top-[42%] z-20 hidden max-w-[200px] md:block"
+            className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
           >
             <div className="font-display text-4xl text-foreground/40">"</div>
-            <p className="text-sm leading-snug text-foreground/70">
-              
+           <p className="text-xs leading-snug text-foreground/70">
+              AlphaNexis shipped our enterprise app three months ahead of schedule and captured a
+              critical market window.
             </p>
           </motion.div>
         </div>
