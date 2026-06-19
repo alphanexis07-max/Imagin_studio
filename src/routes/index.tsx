@@ -1156,7 +1156,7 @@ function FilmReelsSection() {
               // aria-busy={isReelsLoading}
               className="inline-flex min-w-36 items-center justify-center gap-2 rounded-full border border-ink/15 bg-card/70 px-6 py-2.5 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur transition-all hover:bg-ink hover:text-cream aria-busy:pointer-events-none aria-busy:opacity-80 dark:border-white/10 dark:bg-card/70 dark:text-card-foreground dark:hover:bg-foreground dark:hover:text-background"
             >
-              {isReelsLoading ? (
+              {isReelsLoading ?(
                 <>
                   <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
                   Loading
