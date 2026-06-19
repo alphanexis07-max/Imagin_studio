@@ -144,7 +144,8 @@ const workProjects = [
   {
     name: "Lume Skincare",
     role: "DTC rebrand · content",
-    outcome: "Built a premium brand system, hero film, and social motion playbook for product launch.",
+    outcome:
+      "Built a premium brand system, hero film, and social motion playbook for product launch.",
     tags: ["Creative", "Video", "Social"],
     color: "bg-accent",
   },
@@ -179,29 +180,71 @@ const serviceOfferings = [
   {
     title: "Growth Automation",
     description: "AI-enabled funnels, workflows, and reporting that reduce manual overhead.",
+    icon: Brain,
     accent: "from-emerald-500 to-lime-500",
   },
 ];
 
 /* ── Custom Portfolio Datasets ── */
 const categoryColors: Record<string, { badge: string; border: string; text: string }> = {
-  "Video Editing": { badge: "bg-red-500/10 border-red-500/20", border: "border-red-500/40", text: "text-red-400" },
-  "Graphic Design": { badge: "bg-purple-500/10 border-purple-500/20", border: "border-purple-500/40", text: "text-purple-400" },
-  "Website Development": { badge: "bg-blue-500/10 border-blue-500/20", border: "border-blue-500/40", text: "text-blue-400" },
-  "SEO": { badge: "bg-green-500/10 border-green-500/20", border: "border-green-500/40", text: "text-green-400" },
-  "Content Writing": { badge: "bg-orange-500/10 border-orange-500/20", border: "border-orange-500/40", text: "text-orange-400" },
-  "Strategic Planning": { badge: "bg-amber-500/10 border-amber-500/20", border: "border-amber-500/40", text: "text-amber-400" },
-  "Account Audit Reports": { badge: "bg-cyan-500/10 border-cyan-500/20", border: "border-cyan-500/40", text: "text-cyan-400" },
-  "Project Management Systems": { badge: "bg-indigo-500/10 border-indigo-500/20", border: "border-indigo-500/40", text: "text-indigo-400" },
-  "CRM Software": { badge: "bg-teal-500/10 border-teal-500/20", border: "border-teal-500/40", text: "text-teal-400" },
-  "Sales Applications": { badge: "bg-pink-500/10 border-pink-500/20", border: "border-pink-500/40", text: "text-pink-400" },
+  "Video Editing": {
+    badge: "bg-red-500/10 border-red-500/20",
+    border: "border-red-500/40",
+    text: "text-red-400",
+  },
+  "Graphic Design": {
+    badge: "bg-purple-500/10 border-purple-500/20",
+    border: "border-purple-500/40",
+    text: "text-purple-400",
+  },
+  "Website Development": {
+    badge: "bg-blue-500/10 border-blue-500/20",
+    border: "border-blue-500/40",
+    text: "text-blue-400",
+  },
+  SEO: {
+    badge: "bg-green-500/10 border-green-500/20",
+    border: "border-green-500/40",
+    text: "text-green-400",
+  },
+  "Content Writing": {
+    badge: "bg-orange-500/10 border-orange-500/20",
+    border: "border-orange-500/40",
+    text: "text-orange-400",
+  },
+  "Strategic Planning": {
+    badge: "bg-amber-500/10 border-amber-500/20",
+    border: "border-amber-500/40",
+    text: "text-amber-400",
+  },
+  "Account Audit Reports": {
+    badge: "bg-cyan-500/10 border-cyan-500/20",
+    border: "border-cyan-500/40",
+    text: "text-cyan-400",
+  },
+  "Project Management Systems": {
+    badge: "bg-indigo-500/10 border-indigo-500/20",
+    border: "border-indigo-500/40",
+    text: "text-indigo-400",
+  },
+  "CRM Software": {
+    badge: "bg-teal-500/10 border-teal-500/20",
+    border: "border-teal-500/40",
+    text: "text-teal-400",
+  },
+  "Sales Applications": {
+    badge: "bg-pink-500/10 border-pink-500/20",
+    border: "border-pink-500/40",
+    text: "text-pink-400",
+  },
 };
 
 const heroShowcaseSlides = [
   {
     categoryLabel: "VIDEO EDITING",
     title: "Brand Campaign Edit",
-    description: "Premium editorial video cut capturing the target aesthetic for a luxury wellness brand.",
+    description:
+      "Premium editorial video cut capturing the target aesthetic for a luxury wellness brand.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     poster: screenshot2,
     glow: "shadow-red-950/40",
@@ -211,7 +254,8 @@ const heroShowcaseSlides = [
   {
     categoryLabel: "WEBSITE DEVELOPMENT",
     title: "Stellar Booking Platform",
-    description: "High-performance marketing site and booking application with interactive client UI.",
+    description:
+      "High-performance marketing site and booking application with interactive client UI.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     poster: screenshot1,
     glow: "shadow-blue-950/40",
@@ -221,7 +265,8 @@ const heroShowcaseSlides = [
   {
     categoryLabel: "GRAPHIC DESIGN",
     title: "Lume Skincare Visuals",
-    description: "High-end brand assets, social media grid style templates, and premium custom packaging.",
+    description:
+      "High-end brand assets, social media grid style templates, and premium custom packaging.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     poster: screenshot2,
     glow: "shadow-purple-950/40",
@@ -231,7 +276,8 @@ const heroShowcaseSlides = [
   {
     categoryLabel: "CRM SOFTWARE",
     title: "Nexis Automation CRM",
-    description: "Custom enterprise CRM dashboard simplifying client workflows and sales metrics tracking.",
+    description:
+      "Custom enterprise CRM dashboard simplifying client workflows and sales metrics tracking.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     poster: screenshot3,
     glow: "shadow-teal-950/40",
@@ -241,7 +287,8 @@ const heroShowcaseSlides = [
   {
     categoryLabel: "SALES APPLICATIONS",
     title: "Retail Billing App",
-    description: "Cloud-native sales app designed with high-conversion checkout flows and real-time ledger.",
+    description:
+      "Cloud-native sales app designed with high-conversion checkout flows and real-time ledger.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     poster: screenshot4,
     glow: "shadow-pink-950/40",
@@ -292,35 +339,35 @@ const videoEditingSlides = [
 const graphicDesignSlides = [
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Branding",
     title: "Lume Skincare Visual Identity",
     description: "Color system, custom typography, and premium brand voice.",
     image: screenshot2,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Packaging",
     title: "Premium Product Packaging",
     description: "Eco-friendly cosmetic bottle labels and box layouts.",
     image: screenshot1,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Social Media",
     title: "High-Retention Instagram Creatives",
     description: "Curated grids, posters, and stories designed for organic conversion.",
     image: screenshot3,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Advertising",
     title: "Out-Of-Home Banner Campaigns",
     description: "High-contrast billboards and print advertisements for modern transport hubs.",
     image: screenshot4,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Print Design",
     title: "Editorial Brand Catalogs",
     description: "Premium booklets showcasing collection launches.",
     image: screenshot6,
@@ -331,7 +378,8 @@ const softwareSystemsSlides = [
   {
     categoryLabel: "CRM SOFTWARE",
     title: "Nexis Enterprise CRM",
-    description: "Custom customer dashboard managing pipelines, emails, and automatic lead triggers.",
+    description:
+      "Custom customer dashboard managing pipelines, emails, and automatic lead triggers.",
     keyFeatures: ["Automated CRM Sync", "Real-Time User Attribution", "Multi-Channel Messaging"],
     techStack: ["React", "FastAPI", "PostgreSQL"],
     businessBenefit: "Reduced client management overhead by 40%",
@@ -342,7 +390,8 @@ const softwareSystemsSlides = [
   {
     categoryLabel: "PROJECT MANAGEMENT",
     title: "Agile Dev Sprint Console",
-    description: "Real-time ticket updates, resource tracking, and automatic deployment pipeline charts.",
+    description:
+      "Real-time ticket updates, resource tracking, and automatic deployment pipeline charts.",
     keyFeatures: ["Custom Sprint Planner", "Interactive Gantt Charts", "Direct Slack Webhooks"],
     techStack: ["Next.js", "Express", "MongoDB"],
     businessBenefit: "Boosted team shipping velocity by 30%",
@@ -353,7 +402,8 @@ const softwareSystemsSlides = [
   {
     categoryLabel: "SALES APPLICATIONS",
     title: "Nexis Cloud POS System",
-    description: "Tablet-optimized sales app featuring offline checkouts and automatic ledger sync.",
+    description:
+      "Tablet-optimized sales app featuring offline checkouts and automatic ledger sync.",
     keyFeatures: ["Offline Transactions", "Dynamic Loyalty System", "Inventory Alerts"],
     techStack: ["React Native", "Go", "SQLite"],
     businessBenefit: "Increased checkout throughput by 25%",
@@ -378,7 +428,8 @@ const seoAnalyticsSlides = [
   {
     categoryLabel: "SEO",
     title: "Organic Search Engine Optimization",
-    description: "Compound growth funnels capturing high-intent search terms and generating qualified inbound leads.",
+    description:
+      "Compound growth funnels capturing high-intent search terms and generating qualified inbound leads.",
     metrics: [
       { label: "Organic Traffic Growth", value: "+312%" },
       { label: "Top 3 Keywords Ranked", value: "840+" },
@@ -390,7 +441,8 @@ const seoAnalyticsSlides = [
   {
     categoryLabel: "ACCOUNT AUDIT",
     title: "Technical Site Performance Audit",
-    description: "Exhaustive audits resolving slow load times, poor lighthouse core web vitals, and indexation gaps.",
+    description:
+      "Exhaustive audits resolving slow load times, poor lighthouse core web vitals, and indexation gaps.",
     metrics: [
       { label: "Lighthouse Performance Score", value: "98/100" },
       { label: "Site Speed Improvement", value: "3.2x Faster" },
@@ -402,7 +454,8 @@ const seoAnalyticsSlides = [
   {
     categoryLabel: "ANALYTICS",
     title: "Conversion Attribution Dashboard",
-    description: "Multi-touch attribution reporting providing marketing attribution modeling across channels.",
+    description:
+      "Multi-touch attribution reporting providing marketing attribution modeling across channels.",
     metrics: [
       { label: "Attributed ROI Accuracy", value: "95%" },
       { label: "ROAS Optimization", value: "4.2x Blended" },
@@ -414,7 +467,8 @@ const seoAnalyticsSlides = [
   {
     categoryLabel: "PERFORMANCE REPORT",
     title: "Core Web Vitals Optimizations",
-    description: "Technical optimizations resolving Cumulative Layout Shifts and First Contentful Paint delays.",
+    description:
+      "Technical optimizations resolving Cumulative Layout Shifts and First Contentful Paint delays.",
     metrics: [
       { label: "Bounce Rate Reduction", value: "-22%" },
       { label: "Conversion Rate Uplift", value: "+45%" },
@@ -429,51 +483,60 @@ const consultingCases = [
   {
     categoryLabel: "STRATEGIC PLANNING",
     title: "B2B SaaS Market Entry",
-    challenge: "Enterprise tech company struggling to enter APAC due to localized pricing, regulatory hurdles, and unknown brand authority.",
-    solution: "Conducted a deep local competitor audit, structured local-first packaging tiers, and launched a multi-touch digital campaign directed at C-Suite stakeholders.",
-    execution: "Constructed targeted growth strategy, localized brand messaging, and implemented serverless landing hubs built for low-bandwidth environments.",
+    challenge:
+      "Enterprise tech company struggling to enter APAC due to localized pricing, regulatory hurdles, and unknown brand authority.",
+    solution:
+      "Conducted a deep local competitor audit, structured local-first packaging tiers, and launched a multi-touch digital campaign directed at C-Suite stakeholders.",
+    execution:
+      "Constructed targeted growth strategy, localized brand messaging, and implemented serverless landing hubs built for low-bandwidth environments.",
     results: [
       { label: "ARR Growth in 8mo", value: "$1.8M" },
       { label: "Customer Acq. Cost (CAC)", value: "-35%" },
-      { label: "Client Inbound Pipeline", value: "+300%" }
-    ]
+      { label: "Client Inbound Pipeline", value: "+300%" },
+    ],
   },
   {
     categoryLabel: "STRATEGIC PLANNING",
     title: "Retail Supply Chain Digitization",
-    challenge: "Legacy retail chain with paper-heavy logistics, causing shipping bottlenecks and severe stock mismatches.",
-    solution: "Designed a digital transformation blueprint. Programmed cloud PM middleware linking inventory logs to real-time sales APIs.",
-    execution: "Phased integration plan, custom ERP dashboards, and automated Slack alert channels warning warehouse staff about inventory drops.",
+    challenge:
+      "Legacy retail chain with paper-heavy logistics, causing shipping bottlenecks and severe stock mismatches.",
+    solution:
+      "Designed a digital transformation blueprint. Programmed cloud PM middleware linking inventory logs to real-time sales APIs.",
+    execution:
+      "Phased integration plan, custom ERP dashboards, and automated Slack alert channels warning warehouse staff about inventory drops.",
     results: [
       { label: "Bottlenecks Resolved", value: "99%" },
       { label: "Staff Time Saved", value: "85%" },
-      { label: "Fulfillment Errors", value: "<0.1%" }
-    ]
-  }
+      { label: "Fulfillment Errors", value: "<0.1%" },
+    ],
+  },
 ];
 
 const editorialContent = [
   {
-    categoryLabel: "CONTENT WRITING",
+    categoryLabel: "Content Writing",
     type: "Sales Landing Page Copy",
     headline: "Unchain Your Operations: The AI Middleware Built for Scale",
     metrics: "4.8% Conv. Rate (+60% vs benchmark)",
-    excerpt: "Enterprise systems are notoriously rigid. We don't believe in rewriting your stack from scratch. Our middleware sits quietly on top, using intelligent semantic parsing to turn unstructured email requests into structured database inserts..."
+    excerpt:
+      "Enterprise systems are notoriously rigid. We don't believe in rewriting your stack from scratch. Our middleware sits quietly on top, using intelligent semantic parsing to turn unstructured email requests into structured database inserts...",
   },
   {
-    categoryLabel: "CONTENT WRITING",
+    categoryLabel: "Content Writing",
     type: "Tech Blog & Thought Leadership",
     headline: "The Churn Tax: Why Legacy Architectures Threaten Series-A Runways",
     metrics: "15K Views · 18% CTA Click-Through",
-    excerpt: "Losing 3% of your customer base each month is a leaky bucket. When your CAC exceeds your LTV payback window, growth stops compounding. Read our deep-dive analysis on building growth loops directly into your product experience..."
+    excerpt:
+      "Losing 3% of your customer base each month is a leaky bucket. When your CAC exceeds your LTV payback window, growth stops compounding. Read our deep-dive analysis on building growth loops directly into your product experience...",
   },
   {
-    categoryLabel: "CONTENT WRITING",
+    categoryLabel: "Content Writing",
     type: "B2B Email Campaign Sequence",
     headline: "The 3 Bottlenecks C-Suite Teams Ignore (And How to Automate Them)",
     metrics: "46% Open Rate · 12% Reply Rate",
-    excerpt: "Hi {First Name}, most logistics companies waste 20 hours a week on manual inventory audits. It isn't a staff issue; it's a data synchronization issue. Here is how one retail client freed 85% of their operational backlog without hiring..."
-  }
+    excerpt:
+      "Hi {First Name}, most logistics companies waste 20 hours a week on manual inventory audits. It isn't a staff issue; it's a data synchronization issue. Here is how one retail client freed 85% of their operational backlog without hiring...",
+  },
 ];
 
 function DiscoveryCallDialog() {
@@ -488,8 +551,7 @@ function DiscoveryCallDialog() {
   });
 
   const onChange =
-    (field: keyof typeof form) =>
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (field: keyof typeof form) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setForm((current) => ({ ...current, [field]: event.target.value }));
       setSent(false);
     };
@@ -586,7 +648,9 @@ function DiscoveryCallDialog() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="lead-description">Description <span className="text-muted-foreground">(optional)</span></Label>
+              <Label htmlFor="lead-description">
+                Description <span className="text-muted-foreground">(optional)</span>
+              </Label>
               <div className="relative">
                 <MessageSquareText className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Textarea
@@ -621,14 +685,15 @@ function DiscoveryCallDialog() {
 
 function WorkSection() {
   return (
-    <section  className="relative mx-auto max-w-6xl px-5 py-24">
+    <section className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">work that speaks</span>
         <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
           Selected projects crafted to elevate brands and deliver real results.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-          A curated selection of our most strategic launches, product redesigns, and growth campaigns.
+          A curated selection of our most strategic launches, product redesigns, and growth
+          campaigns.
         </p>
       </div>
 
@@ -638,7 +703,9 @@ function WorkSection() {
             key={project.name}
             className={`rounded-[2rem] border-2 border-ink p-8 shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${project.color}`}
           >
-            <div className="text-sm uppercase tracking-[0.3em] text-foreground/60">{project.role}</div>
+            <div className="text-sm uppercase tracking-[0.3em] text-foreground/60">
+              {project.role}
+            </div>
             <h3 className="mt-4 font-display text-3xl font-bold text-ink">{project.name}</h3>
             <p className="mt-4 text-sm leading-6 text-ink/80">{project.outcome}</p>
             <div className="mt-6 flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.3em] text-ink/80">
@@ -666,14 +733,18 @@ function WorkSection() {
 
 function ServicesSection() {
   return (
-    <section id="services" className="relative mx-auto max-w-6xl px-5 py-24 bg-[radial-gradient(circle_at_top,_rgba(56,152,236,0.12),transparent_40%)]">
+    <section
+      id="services"
+      className="relative mx-auto max-w-6xl px-5 py-6 )]"
+    >
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">services that drive digital growth</span>
-        <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
           Services built to move your business forward.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-          From strategy to execution, we design systems that create momentum, experience, and measurable value.
+          From strategy to execution, we design systems that create momentum, experience, and
+          measurable value.
         </p>
       </div>
 
@@ -681,8 +752,13 @@ function ServicesSection() {
         {serviceOfferings.map((service) => {
           const Icon = service.icon;
           return (
-            <div key={service.title} className="rounded-[2rem] border-2 border-ink bg-background p-8 shadow-[6px_6px_0_0_var(--ink)]">
-              <div className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-gradient-to-br ${service.accent} text-white`}>
+            <div
+              key={service.title}
+              className="rounded-[2rem] border-2 border-ink bg-background p-8 shadow-[6px_6px_0_0_var(--ink)]"
+            >
+              <div
+                className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-gradient-to-br ${service.accent} text-white`}
+              >
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="font-display text-2xl font-bold">{service.title}</h3>
@@ -889,17 +965,17 @@ const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
   tag: ["Brand · Reel", "After Work", "Studio · Talk", "Street · B-roll"][i] || "Reel",
   title: ["Atlas — Origin", "Off-hours", "20:00 Live", "Walk & Talk"][i] || "Reel",
   src: post.url,
-  poster: ""
+  poster: "",
 }));
 
 /* ── Core Capabilities Section ── */
 function CoreCapabilitiesSection() {
   return (
-    <section id="capabilities" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section id="capabilities" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
           <span className="script text-3xl text-accent">What We Bring</span>
-          <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+          <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Core <span className="italic">Capabilities</span>
             <span className="text-accent">.</span>
           </h2>
@@ -976,10 +1052,10 @@ function ProcessSection() {
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="process" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section id="process" className="relative mx-auto max-w-6xl px-5 py-8 md:py-16">
       <div className="mb-14 text-center">
         <span className="script text-3xl text-accent">How We Ship</span>
-        <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+        <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
           6-Step <span className="italic">Delivery</span> Framework
           <span className="text-accent">.</span>
         </h2>
@@ -1048,19 +1124,17 @@ function FilmReelsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const rotations = [-0.5, 0.5, -0.35, 0.35];
 
-  
-  
   return (
     <section
       id="film"
       ref={sectionRef}
       className="relative isolate overflow-hidden bg-transparent text-foreground"
     >
-      <div className="relative mx-auto max-w-6xl px-5 py-24">
+      <div className="relative mx-auto max-w-6xl px-5 py-8">
         <div className="mb-10 grid items-end gap-6 md:grid-cols-[1fr_auto]">
           <div>
             <span className="script text-3xl text-accent">The Reel Room</span>
-            <h2 className="font-display text-4xl font-bold leading-[1.04] md:text-6xl">
+            <h2 className="font-display text-3xl font-bold leading-[1.04] md:text-6xl">
               Expert <em className="text-accent">editing</em> that brings
               <br />
               <em>visuals</em>, sound & pacing into one cohesive film.
@@ -1082,7 +1156,7 @@ function FilmReelsSection() {
         <div className="relative">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
             {filmReels.map((reel, i) => {
-                            return (
+              return (
                 <motion.div
                   key={reel.title}
                   initial={{ opacity: 0, y: 40, rotate: rotations[i] * 2 }}
@@ -1102,7 +1176,7 @@ function FilmReelsSection() {
                     allowFullScreen={true}
                   />
                   <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
-                  
+
                   <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
                     REC · {reel.tag}
@@ -1110,7 +1184,6 @@ function FilmReelsSection() {
                   <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
                     {reel.title}
                   </h3>
-                  
                 </motion.div>
               );
             })}
@@ -1132,11 +1205,11 @@ function FilmReelsSection() {
 /* ── Case Studies ── */
 function CaseStudiesSection() {
   return (
-    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20" >
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="script text-3xl text-accent">In The Wild</span>
-          <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+          <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Selected <span className="italic">Case Studies</span>
             <span className="text-accent">.</span>
           </h2>
@@ -1223,11 +1296,11 @@ function CaseStudiesSection() {
 /* ── Engagement Models ── */
 function FlexibleSection() {
   return (
-    <section id="engage" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section id="engage" className="relative mx-auto max-w-6xl px-5 py-10 md:py-24">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
           <span className="script text-3xl text-accent">how we work</span>
-          <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+          <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Flexible by <span className="italic">Design</span>
             <span className="text-accent">.</span>
           </h2>
@@ -1335,7 +1408,7 @@ function ROISection() {
     <section className="relative mx-auto max-w-6xl px-5 py-24">
       <div className="mb-12">
         <span className="script text-3xl text-accent">The Numbers</span>
-        <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+        <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
           ROI & Value <span className="italic">Realisation</span>
           <span className="text-accent">.</span>
         </h2>
@@ -1381,7 +1454,7 @@ const partners = [
 
 function TrustSection() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-16">
+    <section className="relative mx-auto max-w-6xl px-5 py-6 md:py-16">
       <p className="mb-8 text-center text-sm font-bold uppercase tracking-widest text-foreground/40">
         Certified & recognised by
       </p>
@@ -1409,7 +1482,7 @@ function PortfolioHeroShowcase() {
     <div className="py-6 " id="work">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-accent">First Impressions</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 1 – HERO SHOWCASE
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1431,7 +1504,7 @@ function PortfolioVideoEditing() {
     <div className="py-6">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-red-500 font-bold">Motion Editing</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 2 – VIDEO EDITING
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1463,13 +1536,16 @@ function PortfolioGraphicDesign() {
     }
   };
 
-  const badgeStyle = "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
+  const badgeStyle =
+    "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
 
   return (
-    <div className="py-20">
-      <div className="mx-auto max-w-6xl px-5 mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+    <div className="py-6">
+      <div className="mx-auto max-w-6xl px-5 mb-2 md:mb-8   flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
-          <span className="script text-3xl text-purple-600 dark:text-purple-400">Visual Assets</span>
+          <span className="script text-3xl text-purple-600 dark:text-purple-400">
+            Visual Assets
+          </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
             SECTION 3 – GRAPHIC DESIGN
           </h2>
@@ -1477,7 +1553,7 @@ function PortfolioGraphicDesign() {
             Social creatives, branding systems, packaging labels, and print design layouts.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className=" hidden md:flex flex gap-2">
           <button
             onClick={scrollLeft}
             aria-label="Scroll graphic design left"
@@ -1511,22 +1587,33 @@ function PortfolioGraphicDesign() {
             whileHover={{ y: -8, scale: 1.02 }}
             className="relative min-w-[12rem] max-w-[6rem] sm:min-w-[14rem] sm:max-w-[4rem] md:min-w-[17rem] md:max-w-[20rem] lg:min-w-[19rem] lg:max-w-[25rem] aspect-[3/4] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827]"
           >
-            <img src={slide.image} alt={slide.title} loading="lazy" className="h-full w-full object-cover" />
+            <img
+              src={slide.image}
+              alt={slide.title}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            
-            <span className={`absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}>
+
+            <span
+              className={`hidden md:block  absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}
+            >
               {slide.categoryLabel}
             </span>
 
             {slide.subcategory && (
-              <span className="absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+              <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
                 {slide.subcategory}
               </span>
             )}
 
             <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-              <h4 className="font-display text-base sm:text-lg font-bold leading-tight text-white line-clamp-2">{slide.title}</h4>
-              <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">{slide.description}</p>
+              <h4 className="font-display text-base sm:text-lg font-bold leading-tight text-white line-clamp-2">
+                {slide.title}
+              </h4>
+              <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+                {slide.description}
+              </p>
             </div>
           </motion.div>
         ))}
@@ -1540,7 +1627,7 @@ function PortfolioSoftwareSystems() {
     <div className="py-6">
       <div className="mb- text-center px-5">
         <span className="script text-3xl text-orange-400">Intelligent Stacks</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 4 – SOFTWARE & SYSTEMS
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1559,10 +1646,10 @@ function PortfolioSoftwareSystems() {
 
 function PortfolioSEOAnalytics() {
   return (
-    <div className="py-20">
+    <div className="py-6 md:py-20">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-blue-400">Growth Metrics</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 5 – SEO & ANALYTICS
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1582,10 +1669,10 @@ function PortfolioSEOAnalytics() {
 function PortfolioStrategicConsulting() {
   const badgeStyle = "bg-amber-500/25 border-amber-500/40 text-amber-400";
   return (
-    <div className="py-20">
+    <div className="py-6">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-amber-400">Management Consulting</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 6 – STRATEGIC CONSULTING
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1601,7 +1688,9 @@ function PortfolioStrategicConsulting() {
             className="rounded-[2rem] border border-ink/10 bg-card p-6 shadow-[0_24px_70px_-45px_rgba(0,0,0,0.45)] md:p-8 flex flex-col justify-between relative dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl"
           >
             <div className="absolute right-6 top-6">
-              <span className={`rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}>
+              <span
+                className={`rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}
+              >
                 {cs.categoryLabel}
               </span>
             </div>
@@ -1610,30 +1699,48 @@ function PortfolioStrategicConsulting() {
               <h3 className="font-display text-2xl md:text-3xl font-bold text-card-foreground dark:text-white mb-6 pr-32">
                 {cs.title}
               </h3>
-              
+
               <div className="space-y-4 text-left">
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">Challenge</h4>
-                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">{cs.challenge}</p>
+                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">
+                    Challenge
+                  </h4>
+                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">
+                    {cs.challenge}
+                  </p>
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">Solution</h4>
-                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">{cs.solution}</p>
+                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">
+                    Solution
+                  </h4>
+                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">
+                    {cs.solution}
+                  </p>
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">Execution</h4>
-                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">{cs.execution}</p>
+                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">
+                    Execution
+                  </h4>
+                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">
+                    {cs.execution}
+                  </p>
                 </div>
               </div>
             </div>
 
             <div className="mt-8 border-t border-ink/10 pt-6 dark:border-white/10">
-              <h4 className="text-xs uppercase tracking-wider text-muted-foreground dark:text-gray-500 font-bold text-left mb-3">Key Results</h4>
+              <h4 className="text-xs uppercase tracking-wider text-muted-foreground dark:text-gray-500 font-bold text-left mb-3">
+                Key Results
+              </h4>
               <div className="grid grid-cols-3 gap-2 bg-background/70 border border-ink/10 rounded-2xl p-4 dark:bg-white/5 dark:border-white/10">
                 {cs.results.map((res, ri) => (
                   <div key={ri} className="text-center">
-                    <div className="text-lg md:text-xl font-black text-amber-400 leading-none">{res.value}</div>
-                    <div className="text-[9px] uppercase tracking-wider text-muted-foreground dark:text-gray-400 mt-1.5 leading-tight">{res.label}</div>
+                    <div className="text-lg md:text-xl font-black text-amber-400 leading-none">
+                      {res.value}
+                    </div>
+                    <div className="text-[9px] uppercase tracking-wider text-muted-foreground dark:text-gray-400 mt-1.5 leading-tight">
+                      {res.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1648,10 +1755,10 @@ function PortfolioStrategicConsulting() {
 function PortfolioContentWriting() {
   const badgeStyle = "bg-orange-500/25 border-orange-500/40 text-orange-400";
   return (
-    <div className="py-20">
+    <div className="py-6 md:py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-orange-400 font-bold">Copywriting</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           SECTION 7 – CONTENT WRITING
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
@@ -1664,28 +1771,34 @@ function PortfolioContentWriting() {
           <motion.div
             key={idx}
             whileHover={{ y: -6 }}
-            className="rounded-[2rem] border border-ink/10 bg-card p-6 shadow-[0_24px_70px_-45px_rgba(0,0,0,0.45)] md:p-8 flex flex-col justify-between relative dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl"
+            className="rounded-[2rem] border border-ink/10 bg-card p-6 shadow-[0_24px_70px_-45px_rgba(0,0,0,0.45)] md:p-4 flex flex-col justify-between relative dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl"
           >
             <div>
-              <div className="flex items-center justify-between gap-4 mb-4">
-                <span className="text-[10px] font-bold text-muted-foreground dark:text-gray-500 uppercase tracking-widest">{item.type}</span>
-                <span className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${badgeStyle}`}>
+              <div className="flex items-center justify-between gap-1 mb-4">
+                <span className="text-[10px] font-bold text-muted-foreground dark:text-gray-500 uppercase tracking-widest">
+                  {item.type}
+                </span>
+                <span
+                  className={`rounded-full border px-2 py-0.5 text-[9px] font-bold  tracking-wider ${badgeStyle}`}
+                >
                   {item.categoryLabel}
                 </span>
               </div>
-              
+
               <h3 className="font-display text-lg md:text-xl font-bold text-card-foreground dark:text-white mb-4 leading-snug">
                 "{item.headline}"
               </h3>
-              
-              <blockquote className="border-l-2 border-orange-500 pl-4 text-xs italic text-muted-foreground dark:text-gray-400 leading-relaxed">
+
+              <blockquote className="border-l-2  border-orange-500 pl-4 text-xs italic text-muted-foreground dark:text-gray-400 leading-relaxed">
                 {item.excerpt}
               </blockquote>
             </div>
 
             <div className="mt-6 border-t border-ink/10 pt-4 flex items-center justify-between dark:border-white/10">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground dark:text-gray-500">Performance</span>
-              <span className="text-xs font-bold text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-md px-2 py-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground dark:text-gray-500">
+                Performance
+              </span>
+              <span className="text-xs font-bold  text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-md px-1 py-1">
                 {item.metrics}
               </span>
             </div>
@@ -1700,16 +1813,17 @@ function PortfolioSection() {
   return (
     <section
       id="portfolio"
-      className="relative isolate overflow-hidden bg-transparent py-20 text-foreground"
+      className="relative isolate overflow-hidden bg-transparent py-12 md:py-20  text-foreground"
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">Our Global Workspace</span>
-        <h2 className="mt-3 font-display text-5xl font-bold md:text-8xl tracking-tight text-foreground">
+        <h2 className="mt-3 font-display text-4xl font-bold md:text-8xl tracking-tight text-foreground">
           Digital Agency <span className="italic text-accent">Portfolio</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">
-          A premium showcase of creative services, marketing campaigns, software solutions, and strategic business consulting.
+          A premium showcase of creative services, marketing campaigns, software solutions, and
+          strategic business consulting.
         </p>
       </div>
 
@@ -1726,7 +1840,6 @@ function PortfolioSection() {
 
 /* ── Main Page ── */
 function Index() {
-
   return (
     <main className="relative min-h-screen overflow-visible bg-background text-foreground">
       {/* ambient blobs */}
@@ -1745,26 +1858,25 @@ function Index() {
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, type: "spring" }}
-         // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
-        >
-                   
-        </motion.div>
+          // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
+        ></motion.div>
 
         <div className="text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="font-display text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
+            className="font-display text-[clamp(2rem,8vw,4rem)]  md:text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
           >
             We craft digital experiences that
-            <br />drive growth and leave a lasting <span className="text-accent">impact</span>
+            <br />
+            drive growth and leave a lasting <span className="text-accent">impact</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto mt-6 max-w-2xl text-lg text-foreground/70"
+            className="mx-auto mt-6 max-w-2xl test-base md:text-lg text-foreground/70"
           >
             Creativity, strategy, and technology come together in every campaign we build. We turn
             brand momentum into measurable growth for fast-moving teams.
@@ -1867,27 +1979,29 @@ function Index() {
           {/* Mini testimonial snippet — top left, same as original */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 1  }}
             transition={{ delay: 1.5 }}
-            className="absolute -left-2 top-[42%] z-20 hidden max-w-[200px] md:block"
+            className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
           >
             <div className="font-display text-4xl text-foreground/40">"</div>
-            <p className="text-sm leading-snug text-foreground/70">
-              
+           <p className="text-xs leading-snug text-foreground/70">
+              AlphaNexis shipped our enterprise app three months ahead of schedule and captured a
+              critical market window.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* STATS strip */}
-      <section className="relative mx-auto max-w-6xl px-5 py-24">
+      <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
         <div className="mb-10 text-center">
           <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
+          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
             Milestones that prove our work delivers impact.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-            From enterprise launches to repeated growth loops, these metrics show the outcomes we create.
+            From enterprise launches to repeated growth loops, these metrics show the outcomes we
+            create.
           </p>
         </div>
 
@@ -1899,9 +2013,9 @@ function Index() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, type: "spring" }}
-            className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
             >
-              <div className="font-display text-5xl font-bold text-ink md:text-6xl">{s.k}</div>
+              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
               <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
             </motion.div>
           ))}
@@ -1974,9 +2088,8 @@ function Index() {
 
       {/* ABOUT */}
       <PortfolioSection />
-      
 
-      
+      <ServicesSection/>
 
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
@@ -1987,7 +2100,7 @@ function Index() {
             viewport={{ once: true }}
           >
             <span className="script text-3xl text-accent">Who We Are</span>
-            <h2 className="mt-2 font-display text-5xl font-bold leading-tight md:text-6xl">
+            <h2 className="mt-2 font-display text-4xl font-bold leading-tight md:text-6xl">
               We build brands
               <br />
               <span className="relative inline-block">
@@ -2066,10 +2179,10 @@ function Index() {
       <FlexibleSection />
 
       {/* TESTIMONIALS */}
-      <section className="relative mx-auto max-w-6xl px-5 py-24">
+      <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
         <div className="mb-12 text-center">
           <span className="script text-3xl text-accent">What Clients Say</span>
-          <h2 className="font-display text-5xl font-bold md:text-6xl">
+          <h2 className="font-display text-4xl font-bold md:text-6xl">
             Straight from <span className="italic">the source</span>
             <span className="text-accent">.</span>
           </h2>
@@ -2095,7 +2208,7 @@ function Index() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, type: "spring" }}
-              className="rounded-[1.5rem] border-2 border-ink bg-background p-8 shadow-[5px_5px_0_0_var(--ink)] lift dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+              className="rounded-[1.5rem] border-2 border-ink bg-background p-8 px-4 shadow-[5px_5px_0_0_var(--ink)] lift dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
             >
               <div className="mb-4 flex gap-1">
                 {[...Array(5)].map((_, j) => (
@@ -2108,7 +2221,7 @@ function Index() {
                   <div className="font-semibold text-sm">— {t.name}</div>
                   <div className="text-sm text-foreground/60">{t.co}</div>
                 </div>
-                <span className="rounded-full border border-ink/30 bg-accent/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wide">
+                <span className="rounded-full border border-ink/30 bg-accent/20 px-2 py-2 text-[9px] md:text-[11px] font-bold uppercase ">
                   {t.verified}
                 </span>
               </div>
@@ -2155,13 +2268,28 @@ function Index() {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 md:flex-row">
           <div className="text-sm text-foreground/60">© 2026 AlphaNexis · Growth, by design</div>
           <div className="flex items-center gap-5 text-sm">
-            <a href="https://www.instagram.com/alphanexis/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-accent">
+            <a
+              href="https://www.instagram.com/alphanexis/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-accent"
+            >
               <Instagram className="h-4 w-4" /> Instagram
             </a>
-            <a href="https://www.linkedin.com/company/alphanexis/posts/?feedView=all" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-accent">
+            <a
+              href="https://www.linkedin.com/company/alphanexis/posts/?feedView=all"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-accent"
+            >
               <Linkedin className="h-4 w-4" /> LinkedIn
             </a>
-            <a href="https://www.alphanexis.com/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-accent">
+            <a
+              href="https://www.alphanexis.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-accent"
+            >
               <Globe className="h-4 w-4" /> Website
             </a>
           </div>

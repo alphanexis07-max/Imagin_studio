@@ -161,7 +161,7 @@ export function RingCarousel({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         style={{ perspective: 1200, touchAction: "none" }}
-        className="relative h-[60vh] sm:h-[72vh] md:h-[80vh] select-none overflow-visible"
+        className="relative h-[60vh]  sm:h-[72vh] md:h-[80vh] select-none overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {
@@ -191,7 +191,7 @@ export function RingCarousel({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ rotateY: angle, scale, opacity, y: 0 }}
                 className={cn(
-                  "absolute left-1/2 top-1/2 w-[min(42rem,95vw)] sm:w-[min(48rem,92vw)] md:w-[min(52rem,88vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] border border-ink/10 bg-card/95 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-[0_30px_90px_-45px_rgba(0,0,0,0.95)]",
+                  "absolute left-1/2 mt-4 top-1/2 w-[min(42rem,95vw)] sm:w-[min(48rem,92vw)] md:w-[min(52rem,88vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] border border-ink/10 bg-card/95 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-[0_30px_90px_-45px_rgba(0,0,0,0.95)]",
                   zIndex > 0 ? "" : "pointer-events-none",
                 )}
                 style={{
@@ -211,7 +211,7 @@ export function RingCarousel({
                   <div className={`absolute inset-0 bg-gradient-to-t ${slide.accentColor || "from-teal-950/80"} via-transparent to-black/35`} />
                   
                   {slide.categoryLabel && (
-                    <span className={`absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
+                    <span className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
                       {slide.categoryLabel}
                     </span>
                   )}
@@ -266,7 +266,7 @@ export function RingCarousel({
         </div>
       </motion.div>
 
-      <div className="mt-6 sm:mt-8 md:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
+      <div className="mt-6 hidden md:flex sm:mt-8 md:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
         <Button
           onClick={carousel.prev}
           aria-label="Previous Slide"
