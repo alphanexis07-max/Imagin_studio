@@ -1,6 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type FormEvent,
+  type MouseEvent,
+} from "react";
 import logo from "@/assets/logo.png";
 import {
   ArrowUpRight,
@@ -733,10 +740,7 @@ function WorkSection() {
 
 function ServicesSection() {
   return (
-    <section
-      id="services"
-      className="relative mx-auto max-w-6xl px-5 py-6 )]"
-    >
+    <section id="services" className="relative mx-auto max-w-6xl px-5 py-6 )]">
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">services that drive digital growth</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
@@ -1122,6 +1126,7 @@ function ProcessSection() {
 /* ── Film Reels ── */
 function FilmReelsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isReelsLoading, setIsReelsLoading] = useState(false);
   const rotations = [-0.5, 0.5, -0.35, 0.35];
 
   return (
@@ -1146,9 +1151,21 @@ function FilmReelsSection() {
             </p>
             <Link
               to="/reels"
-              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-card/70 px-6 py-2.5 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur transition-all hover:bg-ink hover:text-cream dark:border-white/10 dark:bg-card/70 dark:text-card-foreground dark:hover:bg-foreground dark:hover:text-background"
+              onClick={() => setIsReelsLoading(true)}
+              disabled={!isReelsLoading}
+              // aria-busy={isReelsLoading}
+              className="inline-flex min-w-36 items-center justify-center gap-2 rounded-full border border-ink/15 bg-card/70 px-6 py-2.5 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur transition-all hover:bg-ink hover:text-cream aria-busy:pointer-events-none aria-busy:opacity-80 dark:border-white/10 dark:bg-card/70 dark:text-card-foreground dark:hover:bg-foreground dark:hover:text-background"
             >
-              View All Reels <ArrowUpRight className="h-4 w-4" />
+              {isReelsLoading ? (
+                <>
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                  Loading
+                </>
+              ) : (
+                <>
+                  View All Reels <ArrowUpRight className="h-4 w-4" />
+                </>
+              )}
             </Link>
           </div>
         </div>
@@ -1205,7 +1222,7 @@ function FilmReelsSection() {
 /* ── Case Studies ── */
 function CaseStudiesSection() {
   return (
-    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20" >
+    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="script text-3xl text-accent">In The Wild</span>
@@ -1624,7 +1641,7 @@ function PortfolioGraphicDesign() {
 
 function PortfolioSoftwareSystems() {
   return (
-    <div className="py-6">
+    <div className="py-6 mb-4">
       <div className="mb- text-center px-5">
         <span className="script text-3xl text-orange-400">Intelligent Stacks</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1646,7 +1663,7 @@ function PortfolioSoftwareSystems() {
 
 function PortfolioSEOAnalytics() {
   return (
-    <div className="py-6 md:py-20">
+    <div className="py-12 mt-8 md:mt-2 md:py-12">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-blue-400">Growth Metrics</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1979,12 +1996,12 @@ function Index() {
           {/* Mini testimonial snippet — top left, same as original */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1  }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
             className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
           >
             <div className="font-display text-4xl text-foreground/40">"</div>
-           <p className="text-xs leading-snug text-foreground/70">
+            <p className="text-xs leading-snug text-foreground/70">
               AlphaNexis shipped our enterprise app three months ahead of schedule and captured a
               critical market window.
             </p>
@@ -2089,7 +2106,7 @@ function Index() {
       {/* ABOUT */}
       <PortfolioSection />
 
-      <ServicesSection/>
+      <ServicesSection />
 
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
@@ -2216,12 +2233,13 @@ function Index() {
                 ))}
               </div>
               <p className="font-display text-xl font-medium leading-snug">"{t.q}"</p>
-              <div className="mt-6 flex items-center justify-between">
-                <div>
+              <div className="mt-6 flex items-center justify-between gap-3">
+                <div className="flex-1 min-w-0">
                   <div className="font-semibold text-sm">— {t.name}</div>
-                  <div className="text-sm text-foreground/60">{t.co}</div>
+                  <div className="text-sm text-foreground/60 truncate">{t.co}</div>
                 </div>
-                <span className="rounded-full border border-ink/30 bg-accent/20 px-2 py-2 text-[9px] md:text-[11px] font-bold uppercase ">
+
+                <span className="shrink-0 rounded-full border border-ink/30 bg-accent/20 px-1 py-1 text-[9px] md:text-[11px] font-bold uppercase">
                   {t.verified}
                 </span>
               </div>
@@ -2240,7 +2258,7 @@ function Index() {
         >
           <Star4 className="absolute left-8 top-8 h-8 w-8 text-ink animate-spin-slow" />
           <Star4 className="absolute right-10 top-12 h-6 w-6 text-ink animate-spin-slow" />
-          <Star4 className="absolute bottom-10 left-1/4 h-5 w-5 text-ink animate-spin-slow" />
+          {/* <Star4 className="absolute bottom-10 left-1/4 h-5 w-5 text-ink animate-spin-slow" /> */}
 
           <span className="script text-3xl">let's build something</span>
           <h2 className="font-display text-5xl font-bold leading-[1.05] md:text-7xl">
