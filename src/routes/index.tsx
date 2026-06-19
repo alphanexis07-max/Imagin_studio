@@ -735,7 +735,7 @@ function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative mx-auto max-w-6xl px-5 py-24 )]"
+      className="relative mx-auto max-w-6xl px-5 py-6 )]"
     >
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">services that drive digital growth</span>
@@ -971,7 +971,7 @@ const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
 /* ── Core Capabilities Section ── */
 function CoreCapabilitiesSection() {
   return (
-    <section id="capabilities" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section id="capabilities" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
           <span className="script text-3xl text-accent">What We Bring</span>
@@ -1052,7 +1052,7 @@ function ProcessSection() {
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="process" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section id="process" className="relative mx-auto max-w-6xl px-5 py-8 md:py-16">
       <div className="mb-14 text-center">
         <span className="script text-3xl text-accent">How We Ship</span>
         <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
@@ -1130,7 +1130,7 @@ function FilmReelsSection() {
       ref={sectionRef}
       className="relative isolate overflow-hidden bg-transparent text-foreground"
     >
-      <div className="relative mx-auto max-w-6xl px-5 py-24">
+      <div className="relative mx-auto max-w-6xl px-5 py-8">
         <div className="mb-10 grid items-end gap-6 md:grid-cols-[1fr_auto]">
           <div>
             <span className="script text-3xl text-accent">The Reel Room</span>
@@ -1205,7 +1205,7 @@ function FilmReelsSection() {
 /* ── Case Studies ── */
 function CaseStudiesSection() {
   return (
-    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20" >
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="script text-3xl text-accent">In The Wild</span>
@@ -1296,7 +1296,7 @@ function CaseStudiesSection() {
 /* ── Engagement Models ── */
 function FlexibleSection() {
   return (
-    <section id="engage" className="relative mx-auto max-w-6xl px-5 py-24">
+    <section id="engage" className="relative mx-auto max-w-6xl px-5 py-10 md:py-24">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
           <span className="script text-3xl text-accent">how we work</span>
@@ -1454,7 +1454,7 @@ const partners = [
 
 function TrustSection() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-16">
+    <section className="relative mx-auto max-w-6xl px-5 py-6 md:py-16">
       <p className="mb-8 text-center text-sm font-bold uppercase tracking-widest text-foreground/40">
         Certified & recognised by
       </p>
@@ -1540,8 +1540,8 @@ function PortfolioGraphicDesign() {
     "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
 
   return (
-    <div className="py-20">
-      <div className="mx-auto max-w-6xl px-5 mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+    <div className="py-6">
+      <div className="mx-auto max-w-6xl px-5 mb-2 md:mb-8   flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
             Visual Assets
@@ -1646,7 +1646,7 @@ function PortfolioSoftwareSystems() {
 
 function PortfolioSEOAnalytics() {
   return (
-    <div className="py-20">
+    <div className="py-6 md:py-20">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-blue-400">Growth Metrics</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1669,7 +1669,7 @@ function PortfolioSEOAnalytics() {
 function PortfolioStrategicConsulting() {
   const badgeStyle = "bg-amber-500/25 border-amber-500/40 text-amber-400";
   return (
-    <div className="py-20">
+    <div className="py-6">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-amber-400">Management Consulting</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1755,7 +1755,7 @@ function PortfolioStrategicConsulting() {
 function PortfolioContentWriting() {
   const badgeStyle = "bg-orange-500/25 border-orange-500/40 text-orange-400";
   return (
-    <div className="py-20">
+    <div className="py-6 md:py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-orange-400 font-bold">Copywriting</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1813,7 +1813,7 @@ function PortfolioSection() {
   return (
     <section
       id="portfolio"
-      className="relative isolate overflow-hidden bg-transparent py-20 text-foreground"
+      className="relative isolate overflow-hidden bg-transparent py-12 md:py-20  text-foreground"
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
@@ -1993,7 +1993,7 @@ function Index() {
       </section>
 
       {/* STATS strip */}
-      <section className="relative mx-auto max-w-6xl px-5 py-24">
+      <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
         <div className="mb-10 text-center">
           <span className="script text-3xl text-accent">Achievements</span>
           <h2 className="mt-3 font-display text-5xl font-bold md:text-7xl">
@@ -2179,7 +2179,7 @@ function Index() {
       <FlexibleSection />
 
       {/* TESTIMONIALS */}
-      <section className="relative mx-auto max-w-6xl px-5 py-24">
+      <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
         <div className="mb-12 text-center">
           <span className="script text-3xl text-accent">What Clients Say</span>
           <h2 className="font-display text-5xl font-bold md:text-6xl">

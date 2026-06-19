@@ -123,7 +123,7 @@ export function JumboStack({
             {title}
           </h3>
         </div>
-        <p className={moduleDescriptionClass}>
+        <p className={moduleDescriptionClass} >
           {description}
         </p>
       </div>
@@ -138,7 +138,7 @@ export function JumboStack({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         whileTap={{ scale: 0.99 }}
-        className="relative h-[60vh] sm:h-[72vh] md:h-[82vh] overflow-visible"
+        className="relative h-[60vh] sm:h-[72vh] md:h-[82vh] mt-12 md:mt-2 overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {
@@ -197,7 +197,7 @@ export function JumboStack({
         </div>
       </motion.div>
 
-      <div className="mt-6 flex items-center justify-center gap-4 z-20 relative">
+      <div className="mt-8 md:mt-0 flex items-center justify-center gap-4 z-20 relative">
         <Button onClick={carousel.prev} aria-label="Previous Slide" variant="outline" size="icon" className={carouselButtonClass}>
           <ArrowLeft className="h-4 w-4" />
         </Button>

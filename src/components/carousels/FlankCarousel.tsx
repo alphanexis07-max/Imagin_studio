@@ -173,7 +173,7 @@ export function FlankCarousel({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         style={{ perspective: 1400, touchAction: "none" }}
-        className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] overflow-visible"
+        className="relative h-[60vh] sm:h-[70vh] mt-12 md:mt-4 md:h-[80vh] overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {
@@ -260,10 +260,10 @@ export function FlankCarousel({
         </div>
       </motion.div>
 
-      <div className="mt-6 sm:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
+      <div className="mt-8 md:mt-0 sm:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
         <Button onClick={carousel.prev} aria-label="Previous Slide" variant="outline" size="icon" className={carouselButtonClass}>
           <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
-        </Button>
+        </Button> 
         <Button onClick={carousel.next} aria-label="Next Slide" variant="outline" size="icon" className={carouselButtonClass}>
           <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>

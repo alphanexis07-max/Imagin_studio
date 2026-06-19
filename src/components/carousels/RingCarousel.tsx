@@ -161,7 +161,7 @@ export function RingCarousel({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         style={{ perspective: 1200, touchAction: "none" }}
-        className="relative h-[60vh] sm:h-[72vh] md:h-[80vh] select-none overflow-visible"
+        className="relative h-[60vh]  sm:h-[72vh] md:h-[80vh] select-none overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {
@@ -191,7 +191,7 @@ export function RingCarousel({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ rotateY: angle, scale, opacity, y: 0 }}
                 className={cn(
-                  "absolute left-1/2 top-1/2 w-[min(42rem,95vw)] sm:w-[min(48rem,92vw)] md:w-[min(52rem,88vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] border border-ink/10 bg-card/95 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-[0_30px_90px_-45px_rgba(0,0,0,0.95)]",
+                  "absolute left-1/2 mt-4 top-1/2 w-[min(42rem,95vw)] sm:w-[min(48rem,92vw)] md:w-[min(52rem,88vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] border border-ink/10 bg-card/95 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-[0_30px_90px_-45px_rgba(0,0,0,0.95)]",
                   zIndex > 0 ? "" : "pointer-events-none",
                 )}
                 style={{
