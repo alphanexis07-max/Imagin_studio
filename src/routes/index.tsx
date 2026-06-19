@@ -2095,7 +2095,7 @@ function Index() {
       {/* ABOUT */}
       <PortfolioSection />
 
-
+      <ServicesSection/>
 
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
