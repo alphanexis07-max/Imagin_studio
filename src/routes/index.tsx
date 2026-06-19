@@ -514,7 +514,7 @@ const consultingCases = [
 
 const editorialContent = [
   {
-    categoryLabel: "CONTENT WRITING",
+    categoryLabel: "Content Writing",
     type: "Sales Landing Page Copy",
     headline: "Unchain Your Operations: The AI Middleware Built for Scale",
     metrics: "4.8% Conv. Rate (+60% vs benchmark)",
@@ -522,7 +522,7 @@ const editorialContent = [
       "Enterprise systems are notoriously rigid. We don't believe in rewriting your stack from scratch. Our middleware sits quietly on top, using intelligent semantic parsing to turn unstructured email requests into structured database inserts...",
   },
   {
-    categoryLabel: "CONTENT WRITING",
+    categoryLabel: "Content Writing",
     type: "Tech Blog & Thought Leadership",
     headline: "The Churn Tax: Why Legacy Architectures Threaten Series-A Runways",
     metrics: "15K Views · 18% CTA Click-Through",
@@ -530,7 +530,7 @@ const editorialContent = [
       "Losing 3% of your customer base each month is a leaky bucket. When your CAC exceeds your LTV payback window, growth stops compounding. Read our deep-dive analysis on building growth loops directly into your product experience...",
   },
   {
-    categoryLabel: "CONTENT WRITING",
+    categoryLabel: "Content Writing",
     type: "B2B Email Campaign Sequence",
     headline: "The 3 Bottlenecks C-Suite Teams Ignore (And How to Automate Them)",
     metrics: "46% Open Rate · 12% Reply Rate",
@@ -1771,15 +1771,15 @@ function PortfolioContentWriting() {
           <motion.div
             key={idx}
             whileHover={{ y: -6 }}
-            className="rounded-[2rem] border border-ink/10 bg-card p-6 shadow-[0_24px_70px_-45px_rgba(0,0,0,0.45)] md:p-8 flex flex-col justify-between relative dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl"
+            className="rounded-[2rem] border border-ink/10 bg-card p-6 shadow-[0_24px_70px_-45px_rgba(0,0,0,0.45)] md:p-4 flex flex-col justify-between relative dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl"
           >
             <div>
-              <div className="flex items-center justify-between gap-4 mb-4">
+              <div className="flex items-center justify-between gap-1 mb-4">
                 <span className="text-[10px] font-bold text-muted-foreground dark:text-gray-500 uppercase tracking-widest">
                   {item.type}
                 </span>
                 <span
-                  className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${badgeStyle}`}
+                  className={`rounded-full border px-2 py-0.5 text-[9px] font-bold  tracking-wider ${badgeStyle}`}
                 >
                   {item.categoryLabel}
                 </span>
@@ -1789,7 +1789,7 @@ function PortfolioContentWriting() {
                 "{item.headline}"
               </h3>
 
-              <blockquote className="border-l-2 border-orange-500 pl-4 text-xs italic text-muted-foreground dark:text-gray-400 leading-relaxed">
+              <blockquote className="border-l-2  border-orange-500 pl-4 text-xs italic text-muted-foreground dark:text-gray-400 leading-relaxed">
                 {item.excerpt}
               </blockquote>
             </div>
@@ -1798,7 +1798,7 @@ function PortfolioContentWriting() {
               <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground dark:text-gray-500">
                 Performance
               </span>
-              <span className="text-xs font-bold text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-md px-2 py-1">
+              <span className="text-xs font-bold  text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-md px-1 py-1">
                 {item.metrics}
               </span>
             </div>
@@ -2208,7 +2208,7 @@ function Index() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, type: "spring" }}
-              className="rounded-[1.5rem] border-2 border-ink bg-background p-8 shadow-[5px_5px_0_0_var(--ink)] lift dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+              className="rounded-[1.5rem] border-2 border-ink bg-background p-8 px-4 shadow-[5px_5px_0_0_var(--ink)] lift dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
             >
               <div className="mb-4 flex gap-1">
                 {[...Array(5)].map((_, j) => (
@@ -2221,7 +2221,7 @@ function Index() {
                   <div className="font-semibold text-sm">— {t.name}</div>
                   <div className="text-sm text-foreground/60">{t.co}</div>
                 </div>
-                <span className="rounded-full border border-ink/30 bg-accent/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wide">
+                <span className="rounded-full border border-ink/30 bg-accent/20 px-2 py-2 text-[9px] md:text-[11px] font-bold uppercase ">
                   {t.verified}
                 </span>
               </div>
