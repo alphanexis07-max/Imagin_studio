@@ -266,7 +266,7 @@ export function RingCarousel({
         </div>
       </motion.div>
 
-      <div className="mt-6 sm:mt-8 md:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
+      <div className="mt-6 hidden md:flex sm:mt-8 md:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
         <Button
           onClick={carousel.prev}
           aria-label="Previous Slide"
