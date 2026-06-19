@@ -741,7 +741,7 @@ function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative mx-auto max-w-6xl px-5 py-24 bg-[radial-gradient(circle_at_top,_rgba(56,152,236,0.12),transparent_40%)]"
+      className="relative mx-auto max-w-6xl px-5 py-24 )]"
     >
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">services that drive digital growth</span>
