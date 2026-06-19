@@ -223,7 +223,7 @@ export function FlankCarousel({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/35" />
                   
                   {slide.categoryLabel && (
-                    <span className={`absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
+                    <span className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
                       {slide.categoryLabel}
                     </span>
                   )}
