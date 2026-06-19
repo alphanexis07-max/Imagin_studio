@@ -339,35 +339,35 @@ const videoEditingSlides = [
 const graphicDesignSlides = [
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Branding",
     title: "Lume Skincare Visual Identity",
     description: "Color system, custom typography, and premium brand voice.",
     image: screenshot2,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Packaging",
     title: "Premium Product Packaging",
     description: "Eco-friendly cosmetic bottle labels and box layouts.",
     image: screenshot1,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Social Media",
     title: "High-Retention Instagram Creatives",
     description: "Curated grids, posters, and stories designed for organic conversion.",
     image: screenshot3,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Advertising",
     title: "Out-Of-Home Banner Campaigns",
     description: "High-contrast billboards and print advertisements for modern transport hubs.",
     image: screenshot4,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "",
+    subcategory: "Print Design",
     title: "Editorial Brand Catalogs",
     description: "Premium booklets showcasing collection launches.",
     image: screenshot6,
@@ -1596,7 +1596,7 @@ function PortfolioGraphicDesign() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
             <span
-              className={`absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}
+              className={`hidden md:block  absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}
             >
               {slide.categoryLabel}
             </span>
