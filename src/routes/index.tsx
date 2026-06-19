@@ -1602,7 +1602,7 @@ function PortfolioGraphicDesign() {
             </span>
 
             {slide.subcategory && (
-              <span className="absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+              <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
                 {slide.subcategory}
               </span>
             )}
