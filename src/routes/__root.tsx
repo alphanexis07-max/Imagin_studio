@@ -7,10 +7,12 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Loader } from "@/components/ui/loader";
+import logo from "@/assets/logo.png";
 
 function NotFoundComponent() {
   return (
@@ -115,8 +117,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme-preference");var d=t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){document.documentElement.classList.add("dark")}`,
+          }}
+        />
         <HeadContent />
       </head>
       <body>
@@ -129,11 +136,62 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [showInitialLoader, setShowInitialLoader] = useState(true);
+  const [loaderExiting, setLoaderExiting] = useState(false);
+
+  useEffect(() => {
+    const minVisibleMs = 950;
+    const maxVisibleMs = 2600;
+    const startedAt = performance.now();
+    let hidden = false;
+    let fallbackTimer: ReturnType<typeof window.setTimeout>;
+    let settleTimer: ReturnType<typeof window.setTimeout>;
+    let removeTimer: ReturnType<typeof window.setTimeout>;
+
+    const hideLoader = () => {
+      if (hidden) return;
+      hidden = true;
+      const elapsed = performance.now() - startedAt;
+      const remaining = Math.max(0, minVisibleMs - elapsed);
+      settleTimer = window.setTimeout(() => {
+        setLoaderExiting(true);
+        removeTimer = window.setTimeout(() => setShowInitialLoader(false), 320);
+      }, remaining);
+    };
+
+    if (document.readyState === "complete") {
+      window.requestAnimationFrame(() => window.requestAnimationFrame(hideLoader));
+    } else {
+      window.addEventListener("load", hideLoader, { once: true });
+    }
+
+    fallbackTimer = window.setTimeout(hideLoader, maxVisibleMs);
+
+    return () => {
+      window.removeEventListener("load", hideLoader);
+      window.clearTimeout(fallbackTimer);
+      window.clearTimeout(settleTimer);
+      window.clearTimeout(removeTimer);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
+      {showInitialLoader ? <InitialLoadingOverlay isExiting={loaderExiting} /> : null}
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
+  );
+}
+
+function InitialLoadingOverlay({ isExiting }: { isExiting: boolean }) {
+  return (
+    <div className={`initial-loader-overlay${isExiting ? " is-exiting" : ""}`} aria-busy="true">
+      <div className="initial-loader-panel">
+        <img src={logo} alt="" className="initial-loader-logo" aria-hidden="true" />
+        <Loader />
+        <p className="initial-loader-copy">Preparing AlphaNexis</p>
+      </div>
+    </div>
   );
 }
