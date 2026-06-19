@@ -1572,7 +1572,7 @@ function PortfolioGraphicDesign() {
       </div>
 
       <div
-        ref={scrollRef}
+        // ref={scrollRef}
         onWheel={(event) => {
           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
           event.preventDefault();
