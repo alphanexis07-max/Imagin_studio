@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
+import logo from "@/assets/logo.png";
 import {
   ArrowUpRight,
   Megaphone,

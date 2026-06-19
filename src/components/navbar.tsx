@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import logo from "@/assets/logo.png";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,16 +48,12 @@ export function Navbar() {
       className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/70 border-b border-border/80 shadow-xl shadow-black/5 backdrop-blur-xl" : "bg-background/70 border-b border-border/60 backdrop-blur-md"}`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <a href="#" className="flex items-center gap-2 font-display text-xl font-bold">
-          <motion.span
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.6 }}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-cream"
-          >
-            A.
-          </motion.span>
-          AlphaNexis<span className="text-accent">.</span>
-        </a>
+       <a href="#" className="flex items-center gap-2">
+  <img src={logo} alt="AlphaNexis" className="h-8 w-8 object-contain" />
+  <span className="font-display text-xl font-bold">
+    AlphaNexis<span className="text-accent"></span>
+  </span>
+</a>
         <div className="hidden items-center gap-8 text-sm md:flex">
           {["About", "Portfolio", "Work", "Services", "Contact"].map((l) => (
             <a
