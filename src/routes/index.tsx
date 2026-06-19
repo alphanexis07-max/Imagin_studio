@@ -739,7 +739,7 @@ function ServicesSection() {
     >
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">services that drive digital growth</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-7xl">
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
           Services built to move your business forward.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
@@ -1300,7 +1300,7 @@ function FlexibleSection() {
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
           <span className="script text-3xl text-accent">how we work</span>
-          <h2 className="font-display text-5xl font-bold leading-[1.02] md:text-7xl">
+          <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Flexible by <span className="italic">Design</span>
             <span className="text-accent">.</span>
           </h2>
@@ -1553,7 +1553,7 @@ function PortfolioGraphicDesign() {
             Social creatives, branding systems, packaging labels, and print design layouts.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className=" hidden md:flex flex gap-2">
           <button
             onClick={scrollLeft}
             aria-label="Scroll graphic design left"
@@ -1866,7 +1866,7 @@ function Index() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="font-display text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
+            className="font-display text-[clamp(2rem,8vw,4rem)]  md:text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
           >
             We craft digital experiences that
             <br />
@@ -1876,7 +1876,7 @@ function Index() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto mt-6 max-w-2xl text-lg text-foreground/70"
+            className="mx-auto mt-6 max-w-2xl test-base md:text-lg text-foreground/70"
           >
             Creativity, strategy, and technology come together in every campaign we build. We turn
             brand momentum into measurable growth for fast-moving teams.
@@ -1996,7 +1996,7 @@ function Index() {
       <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
         <div className="mb-10 text-center">
           <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-4xl font-bold md:text-7xl">
+          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
             Milestones that prove our work delivers impact.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
@@ -2100,7 +2100,7 @@ function Index() {
             viewport={{ once: true }}
           >
             <span className="script text-3xl text-accent">Who We Are</span>
-            <h2 className="mt-2 font-display text-5xl font-bold leading-tight md:text-6xl">
+            <h2 className="mt-2 font-display text-4xl font-bold leading-tight md:text-6xl">
               We build brands
               <br />
               <span className="relative inline-block">
