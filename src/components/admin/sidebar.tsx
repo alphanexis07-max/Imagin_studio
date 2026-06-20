@@ -31,6 +31,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
@@ -296,8 +297,9 @@ export function AdminSidebar({ activeTab, onSelect, onLogout, children }: AdminS
             <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">CMS Console</p>
             <p className="truncate font-display text-base font-semibold">Alphanexis Studio</p>
           </div>
-          <SidebarTrigger className="shrink-0 group-data-[collapsible=icon]:mx-auto" />
+          <SidebarTrigger className="h-8 w-8 shrink-0 rounded-lg border border-sidebar-border bg-sidebar-accent/60 text-sidebar-foreground shadow-sm hover:bg-sidebar-accent group-data-[collapsible=icon]:mx-auto" title="Toggle sidebar" />
         </SidebarHeader>
+        <SidebarRail className="after:bg-sidebar-border/60 hover:after:bg-accent" />
 
         <SidebarContent className="px-0 pb-4 pt-3">
           <SidebarSearch value={search} onChange={setSearch} />

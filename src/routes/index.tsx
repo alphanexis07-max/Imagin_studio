@@ -2184,20 +2184,7 @@ function Index() {
           </h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
-          {[
-            {
-              q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
-              name: "VP of Product",
-              co: "North American HealthTech Corp",
-              verified: "LinkedIn Verified",
-            },
-            {
-              q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
-              name: "Chief Operating Officer",
-              co: "European Logistics Group",
-              verified: "Clutch 5-Star",
-            },
-          ].map((t, i) => (
+          {cmsTestimonials.map((t, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30, rotate: i === 0 ? -1 : 1 }}
