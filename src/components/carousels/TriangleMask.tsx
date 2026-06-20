@@ -25,7 +25,8 @@ const slides = [
   },
   {
     title: "Crossfade content",
-    description: "Smooth fade and mask transitions keep the carousel grounded in the design system.",
+    description:
+      "Smooth fade and mask transitions keep the carousel grounded in the design system.",
     poster: screenshot6,
     video: videoSources[4],
     accent: "from-cyan-500/30",
@@ -65,7 +66,8 @@ const defaultSlides = [
   {
     categoryLabel: "ACCOUNT AUDIT",
     title: "Crossfade content",
-    description: "Smooth fade and mask transitions keep the carousel grounded in the design system.",
+    description:
+      "Smooth fade and mask transitions keep the carousel grounded in the design system.",
     metrics: [
       { label: "Audit Rating", value: "98/100" },
       { label: "Errors Fixed", value: "1,200+" },
@@ -100,9 +102,7 @@ export function TriangleMask({
             {title}
           </h3>
         </div>
-        <p className={moduleDescriptionClass}>
-          {description}
-        </p>
+        <p className={moduleDescriptionClass}>{description}</p>
       </div>
 
       <div
@@ -120,13 +120,18 @@ export function TriangleMask({
               // Category badge colors
               const getBadgeStyles = (label: string) => {
                 const cleaned = label.toUpperCase();
-                if (cleaned.includes("SEO")) return "bg-green-500/25 border-green-500/40 text-green-400";
-                if (cleaned.includes("AUDIT") || cleaned.includes("REPORT")) return "bg-cyan-500/25 border-cyan-500/40 text-cyan-400";
-                if (cleaned.includes("ANALYTICS")) return "bg-emerald-500/25 border-emerald-500/40 text-emerald-400";
+                if (cleaned.includes("SEO"))
+                  return "bg-green-500/25 border-green-500/40 text-green-400";
+                if (cleaned.includes("AUDIT") || cleaned.includes("REPORT"))
+                  return "bg-cyan-500/25 border-cyan-500/40 text-cyan-400";
+                if (cleaned.includes("ANALYTICS"))
+                  return "bg-emerald-500/25 border-emerald-500/40 text-emerald-400";
                 return "bg-white/10 border-white/20 text-white";
               };
 
-              const badgeStyle = slide.categoryLabel ? getBadgeStyles(slide.categoryLabel) : "bg-white/10 border-white/20 text-white";
+              const badgeStyle = slide.categoryLabel
+                ? getBadgeStyles(slide.categoryLabel)
+                : "bg-white/10 border-white/20 text-white";
 
               return (
                 <motion.div
@@ -134,7 +139,10 @@ export function TriangleMask({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={smooth}
+                  transition={{
+                    duration: 0.4,
+                    ease: "easeOut",
+                  }}
                   className="grid h-full w-full items-stretch overflow-hidden rounded-[1.75rem] border border-ink/10 bg-card shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] grid-cols-1 sm:grid-cols-1 md:grid-cols-[1.35fr_0.65fr] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-[0_34px_100px_-50px_rgba(0,0,0,0.95)]"
                 >
                   <div
@@ -152,12 +160,22 @@ export function TriangleMask({
                         playsInline
                       />
                     ) : (
-                      slide.poster && <img src={slide.poster} alt={slide.title} className="h-full w-full object-cover" />
+                      slide.poster && (
+                        <img
+                          src={slide.poster}
+                          alt={slide.title}
+                          className="h-full w-full object-cover"
+                        />
+                      )
                     )}
-                    <div className={`absolute inset-0 bg-gradient-to-t ${slide.accent || "from-green-950/30"} via-transparent to-black/20`} />
-                    
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-t ${slide.accent || "from-green-950/30"} via-transparent to-black/20`}
+                    />
+
                     {slide.categoryLabel && (
-                      <span className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
+                      <span
+                        className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}
+                      >
                         {slide.categoryLabel}
                       </span>
                     )}
@@ -174,8 +192,12 @@ export function TriangleMask({
                       <div className="mt-6 grid grid-cols-2 gap-4 border-t border-ink/10 pt-5 dark:border-white/10">
                         {slide.metrics.map((metric, mi) => (
                           <div key={metric.label}>
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground dark:text-gray-500">{metric.label}</span>
-                            <div className="text-xl sm:text-2xl font-black text-emerald-400 mt-1">{metric.value}</div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground dark:text-gray-500">
+                              {metric.label}
+                            </span>
+                            <div className="text-xl sm:text-2xl font-black text-emerald-400 mt-1">
+                              {metric.value}
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -190,10 +212,22 @@ export function TriangleMask({
       </div>
 
       <div className="mt-6 sm:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
-        <Button onClick={carousel.prev} aria-label="Previous Slide" variant="outline" size="icon" className={carouselButtonClass}>
+        <Button
+          onClick={carousel.prev}
+          aria-label="Previous Slide"
+          variant="outline"
+          size="icon"
+          className={carouselButtonClass}
+        >
           <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
-        <Button onClick={carousel.next} aria-label="Next Slide" variant="outline" size="icon" className={carouselButtonClass}>
+        <Button
+          onClick={carousel.next}
+          aria-label="Next Slide"
+          variant="outline"
+          size="icon"
+          className={carouselButtonClass}
+        >
           <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
       </div>

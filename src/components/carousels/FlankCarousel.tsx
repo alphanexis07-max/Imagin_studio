@@ -108,7 +108,15 @@ const defaultSlides = [
   },
 ];
 
-function CarouselVideo({ src, poster, isActive }: { src: string; poster?: string; isActive: boolean }) {
+function CarouselVideo({
+  src,
+  poster,
+  isActive,
+}: {
+  src: string;
+  poster?: string;
+  isActive: boolean;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -159,9 +167,7 @@ export function FlankCarousel({
             {title}
           </h3>
         </div>
-        <p className={moduleDescriptionClass}>
-          {description}
-        </p>
+        <p className={moduleDescriptionClass}>{description}</p>
       </div>
 
       <motion.div
@@ -191,57 +197,96 @@ export function FlankCarousel({
             const getBadgeStyles = (label: string) => {
               const cleaned = label.toUpperCase();
               if (cleaned.includes("VIDEO")) return "bg-red-500/25 border-red-500/40 text-red-400";
-              if (cleaned.includes("GRAPHIC") || cleaned.includes("DESIGN")) return "bg-purple-500/25 border-purple-500/40 text-purple-400";
-              if (cleaned.includes("WEBSITE") || cleaned.includes("DEVELOPMENT")) return "bg-blue-500/25 border-blue-500/40 text-blue-400";
-              if (cleaned.includes("SEO")) return "bg-green-500/25 border-green-500/40 text-green-400";
-              if (cleaned.includes("CONTENT") || cleaned.includes("WRITING")) return "bg-orange-500/25 border-orange-500/40 text-orange-400";
-              if (cleaned.includes("STRATEGIC") || cleaned.includes("PLANNING") || cleaned.includes("CONSULTING")) return "bg-amber-500/25 border-amber-500/40 text-amber-400";
-              if (cleaned.includes("AUDIT") || cleaned.includes("REPORT")) return "bg-cyan-500/25 border-cyan-500/40 text-cyan-400";
-              if (cleaned.includes("PROJECT") || cleaned.includes("MANAGEMENT")) return "bg-indigo-500/25 border-indigo-500/40 text-indigo-400";
+              if (cleaned.includes("GRAPHIC") || cleaned.includes("DESIGN"))
+                return "bg-purple-500/25 border-purple-500/40 text-purple-400";
+              if (cleaned.includes("WEBSITE") || cleaned.includes("DEVELOPMENT"))
+                return "bg-blue-500/25 border-blue-500/40 text-blue-400";
+              if (cleaned.includes("SEO"))
+                return "bg-green-500/25 border-green-500/40 text-green-400";
+              if (cleaned.includes("CONTENT") || cleaned.includes("WRITING"))
+                return "bg-orange-500/25 border-orange-500/40 text-orange-400";
+              if (
+                cleaned.includes("STRATEGIC") ||
+                cleaned.includes("PLANNING") ||
+                cleaned.includes("CONSULTING")
+              )
+                return "bg-amber-500/25 border-amber-500/40 text-amber-400";
+              if (cleaned.includes("AUDIT") || cleaned.includes("REPORT"))
+                return "bg-cyan-500/25 border-cyan-500/40 text-cyan-400";
+              if (cleaned.includes("PROJECT") || cleaned.includes("MANAGEMENT"))
+                return "bg-indigo-500/25 border-indigo-500/40 text-indigo-400";
               if (cleaned.includes("CRM")) return "bg-teal-500/25 border-teal-500/40 text-teal-400";
-              if (cleaned.includes("SALES")) return "bg-pink-500/25 border-pink-500/40 text-pink-400";
+              if (cleaned.includes("SALES"))
+                return "bg-pink-500/25 border-pink-500/40 text-pink-400";
               return "bg-white/10 border-white/20 text-white";
             };
 
-            const badgeStyle = slide.categoryLabel ? getBadgeStyles(slide.categoryLabel) : "bg-white/10 border-white/20 text-white";
+            const badgeStyle = slide.categoryLabel
+              ? getBadgeStyles(slide.categoryLabel)
+              : "bg-white/10 border-white/20 text-white";
 
             return (
               <motion.div
                 key={slide.title + "-" + index}
                 initial={false}
                 animate={{ x, y, rotateY, scale, opacity }}
-                transition={smooth}
+                // transition={smooth}
+
+                transition={{
+                  duration: 0.2,
+                  ease: "easeOut",
+                }}
                 className={`absolute left-1/2 top-1/2 w-[min(42rem,95vw)] sm:w-[min(48rem,92vw)] md:w-[min(52rem,88vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] border border-ink/10 bg-card/95 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl ${slide.glow || "shadow-black/50"}`}
-                style={{ zIndex, transformStyle: "preserve-3d", pointerEvents: isVisible ? "auto" : "none", willChange: "transform, opacity" }}
+                style={{
+                  zIndex,
+                  transformStyle: "preserve-3d",
+                  pointerEvents: isVisible ? "auto" : "none",
+                  willChange: "transform, opacity",
+                }}
               >
                 <div className="relative h-[min(44vh,28rem)] bg-muted dark:bg-[#0b0f14]">
                   {slide.video ? (
                     <CarouselVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
-                    slide.poster && <img src={slide.poster} alt={slide.title} className="h-full w-full object-cover" />
+                    slide.poster && (
+                      <img
+                        src={slide.poster}
+                        alt={slide.title}
+                        className="h-full w-full object-cover"
+                      />
+                    )
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/35" />
-                  
+
                   {slide.categoryLabel && (
-                    <span className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
+                    <span
+                      className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}
+                    >
                       {slide.categoryLabel}
                     </span>
                   )}
                 </div>
-                
+
                 <div className="p-5 sm:p-6 md:p-7">
                   <h4 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-card-foreground dark:text-white">
                     {slide.title}
                   </h4>
-                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400 line-clamp-2">{slide.description}</p>
-                  
+                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400 line-clamp-2">
+                    {slide.description}
+                  </p>
+
                   <AnimatePresence>
                     {isCenter && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={smooth}
+                        // transition={smooth}
+
+                        transition={{
+                          duration: 0.2,
+                          ease: "easeOut",
+                        }}
                         className="overflow-hidden mt-4"
                       >
                         <a
@@ -261,10 +306,22 @@ export function FlankCarousel({
       </motion.div>
 
       <div className="mt-8 md:mt-0 sm:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
-        <Button onClick={carousel.prev} aria-label="Previous Slide" variant="outline" size="icon" className={carouselButtonClass}>
+        <Button
+          onClick={carousel.prev}
+          aria-label="Previous Slide"
+          variant="outline"
+          size="icon"
+          className={carouselButtonClass}
+        >
           <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
-        </Button> 
-        <Button onClick={carousel.next} aria-label="Next Slide" variant="outline" size="icon" className={carouselButtonClass}>
+        </Button>
+        <Button
+          onClick={carousel.next}
+          aria-label="Next Slide"
+          variant="outline"
+          size="icon"
+          className={carouselButtonClass}
+        >
           <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
       </div>
