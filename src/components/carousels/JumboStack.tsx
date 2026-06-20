@@ -147,7 +147,7 @@ export function JumboStack({
             const abs = Math.abs(offset);
             const y = offset * 28;
             const scale = 1 - abs * 0.06;
-            const opacity = 1 - abs * 0.2;
+            const opacity = 1 - abs * 0.4;
             const zIndex = slides.length - abs;
 
             // Category badge styling
@@ -162,7 +162,7 @@ export function JumboStack({
                 className="absolute left-1/2 top-1/2 w-[min(42rem,95vw)] sm:w-[min(52rem,92vw)] md:w-[min(58rem,90vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] border border-ink/10 bg-card/95 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#0f172a]/95 dark:shadow-[0_34px_100px_-50px_rgba(0,0,0,0.95)]"
                 style={{ zIndex }}
               >
-                <div className="relative h-[min(46vh,28rem)] bg-muted dark:bg-[#0b0f14]">
+                <div className="relative h-[min(48vh,30rem)] bg-muted dark:bg-[#0b0f14]">
                   {slide.video ? (
                     <StackVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
