@@ -63,6 +63,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { instagramPosts } from "@/data/instagramFeed";
+import { getPortfolioContent } from "@/lib/cms/public.functions";
 import {
   RingCarousel,
   JumboStack,
@@ -89,7 +90,10 @@ function extractEmbedUrl(url: string) {
   }
 }
 
-export const Route = createFileRoute("/")({ component: Index });
+export const Route = createFileRoute("/")({
+  loader: () => getPortfolioContent(),
+  component: Index,
+});
 
 /* ── SVG Decorators ── */
 const Scribble = ({ className = "" }: { className?: string }) => (
@@ -973,7 +977,25 @@ const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
 }));
 
 /* ── Core Capabilities Section ── */
-function CoreCapabilitiesSection() {
+
+
+type CmsItem = Record<string, unknown>;
+
+const cmsIconMap = { Target, PenTool, Sparkles, Brain, Search, Lightbulb, Layers, Rocket, LineChart, Repeat, Zap, Infinity: InfinityIcon, Flame, TrendingUp, Globe, BarChart3 } as const;
+function asString(value: unknown, fallback = "") { return typeof value === "string" && value.trim() ? value : fallback; }
+function asStringArray(value: unknown, fallback: string[] = []) { return Array.isArray(value) ? value.map((item) => String(item)).filter(Boolean) : fallback; }
+function asNumber(value: unknown, fallback = 0) { return typeof value === "number" && Number.isFinite(value) ? value : fallback; }
+function iconFromName(name: unknown, fallback: keyof typeof cmsIconMap) { const key = asString(name, fallback) as keyof typeof cmsIconMap; return cmsIconMap[key] ?? cmsIconMap[fallback]; }
+function resolveMediaUrl(value: unknown, fallback: string) { return asString(value) || fallback; }
+function normalizeStats(items: CmsItem[]) { return items.length ? items.map((item) => ({ k: asString(item.value), v: asString(item.label) })) : stats; }
+function normalizeCapabilities(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ k: asString(item.key, String(index + 1).padStart(2, "0")), t: asString(item.title), d: asString(item.description), icon: iconFromName(item.icon, "Target"), bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"), span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "", big: item.big === true || index === 0, chips: asStringArray(item.chips), metric: asString(item.metric), metricLabel: asString(item.metricLabel) })) : capabilities; }
+function normalizeProcess(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ n: asString(item.number, String(index + 1).padStart(2, "0")), t: asString(item.title), d: asString(item.description), icon: iconFromName(item.icon, "Search"), color: asString(item.bg, "bg-background") })) : steps; }
+function normalizeCases(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ name: asString(item.name), sector: asString(item.sector), year: asString(item.year), word: asString(item.word, asString(item.name).toUpperCase()), color: asString(item.color, "bg-accent"), problem: asString(item.problem), metrics: Array.isArray(item.metrics) ? (item.metrics as CmsItem[]).map((metric) => ({ k: asString(metric.key), v: asString(metric.value) })) : [], tags: asStringArray(item.tags), rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4) })) : cases; }
+function normalizeEngagements(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ icon: iconFromName(item.icon, "Zap"), t: asString(item.name), k: asString(item.duration), d: asString(item.description), bullets: asStringArray(item.bullets), bg: asString(item.bg, "bg-background"), rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2), tag: asString(item.tag), popular: item.popular === true })) : engagements; }
+function normalizeReels(items: CmsItem[]) { const reels = items.map((item) => ({ tag: asString(item.tag, "Reel"), title: asString(item.title, "Reel"), src: asString(item.url), poster: asString(item.poster) })).filter((item) => item.src); return reels.length ? reels : filmReels; }
+function normalizeTestimonials(items: CmsItem[]) { return items.length ? items.map((item) => ({ q: asString(item.quote), name: asString(item.author), co: asString(item.role), verified: asString(item.verified, "Verified"), stars: Math.max(1, Math.min(5, Number(item.stars) || 5)) })) : [{ q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.", name: "VP of Product", co: "North American HealthTech Corp", verified: "LinkedIn Verified", stars: 5 }, { q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.", name: "Chief Operating Officer", co: "European Logistics Group", verified: "Clutch 5-Star", stars: 5 }]; }
+
+function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
   return (
     <section id="capabilities" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
@@ -991,7 +1013,7 @@ function CoreCapabilitiesSection() {
       </div>
 
       <div className="grid auto-rows-[minmax(180px,auto)] grid-cols-1 gap-4 md:grid-cols-3">
-        {capabilities.map((c, i) => (
+        {items.map((c, i) => (
           <motion.div
             key={c.t}
             initial={{ opacity: 0, y: 30, rotate: i % 2 === 0 ? -1.2 : 1.2 }}
@@ -1050,7 +1072,7 @@ function CoreCapabilitiesSection() {
 }
 
 /* ── 6-Step Delivery Framework ── */
-function ProcessSection() {
+function ProcessSection({ items = steps }: { items?: typeof steps }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 80%", "end 20%"] });
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -1076,7 +1098,7 @@ function ProcessSection() {
           className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-accent md:block"
         />
         <ol className="relative grid gap-6 md:gap-12">
-          {steps.map((s, i) => {
+          {items.map((s, i) => {
             const left = i % 2 === 0;
             return (
               <motion.li
@@ -1124,7 +1146,7 @@ function ProcessSection() {
 }
 
 /* ── Film Reels ── */
-function FilmReelsSection() {
+function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isReelsLoading, setIsReelsLoading] = useState(false);
   const rotations = [-0.5, 0.5, -0.35, 0.35];
@@ -1172,7 +1194,7 @@ function FilmReelsSection() {
 
         <div className="relative">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
-            {filmReels.map((reel, i) => {
+            {items.map((reel, i) => {
               return (
                 <motion.div
                   key={reel.title}
@@ -1220,7 +1242,7 @@ function FilmReelsSection() {
 }
 
 /* ── Case Studies ── */
-function CaseStudiesSection() {
+function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   return (
     <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
@@ -1240,7 +1262,7 @@ function CaseStudiesSection() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {cases.map((c, i) => (
+        {items.map((c, i) => (
           <motion.a
             key={c.name}
             href="#"
@@ -1311,7 +1333,7 @@ function CaseStudiesSection() {
 }
 
 /* ── Engagement Models ── */
-function FlexibleSection() {
+function FlexibleSection({ items = engagements }: { items?: typeof engagements }) {
   return (
     <section id="engage" className="relative mx-auto max-w-6xl px-5 py-10 md:py-24">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
@@ -1329,7 +1351,7 @@ function FlexibleSection() {
       </div>
 
       <div className="grid gap-5 md:grid-cols-3">
-        {engagements.map((e, i) => (
+        {items.map((e, i) => (
           <motion.div
             key={e.t}
             initial={{ opacity: 0, y: 30, rotate: e.rot * 1.5 }}
@@ -1857,6 +1879,16 @@ function PortfolioSection() {
 
 /* ── Main Page ── */
 function Index() {
+  const portfolio = Route.useLoaderData();
+  const site = portfolio.site;
+  const cmsStats = normalizeStats(portfolio.collections.stats);
+  const cmsCapabilities = normalizeCapabilities(portfolio.collections.capabilities);
+  const cmsProcess = normalizeProcess(portfolio.collections.process);
+  const cmsCases = normalizeCases(portfolio.collections.cases);
+  const cmsEngagements = normalizeEngagements(portfolio.collections.engagements);
+  const cmsTestimonials = normalizeTestimonials(portfolio.collections.testimonials);
+  const cmsReels = normalizeReels(portfolio.reels);
+
   return (
     <main className="relative min-h-screen overflow-visible bg-background text-foreground">
       {/* ambient blobs */}
@@ -1885,9 +1917,7 @@ function Index() {
             transition={{ duration: 0.7 }}
             className="font-display text-[clamp(2rem,8vw,4rem)]  md:text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
           >
-            We craft digital experiences that
-            <br />
-            drive growth and leave a lasting <span className="text-accent">impact</span>
+            {site.hero.headline || (<>We craft digital experiences that<br />drive growth and leave a lasting <span className="text-accent">impact</span></>)}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -1933,7 +1963,7 @@ function Index() {
 
           {/* Portrait image */}
           <motion.img
-            src={portrait}
+            src={resolveMediaUrl(site.hero.portraitUrl, portrait)}
             alt="AlphaNexis — Digital Marketing & AI Agency"
             width={1024}
             height={1024}
@@ -1989,8 +2019,8 @@ function Index() {
             transition={{ delay: 1.4 }}
             className="absolute -right-2 top-[18%] z-20 hidden text-right md:block"
           >
-            <div className="font-display text-4xl font-bold leading-none">8+ Years</div>
-            <div className="text-sm text-foreground/60">in Digital Marketing & AI</div>
+            <div className="font-display text-4xl font-bold leading-none">{site.hero.sidebarStat.value}</div>
+            <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
           </motion.div>
 
           {/* Mini testimonial snippet — top left, same as original */}
@@ -2001,9 +2031,8 @@ function Index() {
             className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
           >
             <div className="font-display text-4xl text-foreground/40">"</div>
-            <p className="text-xs leading-snug text-foreground/70">
-              AlphaNexis shipped our enterprise app three months ahead of schedule and captured a
-              critical market window.
+           <p className="text-xs leading-snug text-foreground/70">
+              {site.hero.sidebarQuote}
             </p>
           </motion.div>
         </div>
@@ -2023,7 +2052,7 @@ function Index() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {stats.map((s, i) => (
+          {cmsStats.map((s, i) => (
             <motion.div
               key={s.v}
               initial={{ opacity: 0, y: 30 }}
@@ -2047,23 +2076,7 @@ function Index() {
               key={idx}
               className="flex shrink-0 items-center gap-10 px-6 font-display text-3xl font-semibold"
             >
-              {[
-                "IMPACT",
-                "/",
-                "DESIGN",
-                "/",
-                "INNOVATE",
-                "/",
-                "CREATE",
-                "/",
-                "STRATEGIZE",
-                "/",
-                "IMPACT",
-                "/",
-                "DESIGN",
-                "/",
-                "INNOVATE",
-              ].map((w, i) => (
+              {site.marquee.top.flatMap((word) => [word, "/"]).map((w, i) => (
                 <span key={i} className={i % 2 === 0 ? "text-foreground" : "text-accent"}>
                   {w}
                 </span>
@@ -2077,23 +2090,7 @@ function Index() {
               key={idx}
               className="flex shrink-0 items-center gap-10 px-6 font-display text-2xl italic"
             >
-              {[
-                "IMPACT",
-                "/",
-                "DESIGN",
-                "/",
-                "INNOVATE",
-                "/",
-                "CREATE",
-                "/",
-                "STRATEGIZE",
-                "/",
-                "IMPACT",
-                "/",
-                "DESIGN",
-                "/",
-                "INNOVATE",
-              ].map((w, i) => (
+              {site.marquee.bottom.flatMap((word) => [word, "/"]).map((w, i) => (
                 <span key={i} className={i % 2 === 1 ? "text-accent" : ""}>
                   {w}
                 </span>
@@ -2116,7 +2113,7 @@ function Index() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="script text-3xl text-accent">Who We Are</span>
+            <span className="script text-3xl text-accent">{site.about.eyebrow}</span>
             <h2 className="mt-2 font-display text-4xl font-bold leading-tight md:text-6xl">
               We build brands
               <br />
@@ -2127,8 +2124,7 @@ function Index() {
               .
             </h2>
             <p className="mt-6 max-w-md text-lg text-foreground/70">
-              AlphaNexis is a cross-border digital marketing & AI automation agency. We run
-              Follow-the-Sun delivery across US, EU & APAC — so your growth never sleeps.
+              {site.about.body}
             </p>
             <p className="mt-4 max-w-md text-base text-foreground/60">
               8+ years blending performance marketing, brand systems, and AI-powered automation into
@@ -2175,16 +2171,16 @@ function Index() {
       </section>
 
       {/* CORE CAPABILITIES */}
-      <CoreCapabilitiesSection />
+      <CoreCapabilitiesSection items={cmsCapabilities} />
 
       {/* 6-STEP PROCESS */}
-      <ProcessSection />
+      <ProcessSection items={cmsProcess} />
 
       {/* FILM REELS */}
-      <FilmReelsSection />
+      <FilmReelsSection items={cmsReels} />
 
       {/* CASE STUDIES */}
-      <CaseStudiesSection />
+      <CaseStudiesSection items={cmsCases} />
 
       {/* ROI TABLE */}
       <ROISection />
@@ -2193,7 +2189,7 @@ function Index() {
       <TrustSection />
 
       {/* ENGAGEMENT MODELS */}
-      <FlexibleSection />
+      <FlexibleSection items={cmsEngagements} />
 
       {/* TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
@@ -2205,20 +2201,7 @@ function Index() {
           </h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
-          {[
-            {
-              q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
-              name: "VP of Product",
-              co: "North American HealthTech Corp",
-              verified: "LinkedIn Verified",
-            },
-            {
-              q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
-              name: "Chief Operating Officer",
-              co: "European Logistics Group",
-              verified: "Clutch 5-Star",
-            },
-          ].map((t, i) => (
+          {cmsTestimonials.map((t, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30, rotate: i === 0 ? -1 : 1 }}
@@ -2228,7 +2211,7 @@ function Index() {
               className="rounded-[1.5rem] border-2 border-ink bg-background p-8 px-4 shadow-[5px_5px_0_0_var(--ink)] lift dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
             >
               <div className="mb-4 flex gap-1">
-                {[...Array(5)].map((_, j) => (
+                {[...Array(t.stars)].map((_, j) => (
                   <Star key={j} className="h-4 w-4 fill-accent text-accent" />
                 ))}
               </div>
@@ -2261,21 +2244,19 @@ function Index() {
           <Star4 className="absolute right-10 top-12 h-6 w-6 text-ink animate-spin-slow" />
           {/* <Star4 className="absolute bottom-10 left-1/4 h-5 w-5 text-ink animate-spin-slow" /> */}
 
-          <span className="script text-3xl">let's build something</span>
+          <span className="script text-3xl">{site.contact.eyebrow}</span>
           <h2 className="font-display text-5xl font-bold leading-[1.05] md:text-7xl">
-            Ready to scale?
-            <br />
-            <span className="italic">Let's talk.</span>
+            {site.contact.headline}
           </h2>
           <p className="mx-auto mt-5 max-w-md text-foreground/80">
-            Reply within 24 hours · Open for Q3 2026 partnerships · US / EU / APAC
+            {site.contact.blurb}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
-              href="mailto:hello@alphanexius.com"
+              href={`mailto:${site.contact.email}`}
               className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-cream lift"
             >
-              <Mail className="h-4 w-4" /> hello@alphanexius.com
+              <Mail className="h-4 w-4" /> {site.contact.email}
             </a>
             <DiscoveryCallDialog />
           </div>
@@ -2285,7 +2266,7 @@ function Index() {
       {/* FOOTER */}
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 md:flex-row">
-          <div className="text-sm text-foreground/60">© 2026 AlphaNexis · Growth, by design</div>
+          <div className="text-sm text-foreground/60">{site.footer.copyright}</div>
           <div className="flex items-center gap-5 text-sm">
             <a
               href="https://www.instagram.com/alphanexis/"

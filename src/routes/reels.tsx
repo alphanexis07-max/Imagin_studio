@@ -1,11 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, Film } from "lucide-react";
 import { motion } from "framer-motion";
-import { instagramPosts } from "@/data/instagramFeed";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import Navbar from "@/components/navbar";
+import { getPublicReels } from "@/lib/cms/public.functions";
 
-export const Route = createFileRoute("/reels")({ component: Reels });
+export const Route = createFileRoute("/reels")({
+  loader: () => getPublicReels(),
+  component: Reels,
+});
 
 function extractEmbedUrl(url: string) {
   // Removes query parameters and ensures it ends with /embed/
@@ -20,6 +23,8 @@ function extractEmbedUrl(url: string) {
 }
 
 function Reels() {
+  const reels = Route.useLoaderData();
+
   return (
     <main className="relative min-h-screen  overflow-hidden bg-ink text-cream">
       {/* Ambient background glow */}
@@ -64,9 +69,9 @@ function Reels() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {instagramPosts.map((post, i) => (
+          {reels.map((reel, i) => (
             <motion.div
-              key={post.id}
+              key={reel.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "50px" }}
@@ -74,10 +79,10 @@ function Reels() {
               className="group relative aspect-[9/16] w-full overflow-hidden rounded-2xl border-2 border-cream/10 bg-black/40 shadow-xl transition-all hover:-translate-y-1 hover:border-cream/30 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
             >
               <iframe
-                src={extractEmbedUrl(post.url)}
+                src={reel.embedUrl || extractEmbedUrl(reel.url)}
                 className="absolute inset-0 h-full w-full border-none"
                 loading="lazy"
-                title={`Instagram Reel ${i + 1}`}
+                title={reel.title || `Reel ${i + 1}`}
                 allowtransparency="true"
                 allowFullScreen={true}
               />

@@ -29,6 +29,12 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
   --color-ink: var(--ink);
   --color-cream: var(--cream);
   --color-orange-pop: var(--orange-pop);
@@ -82,6 +88,12 @@
   --border: oklch(0.85 0.015 85);
   --input: oklch(0.85 0.015 85);
   --ring: var(--ink);
+  --sidebar: oklch(0.985 0.008 85);
+  --sidebar-foreground: var(--ink);
+  --sidebar-border: oklch(0.82 0.02 80);
+  --sidebar-accent: oklch(0.9 0.08 65);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-ring: var(--ink);
 }
 
 .dark {
@@ -119,6 +131,12 @@
   --border: oklch(0.22 0.03 18);
   --input: oklch(0.14 0.02 18);
   --ring: oklch(0.98 0.02 95);
+  --sidebar: oklch(0.13 0.028 28);
+  --sidebar-foreground: oklch(0.94 0.02 95);
+  --sidebar-border: oklch(0.31 0.035 22);
+  --sidebar-accent: oklch(0.26 0.045 35);
+  --sidebar-accent-foreground: oklch(0.96 0.02 85);
+  --sidebar-ring: oklch(0.72 0.14 62);
 }
 
 @layer base {
@@ -136,6 +154,22 @@
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; font-weight: 600; }
   ::selection { background: var(--orange-pop); color: var(--ink); }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--accent) 72%, var(--foreground) 18%) color-mix(in oklab, var(--background) 86%, var(--foreground) 8%);
+  }
+  *::-webkit-scrollbar { width: 10px; height: 10px; }
+  *::-webkit-scrollbar-track {
+    background: color-mix(in oklab, var(--background) 86%, var(--foreground) 8%);
+  }
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--accent) 72%, var(--foreground) 18%);
+    border: 2px solid color-mix(in oklab, var(--background) 86%, var(--foreground) 8%);
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--accent) 86%, var(--foreground) 14%);
+  }
 }
 
 @utility script {
@@ -394,6 +428,42 @@
     color: var(--loader-text-active);
   }
 }
+.admin-shell,
+.admin-shell * {
+  animation: none !important;
+  transition-duration: 0ms !important;
+  scroll-behavior: auto;
+}
+
+.admin-shell {
+  --admin-border-strong: color-mix(in oklab, var(--foreground) 28%, var(--border));
+  --admin-input-border: color-mix(in oklab, var(--foreground) 34%, var(--input));
+  --admin-card-ring: color-mix(in oklab, var(--foreground) 18%, transparent);
+}
+
+.admin-shell .border-border,
+.admin-shell .border-input {
+  border-color: var(--admin-border-strong);
+}
+
+.admin-shell input,
+.admin-shell textarea,
+.admin-shell select {
+  border-color: var(--admin-input-border) !important;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+.admin-shell input:focus,
+.admin-shell textarea:focus,
+.admin-shell select:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 24%, transparent), inset 0 0 0 1px var(--accent);
+}
+
+.admin-shell .bg-card {
+  box-shadow: 0 0 0 1px var(--admin-card-ring), 0 12px 28px color-mix(in oklab, black 7%, transparent);
+}
+
 
 /* Shimmer overlay for cards */
 .shimmer { position: relative; overflow: hidden; }
@@ -435,3 +505,7 @@
 /* Sticky service card stack */
 .svc-stack { perspective: 1200px; }
 .svc-card { will-change: transform; }
+
+
+
+

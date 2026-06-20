@@ -1,5 +1,5 @@
 import { createFileRoute, useRouter, Link, redirect } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LogOut, ExternalLink } from "lucide-react";
 import { logoutAdmin, adminStatus } from "@/lib/admin/auth.functions";
 import { AdminSidebar, type AdminTabId } from "@/components/admin/sidebar";
@@ -29,23 +29,23 @@ function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       {/* Top bar */}
-      <div className="sticky top-0 z-40 border-b-2 border-ink bg-ink text-cream">
+      <div className="sticky top-0 z-40 border-b border-border bg-background/95 text-foreground backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent font-display text-sm font-bold text-ink">H.</div>
-            <span className="font-display font-semibold">Alphanexis.Studio ·Admin</span>
-            <span className="rounded-full bg-accent/20 px-2 py-0.5 text-xs text-accent">Logged in</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">H.</div>
+            <span className="font-display font-semibold">Alphanexis Studio / Admin</span>
+            <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-xs text-foreground">Logged in</span>
           </div>
           <div className="flex items-center gap-3">
-            <Link to="/" className="inline-flex items-center gap-1.5 rounded-full border border-cream/30 px-3 py-1.5 text-xs hover:bg-cream/10">
+            <Link to="/" className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs hover:bg-muted">
               <ExternalLink className="h-3 w-3" /> View site
             </Link>
             <button
               onClick={handleLogout}
               disabled={loggingOut}
-              className="inline-flex items-center gap-1.5 rounded-full bg-destructive/80 px-3 py-1.5 text-xs font-medium text-cream hover:bg-destructive disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 rounded-full bg-destructive px-3 py-1.5 text-xs font-medium text-destructive-foreground hover:opacity-90 disabled:opacity-50"
             >
               <LogOut className="h-3 w-3" /> Logout
             </button>
@@ -107,7 +107,7 @@ function AdminDashboard() {
                 label="Engagements"
                 fields={[
                   { key: "name", label: "Name (e.g. Sprint)", type: "text" },
-                  { key: "duration", label: "Duration (e.g. 2–4 wks)", type: "text" },
+                  { key: "duration", label: "Duration (e.g. 2-4 wks)", type: "text" },
                   { key: "description", label: "Description", type: "textarea" },
                   { key: "bullets", label: "Bullets (comma-separated)", type: "chips" },
                   { key: "tag", label: "Corner tag (e.g. Fastest)", type: "text" },
@@ -123,7 +123,7 @@ function AdminDashboard() {
                   { key: "quote", label: "Quote", type: "textarea" },
                   { key: "author", label: "Author name", type: "text" },
                   { key: "role", label: "Role / Company", type: "text" },
-                  { key: "stars", label: "Stars (1–5)", type: "text" },
+                  { key: "stars", label: "Stars (1-5)", type: "text" },
                 ]}
               />
             )}
@@ -144,14 +144,13 @@ function AdminDashboard() {
       </AdminSidebar>
 
       <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
-        Single shared password. Anyone who knows it has full access. {" "}
-        Rotate by editing <code>.env</code> and restarting the server.
+        Admin changes publish into the portfolio content layer. Keep the shared password private and rotate it from <code>.env</code> when access changes.
       </div>
     </div>
   );
 }
 
-/* ─── Marquee Tab ─── */
+/* Marquee Tab */
 function MarqueeTab() {
   const [top, setTop] = useState("");
   const [bottom, setBottom] = useState("");
@@ -159,7 +158,7 @@ function MarqueeTab() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     import("@/lib/admin/site.functions").then(({ getSite }) =>
       getSite().then((site) => {
         setTop(site.marquee.top.join(", "));
@@ -167,7 +166,7 @@ function MarqueeTab() {
         setLoaded(true);
       })
     );
-  });
+  }, []);
 
   async function handleSave() {
     setSaving(true);
@@ -185,30 +184,30 @@ function MarqueeTab() {
     setTimeout(() => setSaved(false), 2000);
   }
 
-  if (!loaded) return <div className="py-10 text-center text-muted-foreground">Loading…</div>;
+  if (!loaded) return <div className="py-10 text-center text-muted-foreground">Loading...</div>;
 
   return (
-    <div className="max-w-xl space-y-4">
-      <h2 className="font-display text-2xl font-bold">Marquee Text</h2>
+    <div className="max-w-2xl space-y-4 rounded-2xl border border-border bg-card p-6 shadow-sm">
+      <div><h2 className="font-display text-2xl font-bold">Marquee Text</h2><p className="mt-1 text-sm text-muted-foreground">Separate each phrase with a comma. The public marquee will use the saved order.</p></div>
       <div>
         <label className="mb-1 block text-sm font-medium">Top row (comma-separated words)</label>
         <input value={top} onChange={(e) => setTop(e.target.value)}
-          className="w-full rounded-xl border-2 border-ink bg-card px-4 py-2.5 text-sm outline-none focus:border-accent" />
+          className="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20" />
       </div>
       <div>
         <label className="mb-1 block text-sm font-medium">Bottom row (comma-separated words)</label>
         <input value={bottom} onChange={(e) => setBottom(e.target.value)}
-          className="w-full rounded-xl border-2 border-ink bg-card px-4 py-2.5 text-sm outline-none focus:border-accent" />
+          className="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20" />
       </div>
       <button onClick={handleSave} disabled={saving}
-        className="rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:opacity-80 disabled:opacity-40">
-        {saving ? "Saving…" : saved ? "Saved ✓" : "Save Marquee"}
+        className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-40">
+        {saving ? "Saving..." : saved ? "Saved" : "Save Marquee"}
       </button>
     </div>
   );
 }
 
-/* ─── Contact & Footer Tab ─── */
+/* Contact & Footer Tab */
 function ContactTab() {
   const [form, setForm] = useState({
     contact_eyebrow: "", contact_headline: "", contact_blurb: "",
@@ -218,7 +217,7 @@ function ContactTab() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     import("@/lib/admin/site.functions").then(({ getSite }) =>
       getSite().then((site) => {
         setForm({
@@ -232,7 +231,7 @@ function ContactTab() {
         setLoaded(true);
       })
     );
-  });
+  }, []);
 
   async function handleSave() {
     setSaving(true);
@@ -247,7 +246,7 @@ function ContactTab() {
     setTimeout(() => setSaved(false), 2000);
   }
 
-  if (!loaded) return <div className="py-10 text-center text-muted-foreground">Loading…</div>;
+  if (!loaded) return <div className="py-10 text-center text-muted-foreground">Loading...</div>;
 
   const fields = [
     { key: "contact_eyebrow" as const, label: "Contact eyebrow" },
@@ -259,19 +258,23 @@ function ContactTab() {
   ];
 
   return (
-    <div className="max-w-xl space-y-4">
-      <h2 className="font-display text-2xl font-bold">Contact & Footer</h2>
+    <div className="max-w-2xl space-y-4 rounded-2xl border border-border bg-card p-6 shadow-sm">
+      <div><h2 className="font-display text-2xl font-bold">Contact & Footer</h2><p className="mt-1 text-sm text-muted-foreground">Update the contact CTA, booking URL, email address, and footer copyright text.</p></div>
       {fields.map((f) => (
         <div key={f.key}>
           <label className="mb-1 block text-sm font-medium">{f.label}</label>
           <input value={form[f.key]} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))}
-            className="w-full rounded-xl border-2 border-ink bg-card px-4 py-2.5 text-sm outline-none focus:border-accent" />
+            className="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20" />
         </div>
       ))}
       <button onClick={handleSave} disabled={saving}
-        className="rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:opacity-80 disabled:opacity-40">
-        {saving ? "Saving…" : saved ? "Saved ✓" : "Save"}
+        className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-40">
+        {saving ? "Saving..." : saved ? "Saved" : "Save"}
       </button>
     </div>
   );
 }
+
+
+
+
