@@ -19,7 +19,6 @@ function getSecret(): string {
 }
 
 function getPassword(): string {
-  // Read fresh from env each time so .env changes take effect after restart
   const pw = process.env.ADMIN_PASSWORD ?? readLocalEnvValue("ADMIN_PASSWORD");
   if (!pw) {
     console.warn("[admin] ADMIN_PASSWORD not set in .env — using default 'admin123'");
@@ -65,13 +64,17 @@ export function checkRateLimit(ip: string): { allowed: boolean; retryAfterMs: nu
   return { allowed: true, retryAfterMs: 0 };
 }
 
+export function clearRateLimit(ip: string) {
+  rateLimitMap.delete(ip);
+}
+
 export function verifyPassword(attempt: string): boolean {
   const expected = getPassword();
-  // Simple constant-time compare
-  const maxLen = Math.max(attempt.length, expected.length, 1);
+  const cleanAttempt = attempt.trim();
+  const maxLen = Math.max(cleanAttempt.length, expected.length, 1);
   const a = Buffer.alloc(maxLen);
   const b = Buffer.alloc(maxLen);
-  Buffer.from(attempt).copy(a);
+  Buffer.from(cleanAttempt).copy(a);
   Buffer.from(expected).copy(b);
   return crypto.timingSafeEqual(a, b);
 }

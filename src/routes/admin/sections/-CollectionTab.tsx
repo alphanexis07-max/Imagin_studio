@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Trash2, Edit3, ChevronUp, ChevronDown, X, Plus } from "lucide-react";
 import {
   listCollection,
@@ -52,11 +51,7 @@ export function CollectionTab({ collection, label, fields }: Props) {
     const f: Record<string, string> = {};
     for (const field of fields) {
       const val = item[field.key];
-      if (field.type === "chips" && Array.isArray(val)) {
-        f[field.key] = val.join(", ");
-      } else {
-        f[field.key] = String(val ?? "");
-      }
+      f[field.key] = field.type === "chips" && Array.isArray(val) ? val.join(", ") : String(val ?? "");
     }
     setForm(f);
   }
@@ -72,22 +67,20 @@ export function CollectionTab({ collection, label, fields }: Props) {
     try {
       const item: Record<string, unknown> = {};
       for (const field of fields) {
-        if (field.type === "chips") {
-          item[field.key] = form[field.key].split(",").map((s) => s.trim()).filter(Boolean);
-        } else {
-          item[field.key] = form[field.key];
-        }
+        item[field.key] = field.type === "chips"
+          ? form[field.key].split(",").map((s) => s.trim()).filter(Boolean)
+          : form[field.key];
       }
       if (editingId) item.id = editingId;
 
       const result = await upsertItem({ data: { collection, item } }) as Record<string, unknown>;
       if (editingId) {
         setItems((prev) => prev.map((i) => (i.id === editingId ? result : i)));
-        showToast("Updated ✓");
+        showToast("Updated");
         setEditingId(null);
       } else {
         setItems((prev) => [...prev, result]);
-        showToast("Added ✓");
+        showToast("Added");
       }
       setForm(emptyForm());
     } catch (err) {
@@ -117,45 +110,47 @@ export function CollectionTab({ collection, label, fields }: Props) {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[360px_1fr]">
-      {/* Form */}
       <div className="lg:sticky lg:top-24 lg:self-start">
-        <div className="rounded-2xl border-2 border-ink bg-card p-6 shadow-[4px_4px_0_0_var(--ink)]">
-          <h2 className="mb-4 font-display text-xl font-bold">
+        <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+          <h2 className="mb-2 font-display text-xl font-bold">
             {editingId ? `Edit ${label.replace(/s$/, "")}` : `Add ${label.replace(/s$/, "")}`}
           </h2>
+          <p className="mb-5 text-sm text-muted-foreground">
+            Add, edit, and reorder the content that appears on the public portfolio.
+          </p>
           <form onSubmit={handleSubmit} className="space-y-3">
             {fields.map((field) => (
               <div key={field.key}>
                 <label className="mb-1 block text-xs font-medium text-muted-foreground">
                   {field.label}
-                  {field.type === "chips" && <span className="ml-1 text-[10px] opacity-60">(comma-separated)</span>}
+                  {field.type === "chips" && <span className="ml-1 text-[10px] opacity-70">comma-separated</span>}
                 </label>
                 {field.type === "textarea" ? (
                   <textarea
                     value={form[field.key] ?? ""}
                     onChange={(e) => setForm((p) => ({ ...p, [field.key]: e.target.value }))}
-                    rows={2}
-                    className="w-full rounded-xl border-2 border-ink bg-background px-3 py-2 text-sm outline-none focus:border-accent resize-none"
+                    rows={3}
+                    className="w-full resize-none rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                   />
                 ) : (
                   <input
                     value={form[field.key] ?? ""}
                     onChange={(e) => setForm((p) => ({ ...p, [field.key]: e.target.value }))}
-                    className="w-full rounded-xl border-2 border-ink bg-background px-3 py-2 text-sm outline-none focus:border-accent"
+                    className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                   />
                 )}
               </div>
             ))}
-            <div className="flex gap-2">
+            <div className="flex gap-2 pt-2">
               <button
                 type="submit"
                 disabled={saving}
-                className="flex-1 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-cream hover:opacity-80 disabled:opacity-40"
+                className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-40"
               >
-                {saving ? "Saving…" : editingId ? "Save" : "Add"}
+                {saving ? "Saving..." : editingId ? "Save changes" : "Add item"}
               </button>
               {editingId && (
-                <button type="button" onClick={cancelEdit} className="rounded-xl border-2 border-ink px-3 py-2.5 text-sm hover:bg-muted">
+                <button type="button" onClick={cancelEdit} className="rounded-lg border border-border px-3 py-2.5 text-sm hover:bg-muted" aria-label="Cancel edit">
                   <X className="h-4 w-4" />
                 </button>
               )}
@@ -164,77 +159,67 @@ export function CollectionTab({ collection, label, fields }: Props) {
         </div>
       </div>
 
-      {/* List */}
       <div>
-        <h2 className="mb-4 font-display text-xl font-bold">{items.length} {label}</h2>
+        <div className="mb-4 flex items-end justify-between gap-3">
+          <h2 className="font-display text-xl font-bold">{items.length} {label}</h2>
+          <p className="text-xs text-muted-foreground">Use arrows to control display order.</p>
+        </div>
 
-        {loading && <div className="py-10 text-center text-muted-foreground">Loading…</div>}
+        {loading && <div className="py-10 text-center text-muted-foreground">Loading...</div>}
 
         {!loading && items.length === 0 && (
-          <div className="rounded-2xl border-2 border-dashed border-border py-16 text-center text-muted-foreground">
+          <div className="rounded-2xl border border-dashed border-border bg-card/60 py-16 text-center text-muted-foreground">
             <Plus className="mx-auto mb-2 h-8 w-8 opacity-30" />
             <p>No {label.toLowerCase()} yet.</p>
           </div>
         )}
 
         <div className="space-y-2">
-          <AnimatePresence>
-            {items.map((item, i) => {
-              const primaryField = fields[0];
-              const secondaryField = fields[1];
-              const title = String(item[primaryField?.key ?? ""] ?? "");
-              const sub = String(item[secondaryField?.key ?? ""] ?? "");
+          {items.map((item, i) => {
+            const primaryField = fields[0];
+            const secondaryField = fields[1];
+            const title = String(item[primaryField?.key ?? ""] ?? "");
+            const sub = String(item[secondaryField?.key ?? ""] ?? "");
 
-              return (
-                <motion.div
-                  key={item.id as string}
-                  layout
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  className={`flex items-center gap-3 rounded-xl border-2 p-4 ${editingId === item.id ? "border-accent bg-accent/5" : "border-border bg-card"}`}
-                >
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium text-sm truncate">{title}</div>
-                    {sub && <div className="text-xs text-muted-foreground truncate">{sub}</div>}
-                  </div>
-                  <div className="flex items-center gap-1 shrink-0">
-                    <button onClick={() => move(i, -1)} disabled={i === 0} className="rounded-lg border border-border p-1.5 hover:bg-muted disabled:opacity-30">
-                      <ChevronUp className="h-3 w-3" />
-                    </button>
-                    <button onClick={() => move(i, 1)} disabled={i === items.length - 1} className="rounded-lg border border-border p-1.5 hover:bg-muted disabled:opacity-30">
-                      <ChevronDown className="h-3 w-3" />
-                    </button>
-                    <button onClick={() => startEdit(item)} className="rounded-lg border border-border p-1.5 hover:bg-accent/20">
-                      <Edit3 className="h-3 w-3" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(item.id as string)}
-                      disabled={deletingId === item.id}
-                      className="rounded-lg border border-destructive/30 p-1.5 text-destructive hover:bg-destructive/10 disabled:opacity-40"
-                    >
-                      <Trash2 className="h-3 w-3" />
-                    </button>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
+            return (
+              <div
+                key={item.id as string}
+                className={`flex items-center gap-3 rounded-xl border p-4 ${editingId === item.id ? "border-accent bg-accent/10" : "border-border bg-card"}`}
+              >
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-sm font-medium">{title}</div>
+                  {sub && <div className="truncate text-xs text-muted-foreground">{sub}</div>}
+                </div>
+                <div className="flex shrink-0 items-center gap-1">
+                  <button onClick={() => move(i, -1)} disabled={i === 0} className="rounded-lg border border-border p-1.5 hover:bg-muted disabled:opacity-30" aria-label="Move up">
+                    <ChevronUp className="h-3 w-3" />
+                  </button>
+                  <button onClick={() => move(i, 1)} disabled={i === items.length - 1} className="rounded-lg border border-border p-1.5 hover:bg-muted disabled:opacity-30" aria-label="Move down">
+                    <ChevronDown className="h-3 w-3" />
+                  </button>
+                  <button onClick={() => startEdit(item)} className="rounded-lg border border-border p-1.5 hover:bg-accent/20" aria-label="Edit item">
+                    <Edit3 className="h-3 w-3" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id as string)}
+                    disabled={deletingId === item.id}
+                    className="rounded-lg border border-destructive/30 p-1.5 text-destructive hover:bg-destructive/10 disabled:opacity-40"
+                    aria-label="Delete item"
+                  >
+                    <Trash2 className="h-3 w-3" />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <AnimatePresence>
-        {toast && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-6 z-50 rounded-xl bg-ink px-4 py-2.5 text-sm font-medium text-cream shadow-lg"
-          >
-            {toast}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 rounded-lg border border-border bg-popover px-4 py-2.5 text-sm font-medium text-popover-foreground shadow-lg">
+          {toast}
+        </div>
+      )}
     </div>
   );
 }

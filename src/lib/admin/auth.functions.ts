@@ -1,13 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getRequest, setResponseHeader } from "@tanstack/react-start/server";
+import { deleteCookie, getCookie, getRequest, setCookie } from "@tanstack/react-start/server";
 import { z } from "zod";
 import {
   checkRateLimit,
   verifyPassword,
+  clearRateLimit,
   createSessionCookie,
-  buildSetCookieHeader,
-  buildClearCookieHeader,
-  parseCookieFromHeader,
   verifySessionValue,
 } from "./auth.server";
 
@@ -30,19 +28,24 @@ export const loginAdmin = createServerFn({ method: "POST" })
       throw new Error("WRONG_PASSWORD");
     }
 
+    clearRateLimit(ip);
     const value = createSessionCookie();
-    setResponseHeader("Set-Cookie", buildSetCookieHeader(value));
+    setCookie("admin_session", value, {
+      maxAge: 7 * 24 * 60 * 60,
+      path: "/",
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    });
     return { success: true };
   });
 
 export const logoutAdmin = createServerFn({ method: "POST" }).handler(async () => {
-  setResponseHeader("Set-Cookie", buildClearCookieHeader());
+  deleteCookie("admin_session", { path: "/" });
   return { success: true };
 });
 
 export const adminStatus = createServerFn({ method: "GET" }).handler(async () => {
-  const req = getRequest();
-  const cookieHeader = req.headers.get("cookie");
-  const value = parseCookieFromHeader(cookieHeader);
+  const value = getCookie("admin_session");
   return { loggedIn: verifySessionValue(value ?? "") };
 });
