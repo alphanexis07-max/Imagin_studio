@@ -746,7 +746,7 @@ function ServicesSection() {
   return (
     <section id="services" className="relative mx-auto max-w-6xl px-5 py-6 )]">
       <div className="mb-10 text-center">
-        <span className="script text-3xl text-accent">services that drive digital growth</span>
+        <span className="script text-3xl text-accent">Services that drive digital growth</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
           Services built to move your business forward.
         </h2>
@@ -1228,13 +1228,6 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
             })}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-ink/10 pt-4 text-[11px] uppercase tracking-[0.2em] text-foreground/55 dark:border-white/10">
-            <div className="inline-flex items-center gap-2">
-              <Film className="h-3.5 w-3.5 text-accent" />
-              Cinematography · Cut · Color · Sound
-            </div>
-            <div>Auto-play on view · Tap to unmute</div>
-          </div>
         </div>
       </div>
     </section>
@@ -1818,7 +1811,7 @@ function PortfolioContentWriting() {
                   {item.type}
                 </span>
                 <span
-                  className={`rounded-full border px-2 py-0.5 text-[9px] font-bold  tracking-wider ${badgeStyle}`}
+                  className={`shrink-0 rounded-full border px-2 py-0.5 text-[9px] font-bold  tracking-wider ${badgeStyle}`}
                 >
                   {item.categoryLabel}
                 </span>
@@ -1837,7 +1830,7 @@ function PortfolioContentWriting() {
               <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground dark:text-gray-500">
                 Performance
               </span>
-              <span className="text-xs font-bold  text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-md px-1 py-1">
+              <span className="text-[10px] md:text-[11px] font-bold  text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-md px-1 py-1">
                 {item.metrics}
               </span>
             </div>
@@ -2241,7 +2234,7 @@ function Index() {
           className="relative overflow-hidden rounded-[2.5rem] border-2 border-ink bg-accent p-10 text-center md:p-20 shimmer"
         >
           <Star4 className="absolute left-8 top-8 h-8 w-8 text-ink animate-spin-slow" />
-          <Star4 className="absolute right-10 top-12 h-6 w-6 text-ink animate-spin-slow" />
+          {/* <Star4 className="absolute right-10 top-12 h-6 w-6 text-ink animate-spin-slow" /> */}
           {/* <Star4 className="absolute bottom-10 left-1/4 h-5 w-5 text-ink animate-spin-slow" /> */}
 
           <span className="script text-3xl">{site.contact.eyebrow}</span>
