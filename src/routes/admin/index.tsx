@@ -6,6 +6,8 @@ import { AdminSidebar, type AdminTabId } from "@/components/admin/sidebar";
 import { ReelsTab } from "./sections/-ReelsTab";
 import { SiteTab } from "./sections/-SiteTab";
 import { CollectionTab } from "./sections/-CollectionTab";
+import { VisualAssetsTab } from "./sections/-VisualAssetsTab";
+import { PortfolioSectionsTab } from "./sections/-PortfolioSectionsTab";
 
 export const Route = createFileRoute("/admin/")({
   beforeLoad: async () => {
@@ -58,6 +60,7 @@ function AdminDashboard() {
           <div key={activeTab}>
             {activeTab === "reels" && <ReelsTab />}
             {activeTab === "site" && <SiteTab />}
+            {activeTab === "portfolio" && <PortfolioSectionsTab />}
             {activeTab === "capabilities" && (
               <CollectionTab
                 collection="capabilities"
@@ -137,6 +140,7 @@ function AdminDashboard() {
                 ]}
               />
             )}
+            {activeTab === "visualAssets" && <VisualAssetsTab />}
             {activeTab === "marquee" && <MarqueeTab />}
             {activeTab === "contact" && <ContactTab />}
           </div>
@@ -274,7 +278,4 @@ function ContactTab() {
     </div>
   );
 }
-
-
-
 

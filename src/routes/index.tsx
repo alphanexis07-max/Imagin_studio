@@ -9,6 +9,7 @@ import {
   type MouseEvent,
 } from "react";
 import logo from "@/assets/logo.png";
+import { DEFAULT_SITE } from "@/lib/cms/defaults";
 import {
   ArrowUpRight,
   Megaphone,
@@ -78,6 +79,7 @@ import screenshot3 from "@/assets/carousel-samples/screenshot-3.jpg";
 import screenshot4 from "@/assets/carousel-samples/screenshot-4.jpg";
 import screenshot5 from "@/assets/carousel-samples/screenshot-5.jpg";
 import screenshot6 from "@/assets/carousel-samples/screenshot-6.jpg";
+import type { SiteData } from "@/lib/admin/site.functions";
 
 function extractEmbedUrl(url: string) {
   try {
@@ -347,7 +349,83 @@ const videoEditingSlides = [
   },
 ];
 
-const graphicDesignSlides = [
+type VisualAssetSlide = {
+  categoryLabel: string;
+  subcategory?: string;
+  title: string;
+  description: string;
+  image: string;
+};
+
+type HeroShowcaseSlide = {
+  categoryLabel: string;
+  title: string;
+  description: string;
+  video: string;
+  poster: string;
+  glow: string;
+  ctaText: string;
+  ctaLink: string;
+};
+
+type VideoEditingSlide = {
+  categoryLabel: string;
+  title: string;
+  description: string;
+  outcome: string;
+  video: string;
+  poster: string;
+  accentColor: string;
+};
+
+type SoftwareSystemSlide = {
+  categoryLabel: string;
+  title: string;
+  description: string;
+  keyFeatures: string[];
+  techStack: string[];
+  businessBenefit: string;
+  poster: string;
+  video: string;
+  accentColor: string;
+};
+
+type SeoAnalyticsSlide = {
+  categoryLabel: string;
+  title: string;
+  description: string;
+  metrics: Array<{ label: string; value: string }>;
+  poster: string;
+  video: string;
+  accent: string;
+};
+
+type StrategicConsultingCase = {
+  categoryLabel: string;
+  title: string;
+  challenge: string;
+  solution: string;
+  execution: string;
+  results: Array<{ label: string; value: string }>;
+};
+
+type EditorialSlide = {
+  categoryLabel: string;
+  type: string;
+  headline: string;
+  metrics: string;
+  excerpt: string;
+};
+
+type PortfolioSectionCopy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+};
+
+type PortfolioContentCopy = SiteData["portfolio"];
+
+const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Branding",
@@ -992,6 +1070,114 @@ function normalizeCapabilities(items: CmsItem[]) { return items.length ? items.m
 function normalizeProcess(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ n: asString(item.number, String(index + 1).padStart(2, "0")), t: asString(item.title), d: asString(item.description), icon: iconFromName(item.icon, "Search"), color: asString(item.bg, "bg-background") })) : steps; }
 function normalizeCases(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ name: asString(item.name), sector: asString(item.sector), year: asString(item.year), word: asString(item.word, asString(item.name).toUpperCase()), color: asString(item.color, "bg-accent"), problem: asString(item.problem), metrics: Array.isArray(item.metrics) ? (item.metrics as CmsItem[]).map((metric) => ({ k: asString(metric.key), v: asString(metric.value) })) : [], tags: asStringArray(item.tags), rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4) })) : cases; }
 function normalizeEngagements(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ icon: iconFromName(item.icon, "Zap"), t: asString(item.name), k: asString(item.duration), d: asString(item.description), bullets: asStringArray(item.bullets), bg: asString(item.bg, "bg-background"), rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2), tag: asString(item.tag), popular: item.popular === true })) : engagements; }
+function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
+  return items.length
+    ? items.map((item, index) => ({
+        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+        title: asString(item.title, `Project ${index + 1}`),
+        description: asString(item.description),
+        video: asString(item.video, heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? ""),
+        poster: resolveMediaUrl(item.poster, heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1),
+        glow: asString(item.glow, heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40"),
+        ctaText: asString(item.ctaText, "View Project"),
+        ctaLink: asString(item.ctaLink, "#portfolio"),
+      }))
+    : heroShowcaseSlides;
+}
+function parseLabelValuePairs(items: unknown[]): Array<{ label: string; value: string }> {
+  return items
+    .map((item) => {
+      if (item && typeof item === "object") {
+        const obj = item as Record<string, unknown>;
+        const label = asString(obj.label);
+        const value = asString(obj.value);
+        if (label || value) return { label: label || value, value: value || label };
+      }
+      const text = String(item ?? "").trim();
+      if (!text) return null;
+      const separator = text.includes(":") ? ":" : text.includes(" - ") ? " - " : "";
+      if (!separator) return { label: text, value: text };
+      const [label, ...rest] = text.split(separator);
+      const value = rest.join(separator).trim();
+      return { label: label.trim(), value: value || label.trim() };
+    })
+    .filter(Boolean) as Array<{ label: string; value: string }>;
+}
+function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
+  return items.length
+    ? items.map((item, index) => ({
+        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+        title: asString(item.title, `Edit ${index + 1}`),
+        description: asString(item.description),
+        outcome: asString(item.outcome),
+        video: asString(item.video, videoEditingSlides[index % videoEditingSlides.length]?.video ?? ""),
+        poster: resolveMediaUrl(item.poster, videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1),
+        accentColor: asString(item.accentColor, videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90"),
+      }))
+    : videoEditingSlides;
+}
+function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
+  return items.length
+    ? items.map((item, index) => ({
+        categoryLabel: asString(item.categoryLabel, "GRAPHIC DESIGN"),
+        subcategory: asString(item.subcategory),
+        title: asString(item.title, `Asset ${index + 1}`),
+        description: asString(item.description),
+        image: asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1),
+      }))
+    : fallbackGraphicDesignSlides;
+}
+function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
+  return items.length
+    ? items.map((item, index) => ({
+        categoryLabel: asString(item.categoryLabel, "CRM SOFTWARE"),
+        title: asString(item.title, `System ${index + 1}`),
+        description: asString(item.description),
+        keyFeatures: asStringArray(item.keyFeatures),
+        techStack: asStringArray(item.techStack),
+        businessBenefit: asString(item.businessBenefit),
+        poster: resolveMediaUrl(item.poster, softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1),
+        video: asString(item.video, softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? ""),
+        accentColor: asString(item.accentColor, softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ?? "from-teal-950/90"),
+      }))
+    : softwareSystemsSlides;
+}
+function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
+  return items.length
+    ? items.map((item, index) => ({
+        categoryLabel: asString(item.categoryLabel, "SEO"),
+        title: asString(item.title, `Analytics ${index + 1}`),
+        description: asString(item.description),
+        metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
+        poster: resolveMediaUrl(item.poster, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1),
+        video: asString(item.video, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? ""),
+        accent: asString(item.accent, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40"),
+      }))
+    : seoAnalyticsSlides;
+}
+function normalizeStrategicConsulting(items: CmsItem[]): StrategicConsultingCase[] {
+  return items.length
+    ? items.map((item, index) => ({
+        categoryLabel: asString(item.categoryLabel, "STRATEGIC PLANNING"),
+        title: asString(item.title, `Case ${index + 1}`),
+        challenge: asString(item.challenge),
+        solution: asString(item.solution),
+        execution: asString(item.execution),
+        results: Array.isArray(item.results) ? parseLabelValuePairs(item.results) : [],
+      }))
+    : consultingCases;
+}
+function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
+  return items.length
+    ? items.map((item, index) => ({
+        categoryLabel: asString(item.categoryLabel, "Content Writing"),
+        type: asString(item.type, `Item ${index + 1}`),
+        headline: asString(item.headline),
+        metrics: asString(item.metrics),
+        excerpt: asString(item.excerpt),
+      }))
+    : editorialContent;
+}
 function normalizeReels(items: CmsItem[]) { const reels = items.map((item) => ({ tag: asString(item.tag, "Reel"), title: asString(item.title, "Reel"), src: asString(item.url), poster: asString(item.poster) })).filter((item) => item.src); return reels.length ? reels : filmReels; }
 function normalizeTestimonials(items: CmsItem[]) { return items.length ? items.map((item) => ({ q: asString(item.quote), name: asString(item.author), co: asString(item.role), verified: asString(item.verified, "Verified"), stars: Math.max(1, Math.min(5, Number(item.stars) || 5)) })) : [{ q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.", name: "VP of Product", co: "North American HealthTech Corp", verified: "LinkedIn Verified", stars: 5 }, { q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.", name: "Chief Operating Officer", co: "European Logistics Group", verified: "Clutch 5-Star", stars: 5 }]; }
 
@@ -1509,20 +1695,26 @@ function TrustSection() {
 }
 
 /* ── Portfolio Section Components ── */
-function PortfolioHeroShowcase() {
+function PortfolioHeroShowcase({
+  content = DEFAULT_SITE.portfolio.sections.heroShowcase,
+  items = heroShowcaseSlides,
+}: {
+  content?: PortfolioSectionCopy;
+  items?: HeroShowcaseSlide[];
+}) {
   return (
     <div className="py-6 " id="work">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-accent">First Impressions</span>
+        <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          SECTION 1 – HERO SHOWCASE
+          {content.title}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          Our strongest visual services and client outcomes, mapped in full-perspective motion.
+          {content.description}
         </p>
       </div>
       <FlankCarousel
-        slides={heroShowcaseSlides}
+        slides={items}
         title="Hero Showcase"
         subtitle="FEATURED WORKS"
         description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
@@ -1531,20 +1723,26 @@ function PortfolioHeroShowcase() {
   );
 }
 
-function PortfolioVideoEditing() {
+function PortfolioVideoEditing({
+  content = DEFAULT_SITE.portfolio.sections.videoEditing,
+  items = videoEditingSlides,
+}: {
+  content?: PortfolioSectionCopy;
+  items?: VideoEditingSlide[];
+}) {
   return (
     <div className="py-6">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-red-500 font-bold">Motion Editing</span>
+        <span className="script text-3xl text-red-500 font-bold">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          SECTION 2 – VIDEO EDITING
+          {content.title}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          Reel previews, commercial edits, and short-form social hooks.
+          {content.description}
         </p>
       </div>
       <JumboStack
-        slides={videoEditingSlides}
+        slides={items}
         title="Video Editing Portfolio"
         subtitle="REELS & COMMERCIALS"
         description="Layered priority stack with direct audience response and view count attribution."
@@ -1553,7 +1751,13 @@ function PortfolioVideoEditing() {
   );
 }
 
-function PortfolioGraphicDesign() {
+function PortfolioGraphicDesign({
+  content = DEFAULT_SITE.portfolio.sections.visualAssets,
+  items = fallbackGraphicDesignSlides,
+}: {
+  content?: PortfolioSectionCopy;
+  items?: VisualAssetSlide[];
+}) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
@@ -1575,14 +1779,12 @@ function PortfolioGraphicDesign() {
     <div className="py-6">
       <div className="mx-auto max-w-6xl px-5 mb-2 md:mb-8   flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
-          <span className="script text-3xl text-purple-600 dark:text-purple-400">
-            Visual Assets
-          </span>
+          <span className="script text-3xl text-purple-600 dark:text-purple-400">{content.eyebrow}</span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-            SECTION 3 – GRAPHIC DESIGN
+            {content.title}
           </h2>
           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
-            Social creatives, branding systems, packaging labels, and print design layouts.
+            {content.description}
           </p>
         </div>
         <div className=" hidden md:flex flex gap-2">
@@ -1613,11 +1815,14 @@ function PortfolioGraphicDesign() {
         className="flex gap-6 overflow-x-auto px-6 md:px-20 scrollbar-none snap-x snap-mandatory py-4 "
         style={{ scrollbarWidth: "none" }}
       >
-        {graphicDesignSlides.map((slide, idx) => (
-          <motion.div
+        {items.map((slide, idx) => (
+          <motion.a
             key={idx}
+            href={slide.image}
+            target="_blank"
+            rel="noreferrer"
             whileHover={{ y: -8, scale: 1.02 }}
-            className="relative min-w-[12rem] max-w-[6rem] sm:min-w-[14rem] sm:max-w-[4rem] md:min-w-[17rem] md:max-w-[20rem] lg:min-w-[19rem] lg:max-w-[25rem] aspect-[3/4] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827]"
+            className="relative min-w-[12rem] max-w-[6rem] sm:min-w-[14rem] sm:max-w-[4rem] md:min-w-[17rem] md:max-w-[20rem] lg:min-w-[19rem] lg:max-w-[25rem] aspect-[3/4] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827] cursor-pointer"
           >
             <img
               src={slide.image}
@@ -1647,27 +1852,33 @@ function PortfolioGraphicDesign() {
                 {slide.description}
               </p>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
     </div>
   );
 }
 
-function PortfolioSoftwareSystems() {
+function PortfolioSoftwareSystems({
+  content = DEFAULT_SITE.portfolio.sections.softwareSystems,
+  items = softwareSystemsSlides,
+}: {
+  content?: PortfolioSectionCopy;
+  items?: SoftwareSystemSlide[];
+}) {
   return (
     <div className="py-6 mb-4">
       <div className="mb- text-center px-5">
-        <span className="script text-3xl text-orange-400">Intelligent Stacks</span>
+        <span className="script text-3xl text-orange-400">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          SECTION 4 – SOFTWARE & SYSTEMS
+          {content.title}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          Desktop and mobile mockups for custom CRMs, internal tools, and sales apps.
+          {content.description}
         </p>
       </div>
       <RingCarousel
-        slides={softwareSystemsSlides}
+        slides={items}
         title="Software & Systems"
         subtitle="AUTOMATION & PLATFORMS"
         description="Cylinder-style rotating visual carousel showcasing architecture details and business impact"
@@ -1676,20 +1887,26 @@ function PortfolioSoftwareSystems() {
   );
 }
 
-function PortfolioSEOAnalytics() {
+function PortfolioSEOAnalytics({
+  content = DEFAULT_SITE.portfolio.sections.seoAnalytics,
+  items = seoAnalyticsSlides,
+}: {
+  content?: PortfolioSectionCopy;
+  items?: SeoAnalyticsSlide[];
+}) {
   return (
     <div className="py-12 mt-8 md:mt-2 md:py-12">
       <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-blue-400">Growth Metrics</span>
+        <span className="script text-3xl text-blue-400">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          SECTION 5 – SEO & ANALYTICS
+          {content.title}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          Lighthouse speeds, technical audits, and organic search compounding results.
+          {content.description}
         </p>
       </div>
       <TriangleMask
-        slides={seoAnalyticsSlides}
+        slides={items}
         title="SEO & Analytics"
         subtitle="COMPLEX SEARCH FUNNELS"
         description="Soft triangular mask frame focusing on documented traffic graphs and conversion improvements."
@@ -1698,22 +1915,28 @@ function PortfolioSEOAnalytics() {
   );
 }
 
-function PortfolioStrategicConsulting() {
+function PortfolioStrategicConsulting({
+  content = DEFAULT_SITE.portfolio.sections.strategicConsulting,
+  items = consultingCases,
+}: {
+  content?: PortfolioSectionCopy;
+  items?: StrategicConsultingCase[];
+}) {
   const badgeStyle = "bg-amber-500/25 border-amber-500/40 text-amber-400";
   return (
     <div className="py-6">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
-        <span className="script text-3xl text-amber-400">Management Consulting</span>
+        <span className="script text-3xl text-amber-400">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          SECTION 6 – STRATEGIC CONSULTING
+          {content.title}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          Executive blueprints, go-to-market pricing structures, and roadmap frameworks.
+          {content.description}
         </p>
       </div>
 
       <div className="mx-auto max-w-6xl px-5 grid gap-8 md:grid-cols-2">
-        {consultingCases.map((cs, idx) => (
+        {items.map((cs, idx) => (
           <motion.div
             key={idx}
             whileHover={{ y: -6 }}
@@ -1784,22 +2007,28 @@ function PortfolioStrategicConsulting() {
   );
 }
 
-function PortfolioContentWriting() {
+function PortfolioContentWriting({
+  content = DEFAULT_SITE.portfolio.sections.contentWriting,
+  items = editorialContent,
+}: {
+  content?: PortfolioSectionCopy;
+  items?: EditorialSlide[];
+}) {
   const badgeStyle = "bg-orange-500/25 border-orange-500/40 text-orange-400";
   return (
     <div className="py-6 md:py-20">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
-        <span className="script text-3xl text-orange-400 font-bold">Copywriting</span>
+        <span className="script text-3xl text-orange-400 font-bold">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          SECTION 7 – CONTENT WRITING
+          {content.title}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          Sales landing pages, email campaigns, blogs, and high-converting product copies.
+          {content.description}
         </p>
       </div>
 
       <div className="mx-auto max-w-6xl px-5 grid gap-8 md:grid-cols-3 text-left">
-        {editorialContent.map((item, idx) => (
+        {items.map((item, idx) => (
           <motion.div
             key={idx}
             whileHover={{ y: -6 }}
@@ -1841,7 +2070,7 @@ function PortfolioContentWriting() {
   );
 }
 
-function PortfolioSection() {
+function PortfolioSection({ content = DEFAULT_SITE.portfolio.overview }: { content?: PortfolioSectionCopy }) {
   return (
     <section
       id="portfolio"
@@ -1849,23 +2078,14 @@ function PortfolioSection() {
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
-        <span className="script text-3xl text-accent">Our Global Workspace</span>
+        <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-8xl tracking-tight text-foreground">
-          Digital Agency <span className="italic text-accent">Portfolio</span>
+          {content.title.split(" ")[0]} <span className="italic text-accent">{content.title.split(" ").slice(1).join(" ")}</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">
-          A premium showcase of creative services, marketing campaigns, software solutions, and
-          strategic business consulting.
+          {content.description}
         </p>
       </div>
-
-      <PortfolioHeroShowcase />
-      <PortfolioVideoEditing />
-      <PortfolioGraphicDesign />
-      <PortfolioSoftwareSystems />
-      <PortfolioSEOAnalytics />
-      <PortfolioStrategicConsulting />
-      <PortfolioContentWriting />
     </section>
   );
 }
@@ -1874,13 +2094,21 @@ function PortfolioSection() {
 function Index() {
   const portfolio = Route.useLoaderData();
   const site = portfolio.site;
+  const portfolioCopy = site.portfolio ?? DEFAULT_SITE.portfolio;
   const cmsStats = normalizeStats(portfolio.collections.stats);
   const cmsCapabilities = normalizeCapabilities(portfolio.collections.capabilities);
   const cmsProcess = normalizeProcess(portfolio.collections.process);
   const cmsCases = normalizeCases(portfolio.collections.cases);
   const cmsEngagements = normalizeEngagements(portfolio.collections.engagements);
   const cmsTestimonials = normalizeTestimonials(portfolio.collections.testimonials);
+  const cmsHeroShowcase = normalizeHeroShowcase(portfolio.collections.heroShowcase);
+  const cmsVideoEditing = normalizeVideoEditing(portfolio.collections.videoEditing);
   const cmsReels = normalizeReels(portfolio.reels);
+  const cmsVisualAssets = normalizeVisualAssets(portfolio.collections.visualAssets);
+  const cmsSoftwareSystems = normalizeSoftwareSystems(portfolio.collections.softwareSystems);
+  const cmsSeoAnalytics = normalizeSeoAnalytics(portfolio.collections.seoAnalytics);
+  const cmsStrategicConsulting = normalizeStrategicConsulting(portfolio.collections.strategicConsulting);
+  const cmsContentWriting = normalizeContentWriting(portfolio.collections.contentWriting);
 
   return (
     <main className="relative min-h-screen overflow-visible bg-background text-foreground">
@@ -1955,16 +2183,24 @@ function Index() {
           />
 
           {/* Portrait image */}
-          <motion.img
-            src={resolveMediaUrl(site.hero.portraitUrl, portrait)}
-            alt="AlphaNexis — Digital Marketing & AI Agency"
-            width={1024}
-            height={1024}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="relative z-10 mx-auto h-auto w-[min(520px,80vw)] md:w-[min(670px,90%)] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] animate-float-y"
-          />
+          <a
+            href={resolveMediaUrl(site.hero.portraitUrl, portrait)}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open hero portrait in a new tab"
+            className="relative z-10 block w-fit mx-auto"
+          >
+            <motion.img
+              src={resolveMediaUrl(site.hero.portraitUrl, portrait)}
+              alt="AlphaNexis — Digital Marketing & AI Agency"
+              width={1024}
+              height={1024}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="relative z-10 mx-auto h-auto w-[min(520px,80vw)] md:w-[min(670px,90%)] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] animate-float-y cursor-pointer"
+            />
+          </a>
 
           {/* SVG scribble decorators */}
           <Scribble className="pointer-events-none absolute left-4 top-2 h-8 w-14 text-ink animate-draw md:left-8" />
@@ -2094,7 +2330,14 @@ function Index() {
       </div>
 
       {/* ABOUT */}
-      <PortfolioSection />
+      <PortfolioSection content={portfolioCopy.overview} />
+      <PortfolioHeroShowcase content={portfolioCopy.sections.heroShowcase} items={cmsHeroShowcase} />
+      <PortfolioVideoEditing content={portfolioCopy.sections.videoEditing} items={cmsVideoEditing} />
+      <PortfolioGraphicDesign content={portfolioCopy.sections.visualAssets} items={cmsVisualAssets} />
+      <PortfolioSoftwareSystems content={portfolioCopy.sections.softwareSystems} items={cmsSoftwareSystems} />
+      <PortfolioSEOAnalytics content={portfolioCopy.sections.seoAnalytics} items={cmsSeoAnalytics} />
+      <PortfolioStrategicConsulting content={portfolioCopy.sections.strategicConsulting} items={cmsStrategicConsulting} />
+      <PortfolioContentWriting content={portfolioCopy.sections.contentWriting} items={cmsContentWriting} />
 
       <ServicesSection />
 

@@ -19,6 +19,31 @@ export interface SiteData {
     body: string;
     tiles: string[];
   };
+  portfolio: {
+    overview: {
+      eyebrow: string;
+      title: string;
+      description: string;
+    };
+    sections: {
+      heroShowcase: { eyebrow: string; title: string; description: string };
+      videoEditing: { eyebrow: string; title: string; description: string };
+      visualAssets: { eyebrow: string; title: string; description: string };
+      softwareSystems: { eyebrow: string; title: string; description: string };
+      seoAnalytics: { eyebrow: string; title: string; description: string };
+      strategicConsulting: { eyebrow: string; title: string; description: string };
+      contentWriting: { eyebrow: string; title: string; description: string };
+    };
+    achievements: {
+      eyebrow: string;
+      title: string;
+      description: string;
+    };
+    testimonials: {
+      eyebrow: string;
+      title: string;
+    };
+  };
   contact: {
     eyebrow: string;
     headline: string;
@@ -46,4 +71,3 @@ export const updateSite = createServerFn({ method: "POST" })
     requireAdmin(getRequest());
     return updateSiteData(data);
   });
-
