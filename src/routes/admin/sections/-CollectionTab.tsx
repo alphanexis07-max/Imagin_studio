@@ -18,9 +18,10 @@ interface Props {
   collection: CollectionName;
   label: string;
   fields: FieldDef[];
+  maxItems?: number;
 }
 
-export function CollectionTab({ collection, label, fields }: Props) {
+export function CollectionTab({ collection, label, fields, maxItems }: Props) {
   const [items, setItems] = useState<Record<string, unknown>[]>([]);
   const [loading, setLoading] = useState(true);
   const [form, setForm] = useState<Record<string, string>>({});
@@ -51,7 +52,17 @@ export function CollectionTab({ collection, label, fields }: Props) {
     const f: Record<string, string> = {};
     for (const field of fields) {
       const val = item[field.key];
-      f[field.key] = field.type === "chips" && Array.isArray(val) ? val.join(", ") : String(val ?? "");
+      f[field.key] =
+        field.type === "chips" && Array.isArray(val)
+          ? val
+              .map((entry) =>
+                entry && typeof entry === "object"
+                  ? `${String((entry as Record<string, unknown>).label ?? "")}:${String((entry as Record<string, unknown>).value ?? "")}`
+                  : String(entry),
+              )
+              .filter(Boolean)
+              .join(", ")
+          : String(val ?? "");
     }
     setForm(f);
   }
@@ -63,6 +74,10 @@ export function CollectionTab({ collection, label, fields }: Props) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!editingId && typeof maxItems === "number" && items.length >= maxItems) {
+      showToast(`Limit reached for ${label}`);
+      return;
+    }
     setSaving(true);
     try {
       const item: Record<string, unknown> = {};
@@ -84,7 +99,8 @@ export function CollectionTab({ collection, label, fields }: Props) {
       }
       setForm(emptyForm());
     } catch (err) {
-      showToast("Error: " + (err as Error).message);
+      const message = (err as Error).message;
+      showToast(message === "LIMIT_REACHED" ? `Limit reached for ${label}` : "Error: " + message);
     } finally {
       setSaving(false);
     }
@@ -142,16 +158,30 @@ export function CollectionTab({ collection, label, fields }: Props) {
               </div>
             ))}
             <div className="flex gap-2 pt-2">
-              <button
-                type="submit"
-                disabled={saving}
-                className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-40"
-              >
-                {saving ? "Saving..." : editingId ? "Save changes" : "Add item"}
-              </button>
-              {editingId && (
-                <button type="button" onClick={cancelEdit} className="rounded-lg border border-border px-3 py-2.5 text-sm hover:bg-muted" aria-label="Cancel edit">
-                  <X className="h-4 w-4" />
+              {editingId ? (
+                <>
+                  <button
+                    type="submit"
+                    disabled={saving}
+                    className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-40"
+                  >
+                    {saving ? "Saving..." : "Save changes"}
+                  </button>
+                  <button type="button" onClick={cancelEdit} className="rounded-lg border border-border px-3 py-2.5 text-sm hover:bg-muted" aria-label="Cancel edit">
+                    <X className="h-4 w-4" />
+                  </button>
+                </>
+              ) : typeof maxItems === "number" && items.length >= maxItems ? (
+                <div className="w-full rounded-lg border border-dashed border-border px-4 py-2.5 text-sm text-muted-foreground">
+                  Maximum of {maxItems} items reached for {label}. Delete one to add another.
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-40"
+                >
+                  {saving ? "Saving..." : "Add item"}
                 </button>
               )}
             </div>

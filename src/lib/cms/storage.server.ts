@@ -19,6 +19,16 @@ function warnDbFallback(operation: string, error: unknown) {
   console.warn(`[cms] MongoDB unavailable during ${operation}; using local JSON fallback.`, error);
 }
 
+const MAX_COLLECTION_ITEMS: Partial<Record<CollectionName, number>> = {
+  heroShowcase: 5,
+  videoEditing: 4,
+  visualAssets: 5,
+  softwareSystems: 4,
+  seoAnalytics: 4,
+  strategicConsulting: 2,
+  contentWriting: 3,
+};
+
 export async function getSiteData(): Promise<SiteData> {
   const prisma = getPrisma();
   if (!prisma) return readJson<SiteData>("site.json", DEFAULT_SITE);
@@ -92,10 +102,14 @@ export async function listCollectionData(collection: CollectionName) {
 
 export async function upsertCollectionItem(collection: CollectionName, item: Record<string, unknown>) {
   const prisma = getPrisma();
+  const maxItems = MAX_COLLECTION_ITEMS[collection];
 
   if (!prisma) {
     const items = readJson<Array<Record<string, unknown>>>(`${collection}.json`, DEFAULT_COLLECTIONS[collection]);
     if (!item.id) {
+      if (typeof maxItems === "number" && items.length >= maxItems) {
+        throw new Error("LIMIT_REACHED");
+      }
       const now = new Date().toISOString();
       const newItem = {
         ...item,
@@ -118,6 +132,14 @@ export async function upsertCollectionItem(collection: CollectionName, item: Rec
 
   try {
     if (!item.id) {
+      if (typeof maxItems === "number") {
+        const count = await prisma.contentItem.count({ where: { collection } });
+        if (count >= maxItems) throw new Error("LIMIT_REACHED");
+        const created = await prisma.contentItem.create({
+          data: { collection, order: count, data: { ...item, order: count } },
+        });
+        return recordToItem(created);
+      }
       const count = await prisma.contentItem.count({ where: { collection } });
       const created = await prisma.contentItem.create({
         data: { collection, order: count, data: { ...item, order: count } },
@@ -139,9 +161,15 @@ export async function upsertCollectionItem(collection: CollectionName, item: Rec
     });
     return recordToItem(updated);
   } catch (error) {
+    if ((error as Error)?.message === "LIMIT_REACHED") {
+      throw error;
+    }
     warnDbFallback(`upsertCollectionItem:${collection}`, error);
     const items = readJson<Array<Record<string, unknown>>>(`${collection}.json`, DEFAULT_COLLECTIONS[collection]);
     if (!item.id) {
+      if (typeof maxItems === "number" && items.length >= maxItems) {
+        throw new Error("LIMIT_REACHED");
+      }
       const now = new Date().toISOString();
       const newItem = { ...item, id: crypto.randomUUID(), order: items.length, createdAt: now, updatedAt: now };
       writeJson(`${collection}.json`, [...items, newItem]);

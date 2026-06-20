@@ -6,7 +6,23 @@ import {
 } from "./storage.server";
 
 export const getPortfolioContent = createServerFn({ method: "GET" }).handler(async () => {
-  const [site, capabilities, process, cases, engagements, testimonials, stats, reels] =
+  const [
+    site,
+    capabilities,
+    process,
+    cases,
+    engagements,
+    testimonials,
+    stats,
+    heroShowcase,
+    videoEditing,
+    visualAssets,
+    softwareSystems,
+    seoAnalytics,
+    strategicConsulting,
+    contentWriting,
+    reels,
+  ] =
     await Promise.all([
       getSiteData(),
       listCollectionData("capabilities"),
@@ -15,6 +31,13 @@ export const getPortfolioContent = createServerFn({ method: "GET" }).handler(asy
       listCollectionData("engagements"),
       listCollectionData("testimonials"),
       listCollectionData("stats"),
+      listCollectionData("heroShowcase"),
+      listCollectionData("videoEditing"),
+      listCollectionData("visualAssets"),
+      listCollectionData("softwareSystems"),
+      listCollectionData("seoAnalytics"),
+      listCollectionData("strategicConsulting"),
+      listCollectionData("contentWriting"),
       listReelData(),
     ]);
 
@@ -27,6 +50,13 @@ export const getPortfolioContent = createServerFn({ method: "GET" }).handler(asy
       engagements,
       testimonials,
       stats,
+      heroShowcase,
+      videoEditing,
+      visualAssets,
+      softwareSystems,
+      seoAnalytics,
+      strategicConsulting,
+      contentWriting,
     },
     reels,
   };
@@ -35,4 +65,3 @@ export const getPortfolioContent = createServerFn({ method: "GET" }).handler(asy
 export const getPublicReels = createServerFn({ method: "GET" }).handler(async () => {
   return listReelData();
 });
-
