@@ -2236,13 +2236,14 @@ function Index() {
               <div className="mt-6 flex items-center justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold text-sm">— {t.name}</div>
-                  <div className="text-sm text-foreground/60 truncate">{t.co}</div>
+                  <div className="text-sm text-foreground/60 ">{t.co}</div>
                 </div>
 
                 <span className="shrink-0 rounded-full border border-ink/30 bg-accent/20 px-1 py-1 text-[9px] md:text-[11px] font-bold uppercase">
                   {t.verified}
                 </span>
               </div>
+              
             </motion.div>
           ))}
         </div>
