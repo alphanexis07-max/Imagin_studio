@@ -8,6 +8,9 @@ import {
   Film,
   LayoutGrid,
   Mail,
+  Menu,
+  PanelLeftClose,
+  PanelRightOpen,
   PlusCircle,
   Repeat,
   Settings,
@@ -17,6 +20,7 @@ import {
   GitBranch,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 import {
   Sidebar,
   SidebarContent,
@@ -33,7 +37,7 @@ import {
   SidebarProvider,
   SidebarRail,
   SidebarSeparator,
-  SidebarTrigger,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 export type AdminTabId =
@@ -54,7 +58,7 @@ interface AdminSidebarProps {
   activeTab: AdminTabId;
   onSelect: (tab: AdminTabId) => void;
   onLogout: () => void;
-  children?: ReactNode;
+  children?: ReactNode | ((controls: { mobileMenuButton: ReactNode }) => ReactNode);
 }
 
 interface SidebarItemProps {
@@ -146,10 +150,17 @@ const SUPPORT_ITEMS: SidebarItemProps[] = [
 ];
 
 function SidebarItem({ id, label, description, icon: Icon, active, onSelect }: SidebarItemProps & { active: boolean; onSelect: (tab: AdminTabId) => void }) {
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  function handleSelect() {
+    onSelect(id);
+    if (isMobile) setOpenMobile(false);
+  }
+
   return (
     <SidebarMenuItem>
       <SidebarMenuButton
-        onClick={() => onSelect(id)}
+        onClick={handleSelect}
         isActive={active}
         tooltip={description}
         className="justify-start"
@@ -211,8 +222,8 @@ function UserPanel({ onLogout }: { onLogout: () => void }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-sidebar-border bg-card p-3 text-card-foreground group-data-[collapsible=icon]:rounded-lg group-data-[collapsible=icon]:border-transparent group-data-[collapsible=icon]:bg-transparent group-data-[collapsible=icon]:p-0">
       <div className="flex items-center gap-3 group-data-[collapsible=icon]:justify-center">
-        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground font-display text-base font-semibold group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:rounded-lg group-data-[collapsible=icon]:text-xs">
-          A
+        <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-sidebar-border bg-background p-1 group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:rounded-lg">
+          <img src={logo} alt="AlphaNexis" className="h-full w-full object-contain" />
         </div>
         <div className="min-w-0 group-data-[collapsible=icon]:hidden">
           <p className="text-sm font-semibold">Alphanexis Admin</p>
@@ -275,7 +286,42 @@ function CarouselNavigationGroup({ activeTab, onSelect }: { activeTab: AdminTabI
   );
 }
 
-export function AdminSidebar({ activeTab, onSelect, onLogout, children }: AdminSidebarProps) {
+function AdminSidebarToggle() {
+  const { state, toggleSidebar, isMobile, openMobile } = useSidebar();
+  const collapsed = isMobile ? !openMobile : state === "collapsed";
+  const Icon = collapsed ? PanelRightOpen : PanelLeftClose;
+
+  return (
+    <button
+      type="button"
+      onClick={toggleSidebar}
+      className="relative z-30 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-sidebar-border bg-sidebar-accent/70 text-sidebar-foreground shadow-sm transition hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 group-data-[collapsible=icon]:mx-auto"
+      aria-label={collapsed ? "Open sidebar" : "Collapse sidebar"}
+      title={collapsed ? "Open sidebar" : "Collapse sidebar"}
+    >
+      <Icon className="h-5 w-5" />
+    </button>
+  );
+}
+function MobileSidebarOpenButton() {
+  const { isMobile, openMobile, setOpenMobile } = useSidebar();
+
+  if (!isMobile) return null;
+
+  return (
+    <button
+      type="button"
+      onClick={() => setOpenMobile(true)}
+      disabled={openMobile}
+      className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-background text-foreground shadow-sm transition hover:bg-muted disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 md:hidden"
+      aria-label="Open admin sidebar"
+      title="Open sidebar"
+    >
+      <Menu className="h-5 w-5" />
+    </button>
+  );
+}
+function AdminSidebarLayout({ activeTab, onSelect, onLogout, children }: AdminSidebarProps) {
   const [search, setSearch] = useState("");
 
   const groups = useMemo(
@@ -304,14 +350,19 @@ export function AdminSidebar({ activeTab, onSelect, onLogout, children }: AdminS
   }, [groups, search]);
 
   return (
-    <SidebarProvider defaultOpen>
+    <>
       <Sidebar className="border-r border-sidebar-border bg-sidebar text-sidebar-foreground" collapsible="icon">
-        <SidebarHeader className="flex items-center justify-between gap-3 overflow-hidden border-b border-sidebar-border px-4 py-4 group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:py-3">
-          <div className="min-w-0 space-y-1 group-data-[collapsible=icon]:hidden">
-            <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">CMS Console</p>
-            <p className="truncate font-display text-base font-semibold">Alphanexis Studio</p>
+        <SidebarHeader className="flex min-h-16 items-center justify-between gap-3 overflow-hidden border-b border-sidebar-border px-4 py-4 group-data-[collapsible=icon]:min-h-16 group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:py-3">
+          <div className="flex min-w-0 items-center gap-3 group-data-[collapsible=icon]:hidden">
+            <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-lg border border-sidebar-border bg-background p-1">
+              <img src={logo} alt="AlphaNexis" className="h-full w-full object-contain" />
+            </span>
+            <span className="min-w-0 space-y-1">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">CMS Console</p>
+              <p className="truncate font-display text-base font-semibold">Alphanexis Studio</p>
+            </span>
           </div>
-          <SidebarTrigger className="h-8 w-8 shrink-0 rounded-lg border border-sidebar-border bg-sidebar-accent/60 text-sidebar-foreground shadow-sm hover:bg-sidebar-accent group-data-[collapsible=icon]:mx-auto" title="Toggle sidebar" />
+          <AdminSidebarToggle />
         </SidebarHeader>
         <SidebarRail className="after:bg-sidebar-border/60 hover:after:bg-accent" />
 
@@ -350,10 +401,27 @@ export function AdminSidebar({ activeTab, onSelect, onLogout, children }: AdminS
         </SidebarFooter>
       </Sidebar>
 
-      <SidebarInset className="bg-background p-0 text-foreground">{children}</SidebarInset>
-    </SidebarProvider>
+      <SidebarInset className="bg-background p-0 text-foreground">
+        {typeof children === "function" ? children({ mobileMenuButton: <MobileSidebarOpenButton /> }) : children}
+      </SidebarInset>
+    </>
   );
 }
 
+
+
+
+
+
+
+
+
+export function AdminSidebar(props: AdminSidebarProps) {
+  return (
+    <SidebarProvider defaultOpen>
+      <AdminSidebarLayout {...props} />
+    </SidebarProvider>
+  );
+}
 
 

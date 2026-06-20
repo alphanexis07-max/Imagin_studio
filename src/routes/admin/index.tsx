@@ -8,6 +8,7 @@ import { SiteTab } from "./sections/-SiteTab";
 import { CollectionTab } from "./sections/-CollectionTab";
 import { VisualAssetsTab } from "./sections/-VisualAssetsTab";
 import { PortfolioSectionsTab } from "./sections/-PortfolioSectionsTab";
+import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/admin/")({
   beforeLoad: async () => {
@@ -32,32 +33,36 @@ function AdminDashboard() {
 
   return (
     <div className="admin-shell min-h-screen bg-background text-foreground">
-      {/* Top bar */}
-      <div className="sticky top-0 z-40 border-b border-border bg-background/95 text-foreground backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">H.</div>
-            <span className="font-display font-semibold">Alphanexis Studio / Admin</span>
-            <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-xs text-foreground">Logged in</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link to="/" className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs hover:bg-muted">
-              <ExternalLink className="h-3 w-3" /> View site
-            </Link>
-            <button
-              onClick={handleLogout}
-              disabled={loggingOut}
-              className="inline-flex items-center gap-1.5 rounded-full bg-destructive px-3 py-1.5 text-xs font-medium text-destructive-foreground hover:opacity-90 disabled:opacity-50"
-            >
-              <LogOut className="h-3 w-3" /> Logout
-            </button>
-          </div>
-        </div>
-      </div>
-
       <AdminSidebar activeTab={activeTab} onSelect={setActiveTab} onLogout={handleLogout}>
-        <div className="mx-auto max-w-7xl px-5 py-6">
-          <div key={activeTab}>
+        {({ mobileMenuButton }) => (
+          <>
+            <div className="sticky top-0 z-40 border-b border-border bg-background/95 text-foreground backdrop-blur">
+              <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+                <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+                  {mobileMenuButton}
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-background p-1">
+                    <img src={logo} alt="AlphaNexis" className="h-full w-full object-contain" />
+                  </div>
+                  <span className="min-w-0 truncate font-display text-sm font-semibold sm:text-base">Alphanexis Studio</span>
+                  <span className="shrink-0 rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] text-foreground sm:text-xs">Logged in</span>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <Link to="/" className="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs hover:bg-muted">
+                    <ExternalLink className="h-3 w-3" /> <span>Site</span>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    disabled={loggingOut}
+                    className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-destructive px-3 py-1.5 text-xs font-medium text-destructive-foreground hover:opacity-90 disabled:opacity-50"
+                  >
+                    <LogOut className="h-3 w-3" /> <span>Logout</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="mx-auto max-w-7xl px-4 py-6 md:px-5">
+              <div key={activeTab}>
             {activeTab === "reels" && <ReelsTab />}
             {activeTab === "site" && <SiteTab />}
             {activeTab === "portfolio" && <PortfolioSectionsTab />}
@@ -143,13 +148,15 @@ function AdminDashboard() {
             {activeTab === "visualAssets" && <VisualAssetsTab />}
             {activeTab === "marquee" && <MarqueeTab />}
             {activeTab === "contact" && <ContactTab />}
-          </div>
-        </div>
-      </AdminSidebar>
+              </div>
+            </div>
 
-      <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
-        Admin changes publish into the portfolio content layer. Keep the shared password private and rotate it from <code>.env</code> when access changes.
-      </div>
+            <div className="border-t border-border px-4 py-4 text-center text-xs text-muted-foreground md:px-5">
+              Admin changes publish into the portfolio content layer. Keep the shared password private and rotate it from <code>.env</code> when access changes.
+            </div>
+          </>
+        )}
+      </AdminSidebar>
     </div>
   );
 }
@@ -278,4 +285,9 @@ function ContactTab() {
     </div>
   );
 }
+
+
+
+
+
 
