@@ -15,9 +15,30 @@ export type CollectionName =
   | "cases"
   | "engagements"
   | "testimonials"
-  | "stats";
+  | "stats"
+  | "heroShowcase"
+  | "videoEditing"
+  | "visualAssets"
+  | "softwareSystems"
+  | "seoAnalytics"
+  | "strategicConsulting"
+  | "contentWriting";
 
-const CollectionSchema = z.enum(["capabilities", "process", "cases", "engagements", "testimonials", "stats"]);
+const CollectionSchema = z.enum([
+  "capabilities",
+  "process",
+  "cases",
+  "engagements",
+  "testimonials",
+  "stats",
+  "heroShowcase",
+  "videoEditing",
+  "visualAssets",
+  "softwareSystems",
+  "seoAnalytics",
+  "strategicConsulting",
+  "contentWriting",
+]);
 
 export const listCollection = createServerFn({ method: "POST" })
   .validator(z.object({ collection: CollectionSchema }))
@@ -45,4 +66,3 @@ export const reorderCollection = createServerFn({ method: "POST" })
     requireAdmin(getRequest());
     return reorderCollectionData(data.collection, data.orderedIds);
   });
-

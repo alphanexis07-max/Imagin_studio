@@ -45,6 +45,8 @@ export type AdminTabId =
   | "engagements"
   | "testimonials"
   | "stats"
+  | "portfolio"
+  | "visualAssets"
   | "marquee"
   | "contact";
 
@@ -74,6 +76,12 @@ const CONTENT_ITEMS: SidebarItemProps[] = [
     label: "Hero & Site",
     description: "Update landing hero, about, and brand content.",
     icon: Settings,
+  },
+  {
+    id: "portfolio",
+    label: "Portfolio Sections",
+    description: "Edit the portfolio section headings and card collections.",
+    icon: LayoutGrid,
   },
 ];
 
@@ -113,6 +121,12 @@ const COLLECTION_ITEMS: SidebarItemProps[] = [
     label: "Stats",
     description: "Maintain brand performance counters and KPIs.",
     icon: BarChart2,
+  },
+  {
+    id: "visualAssets",
+    label: "Visual Assets",
+    description: "Edit portfolio image cards and gallery captions.",
+    icon: LayoutGrid,
   },
 ];
 
@@ -340,8 +354,6 @@ export function AdminSidebar({ activeTab, onSelect, onLogout, children }: AdminS
     </SidebarProvider>
   );
 }
-
-
 
 
 
