@@ -1702,25 +1702,25 @@ function PortfolioHeroShowcase({
   content?: PortfolioSectionCopy;
   items?: HeroShowcaseSlide[];
 }) {
-  return (
-    <div className="py-6 " id="work">
-      <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-accent">{content.eyebrow}</span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          {content.title}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          {content.description}
-        </p>
-      </div>
-      <FlankCarousel
-        slides={items}
-        title="Hero Showcase"
-        subtitle="FEATURED WORKS"
-        description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
-      />
+ return (
+  <div className="py-6 overflow-x-hidden" id="work">
+    <div className="mb-10 text-center px-5">
+      <span className="script text-3xl text-accent">{content.eyebrow}</span>
+      <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        {content.title}
+      </h2>
+      <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
+        {content.description}
+      </p>
     </div>
-  );
+    <FlankCarousel
+      slides={items}
+      title="Hero Showcase"
+      subtitle="FEATURED WORKS"
+      description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
+    />
+  </div>
+);
 }
 
 function PortfolioVideoEditing({
