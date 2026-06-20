@@ -69,6 +69,7 @@ export interface RingSlide {
   poster?: string;
   video?: string;
   accentColor?: string;
+  projectUrl?: string;
 }
 
 const defaultSlides = [
@@ -172,6 +173,7 @@ export function RingCarousel({
             const scale = Math.max(0.72, 1 - Math.abs(offset) * 0.12);
             const opacity = Math.max(0.3, 1 - Math.abs(offset) * 0.26);
             const zIndex = slides.length - Math.abs(offset);
+            const openUrl = slide.projectUrl || slide.video || slide.poster;
 
             // Category badge colors
             const getBadgeStyles = (label: string) => {
@@ -209,6 +211,15 @@ export function RingCarousel({
                     slide.poster && <img src={slide.poster} alt={slide.title} className="h-full w-full object-cover" />
                   )}
                   <div className={`absolute inset-0 bg-gradient-to-t ${slide.accentColor || "from-teal-950/80"} via-transparent to-black/35`} />
+                  {isCenter && openUrl && (
+                    <a
+                      href={openUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Open ${slide.title}`}
+                      className="absolute inset-0 z-[5]"
+                    />
+                  )}
                   
                   {slide.categoryLabel && (
                     <span className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
@@ -259,6 +270,16 @@ export function RingCarousel({
                       )}
                     </div>
                   </div>
+                  {openUrl && (
+                    <a
+                      href={openUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-5 inline-flex rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#111827]"
+                    >
+                      Open application
+                    </a>
+                  )}
                 </div>
               </motion.div>
             );
@@ -289,3 +310,5 @@ export function RingCarousel({
     </section>
   );
 }
+
+

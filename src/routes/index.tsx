@@ -355,6 +355,7 @@ type VisualAssetSlide = {
   title: string;
   description: string;
   image: string;
+  detailUrl?: string;
 };
 
 type HeroShowcaseSlide = {
@@ -376,6 +377,7 @@ type VideoEditingSlide = {
   video: string;
   poster: string;
   accentColor: string;
+  detailUrl?: string;
 };
 
 type SoftwareSystemSlide = {
@@ -388,6 +390,7 @@ type SoftwareSystemSlide = {
   poster: string;
   video: string;
   accentColor: string;
+  projectUrl?: string;
 };
 
 type SeoAnalyticsSlide = {
@@ -398,6 +401,7 @@ type SeoAnalyticsSlide = {
   poster: string;
   video: string;
   accent: string;
+  detailUrl?: string;
 };
 
 type StrategicConsultingCase = {
@@ -1080,7 +1084,7 @@ function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
         poster: resolveMediaUrl(item.poster, heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1),
         glow: asString(item.glow, heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40"),
         ctaText: asString(item.ctaText, "View Project"),
-        ctaLink: asString(item.ctaLink, "#portfolio"),
+        ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
       }))
     : heroShowcaseSlides;
 }
@@ -1113,6 +1117,7 @@ function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
         video: asString(item.video, videoEditingSlides[index % videoEditingSlides.length]?.video ?? ""),
         poster: resolveMediaUrl(item.poster, videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1),
         accentColor: asString(item.accentColor, videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90"),
+        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
       }))
     : videoEditingSlides;
 }
@@ -1124,6 +1129,7 @@ function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
         title: asString(item.title, `Asset ${index + 1}`),
         description: asString(item.description),
         image: asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1),
+        detailUrl: asString(item.detailUrl, asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1)),
       }))
     : fallbackGraphicDesignSlides;
 }
@@ -1139,6 +1145,7 @@ function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
         poster: resolveMediaUrl(item.poster, softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1),
         video: asString(item.video, softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? ""),
         accentColor: asString(item.accentColor, softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ?? "from-teal-950/90"),
+        projectUrl: asString(item.projectUrl, asString(item.ctaLink, asString(item.video, asString(item.poster)))),
       }))
     : softwareSystemsSlides;
 }
@@ -1152,6 +1159,7 @@ function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
         poster: resolveMediaUrl(item.poster, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1),
         video: asString(item.video, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? ""),
         accent: asString(item.accent, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40"),
+        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
       }))
     : seoAnalyticsSlides;
 }
@@ -1818,7 +1826,7 @@ function PortfolioGraphicDesign({
         {items.map((slide, idx) => (
           <motion.a
             key={idx}
-            href={slide.image}
+            href={slide.detailUrl || slide.image}
             target="_blank"
             rel="noreferrer"
             whileHover={{ y: -8, scale: 1.02 }}
@@ -2534,3 +2542,5 @@ function Index() {
     </main>
   );
 }
+
+

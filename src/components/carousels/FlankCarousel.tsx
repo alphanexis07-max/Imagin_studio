@@ -192,6 +192,7 @@ export function FlankCarousel({
             const scale = isCenter ? 1 : 0.78;
             const opacity = isCenter ? 1 : 0.48;
             const zIndex = isCenter ? 20 : 10 - Math.abs(offset);
+            const openUrl = slide.ctaLink && slide.ctaLink !== "#" ? slide.ctaLink : slide.video || slide.poster;
 
             // Category badge colors
             const getBadgeStyles = (label: string) => {
@@ -257,6 +258,15 @@ export function FlankCarousel({
                     )
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/35" />
+                  {isCenter && openUrl && (
+                    <a
+                      href={openUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Open ${slide.title}`}
+                      className="absolute inset-0 z-[5]"
+                    />
+                  )}
 
                   {slide.categoryLabel && (
                     <span
@@ -290,7 +300,9 @@ export function FlankCarousel({
                         className="overflow-hidden mt-4"
                       >
                         <a
-                          href={slide.ctaLink || "#"}
+                          href={slide.ctaLink || openUrl || "#"}
+                          target="_blank"
+                          rel="noreferrer"
                           className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 text-xs font-bold text-cream transition duration-200 hover:bg-ink/90 active:scale-95 z-20 dark:bg-white dark:text-[#111827] dark:hover:bg-white/95"
                         >
                           {slide.ctaText || "View Project"}
@@ -328,3 +340,4 @@ export function FlankCarousel({
     </section>
   );
 }
+

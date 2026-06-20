@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Trash2, Edit3, ChevronUp, ChevronDown, X, Plus } from "lucide-react";
+import { Trash2, Edit3, ChevronUp, ChevronDown, X, Plus, UploadCloud } from "lucide-react";
 import {
   listCollection,
   upsertItem,
@@ -7,11 +7,12 @@ import {
   reorderCollection,
   type CollectionName,
 } from "@/lib/admin/collections.functions";
+import { deleteMedia, uploadMedia } from "@/lib/admin/media.functions";
 
 interface FieldDef {
   key: string;
   label: string;
-  type: "text" | "textarea" | "chips";
+  type: "text" | "textarea" | "chips" | "image" | "video";
 }
 
 interface Props {
@@ -28,6 +29,8 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [uploadingKey, setUploadingKey] = useState<string | null>(null);
+  const [pendingMediaDeletes, setPendingMediaDeletes] = useState<string[]>([]);
   const [toast, setToast] = useState("");
 
   function showToast(msg: string) {
@@ -45,6 +48,7 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
       setLoading(false);
     });
     setForm(emptyForm());
+    setPendingMediaDeletes([]);
   }, [collection]);
 
   function startEdit(item: Record<string, unknown>) {
@@ -70,6 +74,7 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
   function cancelEdit() {
     setEditingId(null);
     setForm(emptyForm());
+    setPendingMediaDeletes([]);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -89,6 +94,11 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
       if (editingId) item.id = editingId;
 
       const result = await upsertItem({ data: { collection, item } }) as Record<string, unknown>;
+      if (pendingMediaDeletes.length) {
+        await Promise.all(pendingMediaDeletes.map((url) => deleteMedia({ data: { url } }).catch(() => null)));
+        setPendingMediaDeletes([]);
+      }
+
       if (editingId) {
         setItems((prev) => prev.map((i) => (i.id === editingId ? result : i)));
         showToast("Updated");
@@ -109,7 +119,17 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
   async function handleDelete(id: string) {
     if (!confirm("Delete this item?")) return;
     setDeletingId(id);
+    const current = items.find((item) => item.id === id);
     await deleteItem({ data: { collection, id } });
+    if (current) {
+      await Promise.all(
+        fields
+          .filter((field) => field.type === "image" || field.type === "video")
+          .map((field) => String(current[field.key] ?? ""))
+          .filter(Boolean)
+          .map((url) => deleteMedia({ data: { url } }).catch(() => null)),
+      );
+    }
     setItems((prev) => prev.filter((i) => i.id !== id));
     showToast("Deleted");
     setDeletingId(null);
@@ -124,6 +144,31 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
     await reorderCollection({ data: { collection, orderedIds: newItems.map((i) => i.id as string) } });
   }
 
+
+  async function handleUpload(field: FieldDef, file: File | null) {
+    if (!file) return;
+    setUploadingKey(field.key);
+    try {
+      const dataUri = await readFileAsDataUri(file);
+      const asset = await uploadMedia({
+        data: {
+          dataUri,
+          folder: `alphanexis/portfolio/${collection}`,
+          resourceType: field.type === "video" ? "video" : "image",
+        },
+      });
+      const previousUrl = form[field.key];
+      setForm((prev) => ({ ...prev, [field.key]: asset.secureUrl }));
+      if (previousUrl && previousUrl !== asset.secureUrl) {
+        setPendingMediaDeletes((prev) => Array.from(new Set([...prev, previousUrl])));
+      }
+      showToast("Uploaded. Save the item to publish it.");
+    } catch (err) {
+      showToast("Upload failed: " + (err as Error).message);
+    } finally {
+      setUploadingKey(null);
+    }
+  }
   return (
     <div className="grid gap-8 lg:grid-cols-[360px_1fr]">
       <div className="lg:sticky lg:top-24 lg:self-start">
@@ -148,11 +193,46 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
                     rows={3}
                     className="w-full resize-none rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                   />
+                ) : field.type === "image" || field.type === "video" ? (
+                  <details className="group max-w-full overflow-hidden rounded-lg border border-dashed border-border bg-muted/30 p-2">
+                    <summary className="flex max-w-full cursor-pointer list-none items-center justify-between gap-3 rounded-md px-1 py-1 text-xs font-semibold text-foreground marker:hidden">
+                      <span className="min-w-0 truncate">
+                        {form[field.key] ? `${field.type === "image" ? "Image" : "Video"} selected` : `No ${field.type} selected`}
+                      </span>
+                      <span className="shrink-0 text-[10px] uppercase tracking-wider text-muted-foreground group-open:hidden">Edit</span>
+                    </summary>
+                    <div className="mt-2 space-y-2">
+                      {field.type === "image" && form[field.key] ? (
+                        <img
+                          src={form[field.key]}
+                          alt=""
+                          className="h-24 w-full rounded-md border border-border object-cover"
+                        />
+                      ) : null}
+                      <input
+                        value={form[field.key] ?? ""}
+                        onChange={(e) => setForm((p) => ({ ...p, [field.key]: e.target.value }))}
+                        title={form[field.key] ?? ""}
+                        className="w-full min-w-0 truncate rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+                      />
+                      <label className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted">
+                        <UploadCloud className="h-3.5 w-3.5" />
+                        {uploadingKey === field.key ? "Uploading..." : `Upload ${field.type}`}
+                        <input
+                          type="file"
+                          accept={field.type === "video" ? "video/*" : "image/*"}
+                          disabled={uploadingKey === field.key}
+                          onChange={(event) => handleUpload(field, event.target.files?.[0] ?? null)}
+                          className="sr-only"
+                        />
+                      </label>
+                    </div>
+                  </details>
                 ) : (
                   <input
                     value={form[field.key] ?? ""}
                     onChange={(e) => setForm((p) => ({ ...p, [field.key]: e.target.value }))}
-                    className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+                    className="w-full min-w-0 rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                   />
                 )}
               </div>
@@ -206,21 +286,21 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
 
         <div className="space-y-2">
           {items.map((item, i) => {
-            const primaryField = fields[0];
-            const secondaryField = fields[1];
-            const title = String(item[primaryField?.key ?? ""] ?? "");
+            const primaryField = fields.find((field) => !["image", "video", "poster", "detailUrl", "projectUrl"].includes(field.key)) ?? fields[0];
+            const secondaryField = fields.find((field) => field.key !== primaryField?.key && !["image", "video", "poster"].includes(field.key)) ?? fields[1];
+            const title = String(item[primaryField?.key ?? ""] ?? "Untitled item");
             const sub = String(item[secondaryField?.key ?? ""] ?? "");
 
             return (
               <div
                 key={item.id as string}
-                className={`flex items-center gap-3 rounded-xl border p-4 ${editingId === item.id ? "border-accent bg-accent/10" : "border-border bg-card"}`}
+                className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-xl border p-4 ${editingId === item.id ? "border-accent bg-accent/10" : "border-border bg-card"}`}
               >
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-sm font-medium">{title}</div>
-                  {sub && <div className="truncate text-xs text-muted-foreground">{sub}</div>}
+                <div className="min-w-0 overflow-hidden">
+                  <div className="max-w-full truncate text-sm font-medium" title={title}>{title}</div>
+                  {sub && <div className="max-w-full truncate text-xs text-muted-foreground" title={sub}>{sub}</div>}
                 </div>
-                <div className="flex shrink-0 items-center gap-1">
+                <div className="sticky right-0 z-10 flex shrink-0 items-center gap-1 rounded-lg bg-card/95 pl-2 backdrop-blur supports-[backdrop-filter]:bg-card/80">
                   <button onClick={() => move(i, -1)} disabled={i === 0} className="rounded-lg border border-border p-1.5 hover:bg-muted disabled:opacity-30" aria-label="Move up">
                     <ChevronUp className="h-3 w-3" />
                   </button>
@@ -253,3 +333,17 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
     </div>
   );
 }
+
+function readFileAsDataUri(file: File) {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(reader.error ?? new Error("Could not read file."));
+    reader.readAsDataURL(file);
+  });
+}
+
+
+
+
+

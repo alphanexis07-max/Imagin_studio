@@ -26,6 +26,7 @@ export interface JumboSlide {
   poster?: string;
   video?: string;
   accentColor?: string;
+  detailUrl?: string;
 }
 
 const defaultSlides = [
@@ -149,6 +150,7 @@ export function JumboStack({
             const scale = 1 - abs * 0.06;
             const opacity = 1 - abs * 0.4;
             const zIndex = slides.length - abs;
+            const inspectUrl = slide.detailUrl || slide.video || slide.poster;
 
             // Category badge styling
             const badgeStyle = "bg-red-500/25 border-red-500/40 text-red-400";
@@ -169,6 +171,15 @@ export function JumboStack({
                     slide.poster && <img src={slide.poster} alt={slide.title} className="h-full w-full object-cover" />
                   )}
                   <div className={`absolute inset-0 bg-gradient-to-t ${slide.accentColor || "from-red-950/80"} via-transparent to-black/35`} />
+                  {isCenter && inspectUrl && (
+                    <a
+                      href={inspectUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Inspect ${slide.title}`}
+                      className="absolute inset-0 z-[5]"
+                    />
+                  )}
                   
                   {slide.categoryLabel && (
                     <span className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
@@ -190,6 +201,16 @@ export function JumboStack({
                   <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400">
                     {slide.description}
                   </p>
+                  {inspectUrl && (
+                    <a
+                      href={inspectUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#0f172a]"
+                    >
+                      Inspect work
+                    </a>
+                  )}
                 </div>
               </motion.div>
             );
@@ -208,3 +229,4 @@ export function JumboStack({
     </section>
   );
 }
+

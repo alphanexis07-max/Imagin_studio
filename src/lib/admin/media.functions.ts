@@ -42,6 +42,37 @@ export const uploadMedia = createServerFn({ method: "POST" })
     return asset;
   });
 
+const DeleteMediaInput = z.object({
+  url: z.string().optional(),
+  publicId: z.string().optional(),
+});
+
+export const deleteMedia = createServerFn({ method: "POST" })
+  .validator(DeleteMediaInput)
+  .handler(async ({ data }) => {
+    requireAdmin(getRequest());
+    configureCloudinary();
+
+    const prisma = getPrisma();
+    const stored = prisma && data.url
+      ? await prisma.mediaAsset.findFirst({
+          where: { OR: [{ secureUrl: data.url }, { url: data.url }] },
+        })
+      : null;
+
+    const publicId = data.publicId ?? stored?.publicId;
+    if (!publicId) return { deleted: false };
+
+    await cloudinary.uploader.destroy(publicId, {
+      resource_type: stored?.resourceType === "video" ? "video" : "image",
+    });
+
+    if (prisma) {
+      await prisma.mediaAsset.deleteMany({ where: { publicId } });
+    }
+
+    return { deleted: true };
+  });
 function configureCloudinary() {
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;
@@ -58,4 +89,5 @@ function configureCloudinary() {
     secure: true,
   });
 }
+
 

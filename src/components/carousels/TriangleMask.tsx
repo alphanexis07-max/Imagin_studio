@@ -48,6 +48,7 @@ export interface TriangleSlide {
   poster?: string;
   video?: string;
   accent?: string;
+  detailUrl?: string;
 }
 
 const defaultSlides = [
@@ -132,6 +133,7 @@ export function TriangleMask({
               const badgeStyle = slide.categoryLabel
                 ? getBadgeStyles(slide.categoryLabel)
                 : "bg-white/10 border-white/20 text-white";
+              const inspectUrl = slide.detailUrl || slide.video || slide.poster;
 
               return (
                 <motion.div
@@ -171,6 +173,15 @@ export function TriangleMask({
                     <div
                       className={`absolute inset-0 bg-gradient-to-t ${slide.accent || "from-green-950/30"} via-transparent to-black/20`}
                     />
+                    {inspectUrl && (
+                      <a
+                        href={inspectUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Inspect ${slide.title}`}
+                        className="absolute inset-0 z-[5]"
+                      />
+                    )}
 
                     {slide.categoryLabel && (
                       <span
@@ -201,6 +212,16 @@ export function TriangleMask({
                           </div>
                         ))}
                       </div>
+                    )}
+                    {inspectUrl && (
+                      <a
+                        href={inspectUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-6 inline-flex w-fit rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#111827]"
+                      >
+                        Inspect report
+                      </a>
                     )}
                     <div className="mt-6 h-1 w-24 rounded-full bg-emerald-500 animate-pulse" />
                   </div>
@@ -234,3 +255,4 @@ export function TriangleMask({
     </section>
   );
 }
+
