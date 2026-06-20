@@ -2035,7 +2035,7 @@ function PortfolioContentWriting({
         </p>
       </div>
 
-      <div className="mx-auto max-w-6xl px-5 grid gap-8 md:grid-cols-3 text-left">
+      <div className="mx-auto max-w-6xl px-5 grid gap-8 md:grid-cols-2 lg:grid-cols-3 text-left">
         {items.map((item, idx) => (
           <motion.div
             key={idx}
@@ -2067,7 +2067,7 @@ function PortfolioContentWriting({
               <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground dark:text-gray-500">
                 Performance
               </span>
-              <span className="text-[10px] md:text-[11px] font-bold  text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-md px-1 py-1">
+              <span className="text-[8px] lg:text-[11px] font-bold  text-orange-400 bg-orange-500/10 border border-orange-500/20 rounded-md px-1 py-1">
                 {item.metrics}
               </span>
             </div>
