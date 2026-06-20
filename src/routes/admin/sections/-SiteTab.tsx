@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getSite, updateSite, type SiteData } from "@/lib/admin/site.functions";
+import { uploadMedia } from "@/lib/admin/media.functions";
 
 export function SiteTab() {
   const [site, setSite] = useState<SiteData | null>(null);
@@ -18,87 +19,48 @@ export function SiteTab() {
     setSaving(false);
   }
 
-  if (!site) return <div className="py-10 text-center text-muted-foreground">Loading…</div>;
+  if (!site) return <div className="py-10 text-center text-muted-foreground">Loading...</div>;
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <h2 className="font-display text-2xl font-bold">Hero & About</h2>
-        <span className="text-xs text-muted-foreground">
-          {saving ? "Saving…" : savedAt ? `Saved ${savedAt.toLocaleTimeString()}` : ""}
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 className="font-display text-2xl font-bold">Hero & About</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            These fields update the first public impression of the portfolio. Most changes save when the field loses focus.
+          </p>
+        </div>
+        <span className="rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
+          {saving ? "Saving..." : savedAt ? `Saved ${savedAt.toLocaleTimeString()}` : "Ready"}
         </span>
       </div>
 
-      {/* Hero */}
-      <Section title="Hero">
-        <Field
-          label="Eyebrow pill"
-          value={site.hero.eyebrow}
-          onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, eyebrow: v } })}
-          onBlur={() => save({ hero: site.hero })}
+      <Section title="Hero" description="Edit the headline, portrait, sidebar stat, and short quote shown in the hero area.">
+        <Field label="Eyebrow pill" value={site.hero.eyebrow} onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, eyebrow: v } })} onBlur={() => save({ hero: site.hero })} />
+        <Field label="Name" value={site.hero.name} onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, name: v } })} onBlur={() => save({ hero: site.hero })} />
+        <Field label="Headline" value={site.hero.headline} onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, headline: v } })} onBlur={() => save({ hero: site.hero })} />
+        <Field label="Portrait URL" value={site.hero.portraitUrl} onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, portraitUrl: v } })} onBlur={() => save({ hero: site.hero })} />
+        <MediaUpload
+          label="Upload portrait"
+          accept="image/*"
+          folder="alphanexis/portrait"
+          onUploaded={(url) => {
+            const hero = { ...site.hero, portraitUrl: url };
+            setSite((s) => s && { ...s, hero });
+            save({ hero });
+          }}
         />
-        <Field
-          label="Name"
-          value={site.hero.name}
-          onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, name: v } })}
-          onBlur={() => save({ hero: site.hero })}
-        />
-        <Field
-          label="Headline"
-          value={site.hero.headline}
-          onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, headline: v } })}
-          onBlur={() => save({ hero: site.hero })}
-        />
-        <Field
-          label="Portrait URL"
-          value={site.hero.portraitUrl}
-          onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, portraitUrl: v } })}
-          onBlur={() => save({ hero: site.hero })}
-        />
-        <Field
-          label="Sidebar stat value"
-          value={site.hero.sidebarStat.value}
-          onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, sidebarStat: { ...s.hero.sidebarStat, value: v } } })}
-          onBlur={() => save({ hero: site.hero })}
-        />
-        <Field
-          label="Sidebar stat label"
-          value={site.hero.sidebarStat.label}
-          onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, sidebarStat: { ...s.hero.sidebarStat, label: v } } })}
-          onBlur={() => save({ hero: site.hero })}
-        />
-        <Field
-          label="Sidebar quote"
-          value={site.hero.sidebarQuote}
-          textarea
-          onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, sidebarQuote: v } })}
-          onBlur={() => save({ hero: site.hero })}
-        />
+        <Field label="Sidebar stat value" value={site.hero.sidebarStat.value} onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, sidebarStat: { ...s.hero.sidebarStat, value: v } } })} onBlur={() => save({ hero: site.hero })} />
+        <Field label="Sidebar stat label" value={site.hero.sidebarStat.label} onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, sidebarStat: { ...s.hero.sidebarStat, label: v } } })} onBlur={() => save({ hero: site.hero })} />
+        <Field label="Sidebar quote" value={site.hero.sidebarQuote} textarea onChange={(v) => setSite((s) => s && { ...s, hero: { ...s.hero, sidebarQuote: v } })} onBlur={() => save({ hero: site.hero })} />
       </Section>
 
-      {/* About */}
-      <Section title="About">
-        <Field
-          label="Eyebrow"
-          value={site.about.eyebrow}
-          onChange={(v) => setSite((s) => s && { ...s, about: { ...s.about, eyebrow: v } })}
-          onBlur={() => save({ about: site.about })}
-        />
-        <Field
-          label="Title"
-          value={site.about.title}
-          onChange={(v) => setSite((s) => s && { ...s, about: { ...s.about, title: v } })}
-          onBlur={() => save({ about: site.about })}
-        />
-        <Field
-          label="Body"
-          value={site.about.body}
-          textarea
-          onChange={(v) => setSite((s) => s && { ...s, about: { ...s.about, body: v } })}
-          onBlur={() => save({ about: site.about })}
-        />
+      <Section title="About" description="Keep this concise. The public about section has limited space on mobile.">
+        <Field label="Eyebrow" value={site.about.eyebrow} onChange={(v) => setSite((s) => s && { ...s, about: { ...s.about, eyebrow: v } })} onBlur={() => save({ about: site.about })} />
+        <Field label="Title" value={site.about.title} onChange={(v) => setSite((s) => s && { ...s, about: { ...s.about, title: v } })} onBlur={() => save({ about: site.about })} />
+        <Field label="Body" value={site.about.body} textarea onChange={(v) => setSite((s) => s && { ...s, about: { ...s.about, body: v } })} onBlur={() => save({ about: site.about })} />
         <div>
-          <label className="mb-1 block text-sm font-medium">Tiles (comma-separated)</label>
+          <label className="mb-1 block text-sm font-medium">Tiles</label>
           <input
             value={site.about.tiles.join(", ")}
             onChange={(e) =>
@@ -107,22 +69,85 @@ export function SiteTab() {
               )
             }
             onBlur={() => save({ about: site.about })}
-            className="w-full rounded-xl border-2 border-ink bg-card px-4 py-2.5 text-sm outline-none focus:border-accent"
+            className={fieldClassName}
           />
+          <p className="mt-1 text-xs text-muted-foreground">Separate each tile with a comma.</p>
         </div>
       </Section>
     </div>
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border-2 border-ink bg-card p-6 shadow-[4px_4px_0_0_var(--ink)]">
-      <h3 className="mb-4 font-display text-lg font-bold">{title}</h3>
+    <section className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+      <h3 className="font-display text-lg font-bold">{title}</h3>
+      <p className="mb-5 mt-1 text-sm text-muted-foreground">{description}</p>
       <div className="grid gap-4 sm:grid-cols-2">{children}</div>
+    </section>
+  );
+}
+
+function MediaUpload({
+  label,
+  accept,
+  folder,
+  onUploaded,
+}: {
+  label: string;
+  accept: string;
+  folder: string;
+  onUploaded: (url: string) => void;
+}) {
+  const [uploading, setUploading] = useState(false);
+
+  async function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const dataUri = await readFileAsDataUri(file);
+      const asset = await uploadMedia({
+        data: {
+          dataUri,
+          folder,
+          resourceType: file.type.startsWith("video/") ? "video" : "image",
+        },
+      });
+      onUploaded(asset.secureUrl);
+    } finally {
+      setUploading(false);
+      event.target.value = "";
+    }
+  }
+
+  return (
+    <div>
+      <label className="mb-1 block text-sm font-medium">{label}</label>
+      <input
+        type="file"
+        accept={accept}
+        disabled={uploading}
+        onChange={onChange}
+        className="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm outline-none file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-primary-foreground focus:border-accent focus:ring-2 focus:ring-accent/20 disabled:opacity-50"
+      />
+      <p className="mt-1 text-xs text-muted-foreground">
+        {uploading ? "Uploading to Cloudinary..." : "After upload, the Cloudinary URL is saved into the portrait field."}
+      </p>
     </div>
   );
 }
+
+function readFileAsDataUri(file: File) {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
+const fieldClassName = "w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20";
 
 function Field({
   label,
@@ -137,14 +162,13 @@ function Field({
   onChange: (v: string) => void;
   onBlur: () => void;
 }) {
-  const cls = "w-full rounded-xl border-2 border-ink bg-background px-4 py-2.5 text-sm outline-none focus:border-accent";
   return (
     <div className={textarea ? "sm:col-span-2" : ""}>
       <label className="mb-1 block text-sm font-medium">{label}</label>
       {textarea ? (
-        <textarea value={value} onChange={(e) => onChange(e.target.value)} onBlur={onBlur} rows={3} className={cls + " resize-none"} />
+        <textarea value={value} onChange={(e) => onChange(e.target.value)} onBlur={onBlur} rows={3} className={fieldClassName + " resize-none"} />
       ) : (
-        <input value={value} onChange={(e) => onChange(e.target.value)} onBlur={onBlur} className={cls} />
+        <input value={value} onChange={(e) => onChange(e.target.value)} onBlur={onBlur} className={fieldClassName} />
       )}
     </div>
   );
