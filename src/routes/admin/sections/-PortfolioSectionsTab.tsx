@@ -16,11 +16,11 @@ export function PortfolioSectionsTab() {
             { key: "categoryLabel", label: "Category label", type: "text" },
             { key: "title", label: "Title", type: "text" },
             { key: "description", label: "Description", type: "textarea" },
-            { key: "video", label: "Video URL", type: "text" },
-            { key: "poster", label: "Poster image URL", type: "text" },
+            { key: "video", label: "Video URL", type: "video" },
+            { key: "poster", label: "Poster image URL", type: "image" },
             { key: "glow", label: "Glow class", type: "text" },
             { key: "ctaText", label: "CTA text", type: "text" },
-            { key: "ctaLink", label: "CTA link", type: "text" },
+            { key: "ctaLink", label: "CTA / open URL", type: "text" },
           ]}
         />
       </SectionShell>
@@ -35,8 +35,9 @@ export function PortfolioSectionsTab() {
             { key: "title", label: "Title", type: "text" },
             { key: "description", label: "Description", type: "textarea" },
             { key: "outcome", label: "Outcome", type: "text" },
-            { key: "video", label: "Video URL", type: "text" },
-            { key: "poster", label: "Poster image URL", type: "text" },
+            { key: "video", label: "Video URL", type: "video" },
+            { key: "poster", label: "Poster image URL", type: "image" },
+            { key: "detailUrl", label: "Inspect/open URL", type: "text" },
             { key: "accentColor", label: "Accent class", type: "text" },
           ]}
         />
@@ -48,7 +49,8 @@ export function PortfolioSectionsTab() {
           label="Visual Assets"
           maxItems={5}
           fields={[
-            { key: "image", label: "Image URL / path", type: "text" },
+            { key: "image", label: "Image URL / path", type: "image" },
+            { key: "detailUrl", label: "Inspect/open URL", type: "text" },
             { key: "categoryLabel", label: "Category label", type: "text" },
             { key: "subcategory", label: "Subcategory", type: "text" },
             { key: "title", label: "Title", type: "text" },
@@ -69,8 +71,9 @@ export function PortfolioSectionsTab() {
             { key: "keyFeatures", label: "Key features (comma-separated)", type: "chips" },
             { key: "techStack", label: "Tech stack (comma-separated)", type: "chips" },
             { key: "businessBenefit", label: "Business benefit", type: "text" },
-            { key: "poster", label: "Poster image URL", type: "text" },
-            { key: "video", label: "Video URL", type: "text" },
+            { key: "poster", label: "Poster image URL", type: "image" },
+            { key: "video", label: "Video URL", type: "video" },
+            { key: "projectUrl", label: "Live application URL", type: "text" },
             { key: "accentColor", label: "Accent class", type: "text" },
           ]}
         />
@@ -86,8 +89,9 @@ export function PortfolioSectionsTab() {
             { key: "title", label: "Title", type: "text" },
             { key: "description", label: "Description", type: "textarea" },
             { key: "metrics", label: "Metrics (label:value pairs, comma-separated)", type: "chips" },
-            { key: "poster", label: "Poster image URL", type: "text" },
-            { key: "video", label: "Video URL", type: "text" },
+            { key: "poster", label: "Poster image URL", type: "image" },
+            { key: "video", label: "Video URL", type: "video" },
+            { key: "detailUrl", label: "Inspect/open URL", type: "text" },
             { key: "accent", label: "Accent class", type: "text" },
           ]}
         />
@@ -138,3 +142,5 @@ function SectionShell({ title, description, children }: { title: string; descrip
     </section>
   );
 }
+
+

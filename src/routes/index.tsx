@@ -97,7 +97,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-/* ── SVG Decorators ── */
+/* -- SVG Decorators -- */
 const Scribble = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 100 60" className={className} fill="none">
     <path
@@ -137,7 +137,7 @@ const Star4 = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-/* ── Data ── */
+/* -- Data -- */
 const stats = [
   { k: "180+", v: "Projects delivered" },
   { k: "35+", v: "Active clients" },
@@ -198,7 +198,7 @@ const serviceOfferings = [
   },
 ];
 
-/* ── Custom Portfolio Datasets ── */
+/* -- Custom Portfolio Datasets -- */
 const categoryColors: Record<string, { badge: string; border: string; text: string }> = {
   "Video Editing": {
     badge: "bg-red-500/10 border-red-500/20",
@@ -355,6 +355,7 @@ type VisualAssetSlide = {
   title: string;
   description: string;
   image: string;
+  detailUrl?: string;
 };
 
 type HeroShowcaseSlide = {
@@ -376,6 +377,7 @@ type VideoEditingSlide = {
   video: string;
   poster: string;
   accentColor: string;
+  detailUrl?: string;
 };
 
 type SoftwareSystemSlide = {
@@ -388,6 +390,7 @@ type SoftwareSystemSlide = {
   poster: string;
   video: string;
   accentColor: string;
+  projectUrl?: string;
 };
 
 type SeoAnalyticsSlide = {
@@ -398,6 +401,7 @@ type SeoAnalyticsSlide = {
   poster: string;
   video: string;
   accent: string;
+  detailUrl?: string;
 };
 
 type StrategicConsultingCase = {
@@ -1054,7 +1058,7 @@ const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
   poster: "",
 }));
 
-/* ── Core Capabilities Section ── */
+/* -- Core Capabilities Section -- */
 
 
 type CmsItem = Record<string, unknown>;
@@ -1080,7 +1084,7 @@ function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
         poster: resolveMediaUrl(item.poster, heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1),
         glow: asString(item.glow, heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40"),
         ctaText: asString(item.ctaText, "View Project"),
-        ctaLink: asString(item.ctaLink, "#portfolio"),
+        ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
       }))
     : heroShowcaseSlides;
 }
@@ -1113,6 +1117,7 @@ function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
         video: asString(item.video, videoEditingSlides[index % videoEditingSlides.length]?.video ?? ""),
         poster: resolveMediaUrl(item.poster, videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1),
         accentColor: asString(item.accentColor, videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90"),
+        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
       }))
     : videoEditingSlides;
 }
@@ -1124,6 +1129,7 @@ function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
         title: asString(item.title, `Asset ${index + 1}`),
         description: asString(item.description),
         image: asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1),
+        detailUrl: asString(item.detailUrl, asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1)),
       }))
     : fallbackGraphicDesignSlides;
 }
@@ -1139,6 +1145,7 @@ function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
         poster: resolveMediaUrl(item.poster, softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1),
         video: asString(item.video, softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? ""),
         accentColor: asString(item.accentColor, softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ?? "from-teal-950/90"),
+        projectUrl: asString(item.projectUrl, asString(item.ctaLink, asString(item.video, asString(item.poster)))),
       }))
     : softwareSystemsSlides;
 }
@@ -1152,6 +1159,7 @@ function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
         poster: resolveMediaUrl(item.poster, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1),
         video: asString(item.video, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? ""),
         accent: asString(item.accent, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40"),
+        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
       }))
     : seoAnalyticsSlides;
 }
@@ -1257,7 +1265,7 @@ function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capa
   );
 }
 
-/* ── 6-Step Delivery Framework ── */
+/* -- 6-Step Delivery Framework -- */
 function ProcessSection({ items = steps }: { items?: typeof steps }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 80%", "end 20%"] });
@@ -1331,7 +1339,7 @@ function ProcessSection({ items = steps }: { items?: typeof steps }) {
   );
 }
 
-/* ── Film Reels ── */
+/* -- Film Reels -- */
 function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isReelsLoading, setIsReelsLoading] = useState(false);
@@ -1420,7 +1428,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
   );
 }
 
-/* ── Case Studies ── */
+/* -- Case Studies -- */
 function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   return (
     <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20">
@@ -1511,7 +1519,7 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   );
 }
 
-/* ── Engagement Models ── */
+/* -- Engagement Models -- */
 function FlexibleSection({ items = engagements }: { items?: typeof engagements }) {
   return (
     <section id="engage" className="relative mx-auto max-w-6xl px-5 py-10 md:py-24">
@@ -1587,7 +1595,7 @@ function FlexibleSection({ items = engagements }: { items?: typeof engagements }
   );
 }
 
-/* ── ROI Table Section ── */
+/* -- ROI Table Section -- */
 const roiRows = [
   {
     lever: "Revenue Growth",
@@ -1660,7 +1668,7 @@ function ROISection() {
   );
 }
 
-/* ── Trust / Partners strip ── */
+/* -- Trust / Partners strip -- */
 const partners = [
   "AWS Partner",
   "Google Cloud",
@@ -1694,7 +1702,7 @@ function TrustSection() {
   );
 }
 
-/* ── Portfolio Section Components ── */
+/* -- Portfolio Section Components -- */
 function PortfolioHeroShowcase({
   content = DEFAULT_SITE.portfolio.sections.heroShowcase,
   items = heroShowcaseSlides,
@@ -1702,25 +1710,25 @@ function PortfolioHeroShowcase({
   content?: PortfolioSectionCopy;
   items?: HeroShowcaseSlide[];
 }) {
-  return (
-    <div className="py-6 " id="work">
-      <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-accent">{content.eyebrow}</span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          {content.title}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          {content.description}
-        </p>
-      </div>
-      <FlankCarousel
-        slides={items}
-        title="Hero Showcase"
-        subtitle="FEATURED WORKS"
-        description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
-      />
+ return (
+  <div className="py-6 overflow-x-hidden" id="work">
+    <div className="mb-10 text-center px-5">
+      <span className="script text-3xl text-accent">{content.eyebrow}</span>
+      <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+        {content.title}
+      </h2>
+      <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
+        {content.description}
+      </p>
     </div>
-  );
+    <FlankCarousel
+      slides={items}
+      title="Hero Showcase"
+      subtitle="FEATURED WORKS"
+      description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
+    />
+  </div>
+);
 }
 
 function PortfolioVideoEditing({
@@ -1731,7 +1739,7 @@ function PortfolioVideoEditing({
   items?: VideoEditingSlide[];
 }) {
   return (
-    <div className="py-6">
+    <div className="overflow-x-clip py-6">
       <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-red-500 font-bold">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1776,8 +1784,8 @@ function PortfolioGraphicDesign({
     "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
 
   return (
-    <div className="py-6">
-      <div className="mx-auto max-w-6xl px-5 mb-2 md:mb-8   flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+    <div className="overflow-x-clip py-6">
+      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
           <span className="script text-3xl text-purple-600 dark:text-purple-400">{content.eyebrow}</span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -1787,7 +1795,7 @@ function PortfolioGraphicDesign({
             {content.description}
           </p>
         </div>
-        <div className=" hidden md:flex flex gap-2">
+        <div className="hidden md:flex gap-2">
           <button
             onClick={scrollLeft}
             aria-label="Scroll graphic design left"
@@ -1806,23 +1814,23 @@ function PortfolioGraphicDesign({
       </div>
 
       <div
-        // ref={scrollRef}
+        ref={scrollRef}
         onWheel={(event) => {
           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
           event.preventDefault();
           scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
         }}
-        className="flex gap-6 overflow-x-auto px-6 md:px-20 scrollbar-none snap-x snap-mandatory py-4 "
+        className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
         style={{ scrollbarWidth: "none" }}
       >
         {items.map((slide, idx) => (
           <motion.a
             key={idx}
-            href={slide.image}
+            href={slide.detailUrl || slide.image}
             target="_blank"
             rel="noreferrer"
             whileHover={{ y: -8, scale: 1.02 }}
-            className="relative min-w-[12rem] max-w-[6rem] sm:min-w-[14rem] sm:max-w-[4rem] md:min-w-[17rem] md:max-w-[20rem] lg:min-w-[19rem] lg:max-w-[25rem] aspect-[3/4] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+            className="relative w-[min(72vw,19rem)] min-w-[12rem] sm:w-[17rem] sm:min-w-[14rem] md:w-[19rem] md:min-w-[17rem] lg:w-[21rem] lg:min-w-[19rem] aspect-[3/4] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827] cursor-pointer"
           >
             <img
               src={slide.image}
@@ -1868,7 +1876,7 @@ function PortfolioSoftwareSystems({
 }) {
   return (
     <div className="py-6 mb-4">
-      <div className="mb- text-center px-5">
+      <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-orange-400">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           {content.title}
@@ -1924,7 +1932,7 @@ function PortfolioStrategicConsulting({
 }) {
   const badgeStyle = "bg-amber-500/25 border-amber-500/40 text-amber-400";
   return (
-    <div className="py-6">
+    <div className="overflow-x-clip py-6">
       <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
         <span className="script text-3xl text-amber-400">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
@@ -2090,7 +2098,7 @@ function PortfolioSection({ content = DEFAULT_SITE.portfolio.overview }: { conte
   );
 }
 
-/* ── Main Page ── */
+/* -- Main Page -- */
 function Index() {
   const portfolio = Route.useLoaderData();
   const site = portfolio.site;
@@ -2111,7 +2119,7 @@ function Index() {
   const cmsContentWriting = normalizeContentWriting(portfolio.collections.contentWriting);
 
   return (
-    <main className="relative min-h-screen overflow-visible bg-background text-foreground">
+    <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
       {/* ambient blobs */}
       <div className="pointer-events-none fixed -left-32 top-1/3 -z-0 h-96 w-96 bg-accent/20 animate-blob blur-3xl" />
       <div
@@ -2144,7 +2152,7 @@ function Index() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto mt-6 max-w-2xl test-base md:text-lg text-foreground/70"
+            className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-foreground/70"
           >
             Creativity, strategy, and technology come together in every campaign we build. We turn
             brand momentum into measurable growth for fast-moving teams.
@@ -2220,10 +2228,10 @@ function Index() {
               r: "-6deg",
               d: "0s",
             },
-            { txt: <>🚀 Ads</>, pos: "-right-4 top-[36%] md:right-0", r: "8deg", d: "0.4s" },
-            { txt: <>🌟 Brand</>, pos: "-left-6 top-[87%] md:left-12", r: "-4deg", d: "0.8s" },
+            { txt: <><Rocket className="h-4 w-4 text-accent" /> Ads</>, pos: "-right-4 top-[36%] md:right-0", r: "8deg", d: "0.4s" },
+            { txt: <><Sparkles className="h-4 w-4 text-accent" /> Brand</>, pos: "-left-6 top-[87%] md:left-12", r: "-4deg", d: "0.8s" },
             {
-              txt: <>💎 Social Media</>,
+              txt: <><Megaphone className="h-4 w-4 text-accent" /> Social Media</>,
               pos: "-right-6 bottom-[15%] md:right-8",
               r: "6deg",
               d: "1.2s",
@@ -2235,7 +2243,7 @@ function Index() {
               animate={{ opacity: 0.8, scale: 1 }}
               transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
               style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-              className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm ${p.pos}`}
+              className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
             >
               {p.txt}
             </motion.div>
