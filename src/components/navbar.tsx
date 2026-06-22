@@ -45,15 +45,13 @@ export function Navbar() {
       initial={{ y: -30, opacity: 0 }}
       animate={{ y: showNav ? 0 : -120, opacity: showNav ? 1 : 0 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/70 border-b border-border/80 shadow-xl shadow-black/5 backdrop-blur-xl" : "bg-background/70 border-b border-border/60 backdrop-blur-md"}`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-border/80 bg-background/82 shadow-xl shadow-black/5 backdrop-blur-xl" : "border-b border-border/60 bg-background/72 backdrop-blur-md"}`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-       <a href="#" className="flex items-center gap-2">
-  <img src={logo} alt="AlphaNexis" className="h-8 w-8 object-contain" />
-  <span className="font-display text-xl font-bold">
-    AlphaNexis<span className="text-accent"></span>
-  </span>
-</a>
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3.5 sm:px-5 sm:py-4">
+        <a href="#" className="flex min-w-0 items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+          <img src={logo} alt="AlphaNexis" className="h-8 w-8 shrink-0 object-contain" />
+          <span className="truncate font-display text-lg font-bold sm:text-xl">AlphaNexis</span>
+        </a>
         <div className="hidden items-center gap-8 text-sm md:flex">
           {["About", "Portfolio", "Work", "Services", "Contact"].map((l) => (
             <a
@@ -71,7 +69,7 @@ export function Navbar() {
           <a
             href="#contact"
             onClick={scrollToSection("contact")}
-            className="inline-flex items-center gap-1 rounded-full bg-ink px-3 py-1.5 text-xs font-medium text-cream transition-transform hover:scale-105 sm:gap-1.5 sm:px-4 sm:py-2 sm:text-sm"
+            className="inline-flex min-h-9 items-center gap-1 rounded-full bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:gap-1.5 sm:px-4 sm:py-2 sm:text-sm"
           >
             <span className="hidden min-[390px]:inline">Start a project</span>
             <span className="min-[390px]:hidden">Start</span>
@@ -84,3 +82,4 @@ export function Navbar() {
 }
 
 export default Navbar;
+
