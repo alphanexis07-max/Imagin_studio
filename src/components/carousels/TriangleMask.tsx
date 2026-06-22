@@ -213,7 +213,7 @@ export function TriangleMask({
                         ))}
                       </div>
                     )}
-                    {inspectUrl && (
+                    {/* {inspectUrl && (
                       <a
                         href={inspectUrl}
                         target="_blank"
@@ -222,8 +222,8 @@ export function TriangleMask({
                       >
                         Inspect report
                       </a>
-                    )}
-                    <div className="mt-6 h-1 w-24 rounded-full bg-emerald-500 animate-pulse" />
+                    )} */}
+                    {/* <div className="mt-6 h-1 w-24 rounded-full bg-emerald-500 animate-pulse" /> */}
                   </div>
                 </motion.div>
               );
