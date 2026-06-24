@@ -1941,7 +1941,7 @@ function PortfolioGraphicDesign({
             {content.eyebrow}
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-            {content.title}
+           Section {content.title}
           </h2>
           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
             {content.description}
@@ -2288,7 +2288,9 @@ function Index() {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative mx-auto max-w-6xl px-5 pt-12 pb-8 md:pt-20">
+      <section className="relative mx-auto max-w-6xl  px-5  pb-8 ">
+       <div className="  flex flex-col justify-center pt-12  md:h-[calc(100vh-80px)]">
+       
         <motion.div
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -2317,8 +2319,26 @@ function Index() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-foreground/70"
           >
+            Creativity, strategy, and technology come together in every campaign we build.
+      
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mx-auto  mt-6 max-w-5xl text-base md:text-lg text-accent"
+          >
             Creativity, strategy, and technology come together in every campaign we build. We turn
             brand momentum into measurable growth for fast-moving teams.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-foreground/70"
+          >
+            Creativity, strategy, and technology come together in every campaign we build.
+      
           </motion.p>
         </div>
 
@@ -2341,6 +2361,7 @@ function Index() {
             Explore services
           </a>
         </motion.div>
+         </div> 
 
         {/* Portrait hero — matches uploaded design */}
         <div className="relative mx-auto mt-10 max-w-3xl">
@@ -2466,35 +2487,7 @@ function Index() {
         </div>
       </section>
 
-      {/* STATS strip */}
-      <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
-        <div className="mb-10 text-center">
-          <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-            Milestones that prove our work delivers impact.
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-            From enterprise launches to repeated growth loops, these metrics show the outcomes we
-            create.
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {cmsStats.map((s, i) => (
-            <motion.div
-              key={s.v}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, type: "spring" }}
-              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-            >
-              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
-              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+     
 
       {/* MARQUEE */}
       <div className="border-y border-border bg-background py-5 overflow-hidden">
@@ -2716,6 +2709,35 @@ function Index() {
             <DiscoveryCallDialog />
           </div>
         </motion.div>
+      </section>
+        {/* STATS strip */}
+      <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
+        <div className="mb-10 text-center">
+          <span className="script text-3xl text-accent">Achievements</span>
+          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
+            Milestones that prove our work delivers impact.
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
+            From enterprise launches to repeated growth loops, these metrics show the outcomes we
+            create.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {cmsStats.map((s, i) => (
+            <motion.div
+              key={s.v}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, type: "spring" }}
+              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+            >
+              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
+              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* FOOTER */}

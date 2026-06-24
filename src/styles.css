@@ -341,19 +341,27 @@
   inset: -32% auto -32% -48%;
   width: 44%;
   border-radius: 999px;
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     transparent,
     color-mix(in oklab, var(--accent) 82%, white 18%) 18%,
-    var(--surface-2) 38%,
-    var(--surface-6) 58%,
-    var(--surface-4) 76%,
+    var(--surface-2) 35%,
+    var(--surface-6) 50%,
+    var(--surface-4) 65%,
+    transparent
+  ); */
+   background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15) 35%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.15) 65%,
     transparent
   );
   opacity: 0.95;
   mix-blend-mode: screen;
   transform: translateX(-120%) skewX(-18deg);
-  animation: ceo-badge-shine 2s ease-in-out infinite;
+  animation: ceo-badge-shine 3.5s ease-in-out infinite;
 }
 
 .ceo-identity-badge__name,
