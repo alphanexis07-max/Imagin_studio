@@ -2482,8 +2482,11 @@ function Index() {
             <p className="text-xs leading-snug text-foreground/70">{site.hero.sidebarQuote}</p>
           </motion.div>
         </div>
-        <div className="mt-2 flex  justify-center items-center">
-          <h1 className="md:text-lg  text-xs flex  justify-center items-center  bg-accent/30 rounded-full  py-1 px-4 text-accent">Ankit sen founder and CEO</h1>
+        <div className="mt-3 flex justify-center px-4">
+          <div className="ceo-identity-badge" role="note" aria-label="Ankit Sen, founder and CEO">
+            <span className="ceo-identity-badge__name">Ankit Sen</span>
+            <span className="ceo-identity-badge__role">Founder & CEO</span>
+          </div>
         </div>
       </section>
 

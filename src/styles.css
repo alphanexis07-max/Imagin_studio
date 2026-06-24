@@ -295,6 +295,120 @@
 .animate-blob { animation: blob 14s ease-in-out infinite; }
 .animate-float-y { animation: float-y 5s ease-in-out infinite; }
 
+
+.ceo-identity-badge {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  min-height: 44px;
+  max-width: min(92vw, 25rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--foreground) 18%, var(--accent) 34%);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.65rem 1.15rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  transform: perspective(760px) rotateX(9deg) translateZ(0);
+  transform-style: preserve-3d;
+  box-shadow:
+    0 0.28rem 0 color-mix(in oklab, var(--foreground) 30%, var(--accent) 32%),
+    0 1rem 2.25rem -1.25rem color-mix(in oklab, var(--accent) 70%, black 30%),
+    inset 0 1px 0 color-mix(in oklab, white 78%, transparent),
+    inset 0 -0.45rem 0 color-mix(in oklab, var(--foreground) 16%, transparent);
+}
+
+.ceo-identity-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0.18rem;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(180deg, color-mix(in oklab, white 42%, transparent), transparent 58%);
+  opacity: 0.78;
+  transform: translateZ(12px);
+}
+
+.ceo-identity-badge::after {
+  content: "";
+  position: absolute;
+  inset: -32% auto -32% -48%;
+  width: 44%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--accent) 82%, white 18%) 18%,
+    var(--surface-2) 38%,
+    var(--surface-6) 58%,
+    var(--surface-4) 76%,
+    transparent
+  );
+  opacity: 0.95;
+  mix-blend-mode: screen;
+  transform: translateX(-120%) skewX(-18deg);
+  animation: ceo-badge-shine 2s ease-in-out infinite;
+}
+
+.ceo-identity-badge__name,
+.ceo-identity-badge__role {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 0 color-mix(in oklab, black 46%, transparent);
+  white-space: nowrap;
+}
+
+.ceo-identity-badge__name {
+  font-size: clamp(0.78rem, 2.8vw, 1.08rem);
+}
+
+.ceo-identity-badge__role {
+  border-left: 1px solid color-mix(in oklab, var(--ink) 24%, transparent);
+  padding-left: 0.55rem;
+  font-size: clamp(0.64rem, 2.3vw, 0.86rem);
+  color: var(--accent);
+}
+
+
+@keyframes ceo-badge-shine {
+  0% { transform: translateX(-120%) skewX(-18deg); }
+  42%, 100% { transform: translateX(360%) skewX(-18deg); }
+}
+
+.dark .ceo-identity-badge::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, white 72%, var(--foreground) 18%) 22%,
+    color-mix(in oklab, white 92%, transparent) 50%,
+    color-mix(in oklab, white 58%, var(--foreground) 18%) 76%,
+    transparent
+  );
+  opacity: 0.62;
+}
+@media (max-width: 380px) {
+  .ceo-identity-badge {
+    gap: 0.42rem;
+    padding-inline: 0.86rem;
+  }
+
+  .ceo-identity-badge__role {
+    padding-left: 0.42rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ceo-identity-badge,
+  .ceo-identity-badge::after {
+    animation: none;
+  }
+}
 .initial-loader-overlay {
   position: fixed;
   inset: 0;
