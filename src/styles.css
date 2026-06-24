@@ -339,8 +339,9 @@
   content: "";
   position: absolute;
   inset: -32% auto -32% -48%;
+  
   width: 44%;
-  border-radius: 999px;
+  border-radius: 5rem;
   background: linear-gradient(
     90deg,
     transparent,
@@ -353,7 +354,7 @@
   opacity: 0.95;
   mix-blend-mode: screen;
   transform: translateX(-120%) skewX(-18deg);
-  animation: ceo-badge-shine 2s ease-in-out infinite;
+  animation: ceo-badge-shine 4s ease-in-out infinite;
 }
 
 .ceo-identity-badge__name,
