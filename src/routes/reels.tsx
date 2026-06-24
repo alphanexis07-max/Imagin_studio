@@ -22,7 +22,6 @@ function extractEmbedUrl(url: string) {
 
 function Reels() {
   const reels = Route.useLoaderData();
-  console.log(reels);
 
   return (
     <main className="relative min-h-dvh overflow-hidden bg-background text-foreground">

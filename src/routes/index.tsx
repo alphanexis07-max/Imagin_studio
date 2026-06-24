@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   useEffect,
@@ -1335,34 +1335,10 @@ function normalizeReels(items: CmsItem[]) {
       poster: asString(item.poster),
     }))
     .filter((item) => item.src);
-  return reels.length ? reels : filmReels;
+
+  return (reels.length ? reels : filmReels).slice(0, 4);
 }
-function normalizeTestimonials(items: CmsItem[]) {
-  return items.length
-    ? items.map((item) => ({
-        q: asString(item.quote),
-        name: asString(item.author),
-        co: asString(item.role),
-        verified: asString(item.verified, "Verified"),
-        stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
-      }))
-    : [
-        {
-          q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
-          name: "VP of Product",
-          co: "North American HealthTech Corp",
-          verified: "LinkedIn Verified",
-          stars: 5,
-        },
-        {
-          q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
-          name: "Chief Operating Officer",
-          co: "European Logistics Group",
-          verified: "Clutch 5-Star",
-          stars: 5,
-        },
-      ];
-}
+function normalizeTestimonials(items: CmsItem[]) { return items.length ? items.map((item) => ({ q: asString(item.quote), name: asString(item.author), co: asString(item.role), verified: asString(item.verified, "Verified"), stars: Math.max(1, Math.min(5, Number(item.stars) || 5)) })) : [{ q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.", name: "VP of Product", co: "North American HealthTech Corp", verified: "LinkedIn Verified", stars: 5 }, { q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.", name: "Chief Operating Officer", co: "European Logistics Group", verified: "Clutch 5-Star", stars: 5 }]; }
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
   return (

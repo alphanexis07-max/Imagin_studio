@@ -32,6 +32,7 @@ export function ReelsTab() {
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState<string | null>(null);
   const [toast, setToast] = useState("");
+  const [loadError, setLoadError] = useState("");
   const [uploading, setUploading] = useState<"poster" | "video" | null>(null);
 
   function showToast(msg: string) {
@@ -41,9 +42,17 @@ export function ReelsTab() {
 
   async function load() {
     setLoading(true);
-    const data = await listReels();
-    setReels(data);
-    setLoading(false);
+    setLoadError("");
+    try {
+      const data = await listReels();
+      setReels(data);
+    } catch (error) {
+      const message = (error as Error).message || "Unable to load reels.";
+      setLoadError(message);
+      showToast(`Failed to load reels: ${message}`);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => { load(); }, []);
@@ -249,6 +258,12 @@ export function ReelsTab() {
         </div>
 
         {loading && <div className="py-10 text-center text-muted-foreground">Loading...</div>}
+
+        {!loading && loadError && (
+          <div className="rounded-2xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+            Failed to load reels: {loadError}
+          </div>
+        )}
 
         {!loading && reels.length === 0 && (
           <div className="rounded-2xl border border-dashed border-border bg-card/60 py-16 text-center text-muted-foreground">
