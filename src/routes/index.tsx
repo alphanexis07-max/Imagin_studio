@@ -1060,29 +1060,127 @@ const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
 
 /* -- Core Capabilities Section -- */
 
-
 type CmsItem = Record<string, unknown>;
 
-const cmsIconMap = { Target, PenTool, Sparkles, Brain, Search, Lightbulb, Layers, Rocket, LineChart, Repeat, Zap, Infinity: InfinityIcon, Flame, TrendingUp, Globe, BarChart3 } as const;
-function asString(value: unknown, fallback = "") { return typeof value === "string" && value.trim() ? value : fallback; }
-function asStringArray(value: unknown, fallback: string[] = []) { return Array.isArray(value) ? value.map((item) => String(item)).filter(Boolean) : fallback; }
-function asNumber(value: unknown, fallback = 0) { return typeof value === "number" && Number.isFinite(value) ? value : fallback; }
-function iconFromName(name: unknown, fallback: keyof typeof cmsIconMap) { const key = asString(name, fallback) as keyof typeof cmsIconMap; return cmsIconMap[key] ?? cmsIconMap[fallback]; }
-function resolveMediaUrl(value: unknown, fallback: string) { return asString(value) || fallback; }
-function normalizeStats(items: CmsItem[]) { return items.length ? items.map((item) => ({ k: asString(item.value), v: asString(item.label) })) : stats; }
-function normalizeCapabilities(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ k: asString(item.key, String(index + 1).padStart(2, "0")), t: asString(item.title), d: asString(item.description), icon: iconFromName(item.icon, "Target"), bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"), span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "", big: item.big === true || index === 0, chips: asStringArray(item.chips), metric: asString(item.metric), metricLabel: asString(item.metricLabel) })) : capabilities; }
-function normalizeProcess(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ n: asString(item.number, String(index + 1).padStart(2, "0")), t: asString(item.title), d: asString(item.description), icon: iconFromName(item.icon, "Search"), color: asString(item.bg, "bg-background") })) : steps; }
-function normalizeCases(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ name: asString(item.name), sector: asString(item.sector), year: asString(item.year), word: asString(item.word, asString(item.name).toUpperCase()), color: asString(item.color, "bg-accent"), problem: asString(item.problem), metrics: Array.isArray(item.metrics) ? (item.metrics as CmsItem[]).map((metric) => ({ k: asString(metric.key), v: asString(metric.value) })) : [], tags: asStringArray(item.tags), rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4) })) : cases; }
-function normalizeEngagements(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ icon: iconFromName(item.icon, "Zap"), t: asString(item.name), k: asString(item.duration), d: asString(item.description), bullets: asStringArray(item.bullets), bg: asString(item.bg, "bg-background"), rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2), tag: asString(item.tag), popular: item.popular === true })) : engagements; }
+const cmsIconMap = {
+  Target,
+  PenTool,
+  Sparkles,
+  Brain,
+  Search,
+  Lightbulb,
+  Layers,
+  Rocket,
+  LineChart,
+  Repeat,
+  Zap,
+  Infinity: InfinityIcon,
+  Flame,
+  TrendingUp,
+  Globe,
+  BarChart3,
+} as const;
+function asString(value: unknown, fallback = "") {
+  return typeof value === "string" && value.trim() ? value : fallback;
+}
+function asStringArray(value: unknown, fallback: string[] = []) {
+  return Array.isArray(value) ? value.map((item) => String(item)).filter(Boolean) : fallback;
+}
+function asNumber(value: unknown, fallback = 0) {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
+}
+function iconFromName(name: unknown, fallback: keyof typeof cmsIconMap) {
+  const key = asString(name, fallback) as keyof typeof cmsIconMap;
+  return cmsIconMap[key] ?? cmsIconMap[fallback];
+}
+function resolveMediaUrl(value: unknown, fallback: string) {
+  return asString(value) || fallback;
+}
+function normalizeStats(items: CmsItem[]) {
+  return items.length
+    ? items.map((item) => ({ k: asString(item.value), v: asString(item.label) }))
+    : stats;
+}
+function normalizeCapabilities(items: CmsItem[]) {
+  return items.length
+    ? items.map((item, index) => ({
+        k: asString(item.key, String(index + 1).padStart(2, "0")),
+        t: asString(item.title),
+        d: asString(item.description),
+        icon: iconFromName(item.icon, "Target"),
+        bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"),
+        span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "",
+        big: item.big === true || index === 0,
+        chips: asStringArray(item.chips),
+        metric: asString(item.metric),
+        metricLabel: asString(item.metricLabel),
+      }))
+    : capabilities;
+}
+function normalizeProcess(items: CmsItem[]) {
+  return items.length
+    ? items.map((item, index) => ({
+        n: asString(item.number, String(index + 1).padStart(2, "0")),
+        t: asString(item.title),
+        d: asString(item.description),
+        icon: iconFromName(item.icon, "Search"),
+        color: asString(item.bg, "bg-background"),
+      }))
+    : steps;
+}
+function normalizeCases(items: CmsItem[]) {
+  return items.length
+    ? items.map((item, index) => ({
+        name: asString(item.name),
+        sector: asString(item.sector),
+        year: asString(item.year),
+        word: asString(item.word, asString(item.name).toUpperCase()),
+        color: asString(item.color, "bg-accent"),
+        problem: asString(item.problem),
+        metrics: Array.isArray(item.metrics)
+          ? (item.metrics as CmsItem[]).map((metric) => ({
+              k: asString(metric.key),
+              v: asString(metric.value),
+            }))
+          : [],
+        tags: asStringArray(item.tags),
+        rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4),
+      }))
+    : cases;
+}
+function normalizeEngagements(items: CmsItem[]) {
+  return items.length
+    ? items.map((item, index) => ({
+        icon: iconFromName(item.icon, "Zap"),
+        t: asString(item.name),
+        k: asString(item.duration),
+        d: asString(item.description),
+        bullets: asStringArray(item.bullets),
+        bg: asString(item.bg, "bg-background"),
+        rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2),
+        tag: asString(item.tag),
+        popular: item.popular === true,
+      }))
+    : engagements;
+}
 function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
   return items.length
     ? items.map((item, index) => ({
         categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
         title: asString(item.title, `Project ${index + 1}`),
         description: asString(item.description),
-        video: asString(item.video, heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? ""),
-        poster: resolveMediaUrl(item.poster, heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1),
-        glow: asString(item.glow, heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40"),
+        video: asString(
+          item.video,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? "",
+        ),
+        poster: resolveMediaUrl(
+          item.poster,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1,
+        ),
+        glow: asString(
+          item.glow,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40",
+        ),
         ctaText: asString(item.ctaText, "View Project"),
         ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
       }))
@@ -1114,9 +1212,18 @@ function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
         title: asString(item.title, `Edit ${index + 1}`),
         description: asString(item.description),
         outcome: asString(item.outcome),
-        video: asString(item.video, videoEditingSlides[index % videoEditingSlides.length]?.video ?? ""),
-        poster: resolveMediaUrl(item.poster, videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1),
-        accentColor: asString(item.accentColor, videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90"),
+        video: asString(
+          item.video,
+          videoEditingSlides[index % videoEditingSlides.length]?.video ?? "",
+        ),
+        poster: resolveMediaUrl(
+          item.poster,
+          videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1,
+        ),
+        accentColor: asString(
+          item.accentColor,
+          videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90",
+        ),
         detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
       }))
     : videoEditingSlides;
@@ -1128,8 +1235,19 @@ function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
         subcategory: asString(item.subcategory),
         title: asString(item.title, `Asset ${index + 1}`),
         description: asString(item.description),
-        image: asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1),
-        detailUrl: asString(item.detailUrl, asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1)),
+        image: asString(
+          item.image,
+          fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
+            screenshot1,
+        ),
+        detailUrl: asString(
+          item.detailUrl,
+          asString(
+            item.image,
+            fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
+              screenshot1,
+          ),
+        ),
       }))
     : fallbackGraphicDesignSlides;
 }
@@ -1142,10 +1260,23 @@ function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
         keyFeatures: asStringArray(item.keyFeatures),
         techStack: asStringArray(item.techStack),
         businessBenefit: asString(item.businessBenefit),
-        poster: resolveMediaUrl(item.poster, softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1),
-        video: asString(item.video, softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? ""),
-        accentColor: asString(item.accentColor, softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ?? "from-teal-950/90"),
-        projectUrl: asString(item.projectUrl, asString(item.ctaLink, asString(item.video, asString(item.poster)))),
+        poster: resolveMediaUrl(
+          item.poster,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
+        ),
+        video: asString(
+          item.video,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
+        ),
+        accentColor: asString(
+          item.accentColor,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
+            "from-teal-950/90",
+        ),
+        projectUrl: asString(
+          item.projectUrl,
+          asString(item.ctaLink, asString(item.video, asString(item.poster))),
+        ),
       }))
     : softwareSystemsSlides;
 }
@@ -1156,9 +1287,18 @@ function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
         title: asString(item.title, `Analytics ${index + 1}`),
         description: asString(item.description),
         metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
-        poster: resolveMediaUrl(item.poster, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1),
-        video: asString(item.video, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? ""),
-        accent: asString(item.accent, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40"),
+        poster: resolveMediaUrl(
+          item.poster,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1,
+        ),
+        video: asString(
+          item.video,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? "",
+        ),
+        accent: asString(
+          item.accent,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40",
+        ),
         detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
       }))
     : seoAnalyticsSlides;
@@ -1186,8 +1326,43 @@ function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
       }))
     : editorialContent;
 }
-function normalizeReels(items: CmsItem[]) { const reels = items.map((item) => ({ tag: asString(item.tag, "Reel"), title: asString(item.title, "Reel"), src: asString(item.url), poster: asString(item.poster) })).filter((item) => item.src); return reels.length ? reels : filmReels; }
-function normalizeTestimonials(items: CmsItem[]) { return items.length ? items.map((item) => ({ q: asString(item.quote), name: asString(item.author), co: asString(item.role), verified: asString(item.verified, "Verified"), stars: Math.max(1, Math.min(5, Number(item.stars) || 5)) })) : [{ q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.", name: "VP of Product", co: "North American HealthTech Corp", verified: "LinkedIn Verified", stars: 5 }, { q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.", name: "Chief Operating Officer", co: "European Logistics Group", verified: "Clutch 5-Star", stars: 5 }]; }
+function normalizeReels(items: CmsItem[]) {
+  const reels = items
+    .map((item) => ({
+      tag: asString(item.tag, "Reel"),
+      title: asString(item.title, "Reel"),
+      src: asString(item.url),
+      poster: asString(item.poster),
+    }))
+    .filter((item) => item.src);
+  return reels.length ? reels : filmReels;
+}
+function normalizeTestimonials(items: CmsItem[]) {
+  return items.length
+    ? items.map((item) => ({
+        q: asString(item.quote),
+        name: asString(item.author),
+        co: asString(item.role),
+        verified: asString(item.verified, "Verified"),
+        stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
+      }))
+    : [
+        {
+          q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
+          name: "VP of Product",
+          co: "North American HealthTech Corp",
+          verified: "LinkedIn Verified",
+          stars: 5,
+        },
+        {
+          q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
+          name: "Chief Operating Officer",
+          co: "European Logistics Group",
+          verified: "Clutch 5-Star",
+          stars: 5,
+        },
+      ];
+}
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
   return (
@@ -1372,7 +1547,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
               // aria-busy={isReelsLoading}
               className="inline-flex min-w-36 items-center justify-center gap-2 rounded-full border border-ink/15 bg-card/70 px-6 py-2.5 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur transition-all hover:bg-ink hover:text-cream aria-busy:pointer-events-none aria-busy:opacity-80 dark:border-white/10 dark:bg-card/70 dark:text-card-foreground dark:hover:bg-foreground dark:hover:text-background"
             >
-              {isReelsLoading ?(
+              {isReelsLoading ? (
                 <>
                   <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
                   Loading
@@ -1421,7 +1596,6 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
               );
             })}
           </div>
-
         </div>
       </div>
     </section>
@@ -1710,25 +1884,25 @@ function PortfolioHeroShowcase({
   content?: PortfolioSectionCopy;
   items?: HeroShowcaseSlide[];
 }) {
- return (
-  <div className="py-6 overflow-x-hidden" id="work">
-    <div className="mb-10 text-center px-5">
-      <span className="script text-3xl text-accent">{content.eyebrow}</span>
-      <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-        {content.title}
-      </h2>
-      <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-        {content.description}
-      </p>
+  return (
+    <div className="py-6 overflow-x-hidden" id="work">
+      <div className="mb-10 text-center px-5">
+        <span className="script text-3xl text-accent">{content.eyebrow}</span>
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+          {content.title}
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
+          {content.description}
+        </p>
+      </div>
+      <FlankCarousel
+        slides={items}
+        title="Hero Showcase"
+        subtitle="FEATURED WORKS"
+        description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
+      />
     </div>
-    <FlankCarousel
-      slides={items}
-      title="Hero Showcase"
-      subtitle="FEATURED WORKS"
-      description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
-    />
-  </div>
-);
+  );
 }
 
 function PortfolioVideoEditing({
@@ -1787,7 +1961,9 @@ function PortfolioGraphicDesign({
     <div className="overflow-x-clip py-6">
       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
-          <span className="script text-3xl text-purple-600 dark:text-purple-400">{content.eyebrow}</span>
+          <span className="script text-3xl text-purple-600 dark:text-purple-400">
+            {content.eyebrow}
+          </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
             {content.title}
           </h2>
@@ -2078,7 +2254,11 @@ function PortfolioContentWriting({
   );
 }
 
-function PortfolioSection({ content = DEFAULT_SITE.portfolio.overview }: { content?: PortfolioSectionCopy }) {
+function PortfolioSection({
+  content = DEFAULT_SITE.portfolio.overview,
+}: {
+  content?: PortfolioSectionCopy;
+}) {
   return (
     <section
       id="portfolio"
@@ -2088,11 +2268,10 @@ function PortfolioSection({ content = DEFAULT_SITE.portfolio.overview }: { conte
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-8xl tracking-tight text-foreground">
-          {content.title.split(" ")[0]} <span className="italic text-accent">{content.title.split(" ").slice(1).join(" ")}</span>
+          {content.title.split(" ")[0]}{" "}
+          <span className="italic text-accent">{content.title.split(" ").slice(1).join(" ")}</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">
-          {content.description}
-        </p>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">{content.description}</p>
       </div>
     </section>
   );
@@ -2115,7 +2294,9 @@ function Index() {
   const cmsVisualAssets = normalizeVisualAssets(portfolio.collections.visualAssets);
   const cmsSoftwareSystems = normalizeSoftwareSystems(portfolio.collections.softwareSystems);
   const cmsSeoAnalytics = normalizeSeoAnalytics(portfolio.collections.seoAnalytics);
-  const cmsStrategicConsulting = normalizeStrategicConsulting(portfolio.collections.strategicConsulting);
+  const cmsStrategicConsulting = normalizeStrategicConsulting(
+    portfolio.collections.strategicConsulting,
+  );
   const cmsContentWriting = normalizeContentWriting(portfolio.collections.contentWriting);
 
   return (
@@ -2146,7 +2327,13 @@ function Index() {
             transition={{ duration: 0.7 }}
             className="font-display text-[clamp(2rem,8vw,4rem)]  md:text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
           >
-            {site.hero.headline || (<>We craft digital experiences that<br />drive growth and leave a lasting <span className="text-accent">impact</span></>)}
+            {site.hero.headline || (
+              <>
+                We craft digital experiences that
+                <br />
+                drive growth and leave a lasting <span className="text-accent">impact</span>
+              </>
+            )}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -2228,10 +2415,32 @@ function Index() {
               r: "-6deg",
               d: "0s",
             },
-            { txt: <><Rocket className="h-4 w-4 text-accent" /> Ads</>, pos: "-right-4 top-[36%] md:right-0", r: "8deg", d: "0.4s" },
-            { txt: <><Sparkles className="h-4 w-4 text-accent" /> Brand</>, pos: "-left-6 top-[87%] md:left-12", r: "-4deg", d: "0.8s" },
             {
-              txt: <><Megaphone className="h-4 w-4 text-accent" /> Social Media</>,
+              txt: (
+                <>
+                  <Rocket className="h-4 w-4 text-accent" /> Ads
+                </>
+              ),
+              pos: "-right-4 top-[36%] md:right-0",
+              r: "8deg",
+              d: "0.4s",
+            },
+            {
+              txt: (
+                <>
+                  <Sparkles className="h-4 w-4 text-accent" /> Brand
+                </>
+              ),
+              pos: "-left-6 top-[87%] md:left-12",
+              r: "-4deg",
+              d: "0.8s",
+            },
+            {
+              txt: (
+                <>
+                  <Megaphone className="h-4 w-4 text-accent" /> Social Media
+                </>
+              ),
               pos: "-right-6 bottom-[15%] md:right-8",
               r: "6deg",
               d: "1.2s",
@@ -2256,7 +2465,9 @@ function Index() {
             transition={{ delay: 1.4 }}
             className="absolute -right-2 top-[18%] z-20 hidden text-right md:block"
           >
-            <div className="font-display text-4xl font-bold leading-none">{site.hero.sidebarStat.value}</div>
+            <div className="font-display text-4xl font-bold leading-none">
+              {site.hero.sidebarStat.value}
+            </div>
             <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
           </motion.div>
 
@@ -2268,10 +2479,11 @@ function Index() {
             className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
           >
             <div className="font-display text-4xl text-foreground/40">"</div>
-           <p className="text-xs leading-snug text-foreground/70">
-              {site.hero.sidebarQuote}
-            </p>
+            <p className="text-xs leading-snug text-foreground/70">{site.hero.sidebarQuote}</p>
           </motion.div>
+        </div>
+        <div className="mt-2 flex  justify-center items-center">
+          <h1 className="md:text-lg  text-xs flex  justify-center items-center  bg-accent/30 rounded-full  py-1 px-4 text-accent">Ankit sen founder and CEO</h1>
         </div>
       </section>
 
@@ -2313,11 +2525,13 @@ function Index() {
               key={idx}
               className="flex shrink-0 items-center gap-10 px-6 font-display text-3xl font-semibold"
             >
-              {site.marquee.top.flatMap((word) => [word, "/"]).map((w, i) => (
-                <span key={i} className={i % 2 === 0 ? "text-foreground" : "text-accent"}>
-                  {w}
-                </span>
-              ))}
+              {site.marquee.top
+                .flatMap((word) => [word, "/"])
+                .map((w, i) => (
+                  <span key={i} className={i % 2 === 0 ? "text-foreground" : "text-accent"}>
+                    {w}
+                  </span>
+                ))}
             </div>
           ))}
         </div>
@@ -2327,11 +2541,13 @@ function Index() {
               key={idx}
               className="flex shrink-0 items-center gap-10 px-6 font-display text-2xl italic"
             >
-              {site.marquee.bottom.flatMap((word) => [word, "/"]).map((w, i) => (
-                <span key={i} className={i % 2 === 1 ? "text-accent" : ""}>
-                  {w}
-                </span>
-              ))}
+              {site.marquee.bottom
+                .flatMap((word) => [word, "/"])
+                .map((w, i) => (
+                  <span key={i} className={i % 2 === 1 ? "text-accent" : ""}>
+                    {w}
+                  </span>
+                ))}
             </div>
           ))}
         </div>
@@ -2339,13 +2555,34 @@ function Index() {
 
       {/* ABOUT */}
       <PortfolioSection content={portfolioCopy.overview} />
-      <PortfolioHeroShowcase content={portfolioCopy.sections.heroShowcase} items={cmsHeroShowcase} />
-      <PortfolioVideoEditing content={portfolioCopy.sections.videoEditing} items={cmsVideoEditing} />
-      <PortfolioGraphicDesign content={portfolioCopy.sections.visualAssets} items={cmsVisualAssets} />
-      <PortfolioSoftwareSystems content={portfolioCopy.sections.softwareSystems} items={cmsSoftwareSystems} />
-      <PortfolioSEOAnalytics content={portfolioCopy.sections.seoAnalytics} items={cmsSeoAnalytics} />
-      <PortfolioStrategicConsulting content={portfolioCopy.sections.strategicConsulting} items={cmsStrategicConsulting} />
-      <PortfolioContentWriting content={portfolioCopy.sections.contentWriting} items={cmsContentWriting} />
+      <PortfolioHeroShowcase
+        content={portfolioCopy.sections.heroShowcase}
+        items={cmsHeroShowcase}
+      />
+      <PortfolioVideoEditing
+        content={portfolioCopy.sections.videoEditing}
+        items={cmsVideoEditing}
+      />
+      <PortfolioGraphicDesign
+        content={portfolioCopy.sections.visualAssets}
+        items={cmsVisualAssets}
+      />
+      <PortfolioSoftwareSystems
+        content={portfolioCopy.sections.softwareSystems}
+        items={cmsSoftwareSystems}
+      />
+      <PortfolioSEOAnalytics
+        content={portfolioCopy.sections.seoAnalytics}
+        items={cmsSeoAnalytics}
+      />
+      <PortfolioStrategicConsulting
+        content={portfolioCopy.sections.strategicConsulting}
+        items={cmsStrategicConsulting}
+      />
+      <PortfolioContentWriting
+        content={portfolioCopy.sections.contentWriting}
+        items={cmsContentWriting}
+      />
 
       <ServicesSection />
 
@@ -2367,9 +2604,7 @@ function Index() {
               </span>
               .
             </h2>
-            <p className="mt-6 max-w-md text-lg text-foreground/70">
-              {site.about.body}
-            </p>
+            <p className="mt-6 max-w-md text-lg text-foreground/70">{site.about.body}</p>
             <p className="mt-4 max-w-md text-base text-foreground/60">
               8+ years blending performance marketing, brand systems, and AI-powered automation into
               one integrated growth pod your team can plug straight into.
@@ -2470,7 +2705,6 @@ function Index() {
                   {t.verified}
                 </span>
               </div>
-              
             </motion.div>
           ))}
         </div>
@@ -2492,9 +2726,7 @@ function Index() {
           <h2 className="font-display text-5xl font-bold leading-[1.05] md:text-7xl">
             {site.contact.headline}
           </h2>
-          <p className="mx-auto mt-5 max-w-md text-foreground/80">
-            {site.contact.blurb}
-          </p>
+          <p className="mx-auto mt-5 max-w-md text-foreground/80">{site.contact.blurb}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href={`mailto:${site.contact.email}`}
