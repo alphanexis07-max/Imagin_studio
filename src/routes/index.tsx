@@ -7,6 +7,7 @@ import {
   type ChangeEvent,
   type FormEvent,
   type MouseEvent,
+  type ReactNode,
 } from "react";
 import logo from "@/assets/logo.png";
 import { DEFAULT_SITE } from "@/lib/cms/defaults";
@@ -130,6 +131,120 @@ const Arrow = ({ className = "" }: { className?: string }) => (
       strokeLinejoin="round"
     />
   </svg>
+);
+const QuestionCallout = ({
+  label,
+  icon,
+  className = "",
+}: {
+  label: string;
+  icon: ReactNode;
+  className?: string;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 14, rotateX: 18 }}
+    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+    transition={{ delay: 0.72, duration: 0.55 }}
+    className={`absolute z-20 flex min-h-[74px] w-[min(88vw,310px)] items-center gap-3 rounded-lg border-2 border-ink bg-card px-4 py-3 text-left shadow-[0_10px_0_-5px_var(--orange-pop),0_18px_42px_-28px_rgba(0,0,0,0.5)] [transform:perspective(780px)_rotateX(7deg)] ${className}`}
+  >
+    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent text-ink shadow-[inset_0_-4px_0_rgba(0,0,0,0.14)]">
+      {icon}
+    </span>
+    <span className="text-sm font-semibold leading-snug text-foreground md:text-base">{label}</span>
+  </motion.div>
+);
+
+const ThinAnswerArrow = ({
+  className = "",
+  path,
+  delay,
+}: {
+  className?: string;
+  path: string;
+  delay: number;
+}) => (
+  <motion.svg
+    aria-hidden="true"
+    viewBox="0 0 320 190"
+    className={`pointer-events-none absolute z-10 hidden h-[190px] w-[320px] overflow-visible text-accent drop-shadow-[0_8px_8px_rgba(0,0,0,0.18)] md:block ${className}`}
+    fill="none"
+  >
+    <motion.path
+      d={path}
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="4"
+      initial={{ pathLength: 0 }}
+      animate={{ pathLength: [0, 0.42, 0.7, 1, 1], opacity: [0.15, 1, 1, 1, 0.82] }}
+      transition={{
+        delay,
+        duration: 2.8,
+        repeat: Infinity,
+        repeatDelay: 1,
+        times: [0, 0.28, 0.5, 0.78, 1],
+        ease: "easeInOut",
+      }}
+    />
+    <motion.path
+      d="M294 166 L315 176 L304 154"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="4"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: [0, 0, 1, 1, 0.82], scale: [0.8, 0.8, 1.08, 1, 1] }}
+      transition={{
+        delay,
+        duration: 2.8,
+        repeat: Infinity,
+        repeatDelay: 1,
+        times: [0, 0.62, 0.78, 0.9, 1],
+        ease: "easeInOut",
+      }}
+    />
+  </motion.svg>
+);
+
+const QuestionAnswerCtas = () => (
+  <div className="relative mx-auto mt-8 grid min-h-[360px] w-full max-w-5xl grid-rows-[1fr_auto] px-2 pt-2 md:min-h-[310px] md:px-0">
+    <QuestionCallout
+      label="Need campaigns, content, and growth systems?"
+      icon={<Megaphone className="h-5 w-5" />}
+      className="left-1 top-0 md:left-0"
+    />
+    <QuestionCallout
+      label="Need websites, apps, and automation built?"
+      icon={<Rocket className="h-5 w-5" />}
+      className="bottom-[118px] right-1 md:right-0 md:top-0 md:bottom-auto"
+    />
+
+    <ThinAnswerArrow
+      path="M22 28 C82 50 118 78 156 110 C190 138 230 158 310 174"
+      className="left-[13%] top-[62px]"
+      delay={1}
+    />
+    <ThinAnswerArrow
+      path="M22 28 C82 50 118 78 156 110 C190 138 230 158 310 174"
+      className="right-[13%] top-[62px] scale-x-[-1]"
+      delay={1.16}
+    />
+
+    <div className="relative z-20 row-start-2 flex w-full flex-col items-center justify-center w-full gap-2  md:flex-row md:px-[9%]">
+      <a
+        href="#work"
+        className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+      >
+        Marketing <ArrowUpRight className="h-4 w-4" />
+      </a>
+      <a
+        href="#services"
+        className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+      >
+        Development
+      </a>
+    </div>
+  </div>
 );
 const Star4 = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 40 40" className={className} fill="currentColor">
@@ -2535,20 +2650,9 @@ function Index() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3"
+            className="w-full"
           >
-            <a
-              href="#work"
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-            >
-              Marketing <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#services"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold lift"
-            >
-              Development
-            </a>
+            <QuestionAnswerCtas />
           </motion.div>
         </div>
       </section>
