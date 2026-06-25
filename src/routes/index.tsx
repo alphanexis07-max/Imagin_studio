@@ -417,45 +417,105 @@ const ThinAnswerArrow = ({
   </motion.svg>
 );
 
+const MobileQuestionCta = ({
+  label,
+  icon,
+  href,
+  children,
+  primary = false,
+  delay,
+}: {
+  label: string;
+  icon: ReactNode;
+  href: string;
+  children: ReactNode;
+  primary?: boolean;
+  delay: number;
+}) => (
+  <div className="grid gap-2">
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.45 }}
+      className="flex min-h-[76px] w-full items-center gap-3 rounded-lg border-2 border-ink bg-card px-4 py-3 text-left shadow-[0_8px_0_-4px_var(--orange-pop),0_16px_34px_-26px_rgba(0,0,0,0.45)]"
+    >
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent text-ink shadow-[inset_0_-4px_0_rgba(0,0,0,0.14)]">
+        {icon}
+      </span>
+      <span className="min-w-0 text-sm font-semibold leading-snug text-foreground">{label}</span>
+    </motion.div>
+    <a
+      href={href}
+      className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold lift ${
+        primary ? "bg-ink text-cream" : "border-2 border-ink bg-background text-foreground"
+      }`}
+    >
+      {children}
+    </a>
+  </div>
+);
+
 const QuestionAnswerCtas = () => (
-  <div className="relative mx-auto mt-8 grid min-h-[360px] w-full max-w-5xl grid-rows-[1fr_auto] px-2 pt-2 md:min-h-[310px] md:px-0">
-    <QuestionCallout
-      label="Need campaigns, content, and growth systems?"
-      icon={<Megaphone className="h-5 w-5" />}
-      className="left-1 top-0 md:left-0"
-    />
-    <QuestionCallout
-      label="Need websites, apps, and automation built?"
-      icon={<Rocket className="h-5 w-5" />}
-      className="bottom-[118px] right-1 md:right-0 md:top-0 md:bottom-auto"
-    />
-
-    <ThinAnswerArrow
-      path="M22 28 C76 62 112 84 150 118 C182 146 224 166 282 178"
-      headPath="M264 166 L282 178 L271 158"
-      className="left-[14%] top-[70px]"
-      delay={1}
-    />
-    <ThinAnswerArrow
-      path="M298 28 C244 62 208 84 170 118 C138 146 96 166 38 178"
-      headPath="M56 166 L38 178 L49 158"
-      className="right-[14%] top-[70px]"
-      delay={1.16}
-    />
-
-    <div className="relative z-20 row-start-2 flex w-full flex-col items-center justify-center w-full gap-2  md:flex-row md:px-[9%]">
-      <a
+  <div className="mx-auto mt-8 w-full max-w-5xl px-2 md:px-0">
+    <div className="grid gap-4 md:hidden">
+      <MobileQuestionCta
+        label="Need campaigns, content, and growth systems?"
+        icon={<Megaphone className="h-5 w-5" />}
         href="#work"
-        className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+        primary
+        delay={0.68}
       >
         Marketing <ArrowUpRight className="h-4 w-4" />
-      </a>
-      <a
+      </MobileQuestionCta>
+      <MobileQuestionCta
+        label="Need websites, apps, and automation built?"
+        icon={<Rocket className="h-5 w-5" />}
         href="#services"
-        className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+        delay={0.78}
       >
         Development
-      </a>
+      </MobileQuestionCta>
+    </div>
+
+    <div className="relative hidden min-h-[310px] w-full grid-rows-[1fr_auto] pt-2 md:grid">
+      <QuestionCallout
+        label="Need campaigns, content, and growth systems?"
+        icon={<Megaphone className="h-5 w-5" />}
+        className="left-0 top-0"
+      />
+      <QuestionCallout
+        label="Need websites, apps, and automation built?"
+        icon={<Rocket className="h-5 w-5" />}
+        className="right-0 top-0"
+      />
+
+      <ThinAnswerArrow
+        path="M22 28 C76 62 112 84 150 118 C182 146 224 166 282 178"
+        headPath="M264 166 L282 178 L271 158"
+        className="left-[14%] top-[70px]"
+        delay={1}
+      />
+      <ThinAnswerArrow
+        path="M298 28 C244 62 208 84 170 118 C138 146 96 166 38 178"
+        headPath="M56 166 L38 178 L49 158"
+        className="right-[14%] top-[70px]"
+        delay={1.16}
+      />
+
+      <div className="relative z-20 row-start-2 flex w-full items-center justify-center gap-2 md:px-[9%]">
+        <a
+          href="#work"
+          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+        >
+          Marketing <ArrowUpRight className="h-4 w-4" />
+        </a>
+        <a
+          href="#services"
+          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+        >
+          Development
+        </a>
+      </div>
     </div>
   </div>
 );
@@ -1891,7 +1951,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
     });
   }, [activeCategory, items, reelSearch]);
 
-  const visibleReels = filteredReels.slice(0, 8);
+  const visibleReels = filteredReels.slice(0, 6);
 
   useEffect(() => {
     setIsFiltering(true);
