@@ -29,37 +29,37 @@ export const DEFAULT_SITE: SiteData = {
     sections: {
       heroShowcase: {
         eyebrow: "First Impressions",
-        title: "SECTION 1 - HERO SHOWCASE",
+        title: "HERO SHOWCASE",
         description: "Our strongest visual services and client outcomes, mapped in full-perspective motion.",
       },
       videoEditing: {
         eyebrow: "Motion Editing",
-        title: "SECTION 2 - VIDEO EDITING",
+        title: "VIDEO EDITING",
         description: "Reel previews, commercial edits, and short-form social hooks.",
       },
       visualAssets: {
         eyebrow: "Visual Assets",
-        title: "SECTION 3 - GRAPHIC DESIGN",
+        title: "GRAPHIC DESIGN",
         description: "Social creatives, branding systems, packaging labels, and print design layouts.",
       },
       softwareSystems: {
         eyebrow: "Intelligent Stacks",
-        title: "SECTION 4 - SOFTWARE & SYSTEMS",
+        title: "SOFTWARE & SYSTEMS",
         description: "Desktop and mobile mockups for custom CRMs, internal tools, and sales apps.",
       },
       seoAnalytics: {
         eyebrow: "Growth Metrics",
-        title: "SECTION 5 - SEO & ANALYTICS",
+        title: "SEO & ANALYTICS",
         description: "Lighthouse speeds, technical audits, and organic search compounding results.",
       },
       strategicConsulting: {
         eyebrow: "Management Consulting",
-        title: "SECTION 6 - STRATEGIC CONSULTING",
+        title: "STRATEGIC CONSULTING",
         description: "Executive blueprints, go-to-market pricing structures, and roadmap frameworks.",
       },
       contentWriting: {
         eyebrow: "Copywriting",
-        title: "SECTION 7 - CONTENT WRITING",
+        title: "CONTENT WRITING",
         description: "Sales landing pages, email campaigns, blogs, and high-converting product copies.",
       },
     },

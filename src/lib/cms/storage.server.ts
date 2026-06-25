@@ -1,6 +1,7 @@
 import { getPrisma } from "@/lib/db.server";
 import { readJson, writeJson } from "@/lib/admin/storage.server";
 import { detectEmbed } from "@/lib/admin/embed";
+import { instagramPosts } from "@/data/instagramFeed";
 import { DEFAULT_COLLECTIONS, DEFAULT_REELS, DEFAULT_SITE } from "./defaults";
 import type { CollectionName } from "@/lib/admin/collections.functions";
 import type { Reel } from "@/lib/admin/reels.functions";
@@ -17,6 +18,114 @@ function recordToItem(record: { id: string; order: number; data: unknown }) {
 
 function warnDbFallback(operation: string, error: unknown) {
   console.warn(`[cms] MongoDB unavailable during ${operation}; using local JSON fallback.`, error);
+}
+
+function localReelFallback() {
+  return sortByOrder(readJson<Reel[]>("reels.json", DEFAULT_REELS));
+}
+
+type RawReelRecord = Record<string, unknown>;
+
+function asText(value: unknown, fallback = "") {
+  return typeof value === "string" ? value : fallback;
+}
+
+function asNumber(value: unknown, fallback: number) {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
+}
+
+function rawObjectId(value: unknown) {
+  if (typeof value === "string") return value;
+  if (typeof value === "object" && value !== null && "$oid" in value) {
+    return asText((value as { $oid?: unknown }).$oid);
+  }
+  return "";
+}
+
+function rawDate(value: unknown) {
+  if (typeof value === "string") return value;
+  if (value instanceof Date) return value.toISOString();
+  if (typeof value === "object" && value !== null && "$date" in value) {
+    const date = (value as { $date?: unknown }).$date;
+    return typeof date === "string" ? date : new Date().toISOString();
+  }
+  return new Date().toISOString();
+}
+
+function normalizeRawReel(record: RawReelRecord, index: number): Reel | null {
+  const url = asText(record.url).replace(/\s+/g, "");
+  if (!url) return null;
+
+  const embed = detectEmbed(url);
+  const title = asText(record.title, `Reel ${index + 1}`);
+
+  return {
+    id: rawObjectId(record._id) || asText(record.id) || url,
+    tag: asText(record.tag, "Reel"),
+    title,
+    description: asText(record.description),
+    url,
+    kind: asText(record.kind, embed.kind),
+    embedUrl: asText(record.embedUrl, embed.embedUrl),
+    poster: asText(record.poster, embed.thumb || ""),
+    order: asNumber(record.order, index),
+    createdAt: rawDate(record.createdAt),
+    updatedAt: rawDate(record.updatedAt),
+  };
+}
+
+function reelKey(url: string) {
+  const instagramMatch = url.match(/instagram\.com\/reel\/([A-Za-z0-9_-]+)/);
+  if (instagramMatch) return `instagram:${instagramMatch[1]}`;
+
+  try {
+    const parsed = new URL(url);
+    parsed.search = "";
+    parsed.hash = "";
+    return parsed.toString().replace(/\/$/, "");
+  } catch {
+    return url;
+  }
+}
+
+function defaultInstagramReels(): Reel[] {
+  const now = new Date().toISOString();
+
+  return instagramPosts
+    .map((post, index) => {
+      const url = post.url.replace(/\s+/g, "");
+      const embed = detectEmbed(url);
+      if (embed.kind === "unknown") return null;
+
+      return {
+        id: post.id,
+        tag: "Instagram",
+        title: `Instagram Reel ${index + 1}`,
+        description: "",
+        url,
+        kind: embed.kind,
+        embedUrl: embed.embedUrl,
+        poster: embed.thumb || "",
+        order: index,
+        createdAt: now,
+        updatedAt: now,
+      } satisfies Reel;
+    })
+    .filter(Boolean) as Reel[];
+}
+
+function mergeWithDefaultReels(reels: Reel[]) {
+  const seen = new Set<string>();
+  const merged: Reel[] = [];
+
+  for (const reel of [...sortByOrder(reels), ...defaultInstagramReels()]) {
+    const key = reelKey(reel.url);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push({ ...reel, order: merged.length });
+  }
+
+  return merged;
 }
 
 const MAX_COLLECTION_ITEMS: Partial<Record<CollectionName, number>> = {
@@ -249,18 +358,40 @@ export async function reorderCollectionData(collection: CollectionName, orderedI
 
 export async function listReelData(): Promise<Reel[]> {
   const prisma = getPrisma();
-  if (!prisma) return sortByOrder(readJson<Reel[]>("reels.json", DEFAULT_REELS));
+  if (!prisma) return mergeWithDefaultReels(localReelFallback());
 
   try {
-    const reels = await prisma.reel.findMany({ orderBy: { order: "asc" } });
-    return reels.map((reel) => ({
-      ...reel,
-      createdAt: reel.createdAt.toISOString(),
-      updatedAt: reel.updatedAt.toISOString(),
-    }));
+    let reels = ((await prisma.reel.findRaw({ options: { sort: { order: 1 } } })) as unknown[])
+      .map((reel, order) => normalizeRawReel(reel as RawReelRecord, order))
+      .filter(Boolean) as Reel[];
+
+    const fallbackReels = mergeWithDefaultReels(localReelFallback());
+    const existingKeys = new Set(reels.map((reel) => reelKey(reel.url)));
+    const missingReels = fallbackReels.filter((reel) => !existingKeys.has(reelKey(reel.url)));
+
+    if (missingReels.length > 0) {
+      await prisma.reel.createMany({
+        data: missingReels.map((reel, index) => ({
+          tag: reel.tag,
+          title: reel.title,
+          description: reel.description,
+          url: reel.url,
+          kind: reel.kind,
+          embedUrl: reel.embedUrl,
+          poster: reel.poster,
+          order: reels.length + index,
+        })),
+      });
+
+      reels = ((await prisma.reel.findRaw({ options: { sort: { order: 1 } } })) as unknown[])
+        .map((reel, order) => normalizeRawReel(reel as RawReelRecord, order))
+        .filter(Boolean) as Reel[];
+    }
+
+    return mergeWithDefaultReels(reels);
   } catch (error) {
     warnDbFallback("listReelData", error);
-    return sortByOrder(readJson<Reel[]>("reels.json", DEFAULT_REELS));
+    return mergeWithDefaultReels(localReelFallback());
   }
 }
 
