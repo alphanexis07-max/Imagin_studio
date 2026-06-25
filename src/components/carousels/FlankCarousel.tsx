@@ -320,26 +320,26 @@ export function FlankCarousel({
       </motion.div>
 
       {/* SMALLER NAVIGATION BUTTONS */}
-      <div className="mt-6 md:mt-0 sm:mt-6 flex items-center justify-center gap-2 sm:gap-3 z-20 relative">
-        <Button
-          onClick={carousel.prev}
-          aria-label="Previous Slide"
-          variant="outline"
-          size="sm"
-          className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
-        >
-          <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-        </Button>
-        <Button
-          onClick={carousel.next}
-          aria-label="Next Slide"
-          variant="outline"
-          size="sm"
-          className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
-        >
-          <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-        </Button>
-      </div>
+     <div className="mt-8 md:mt-4 sm:mt-8 flex items-center justify-center gap-2 sm:gap-3 z-20 relative">
+  <Button
+    onClick={carousel.prev}
+    aria-label="Previous Slide"
+    variant="outline"
+    size="sm"
+    className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
+  >
+    <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+  </Button>
+  <Button
+    onClick={carousel.next}
+    aria-label="Next Slide"
+    variant="outline"
+    size="sm"
+    className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
+  >
+    <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+  </Button>
+</div>
     </section>
   );
 }
