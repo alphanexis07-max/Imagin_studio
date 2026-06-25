@@ -160,16 +160,18 @@ export function FlankCarousel({
 
   return (
     <section aria-label="Flank carousel" className={moduleShellClass}>
-      <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      {/* SMALLER TITLE SECTION */}
+      <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className={moduleHeaderKickerClass}>{subtitle}</p>
-          <h3 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground dark:text-white md:text-5xl">
+          <p className={`${moduleHeaderKickerClass} text-xs`}>{subtitle}</p>
+          <h3 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground dark:text-white md:text-3xl">
             {title}
           </h3>
         </div>
-        <p className={moduleDescriptionClass}>{description}</p>
+        <p className={`${moduleDescriptionClass} text-xs md:text-sm max-w-md`}>{description}</p>
       </div>
 
+      {/* SMALLER CAROUSEL CONTAINER */}
       <motion.div
         tabIndex={0}
         onWheel={carousel.onWheel}
@@ -179,22 +181,22 @@ export function FlankCarousel({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         style={{ perspective: 1400, touchAction: "none" }}
-        className="relative h-[60vh] sm:h-[70vh] mt-12 md:mt-4 md:h-[80vh] overflow-visible"
+        className="relative h-[40vh] sm:h-[45vh] mt-6 md:mt-2 md:h-[50vh] overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {
             const offset = computeOffset(index, carousel.activeIndex, slides.length);
             const isCenter = offset === 0;
             const isVisible = Math.abs(offset) <= 1;
-            const x = offset * 250;
-            const y = Math.abs(offset) * 20;
-            const rotateY = offset * 22;
-            const scale = isCenter ? 1 : 0.78;
-            const opacity = isCenter ? 1 : 0.48;
+            // SMALLER CARD SPACING
+            const x = offset * 180;
+            const y = Math.abs(offset) * 15;
+            const rotateY = offset * 18;
+            const scale = isCenter ? 1 : 0.7;
+            const opacity = isCenter ? 1 : 0.4;
             const zIndex = isCenter ? 20 : 10 - Math.abs(offset);
             const openUrl = slide.ctaLink && slide.ctaLink !== "#" ? slide.ctaLink : slide.video || slide.poster;
 
-            // Category badge colors
             const getBadgeStyles = (label: string) => {
               const cleaned = label.toUpperCase();
               if (cleaned.includes("VIDEO")) return "bg-red-500/25 border-red-500/40 text-red-400";
@@ -231,13 +233,12 @@ export function FlankCarousel({
                 key={slide.title + "-" + index}
                 initial={false}
                 animate={{ x, y, rotateY, scale, opacity }}
-                // transition={smooth}
-
                 transition={{
                   duration: 0.2,
                   ease: "easeOut",
                 }}
-                className={`absolute left-1/2 top-1/2 w-[min(42rem,95vw)] sm:w-[min(48rem,92vw)] md:w-[min(52rem,88vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] border border-ink/10 bg-card/95 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl ${slide.glow || "shadow-black/50"}`}
+                // SMALLER CARD SIZE
+                className={`absolute left-1/2 top-1/2 w-[min(30rem,90vw)] sm:w-[min(34rem,88vw)] md:w-[min(38rem,85vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-ink/10 bg-card/95 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl ${slide.glow || "shadow-black/50"}`}
                 style={{
                   zIndex,
                   transformStyle: "preserve-3d",
@@ -245,7 +246,8 @@ export function FlankCarousel({
                   willChange: "transform, opacity",
                 }}
               >
-                <div className="relative h-[min(44vh,28rem)] bg-muted dark:bg-[#0b0f14]">
+                {/* SMALLER MEDIA HEIGHT */}
+                <div className="relative h-[min(30vh,20rem)] bg-muted dark:bg-[#0b0f14]">
                   {slide.video ? (
                     <CarouselVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
@@ -270,18 +272,19 @@ export function FlankCarousel({
 
                   {slide.categoryLabel && (
                     <span
-                      className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}
+                      className={`absolute right-3 top-3 rounded-full border px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}
                     >
                       {slide.categoryLabel}
                     </span>
                   )}
                 </div>
 
-                <div className="p-5 sm:p-6 md:p-7">
-                  <h4 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-card-foreground dark:text-white">
+                {/* SMALLER CONTENT */}
+                <div className="p-4 sm:p-5 md:p-5">
+                  <h4 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-card-foreground dark:text-white">
                     {slide.title}
                   </h4>
-                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400 line-clamp-2">
+                  <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400 line-clamp-2">
                     {slide.description}
                   </p>
 
@@ -291,19 +294,18 @@ export function FlankCarousel({
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        // transition={smooth}
-
                         transition={{
                           duration: 0.2,
                           ease: "easeOut",
                         }}
-                        className="overflow-hidden mt-4"
+                        className="overflow-hidden mt-3"
                       >
                         <a
                           href={slide.ctaLink || openUrl || "#"}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 text-xs font-bold text-cream transition duration-200 hover:bg-ink/90 active:scale-95 z-20 dark:bg-white dark:text-[#111827] dark:hover:bg-white/95"
+                          // SMALLER BUTTON
+                          className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-1.5 text-[10px] font-bold text-cream transition duration-200 hover:bg-ink/90 active:scale-95 z-20 dark:bg-white dark:text-[#111827] dark:hover:bg-white/95"
                         >
                           {slide.ctaText || "View Project"}
                         </a>
@@ -317,27 +319,27 @@ export function FlankCarousel({
         </div>
       </motion.div>
 
-      <div className="mt-8 md:mt-0 sm:mt-8 flex items-center justify-center gap-3 sm:gap-4 z-20 relative">
+      {/* SMALLER NAVIGATION BUTTONS */}
+      <div className="mt-6 md:mt-0 sm:mt-6 flex items-center justify-center gap-2 sm:gap-3 z-20 relative">
         <Button
           onClick={carousel.prev}
           aria-label="Previous Slide"
           variant="outline"
-          size="icon"
-          className={carouselButtonClass}
+          size="sm"
+          className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
         >
-          <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
+          <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </Button>
         <Button
           onClick={carousel.next}
           aria-label="Next Slide"
           variant="outline"
-          size="icon"
-          className={carouselButtonClass}
+          size="sm"
+          className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
         >
-          <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
+          <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </Button>
       </div>
     </section>
   );
 }
-

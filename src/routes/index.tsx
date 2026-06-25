@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   useEffect,
@@ -80,6 +81,7 @@ import screenshot4 from "@/assets/carousel-samples/screenshot-4.jpg";
 import screenshot5 from "@/assets/carousel-samples/screenshot-5.jpg";
 import screenshot6 from "@/assets/carousel-samples/screenshot-6.jpg";
 import type { SiteData } from "@/lib/admin/site.functions";
+import { CartoonButton } from "@/components/ui/cartoon-button"; // ADD THIS IMPORT
 
 // ============================================
 // HELPER COMPONENTS FOR HERO ENHANCEMENTS
@@ -272,29 +274,7 @@ const CEOSignature = () => {
       transition={{ delay: 1.6, duration: 0.8 }}
       className="mt-6 flex justify-center relative z-30"
     >
-      <motion.div
-        whileHover={{ 
-          scale: 1.05,
-          boxShadow: "0 8px 30px rgba(255,107,53,0.25)",
-        }}
-        whileTap={{ scale: 0.95 }}
-        className="inline-flex items-center gap-4 rounded-full border-2 border-orange-500/30 bg-white/80 dark:bg-white/10 backdrop-blur-sm px-6 py-3 shadow-lg hover:shadow-orange-500/20 transition-all duration-300 cursor-pointer"
-      >
-        <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white font-bold text-sm">
-            AS
-          </div>
-          <div className="text-left">
-            <p className="font-semibold text-gray-900 dark:text-white text-sm">Ankit Sen</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">CEO & Co-Founder</p>
-          </div>
-        </div>
-        <div className="h-8 w-px bg-orange-500/20" />
-        <div className="flex items-center gap-1">
-          <span className="text-xs font-medium text-orange-600 dark:text-orange-400">AlphaNexis</span>
-          <Sparkles className="h-3 w-3 text-orange-500" />
-        </div>
-      </motion.div>
+    
     </motion.div>
   );
 };
@@ -1282,29 +1262,127 @@ const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
 
 /* -- Core Capabilities Section -- */
 
-
 type CmsItem = Record<string, unknown>;
 
-const cmsIconMap = { Target, PenTool, Sparkles, Brain, Search, Lightbulb, Layers, Rocket, LineChart, Repeat, Zap, Infinity: InfinityIcon, Flame, TrendingUp, Globe, BarChart3 } as const;
-function asString(value: unknown, fallback = "") { return typeof value === "string" && value.trim() ? value : fallback; }
-function asStringArray(value: unknown, fallback: string[] = []) { return Array.isArray(value) ? value.map((item) => String(item)).filter(Boolean) : fallback; }
-function asNumber(value: unknown, fallback = 0) { return typeof value === "number" && Number.isFinite(value) ? value : fallback; }
-function iconFromName(name: unknown, fallback: keyof typeof cmsIconMap) { const key = asString(name, fallback) as keyof typeof cmsIconMap; return cmsIconMap[key] ?? cmsIconMap[fallback]; }
-function resolveMediaUrl(value: unknown, fallback: string) { return asString(value) || fallback; }
-function normalizeStats(items: CmsItem[]) { return items.length ? items.map((item) => ({ k: asString(item.value), v: asString(item.label) })) : stats; }
-function normalizeCapabilities(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ k: asString(item.key, String(index + 1).padStart(2, "0")), t: asString(item.title), d: asString(item.description), icon: iconFromName(item.icon, "Target"), bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"), span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "", big: item.big === true || index === 0, chips: asStringArray(item.chips), metric: asString(item.metric), metricLabel: asString(item.metricLabel) })) : capabilities; }
-function normalizeProcess(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ n: asString(item.number, String(index + 1).padStart(2, "0")), t: asString(item.title), d: asString(item.description), icon: iconFromName(item.icon, "Search"), color: asString(item.bg, "bg-background") })) : steps; }
-function normalizeCases(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ name: asString(item.name), sector: asString(item.sector), year: asString(item.year), word: asString(item.word, asString(item.name).toUpperCase()), color: asString(item.color, "bg-accent"), problem: asString(item.problem), metrics: Array.isArray(item.metrics) ? (item.metrics as CmsItem[]).map((metric) => ({ k: asString(metric.key), v: asString(metric.value) })) : [], tags: asStringArray(item.tags), rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4) })) : cases; }
-function normalizeEngagements(items: CmsItem[]) { return items.length ? items.map((item, index) => ({ icon: iconFromName(item.icon, "Zap"), t: asString(item.name), k: asString(item.duration), d: asString(item.description), bullets: asStringArray(item.bullets), bg: asString(item.bg, "bg-background"), rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2), tag: asString(item.tag), popular: item.popular === true })) : engagements; }
+const cmsIconMap = {
+  Target,
+  PenTool,
+  Sparkles,
+  Brain,
+  Search,
+  Lightbulb,
+  Layers,
+  Rocket,
+  LineChart,
+  Repeat,
+  Zap,
+  Infinity: InfinityIcon,
+  Flame,
+  TrendingUp,
+  Globe,
+  BarChart3,
+} as const;
+function asString(value: unknown, fallback = "") {
+  return typeof value === "string" && value.trim() ? value : fallback;
+}
+function asStringArray(value: unknown, fallback: string[] = []) {
+  return Array.isArray(value) ? value.map((item) => String(item)).filter(Boolean) : fallback;
+}
+function asNumber(value: unknown, fallback = 0) {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
+}
+function iconFromName(name: unknown, fallback: keyof typeof cmsIconMap) {
+  const key = asString(name, fallback) as keyof typeof cmsIconMap;
+  return cmsIconMap[key] ?? cmsIconMap[fallback];
+}
+function resolveMediaUrl(value: unknown, fallback: string) {
+  return asString(value) || fallback;
+}
+function normalizeStats(items: CmsItem[]) {
+  return items.length
+    ? items.map((item) => ({ k: asString(item.value), v: asString(item.label) }))
+    : stats;
+}
+function normalizeCapabilities(items: CmsItem[]) {
+  return items.length
+    ? items.map((item, index) => ({
+        k: asString(item.key, String(index + 1).padStart(2, "0")),
+        t: asString(item.title),
+        d: asString(item.description),
+        icon: iconFromName(item.icon, "Target"),
+        bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"),
+        span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "",
+        big: item.big === true || index === 0,
+        chips: asStringArray(item.chips),
+        metric: asString(item.metric),
+        metricLabel: asString(item.metricLabel),
+      }))
+    : capabilities;
+}
+function normalizeProcess(items: CmsItem[]) {
+  return items.length
+    ? items.map((item, index) => ({
+        n: asString(item.number, String(index + 1).padStart(2, "0")),
+        t: asString(item.title),
+        d: asString(item.description),
+        icon: iconFromName(item.icon, "Search"),
+        color: asString(item.bg, "bg-background"),
+      }))
+    : steps;
+}
+function normalizeCases(items: CmsItem[]) {
+  return items.length
+    ? items.map((item, index) => ({
+        name: asString(item.name),
+        sector: asString(item.sector),
+        year: asString(item.year),
+        word: asString(item.word, asString(item.name).toUpperCase()),
+        color: asString(item.color, "bg-accent"),
+        problem: asString(item.problem),
+        metrics: Array.isArray(item.metrics)
+          ? (item.metrics as CmsItem[]).map((metric) => ({
+              k: asString(metric.key),
+              v: asString(metric.value),
+            }))
+          : [],
+        tags: asStringArray(item.tags),
+        rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4),
+      }))
+    : cases;
+}
+function normalizeEngagements(items: CmsItem[]) {
+  return items.length
+    ? items.map((item, index) => ({
+        icon: iconFromName(item.icon, "Zap"),
+        t: asString(item.name),
+        k: asString(item.duration),
+        d: asString(item.description),
+        bullets: asStringArray(item.bullets),
+        bg: asString(item.bg, "bg-background"),
+        rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2),
+        tag: asString(item.tag),
+        popular: item.popular === true,
+      }))
+    : engagements;
+}
 function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
   return items.length
     ? items.map((item, index) => ({
         categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
         title: asString(item.title, `Project ${index + 1}`),
         description: asString(item.description),
-        video: asString(item.video, heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? ""),
-        poster: resolveMediaUrl(item.poster, heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1),
-        glow: asString(item.glow, heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40"),
+        video: asString(
+          item.video,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? "",
+        ),
+        poster: resolveMediaUrl(
+          item.poster,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1,
+        ),
+        glow: asString(
+          item.glow,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40",
+        ),
         ctaText: asString(item.ctaText, "View Project"),
         ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
       }))
@@ -1336,9 +1414,18 @@ function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
         title: asString(item.title, `Edit ${index + 1}`),
         description: asString(item.description),
         outcome: asString(item.outcome),
-        video: asString(item.video, videoEditingSlides[index % videoEditingSlides.length]?.video ?? ""),
-        poster: resolveMediaUrl(item.poster, videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1),
-        accentColor: asString(item.accentColor, videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90"),
+        video: asString(
+          item.video,
+          videoEditingSlides[index % videoEditingSlides.length]?.video ?? "",
+        ),
+        poster: resolveMediaUrl(
+          item.poster,
+          videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1,
+        ),
+        accentColor: asString(
+          item.accentColor,
+          videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90",
+        ),
         detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
       }))
     : videoEditingSlides;
@@ -1350,8 +1437,19 @@ function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
         subcategory: asString(item.subcategory),
         title: asString(item.title, `Asset ${index + 1}`),
         description: asString(item.description),
-        image: asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1),
-        detailUrl: asString(item.detailUrl, asString(item.image, fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ?? screenshot1)),
+        image: asString(
+          item.image,
+          fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
+            screenshot1,
+        ),
+        detailUrl: asString(
+          item.detailUrl,
+          asString(
+            item.image,
+            fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
+              screenshot1,
+          ),
+        ),
       }))
     : fallbackGraphicDesignSlides;
 }
@@ -1364,10 +1462,23 @@ function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
         keyFeatures: asStringArray(item.keyFeatures),
         techStack: asStringArray(item.techStack),
         businessBenefit: asString(item.businessBenefit),
-        poster: resolveMediaUrl(item.poster, softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1),
-        video: asString(item.video, softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? ""),
-        accentColor: asString(item.accentColor, softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ?? "from-teal-950/90"),
-        projectUrl: asString(item.projectUrl, asString(item.ctaLink, asString(item.video, asString(item.poster)))),
+        poster: resolveMediaUrl(
+          item.poster,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
+        ),
+        video: asString(
+          item.video,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
+        ),
+        accentColor: asString(
+          item.accentColor,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
+            "from-teal-950/90",
+        ),
+        projectUrl: asString(
+          item.projectUrl,
+          asString(item.ctaLink, asString(item.video, asString(item.poster))),
+        ),
       }))
     : softwareSystemsSlides;
 }
@@ -1378,9 +1489,18 @@ function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
         title: asString(item.title, `Analytics ${index + 1}`),
         description: asString(item.description),
         metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
-        poster: resolveMediaUrl(item.poster, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1),
-        video: asString(item.video, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? ""),
-        accent: asString(item.accent, seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40"),
+        poster: resolveMediaUrl(
+          item.poster,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1,
+        ),
+        video: asString(
+          item.video,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? "",
+        ),
+        accent: asString(
+          item.accent,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40",
+        ),
         detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
       }))
     : seoAnalyticsSlides;
@@ -1408,7 +1528,18 @@ function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
       }))
     : editorialContent;
 }
-function normalizeReels(items: CmsItem[]) { const reels = items.map((item) => ({ tag: asString(item.tag, "Reel"), title: asString(item.title, "Reel"), src: asString(item.url), poster: asString(item.poster) })).filter((item) => item.src); return reels.length ? reels : filmReels; }
+function normalizeReels(items: CmsItem[]) {
+  const reels = items
+    .map((item) => ({
+      tag: asString(item.tag, "Reel"),
+      title: asString(item.title, "Reel"),
+      src: asString(item.url),
+      poster: asString(item.poster),
+    }))
+    .filter((item) => item.src);
+
+  return (reels.length ? reels : filmReels).slice(0, 4);
+}
 function normalizeTestimonials(items: CmsItem[]) { return items.length ? items.map((item) => ({ q: asString(item.quote), name: asString(item.author), co: asString(item.role), verified: asString(item.verified, "Verified"), stars: Math.max(1, Math.min(5, Number(item.stars) || 5)) })) : [{ q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.", name: "VP of Product", co: "North American HealthTech Corp", verified: "LinkedIn Verified", stars: 5 }, { q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.", name: "Chief Operating Officer", co: "European Logistics Group", verified: "Clutch 5-Star", stars: 5 }]; }
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
@@ -1594,7 +1725,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
               // aria-busy={isReelsLoading}
               className="inline-flex min-w-36 items-center justify-center gap-2 rounded-full border border-ink/15 bg-card/70 px-6 py-2.5 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur transition-all hover:bg-ink hover:text-cream aria-busy:pointer-events-none aria-busy:opacity-80 dark:border-white/10 dark:bg-card/70 dark:text-card-foreground dark:hover:bg-foreground dark:hover:text-background"
             >
-              {isReelsLoading ?(
+              {isReelsLoading ? (
                 <>
                   <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
                   Loading
@@ -1643,7 +1774,6 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
               );
             })}
           </div>
-
         </div>
       </div>
     </section>
@@ -1932,25 +2062,25 @@ function PortfolioHeroShowcase({
   content?: PortfolioSectionCopy;
   items?: HeroShowcaseSlide[];
 }) {
- return (
-  <div className="py-6 overflow-x-hidden" id="work">
-    <div className="mb-10 text-center px-5">
-      <span className="script text-3xl text-accent">{content.eyebrow}</span>
-      <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-        {content.title}
-      </h2>
-      <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-        {content.description}
-      </p>
+  return (
+    <div className="py-6 overflow-x-hidden" id="work">
+      <div className="mb-10 text-center px-5">
+        <span className="script text-3xl text-accent">{content.eyebrow}</span>
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+          {content.title}
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
+          {content.description}
+        </p>
+      </div>
+      <FlankCarousel
+        slides={items}
+        title="Hero Showcase"
+        subtitle="FEATURED WORKS"
+        description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
+      />
     </div>
-    <FlankCarousel
-      slides={items}
-      title="Hero Showcase"
-      subtitle="FEATURED WORKS"
-      description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
-    />
-  </div>
-);
+  );
 }
 
 function PortfolioVideoEditing({
@@ -2009,9 +2139,11 @@ function PortfolioGraphicDesign({
     <div className="overflow-x-clip py-6">
       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
-          <span className="script text-3xl text-purple-600 dark:text-purple-400">{content.eyebrow}</span>
+          <span className="script text-3xl text-purple-600 dark:text-purple-400">
+            {content.eyebrow}
+          </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-            {content.title}
+           Section {content.title}
           </h2>
           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
             {content.description}
@@ -2300,7 +2432,11 @@ function PortfolioContentWriting({
   );
 }
 
-function PortfolioSection({ content = DEFAULT_SITE.portfolio.overview }: { content?: PortfolioSectionCopy }) {
+function PortfolioSection({
+  content = DEFAULT_SITE.portfolio.overview,
+}: {
+  content?: PortfolioSectionCopy;
+}) {
   return (
     <section
       id="portfolio"
@@ -2310,11 +2446,10 @@ function PortfolioSection({ content = DEFAULT_SITE.portfolio.overview }: { conte
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-4xl font-bold md:text-8xl tracking-tight text-foreground">
-          {content.title.split(" ")[0]} <span className="italic text-accent">{content.title.split(" ").slice(1).join(" ")}</span>
+          {content.title.split(" ")[0]}{" "}
+          <span className="italic text-accent">{content.title.split(" ").slice(1).join(" ")}</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">
-          {content.description}
-        </p>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">{content.description}</p>
       </div>
     </section>
   );
@@ -2337,7 +2472,9 @@ function Index() {
   const cmsVisualAssets = normalizeVisualAssets(portfolio.collections.visualAssets);
   const cmsSoftwareSystems = normalizeSoftwareSystems(portfolio.collections.softwareSystems);
   const cmsSeoAnalytics = normalizeSeoAnalytics(portfolio.collections.seoAnalytics);
-  const cmsStrategicConsulting = normalizeStrategicConsulting(portfolio.collections.strategicConsulting);
+  const cmsStrategicConsulting = normalizeStrategicConsulting(
+    portfolio.collections.strategicConsulting,
+  );
   const cmsContentWriting = normalizeContentWriting(portfolio.collections.contentWriting);
 
   return (
@@ -2356,90 +2493,9 @@ function Index() {
       <CursorGlow />
 
       {/* HERO */}
-      <section className="relative mx-auto max-w-6xl px-5 pt-12 pb-8 md:pt-20 overflow-hidden">
-        {/* Ambient Particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          {Array.from({ length: 14 }).map((_, i) => (
-            <Particle
-              key={i}
-              delay={i * 0.3}
-              size={4 + Math.random() * 6}
-              type={['dot', 'star', 'sparkle', 'ring'][Math.floor(Math.random() * 4)]}
-              xRange={window.innerWidth * 0.4}
-              yRange={window.innerHeight * 0.4}
-            />
-          ))}
-        </div>
-
-        {/* Floating Cards - Non-overlapping grid layout */}
-        <div className="absolute inset-0 pointer-events-none h-[1200px]">
-          <div className="relative w-full h-full max-w-6xl mx-auto px-5">
-            {/* Top row - left side */}
-            <FloatingCard 
-              label="SEO" 
-              value="↑ 124%" 
-              delay={0.5} 
-              depth={1.2}
-              className="top-[5%] left-[0%] md:top-[8%] md:left-[2%]"
-            />
-            {/* Top row - right side */}
-            <FloatingCard 
-              label="AI Automation" 
-              value="120+ hrs" 
-              delay={0.8} 
-              depth={0.8}
-              className="top-[6%] right-[0%] md:top-[10%] md:right-[3%]"
-            />
-            {/* Middle left */}
-            <FloatingCard 
-              label="Paid Ads" 
-              value="ROAS 4.2x" 
-              delay={1.1} 
-              depth={1.5}
-              className="top-[32%] left-[-2%] md:top-[35%] md:left-[1%]"
-            />
-            {/* Middle right */}
-            <FloatingCard 
-              label="Social Media" 
-              value="↑ 89%" 
-              delay={1.4} 
-              depth={0.9}
-              className="top-[30%] right-[-2%] md:top-[32%] md:right-[0%]"
-            />
-            {/* Bottom left */}
-            <FloatingCard 
-              label="Content Strategy" 
-              value="↑ 97%" 
-              delay={1.7} 
-              depth={1.3}
-              className="top-[58%] left-[2%] md:top-[60%] md:left-[4%]"
-            />
-            {/* Bottom right */}
-            <FloatingCard 
-              label="Campaign ROI" 
-              value="4.8x" 
-              delay={2.0} 
-              depth={0.7}
-              className="top-[60%] right-[2%] md:top-[62%] md:right-[3%]"
-            />
-            {/* Extra cards for better fill */}
-            <FloatingCard 
-              label="Brand Strategy" 
-              value="↑ 156%" 
-              delay={2.3} 
-              depth={1.1}
-              className="top-[15%] left-[8%] md:top-[18%] md:left-[10%]"
-            />
-            <FloatingCard 
-              label="Lead Gen" 
-              value="3x Pipeline" 
-              delay={2.6} 
-              depth={0.85}
-              className="top-[45%] right-[8%] md:top-[48%] md:right-[10%]"
-            />
-          </div>
-        </div>
-
+      <section className="relative mx-auto max-w-6xl  px-5  pb-8 ">
+       <div className="  flex flex-col justify-center pt-12  md:h-[calc(100vh-80px)]">
+       
         <motion.div
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -2454,7 +2510,13 @@ function Index() {
             transition={{ duration: 0.7 }}
             className="font-display text-[clamp(2rem,8vw,4rem)]  md:text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
           >
-            {site.hero.headline || (<>We craft digital experiences that<br />drive growth and leave a lasting <span className="text-accent">impact</span></>)}
+            {site.hero.headline || (
+              <>
+                We craft digital experiences that
+                <br />
+                drive growth and leave a lasting <span className="text-accent">impact</span>
+              </>
+            )}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -2462,8 +2524,26 @@ function Index() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-foreground/70"
           >
+            Creativity, strategy, and technology come together in every campaign we build.
+      
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mx-auto  mt-6 max-w-5xl text-base md:text-lg text-accent"
+          >
             Creativity, strategy, and technology come together in every campaign we build. We turn
             brand momentum into measurable growth for fast-moving teams.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-foreground/70"
+          >
+            Creativity, strategy, and technology come together in every campaign we build.
+      
           </motion.p>
         </div>
 
@@ -2505,6 +2585,7 @@ function Index() {
             Explore services
           </motion.a>
         </motion.div>
+         </div> 
 
         {/* Portrait hero — matches uploaded design */}
         <div className="relative mx-auto mt-10 max-w-3xl">
@@ -2537,10 +2618,6 @@ function Index() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
               className="relative z-20 mx-auto h-auto w-[min(520px,80vw)] md:w-[min(670px,90%)] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] animate-float-y cursor-pointer"
-              onError={(e) => {
-                const img = e.target as HTMLImageElement;
-                img.style.display = 'none';
-              }}
             />
           </a>
 
@@ -2565,11 +2642,33 @@ function Index() {
               r: "-6deg",
               d: "0s",
             },
-            { txt: <><Rocket className="h-4 w-4 text-accent" /> Ads</>, pos: "-right-8 top-[35%] md:right-[-60px] md:top-[40%]", r: "8deg", d: "0.4s" },
-            { txt: <><Sparkles className="h-4 w-4 text-accent" /> Brand</>, pos: "-left-10 bottom-[25%] md:left-[-80px] md:bottom-[30%]", r: "-4deg", d: "0.8s" },
             {
-              txt: <><Megaphone className="h-4 w-4 text-accent" /> Social Media</>,
-              pos: "-right-10 bottom-[20%] md:right-[-80px] md:bottom-[25%]",
+              txt: (
+                <>
+                  <Rocket className="h-4 w-4 text-accent" /> Ads
+                </>
+              ),
+              pos: "-right-4 top-[36%] md:right-0",
+              r: "8deg",
+              d: "0.4s",
+            },
+            {
+              txt: (
+                <>
+                  <Sparkles className="h-4 w-4 text-accent" /> Brand
+                </>
+              ),
+              pos: "-left-6 top-[87%] md:left-12",
+              r: "-4deg",
+              d: "0.8s",
+            },
+            {
+              txt: (
+                <>
+                  <Megaphone className="h-4 w-4 text-accent" /> Social Media
+                </>
+              ),
+              pos: "-right-6 bottom-[15%] md:right-8",
               r: "6deg",
               d: "1.2s",
             },
@@ -2593,7 +2692,9 @@ function Index() {
             transition={{ delay: 1.4 }}
             className="absolute -right-2 top-[18%] z-30 hidden text-right md:block"
           >
-            <div className="font-display text-4xl font-bold leading-none">{site.hero.sidebarStat.value}</div>
+            <div className="font-display text-4xl font-bold leading-none">
+              {site.hero.sidebarStat.value}
+            </div>
             <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
           </motion.div>
 
@@ -2605,42 +2706,18 @@ function Index() {
             className="absolute -left-15 top-[60%] z-30 hidden max-w-[200px] md:block"
           >
             <div className="font-display text-4xl text-foreground/40">"</div>
-           <p className="text-xs leading-snug text-foreground/70">
-              {site.hero.sidebarQuote}
-            </p>
+            <p className="text-xs leading-snug text-foreground/70">{site.hero.sidebarQuote}</p>
           </motion.div>
         </div>
-      </section>
-
-      {/* STATS strip */}
-      <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
-        <div className="mb-10 text-center">
-          <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-            Milestones that prove our work delivers impact.
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-            From enterprise launches to repeated growth loops, these metrics show the outcomes we
-            create.
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {cmsStats.map((s, i) => (
-            <motion.div
-              key={s.v}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, type: "spring" }}
-              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-            >
-              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
-              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
-            </motion.div>
-          ))}
+        <div className="mt-3 flex justify-center px-4">
+          <div className="ceo-identity-badge" role="note" aria-label="Ankit Sen, founder and CEO">
+            <span className="ceo-identity-badge__name">Ankit Sen</span>
+            <span className="ceo-identity-badge__role">Founder & CEO</span>
+          </div>
         </div>
       </section>
+
+     
 
       {/* MARQUEE */}
       <div className="border-y border-border bg-background py-5 overflow-hidden">
@@ -2650,11 +2727,13 @@ function Index() {
               key={idx}
               className="flex shrink-0 items-center gap-10 px-6 font-display text-3xl font-semibold"
             >
-              {site.marquee.top.flatMap((word) => [word, "/"]).map((w, i) => (
-                <span key={i} className={i % 2 === 0 ? "text-foreground" : "text-accent"}>
-                  {w}
-                </span>
-              ))}
+              {site.marquee.top
+                .flatMap((word) => [word, "/"])
+                .map((w, i) => (
+                  <span key={i} className={i % 2 === 0 ? "text-foreground" : "text-accent"}>
+                    {w}
+                  </span>
+                ))}
             </div>
           ))}
         </div>
@@ -2664,11 +2743,13 @@ function Index() {
               key={idx}
               className="flex shrink-0 items-center gap-10 px-6 font-display text-2xl italic"
             >
-              {site.marquee.bottom.flatMap((word) => [word, "/"]).map((w, i) => (
-                <span key={i} className={i % 2 === 1 ? "text-accent" : ""}>
-                  {w}
-                </span>
-              ))}
+              {site.marquee.bottom
+                .flatMap((word) => [word, "/"])
+                .map((w, i) => (
+                  <span key={i} className={i % 2 === 1 ? "text-accent" : ""}>
+                    {w}
+                  </span>
+                ))}
             </div>
           ))}
         </div>
@@ -2676,13 +2757,34 @@ function Index() {
 
       {/* ABOUT */}
       <PortfolioSection content={portfolioCopy.overview} />
-      <PortfolioHeroShowcase content={portfolioCopy.sections.heroShowcase} items={cmsHeroShowcase} />
-      <PortfolioVideoEditing content={portfolioCopy.sections.videoEditing} items={cmsVideoEditing} />
-      <PortfolioGraphicDesign content={portfolioCopy.sections.visualAssets} items={cmsVisualAssets} />
-      <PortfolioSoftwareSystems content={portfolioCopy.sections.softwareSystems} items={cmsSoftwareSystems} />
-      <PortfolioSEOAnalytics content={portfolioCopy.sections.seoAnalytics} items={cmsSeoAnalytics} />
-      <PortfolioStrategicConsulting content={portfolioCopy.sections.strategicConsulting} items={cmsStrategicConsulting} />
-      <PortfolioContentWriting content={portfolioCopy.sections.contentWriting} items={cmsContentWriting} />
+      <PortfolioHeroShowcase
+        content={portfolioCopy.sections.heroShowcase}
+        items={cmsHeroShowcase}
+      />
+      <PortfolioVideoEditing
+        content={portfolioCopy.sections.videoEditing}
+        items={cmsVideoEditing}
+      />
+      <PortfolioGraphicDesign
+        content={portfolioCopy.sections.visualAssets}
+        items={cmsVisualAssets}
+      />
+      <PortfolioSoftwareSystems
+        content={portfolioCopy.sections.softwareSystems}
+        items={cmsSoftwareSystems}
+      />
+      <PortfolioSEOAnalytics
+        content={portfolioCopy.sections.seoAnalytics}
+        items={cmsSeoAnalytics}
+      />
+      <PortfolioStrategicConsulting
+        content={portfolioCopy.sections.strategicConsulting}
+        items={cmsStrategicConsulting}
+      />
+      <PortfolioContentWriting
+        content={portfolioCopy.sections.contentWriting}
+        items={cmsContentWriting}
+      />
 
       <ServicesSection />
 
@@ -2704,9 +2806,7 @@ function Index() {
               </span>
               .
             </h2>
-            <p className="mt-6 max-w-md text-lg text-foreground/70">
-              {site.about.body}
-            </p>
+            <p className="mt-6 max-w-md text-lg text-foreground/70">{site.about.body}</p>
             <p className="mt-4 max-w-md text-base text-foreground/60">
               8+ years blending performance marketing, brand systems, and AI-powered automation into
               one integrated growth pod your team can plug straight into.
@@ -2807,7 +2907,6 @@ function Index() {
                   {t.verified}
                 </span>
               </div>
-              
             </motion.div>
           ))}
         </div>
@@ -2829,9 +2928,7 @@ function Index() {
           <h2 className="font-display text-5xl font-bold leading-[1.05] md:text-7xl">
             {site.contact.headline}
           </h2>
-          <p className="mx-auto mt-5 max-w-md text-foreground/80">
-            {site.contact.blurb}
-          </p>
+          <p className="mx-auto mt-5 max-w-md text-foreground/80">{site.contact.blurb}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href={`mailto:${site.contact.email}`}
@@ -2842,6 +2939,35 @@ function Index() {
             <DiscoveryCallDialog />
           </div>
         </motion.div>
+      </section>
+        {/* STATS strip */}
+      <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
+        <div className="mb-10 text-center">
+          <span className="script text-3xl text-accent">Achievements</span>
+          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
+            Milestones that prove our work delivers impact.
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
+            From enterprise launches to repeated growth loops, these metrics show the outcomes we
+            create.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {cmsStats.map((s, i) => (
+            <motion.div
+              key={s.v}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, type: "spring" }}
+              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+            >
+              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
+              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* FOOTER */}
@@ -2876,6 +3002,47 @@ function Index() {
           </div>
         </div>
       </footer>
+
+     {/* ============================================ */}
+{/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
+{/* ============================================ */}
+<div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+  {/* WhatsApp Button - NOW FIRST */}
+  <CartoonButton
+    label="WhatsApp"
+    icon={
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    }
+    color="bg-green-400"
+    hasHighlight={true}
+    className="animate-float"
+    onClick={() => {
+      const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || 'https://wa.me/1234567890';
+      window.open(whatsappLink, '_blank');
+    }}
+  />
+  
+  {/* View Our Work Button - NOW SECOND */}
+  <CartoonButton
+    label="View Our Work"
+    icon={
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+      </svg>
+    }
+    color="bg-white"
+    hasHighlight={true}
+    className="animate-bounce-subtle"
+    onClick={() => {
+      const workSection = document.getElementById('work');
+      if (workSection) {
+        workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }}
+  />
+</div>
     </main>
   );
 }
