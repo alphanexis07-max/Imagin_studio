@@ -1338,7 +1338,32 @@ function normalizeReels(items: CmsItem[]) {
 
   return (reels.length ? reels : filmReels).slice(0, 4);
 }
-function normalizeTestimonials(items: CmsItem[]) { return items.length ? items.map((item) => ({ q: asString(item.quote), name: asString(item.author), co: asString(item.role), verified: asString(item.verified, "Verified"), stars: Math.max(1, Math.min(5, Number(item.stars) || 5)) })) : [{ q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.", name: "VP of Product", co: "North American HealthTech Corp", verified: "LinkedIn Verified", stars: 5 }, { q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.", name: "Chief Operating Officer", co: "European Logistics Group", verified: "Clutch 5-Star", stars: 5 }]; }
+function normalizeTestimonials(items: CmsItem[]) {
+  return items.length
+    ? items.map((item) => ({
+        q: asString(item.quote),
+        name: asString(item.author),
+        co: asString(item.role),
+        verified: asString(item.verified, "Verified"),
+        stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
+      }))
+    : [
+        {
+          q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
+          name: "VP of Product",
+          co: "North American HealthTech Corp",
+          verified: "LinkedIn Verified",
+          stars: 5,
+        },
+        {
+          q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
+          name: "Chief Operating Officer",
+          co: "European Logistics Group",
+          verified: "Clutch 5-Star",
+          stars: 5,
+        },
+      ];
+}
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
   return (
@@ -1941,7 +1966,7 @@ function PortfolioGraphicDesign({
             {content.eyebrow}
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-           Section {content.title}
+            Section {content.title}
           </h2>
           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
             {content.description}
@@ -1982,7 +2007,7 @@ function PortfolioGraphicDesign({
             target="_blank"
             rel="noreferrer"
             whileHover={{ y: -8, scale: 1.02 }}
-            className="relative w-[min(72vw,19rem)] min-w-[12rem] sm:w-[17rem] sm:min-w-[14rem] md:w-[19rem] md:min-w-[17rem] lg:w-[21rem] lg:min-w-[19rem] aspect-[3/4] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+            className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827] cursor-pointer"
           >
             <img
               src={slide.image}
@@ -2005,7 +2030,7 @@ function PortfolioGraphicDesign({
             )}
 
             <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-              <h4 className="font-display text-base sm:text-lg font-bold leading-tight text-white line-clamp-2">
+              <h4 className="font-display md:text-base sm:text-sm  font-bold leading-tight text-white line-clamp-2">
                 {slide.title}
               </h4>
               <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
@@ -2289,205 +2314,244 @@ function Index() {
 
       {/* HERO */}
       <section className="relative mx-auto max-w-6xl  px-5  pb-8 ">
-       <div className="  flex flex-col justify-center pt-12  md:h-[calc(100vh-80px)]">
-       
-        <motion.div
-          initial={{ opacity: 0, scale: 0.6 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, type: "spring" }}
-          // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
-        ></motion.div>
+        <div className="  flex flex-col justify-center pt-12 ">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, type: "spring" }}
+            // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
+          ></motion.div>
 
-        <div className="text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="font-display text-[clamp(2rem,8vw,4rem)]  md:text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
-          >
-            {site.hero.headline || (
-              <>
-                We craft digital experiences that
-                <br />
-                drive growth and leave a lasting <span className="text-accent">impact</span>
-              </>
-            )}
-          </motion.h1>
+          <div className="text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="font-display text-[clamp(2rem,8vw,4rem)]  md:text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.05] tracking-tight"
+            >
+              {site.hero.headline || (
+                <>
+                  We craft digital experiences that
+                  <br />
+                  drive growth and leave a lasting <span className="text-accent">impact</span>
+                </>
+              )}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
+            >
+              Creativity, strategy, and technology come together in every campaign we build.
+            </motion.p>
+            {/* <div>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
+              >
+                Creativity, strategy, and technology come together in every campaign we build. We
+                turn brand momentum into measurable growth for fast-moving teams.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
+              >
+                Creativity, strategy, and technology come together in every campaign we build.
+              </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="mt-10 flex flex-wrap items-center justify-center gap-3"
+            >
+              <a
+                href="#work"
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+              >
+                View Our Work <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a
+                href="#services"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold lift"
+              >
+                Explore services
+              </a>
+            </motion.div>
+            </div> */}
+          </div>
+        </div>
+
+        <div>
+          {/* Portrait hero — matches uploaded design */}
+          <div className="relative mx-auto  max-w-3xl">
+            {/* Orange semicircle backdrop */}
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ delay: 0.6, duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
+              style={{ transformOrigin: "bottom" }}
+              className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 h-[55%] w-[70%] rounded-t-full bg-accent"
+            />
+
+            {/* Portrait image */}
+            <a
+              href={resolveMediaUrl(site.hero.portraitUrl, portrait)}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open hero portrait in a new tab"
+              className="relative z-10 block w-fit mx-auto"
+            >
+              <motion.img
+                src={resolveMediaUrl(site.hero.portraitUrl, portrait)}
+                alt="AlphaNexis — Digital Marketing & AI Agency"
+                width={1024}
+                height={1024}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="relative z-10 mx-auto h-auto w-[min(520px,80vw)] md:w-[min(670px,90%)] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] animate-float-y cursor-pointer"
+              />
+            </a>
+
+            {/* SVG scribble decorators */}
+            <Scribble className="pointer-events-none absolute left-4 top-2 h-8 w-14 text-ink animate-draw md:left-8" />
+            <Scribble className="pointer-events-none absolute right-6 top-8 h-8 w-14 text-accent rotate-12 animate-draw md:right-16" />
+            <Star4 className="pointer-events-none absolute left-2 top-1/3 h-5 w-5 text-accent animate-spin-slow md:left-10" />
+            <Star4 className="pointer-events-none absolute right-8 bottom-1/3 h-6 w-6 text-ink animate-spin-slow" />
+
+            {/* Floating pill tags — same positions as original Helmi design */}
+            {[
+              {
+                txt: (
+                  <>
+                    <Megaphone className="h-4 w-4 text-accent" /> Marketing
+                  </>
+                ),
+                pos: "-left-4 top-[50%] md:left-0",
+                r: "-6deg",
+                d: "0s",
+              },
+              {
+                txt: (
+                  <>
+                    <Rocket className="h-4 w-4 text-accent" /> Ads
+                  </>
+                ),
+                pos: "-right-4 top-[36%] md:right-0",
+                r: "8deg",
+                d: "0.4s",
+              },
+              {
+                txt: (
+                  <>
+                    <Sparkles className="h-4 w-4 text-accent" /> Brand
+                  </>
+                ),
+                pos: "-left-6 top-[87%] md:left-12",
+                r: "-4deg",
+                d: "0.8s",
+              },
+              {
+                txt: (
+                  <>
+                    <Megaphone className="h-4 w-4 text-accent" /> Social Media
+                  </>
+                ),
+                pos: "-right-6 bottom-[15%] md:right-8",
+                r: "6deg",
+                d: "1.2s",
+              },
+            ].map((p, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 0.8, scale: 1 }}
+                transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
+                style={{ ["--r" as never]: p.r, animationDelay: p.d }}
+                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
+              >
+                {p.txt}
+              </motion.div>
+            ))}
+
+            {/* "8+ Years" stat — top right, same as original */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.4 }}
+              className="absolute -right-2 top-[18%] z-20 hidden text-right md:block"
+            >
+              <div className="font-display text-4xl font-bold leading-none">
+                {site.hero.sidebarStat.value}
+              </div>
+              <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
+            </motion.div>
+
+            {/* Mini testimonial snippet — top left, same as original */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+              className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
+            >
+              <div className="font-display text-4xl text-foreground/40">"</div>
+              <p className="text-xs leading-snug text-foreground/70">{site.hero.sidebarQuote}</p>
+            </motion.div>
+          </div>
+
+          <div className="mt-3 flex justify-center px-4">
+            <div className="ceo-identity-badge" role="note" aria-label="Ankit Sen, founder and CEO">
+              <span className="ceo-identity-badge__name">Ankit Sen</span>
+              <span className="ceo-identity-badge__role">Founder & CEO</span>
+            </div>
+          </div>
+        </div>
+        <div className="w-full mt-8 mb-12 text-center flex flex-col justify-center items-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-foreground/70"
-          >
-            Creativity, strategy, and technology come together in every campaign we build.
-      
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto  mt-6 max-w-5xl text-base md:text-lg text-accent"
+            className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
           >
             Creativity, strategy, and technology come together in every campaign we build. We turn
             brand momentum into measurable growth for fast-moving teams.
           </motion.p>
+
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-foreground/70"
+            className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
           >
             Creativity, strategy, and technology come together in every campaign we build.
-      
           </motion.p>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
-        >
-          <a
-            href="#work"
-            className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-          >
-            View Our Work <ArrowUpRight className="h-4 w-4" />
-          </a>
-          <a
-            href="#services"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold lift"
-          >
-            Explore services
-          </a>
-        </motion.div>
-         </div> 
-
-        {/* Portrait hero — matches uploaded design */}
-        <div className="relative mx-auto mt-10 max-w-3xl">
-          {/* Orange semicircle backdrop */}
           <motion.div
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
-            style={{ transformOrigin: "bottom" }}
-            className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 h-[55%] w-[70%] rounded-t-full bg-accent"
-          />
-
-          {/* Portrait image */}
-          <a
-            href={resolveMediaUrl(site.hero.portraitUrl, portrait)}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Open hero portrait in a new tab"
-            className="relative z-10 block w-fit mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <motion.img
-              src={resolveMediaUrl(site.hero.portraitUrl, portrait)}
-              alt="AlphaNexis — Digital Marketing & AI Agency"
-              width={1024}
-              height={1024}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="relative z-10 mx-auto h-auto w-[min(520px,80vw)] md:w-[min(670px,90%)] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] animate-float-y cursor-pointer"
-            />
-          </a>
-
-          {/* SVG scribble decorators */}
-          <Scribble className="pointer-events-none absolute left-4 top-2 h-8 w-14 text-ink animate-draw md:left-8" />
-          <Scribble className="pointer-events-none absolute right-6 top-8 h-8 w-14 text-accent rotate-12 animate-draw md:right-16" />
-          <Star4 className="pointer-events-none absolute left-2 top-1/3 h-5 w-5 text-accent animate-spin-slow md:left-10" />
-          <Star4 className="pointer-events-none absolute right-8 bottom-1/3 h-6 w-6 text-ink animate-spin-slow" />
-
-          {/* Floating pill tags — same positions as original Helmi design */}
-          {[
-            {
-              txt: (
-                <>
-                  <Megaphone className="h-4 w-4 text-accent" /> Marketing
-                </>
-              ),
-              pos: "-left-4 top-[50%] md:left-0",
-              r: "-6deg",
-              d: "0s",
-            },
-            {
-              txt: (
-                <>
-                  <Rocket className="h-4 w-4 text-accent" /> Ads
-                </>
-              ),
-              pos: "-right-4 top-[36%] md:right-0",
-              r: "8deg",
-              d: "0.4s",
-            },
-            {
-              txt: (
-                <>
-                  <Sparkles className="h-4 w-4 text-accent" /> Brand
-                </>
-              ),
-              pos: "-left-6 top-[87%] md:left-12",
-              r: "-4deg",
-              d: "0.8s",
-            },
-            {
-              txt: (
-                <>
-                  <Megaphone className="h-4 w-4 text-accent" /> Social Media
-                </>
-              ),
-              pos: "-right-6 bottom-[15%] md:right-8",
-              r: "6deg",
-              d: "1.2s",
-            },
-          ].map((p, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 0.8, scale: 1 }}
-              transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
-              style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-              className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
+            <a
+              href="#work"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
             >
-              {p.txt}
-            </motion.div>
-          ))}
-
-          {/* "8+ Years" stat — top right, same as original */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4 }}
-            className="absolute -right-2 top-[18%] z-20 hidden text-right md:block"
-          >
-            <div className="font-display text-4xl font-bold leading-none">
-              {site.hero.sidebarStat.value}
-            </div>
-            <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
+              Marketing <ArrowUpRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#services"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold lift"
+            >
+              Development
+            </a>
           </motion.div>
-
-          {/* Mini testimonial snippet — top left, same as original */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
-          >
-            <div className="font-display text-4xl text-foreground/40">"</div>
-            <p className="text-xs leading-snug text-foreground/70">{site.hero.sidebarQuote}</p>
-          </motion.div>
-        </div>
-        <div className="mt-3 flex justify-center px-4">
-          <div className="ceo-identity-badge" role="note" aria-label="Ankit Sen, founder and CEO">
-            <span className="ceo-identity-badge__name">Ankit Sen</span>
-            <span className="ceo-identity-badge__role">Founder & CEO</span>
-          </div>
         </div>
       </section>
-
-     
 
       {/* MARQUEE */}
       <div className="border-y border-border bg-background py-5 overflow-hidden">
@@ -2710,7 +2774,7 @@ function Index() {
           </div>
         </motion.div>
       </section>
-        {/* STATS strip */}
+      {/* STATS strip */}
       <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
         <div className="mb-10 text-center">
           <span className="script text-3xl text-accent">Achievements</span>
