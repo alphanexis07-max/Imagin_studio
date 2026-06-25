@@ -81,6 +81,228 @@ import screenshot5 from "@/assets/carousel-samples/screenshot-5.jpg";
 import screenshot6 from "@/assets/carousel-samples/screenshot-6.jpg";
 import type { SiteData } from "@/lib/admin/site.functions";
 
+// ============================================
+// HELPER COMPONENTS FOR HERO ENHANCEMENTS
+// ============================================
+
+// Floating Glass Card Component
+const FloatingCard = ({ 
+  label, 
+  value, 
+  delay, 
+  className = "",
+  depth = 1
+}: { 
+  label: string; 
+  value: string; 
+  delay: number;
+  className?: string;
+  depth?: number;
+}) => {
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const x = (e.clientX - centerX) / 20;
+      const y = (e.clientY - centerY) / 20;
+      setMouseX(x);
+      setMouseY(y);
+      
+      // Parallax depth
+      const rect2 = ref.current.parentElement?.getBoundingClientRect();
+      if (rect2) {
+        const px = (e.clientX - rect2.left) / rect2.width - 0.5;
+        const py = (e.clientY - rect2.top) / rect2.height - 0.5;
+        setPosition({ x: px * depth * 8, y: py * depth * 8 });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [depth]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`absolute backdrop-blur-[16px] bg-white/80 dark:bg-white/10 rounded-2xl border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-4 min-w-[140px] pointer-events-none ${className}`}
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        y: [0, -8, 0, -12, 0],
+        x: [0, 4, -4, 6, 0],
+        rotate: [0, 1.5, -1.5, 2, 0],
+      }}
+      transition={{
+        opacity: { duration: 0.8, delay: delay + 0.3 },
+        scale: { duration: 0.8, delay: delay + 0.3 },
+        y: {
+          duration: 4 + Math.random() * 3,
+          repeat: Infinity,
+          delay: delay,
+          ease: "easeInOut",
+        },
+        x: {
+          duration: 5 + Math.random() * 4,
+          repeat: Infinity,
+          delay: delay + 0.5,
+          ease: "easeInOut",
+        },
+        rotate: {
+          duration: 6 + Math.random() * 3,
+          repeat: Infinity,
+          delay: delay + 1,
+          ease: "easeInOut",
+        }
+      }}
+      style={{
+        x: position.x,
+        y: position.y,
+        transform: `perspective(800px) rotateX(${mouseY * 0.5}deg) rotateY(${mouseX * 0.5}deg)`,
+      }}
+      whileHover={{
+        scale: 1.06,
+        y: -8,
+        rotate: 0,
+        boxShadow: "0 20px 60px rgba(255, 107, 53, 0.2)",
+        borderColor: "rgba(255, 107, 53, 0.3)",
+        transition: { duration: 0.3, type: "spring", stiffness: 300 }
+      }}
+    >
+      <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500">{label}</p>
+      <p className="text-xl font-bold text-gray-900 dark:text-white mt-1">{value}</p>
+    </motion.div>
+  );
+};
+
+// Ambient Particle Component
+const Particle = ({ delay, size, type = 'dot', xRange = 200, yRange = 200 }: any) => {
+  const [position] = useState({
+    x: (Math.random() - 0.5) * xRange,
+    y: (Math.random() - 0.5) * yRange,
+  });
+
+  const shapes = {
+    dot: 'rounded-full',
+    star: 'rotate-45',
+    sparkle: 'rounded-sm',
+    ring: 'rounded-full border-2 border-current'
+  };
+
+  return (
+    <motion.div
+      className={`absolute ${shapes[type]} bg-orange-500/20 dark:bg-orange-400/20`}
+      style={{
+        width: size,
+        height: type === 'ring' ? size : size,
+        left: '50%',
+        top: '50%',
+        x: position.x,
+        y: position.y,
+        borderColor: type === 'ring' ? 'rgba(255,107,53,0.2)' : 'transparent',
+      }}
+      animate={{
+        opacity: [0.08, 0.2, 0.08],
+        scale: [1, 1.2, 1],
+        x: position.x + (Math.random() - 0.5) * 40,
+        y: position.y + (Math.random() - 0.5) * 40,
+      }}
+      transition={{
+        duration: 4 + Math.random() * 3,
+        repeat: Infinity,
+        delay: delay,
+        ease: "easeInOut",
+      }}
+    />
+  );
+};
+
+// Cursor Glow Component
+const CursorGlow = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+      setIsVisible(true);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <motion.div
+      className="pointer-events-none fixed z-0"
+      animate={{
+        x: position.x - 150,
+        y: position.y - 150,
+        opacity: isVisible ? 0.3 : 0,
+      }}
+      transition={{
+        type: "spring",
+        damping: 30,
+        stiffness: 200,
+        mass: 0.5,
+      }}
+      style={{
+        width: 300,
+        height: 300,
+        background: 'radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%)',
+        filter: 'blur(40px)',
+      }}
+    />
+  );
+};
+
+// CEO Signature Button Component
+const CEOSignature = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.6, duration: 0.8 }}
+      className="mt-6 flex justify-center relative z-30"
+    >
+      <motion.div
+        whileHover={{ 
+          scale: 1.05,
+          boxShadow: "0 8px 30px rgba(255,107,53,0.25)",
+        }}
+        whileTap={{ scale: 0.95 }}
+        className="inline-flex items-center gap-4 rounded-full border-2 border-orange-500/30 bg-white/80 dark:bg-white/10 backdrop-blur-sm px-6 py-3 shadow-lg hover:shadow-orange-500/20 transition-all duration-300 cursor-pointer"
+      >
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white font-bold text-sm">
+            AS
+          </div>
+          <div className="text-left">
+            <p className="font-semibold text-gray-900 dark:text-white text-sm">Ankit Sen</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">CEO & Co-Founder</p>
+          </div>
+        </div>
+        <div className="h-8 w-px bg-orange-500/20" />
+        <div className="flex items-center gap-1">
+          <span className="text-xs font-medium text-orange-600 dark:text-orange-400">AlphaNexis</span>
+          <Sparkles className="h-3 w-3 text-orange-500" />
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// ============================================
+// END HELPER COMPONENTS
+// ============================================
+
 function extractEmbedUrl(url: string) {
   try {
     const parsed = new URL(url);
@@ -826,7 +1048,7 @@ function WorkSection() {
 
 function ServicesSection() {
   return (
-    <section id="services" className="relative mx-auto max-w-6xl px-5 py-6 )]">
+    <section id="services" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">Services that drive digital growth</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
@@ -2130,8 +2352,94 @@ function Index() {
       {/* Nav */}
       <Navbar />
 
+      {/* Cursor Glow - Only in hero section */}
+      <CursorGlow />
+
       {/* HERO */}
-      <section className="relative mx-auto max-w-6xl px-5 pt-12 pb-8 md:pt-20">
+      <section className="relative mx-auto max-w-6xl px-5 pt-12 pb-8 md:pt-20 overflow-hidden">
+        {/* Ambient Particles */}
+        <div className="absolute inset-0 pointer-events-none">
+          {Array.from({ length: 14 }).map((_, i) => (
+            <Particle
+              key={i}
+              delay={i * 0.3}
+              size={4 + Math.random() * 6}
+              type={['dot', 'star', 'sparkle', 'ring'][Math.floor(Math.random() * 4)]}
+              xRange={window.innerWidth * 0.4}
+              yRange={window.innerHeight * 0.4}
+            />
+          ))}
+        </div>
+
+        {/* Floating Cards - Non-overlapping grid layout */}
+        <div className="absolute inset-0 pointer-events-none h-[1200px]">
+          <div className="relative w-full h-full max-w-6xl mx-auto px-5">
+            {/* Top row - left side */}
+            <FloatingCard 
+              label="SEO" 
+              value="↑ 124%" 
+              delay={0.5} 
+              depth={1.2}
+              className="top-[5%] left-[0%] md:top-[8%] md:left-[2%]"
+            />
+            {/* Top row - right side */}
+            <FloatingCard 
+              label="AI Automation" 
+              value="120+ hrs" 
+              delay={0.8} 
+              depth={0.8}
+              className="top-[6%] right-[0%] md:top-[10%] md:right-[3%]"
+            />
+            {/* Middle left */}
+            <FloatingCard 
+              label="Paid Ads" 
+              value="ROAS 4.2x" 
+              delay={1.1} 
+              depth={1.5}
+              className="top-[32%] left-[-2%] md:top-[35%] md:left-[1%]"
+            />
+            {/* Middle right */}
+            <FloatingCard 
+              label="Social Media" 
+              value="↑ 89%" 
+              delay={1.4} 
+              depth={0.9}
+              className="top-[30%] right-[-2%] md:top-[32%] md:right-[0%]"
+            />
+            {/* Bottom left */}
+            <FloatingCard 
+              label="Content Strategy" 
+              value="↑ 97%" 
+              delay={1.7} 
+              depth={1.3}
+              className="top-[58%] left-[2%] md:top-[60%] md:left-[4%]"
+            />
+            {/* Bottom right */}
+            <FloatingCard 
+              label="Campaign ROI" 
+              value="4.8x" 
+              delay={2.0} 
+              depth={0.7}
+              className="top-[60%] right-[2%] md:top-[62%] md:right-[3%]"
+            />
+            {/* Extra cards for better fill */}
+            <FloatingCard 
+              label="Brand Strategy" 
+              value="↑ 156%" 
+              delay={2.3} 
+              depth={1.1}
+              className="top-[15%] left-[8%] md:top-[18%] md:left-[10%]"
+            />
+            <FloatingCard 
+              label="Lead Gen" 
+              value="3x Pipeline" 
+              delay={2.6} 
+              depth={0.85}
+              className="top-[45%] right-[8%] md:top-[48%] md:right-[10%]"
+            />
+          </div>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -2139,7 +2447,7 @@ function Index() {
           // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
         ></motion.div>
 
-        <div className="text-center">
+        <div className="text-center relative z-20">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -2159,24 +2467,43 @@ function Index() {
           </motion.p>
         </div>
 
+        {/* CTA Buttons with microinteractions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+          className="mt-10 flex flex-wrap items-center justify-center gap-3 relative z-20"
         >
-          <a
+          <motion.a
             href="#work"
-            className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+            className="relative inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream overflow-hidden group"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
-            View Our Work <ArrowUpRight className="h-4 w-4" />
-          </a>
-          <a
+            {/* Shine sweep effect */}
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <span className="relative flex items-center gap-2">
+              View Our Work
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <ArrowUpRight className="h-4 w-4" />
+              </motion.span>
+            </span>
+          </motion.a>
+          <motion.a
             href="#services"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold lift"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold"
+            whileHover={{ 
+              scale: 1.03,
+              boxShadow: "0 0 20px rgba(255,107,53,0.15)",
+              borderColor: "rgba(255,107,53,0.5)"
+            }}
+            whileTap={{ scale: 0.97 }}
           >
             Explore services
-          </a>
+          </motion.a>
         </motion.div>
 
         {/* Portrait hero — matches uploaded design */}
@@ -2190,25 +2517,35 @@ function Index() {
             className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 h-[55%] w-[70%] rounded-t-full bg-accent"
           />
 
+          {/* Soft orange glow behind portrait */}
+          <div className="absolute -inset-20 bg-orange-500/5 blur-[60px] rounded-full animate-pulse pointer-events-none" />
+
           {/* Portrait image */}
           <a
             href={resolveMediaUrl(site.hero.portraitUrl, portrait)}
             target="_blank"
             rel="noreferrer"
             aria-label="Open hero portrait in a new tab"
-            className="relative z-10 block w-fit mx-auto"
+            className="relative z-20 block w-fit mx-auto"
           >
             <motion.img
-              src={resolveMediaUrl(site.hero.portraitUrl, portrait)}
+              src={portrait}
               alt="AlphaNexis — Digital Marketing & AI Agency"
               width={1024}
               height={1024}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="relative z-10 mx-auto h-auto w-[min(520px,80vw)] md:w-[min(670px,90%)] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] animate-float-y cursor-pointer"
+              className="relative z-20 mx-auto h-auto w-[min(520px,80vw)] md:w-[min(670px,90%)] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] animate-float-y cursor-pointer"
+              onError={(e) => {
+                const img = e.target as HTMLImageElement;
+                img.style.display = 'none';
+              }}
             />
           </a>
+
+          {/* CEO Signature Button - at the end of portrait */}
+          <CEOSignature />
 
           {/* SVG scribble decorators */}
           <Scribble className="pointer-events-none absolute left-4 top-2 h-8 w-14 text-ink animate-draw md:left-8" />
@@ -2216,7 +2553,7 @@ function Index() {
           <Star4 className="pointer-events-none absolute left-2 top-1/3 h-5 w-5 text-accent animate-spin-slow md:left-10" />
           <Star4 className="pointer-events-none absolute right-8 bottom-1/3 h-6 w-6 text-ink animate-spin-slow" />
 
-          {/* Floating pill tags — same positions as original Helmi design */}
+          {/* Floating pill tags — optimized positioning */}
           {[
             {
               txt: (
@@ -2224,15 +2561,15 @@ function Index() {
                   <Megaphone className="h-4 w-4 text-accent" /> Marketing
                 </>
               ),
-              pos: "-left-4 top-[50%] md:left-0",
+              pos: "-left-8 top-[45%] md:left-[-60px] md:top-[48%]",
               r: "-6deg",
               d: "0s",
             },
-            { txt: <><Rocket className="h-4 w-4 text-accent" /> Ads</>, pos: "-right-4 top-[36%] md:right-0", r: "8deg", d: "0.4s" },
-            { txt: <><Sparkles className="h-4 w-4 text-accent" /> Brand</>, pos: "-left-6 top-[87%] md:left-12", r: "-4deg", d: "0.8s" },
+            { txt: <><Rocket className="h-4 w-4 text-accent" /> Ads</>, pos: "-right-8 top-[35%] md:right-[-60px] md:top-[40%]", r: "8deg", d: "0.4s" },
+            { txt: <><Sparkles className="h-4 w-4 text-accent" /> Brand</>, pos: "-left-10 bottom-[25%] md:left-[-80px] md:bottom-[30%]", r: "-4deg", d: "0.8s" },
             {
               txt: <><Megaphone className="h-4 w-4 text-accent" /> Social Media</>,
-              pos: "-right-6 bottom-[15%] md:right-8",
+              pos: "-right-10 bottom-[20%] md:right-[-80px] md:bottom-[25%]",
               r: "6deg",
               d: "1.2s",
             },
@@ -2240,10 +2577,10 @@ function Index() {
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 0.8, scale: 1 }}
+              animate={{ opacity: 0.85, scale: 1 }}
               transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
               style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-              className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
+              className={`pill-tag absolute z-20 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
             >
               {p.txt}
             </motion.div>
@@ -2254,7 +2591,7 @@ function Index() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4 }}
-            className="absolute -right-2 top-[18%] z-20 hidden text-right md:block"
+            className="absolute -right-2 top-[18%] z-30 hidden text-right md:block"
           >
             <div className="font-display text-4xl font-bold leading-none">{site.hero.sidebarStat.value}</div>
             <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
@@ -2265,7 +2602,7 @@ function Index() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
-            className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
+            className="absolute -left-15 top-[60%] z-30 hidden max-w-[200px] md:block"
           >
             <div className="font-display text-4xl text-foreground/40">"</div>
            <p className="text-xs leading-snug text-foreground/70">
