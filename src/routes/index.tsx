@@ -120,12 +120,18 @@ const Underline = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 const Arrow = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 80 80" className={className} fill="none">
-    <path d="M10 10 Q 40 30, 35 55" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+  <svg viewBox="0 0 120 90" className={className} fill="none" aria-hidden="true">
     <path
-      d="M25 50 L 35 58 L 45 48"
+      d="M12 70 C 32 24, 88 18, 96 52 C 104 86, 42 82, 50 46 C 56 20, 92 22, 104 16"
       stroke="currentColor"
-      strokeWidth="3"
+      strokeWidth="4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M91 13 L104 16 L98 29"
+      stroke="currentColor"
+      strokeWidth="4"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -2623,7 +2629,7 @@ function Index() {
                 </motion.div>
               ))}
             </div>
-            <Arrow className="absolute -right-4 -top-8 h-16 w-16 text-ink hidden md:block" />
+            <Arrow className="pointer-events-none absolute -right-6 -top-12 z-20 hidden h-28 w-36 rotate-3 text-ink drop-shadow-[0_3px_0_rgba(255,255,255,0.65)] animate-draw md:block lg:-right-10 lg:-top-14 lg:h-32 lg:w-40" />
           </motion.div>
         </div>
       </section>
