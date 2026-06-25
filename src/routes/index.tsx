@@ -209,12 +209,12 @@ const ThinAnswerArrow = ({
 const QuestionAnswerCtas = () => (
   <div className="relative mx-auto mt-8 grid min-h-[360px] w-full max-w-5xl grid-rows-[1fr_auto] px-2 pt-2 md:min-h-[310px] md:px-0">
     <QuestionCallout
-      label="Need campaigns, content, and growth systems?"
+      label="Need Campaigns, Content, And Growth Systems?"
       icon={<Megaphone className="h-5 w-5" />}
       className="left-1 top-0 md:left-0"
     />
     <QuestionCallout
-      label="Need websites, apps, and automation built?"
+      label="Need Websites, Apps, And Automation Built?"
       icon={<Rocket className="h-5 w-5" />}
       className="bottom-[118px] right-1 md:right-0 md:top-0 md:bottom-auto"
     />
