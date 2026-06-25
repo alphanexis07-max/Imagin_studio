@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ChangeEvent,
@@ -323,12 +324,18 @@ const Underline = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 const Arrow = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 80 80" className={className} fill="none">
-    <path d="M10 10 Q 40 30, 35 55" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+  <svg viewBox="0 0 120 90" className={className} fill="none" aria-hidden="true">
     <path
-      d="M25 50 L 35 58 L 45 48"
+      d="M12 70 C 32 24, 88 18, 96 52 C 104 86, 42 82, 50 46 C 56 20, 92 22, 104 16"
       stroke="currentColor"
-      strokeWidth="3"
+      strokeWidth="4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M91 13 L104 16 L98 29"
+      stroke="currentColor"
+      strokeWidth="4"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -359,10 +366,12 @@ const QuestionCallout = ({
 const ThinAnswerArrow = ({
   className = "",
   path,
+  headPath,
   delay,
 }: {
   className?: string;
   path: string;
+  headPath: string;
   delay: number;
 }) => (
   <motion.svg
@@ -389,7 +398,7 @@ const ThinAnswerArrow = ({
       }}
     />
     <motion.path
-      d="M294 166 L315 176 L304 154"
+      d={headPath}
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -408,43 +417,105 @@ const ThinAnswerArrow = ({
   </motion.svg>
 );
 
+const MobileQuestionCta = ({
+  label,
+  icon,
+  href,
+  children,
+  primary = false,
+  delay,
+}: {
+  label: string;
+  icon: ReactNode;
+  href: string;
+  children: ReactNode;
+  primary?: boolean;
+  delay: number;
+}) => (
+  <div className="grid gap-2">
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.45 }}
+      className="flex min-h-[76px] w-full items-center gap-3 rounded-lg border-2 border-ink bg-card px-4 py-3 text-left shadow-[0_8px_0_-4px_var(--orange-pop),0_16px_34px_-26px_rgba(0,0,0,0.45)]"
+    >
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent text-ink shadow-[inset_0_-4px_0_rgba(0,0,0,0.14)]">
+        {icon}
+      </span>
+      <span className="min-w-0 text-sm font-semibold leading-snug text-foreground">{label}</span>
+    </motion.div>
+    <a
+      href={href}
+      className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold lift ${
+        primary ? "bg-ink text-cream" : "border-2 border-ink bg-background text-foreground"
+      }`}
+    >
+      {children}
+    </a>
+  </div>
+);
+
 const QuestionAnswerCtas = () => (
-  <div className="relative mx-auto mt-8 grid min-h-[360px] w-full max-w-5xl grid-rows-[1fr_auto] px-2 pt-2 md:min-h-[310px] md:px-0">
-    <QuestionCallout
-      label="Need Campaigns, Content, And Growth Systems?"
-      icon={<Megaphone className="h-5 w-5" />}
-      className="left-1 top-0 md:left-0"
-    />
-    <QuestionCallout
-      label="Need Websites, Apps, And Automation Built?"
-      icon={<Rocket className="h-5 w-5" />}
-      className="bottom-[118px] right-1 md:right-0 md:top-0 md:bottom-auto"
-    />
-
-    <ThinAnswerArrow
-      path="M22 28 C82 50 118 78 156 110 C190 138 230 158 310 174"
-      className="left-[13%] top-[62px]"
-      delay={1}
-    />
-    <ThinAnswerArrow
-      path="M22 28 C82 50 118 78 156 110 C190 138 230 158 310 174"
-      className="right-[13%] top-[62px] scale-x-[-1]"
-      delay={1.16}
-    />
-
-    <div className="relative z-20 row-start-2 flex w-full flex-col items-center justify-center w-full gap-2  md:flex-row md:px-[9%]">
-      <a
-        href="#work"
-        className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+  <div className="mx-auto mt-8 w-full max-w-5xl px-2 md:px-0">
+    <div className="grid gap-4 md:hidden">
+      <MobileQuestionCta
+        label="Need campaigns, content, and growth systems?"
+        icon={<Megaphone className="h-5 w-5" />}
+        href="#contact"
+        primary
+        delay={0.68}
       >
         Marketing <ArrowUpRight className="h-4 w-4" />
-      </a>
-      <a
-        href="#services"
-        className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+      </MobileQuestionCta>
+      <MobileQuestionCta
+        label="Need websites, apps, and automation built?"
+        icon={<Rocket className="h-5 w-5" />}
+        href="#contact"
+        delay={0.78}
       >
         Development
-      </a>
+      </MobileQuestionCta>
+    </div>
+
+    <div className="relative hidden min-h-[310px] w-full grid-rows-[1fr_auto] pt-2 md:grid">
+      <QuestionCallout
+        label="Need campaigns, content, and growth systems?"
+        icon={<Megaphone className="h-5 w-5" />}
+        className="left-0 top-0"
+      />
+      <QuestionCallout
+        label="Need websites, apps, and automation built?"
+        icon={<Rocket className="h-5 w-5" />}
+        className="right-0 top-0"
+      />
+
+      <ThinAnswerArrow
+        path="M22 28 C76 62 112 84 150 118 C182 146 224 166 282 178"
+        headPath="M264 166 L282 178 L271 158"
+        className="left-[14%] top-[70px]"
+        delay={1}
+      />
+      <ThinAnswerArrow
+        path="M298 28 C244 62 208 84 170 118 C138 146 96 166 38 178"
+        headPath="M56 166 L38 178 L49 158"
+        className="right-[14%] top-[70px]"
+        delay={1.16}
+      />
+
+      <div className="relative z-20 row-start-2 flex w-full items-center justify-center gap-2 md:px-[9%]">
+        <a
+          href="#contact"
+          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+        >
+          Marketing <ArrowUpRight className="h-4 w-4" />
+        </a>
+        <a
+          href="#contact"
+          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+        >
+          Development
+        </a>
+      </div>
     </div>
   </div>
 );
@@ -1156,21 +1227,30 @@ function ServicesSection() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">
-        {serviceOfferings.map((service) => {
+        {serviceOfferings.map((service, i) => {
           const Icon = service.icon;
           return (
-            <div
+            <motion.div
               key={service.title}
-              className="rounded-[2rem] border-2 border-ink bg-background p-8 shadow-[6px_6px_0_0_var(--ink)]"
+              initial={{ opacity: 0, y: 28, rotate: i % 2 === 0 ? -0.8 : 0.8 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              whileHover={{ y: -8, rotate: i % 2 === 0 ? -0.6 : 0.6, scale: 1.015 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ delay: i * 0.07, type: "spring", stiffness: 95, damping: 14 }}
+              className="group relative overflow-hidden rounded-[2rem] border-2 border-ink bg-background p-8 text-ink shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)]"
             >
-              <div
-                className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-gradient-to-br ${service.accent} text-white`}
+              <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-accent/10 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
+              <motion.div
+                whileHover={{ rotate: -8, scale: 1.08 }}
+                className={`relative mb-5 inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-gradient-to-br ${service.accent} text-white shadow-[inset_0_-5px_0_rgba(0,0,0,0.14)] transition-transform duration-300 group-hover:-translate-y-1`}
               >
                 <Icon className="h-6 w-6" />
-              </div>
-              <h3 className="font-display text-2xl font-bold">{service.title}</h3>
-              <p className="mt-4 text-sm leading-6 text-foreground/70">{service.description}</p>
-            </div>
+              </motion.div>
+              <h3 className="relative font-display text-2xl font-bold">{service.title}</h3>
+              <p className="relative mt-4 text-sm leading-6 text-foreground/70 dark:text-card-foreground/70">
+                {service.description}
+              </p>
+            </motion.div>
           );
         })}
       </div>
@@ -1369,8 +1449,16 @@ const engagements = [
 ];
 
 const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
-  tag: ["Brand · Reel", "After Work", "Studio · Talk", "Street · B-roll"][i] || "Reel",
-  title: ["Atlas — Origin", "Off-hours", "20:00 Live", "Walk & Talk"][i] || "Reel",
+  tag: ["Brand / Reel", "After Work", "Studio Talk", "Street B-roll"][i] || "Reel",
+  category: ["Brand", "Culture", "Studio", "B-roll"][i] || "Reel",
+  title: ["Atlas - Origin", "Off-hours", "20:00 Live", "Walk & Talk"][i] || "Reel",
+  description:
+    [
+      "Brand-story cut with polished launch pacing.",
+      "After-hours culture reel with quick editorial beats.",
+      "Talking-head studio clip for thought leadership.",
+      "Street-level b-roll with motion and atmosphere.",
+    ][i] || "Reel",
   src: post.url,
   poster: "",
 }));
@@ -1647,13 +1735,15 @@ function normalizeReels(items: CmsItem[]) {
   const reels = items
     .map((item) => ({
       tag: asString(item.tag, "Reel"),
+      category: asString(item.category, asString(item.categoryLabel, asString(item.tag, "Reel"))),
       title: asString(item.title, "Reel"),
+      description: asString(item.description),
       src: asString(item.url),
       poster: asString(item.poster),
     }))
     .filter((item) => item.src);
 
-  return (reels.length ? reels : filmReels).slice(0, 4);
+  return reels.length ? reels : filmReels;
 }
 function normalizeTestimonials(items: CmsItem[]) {
   return items.length
@@ -1836,7 +1926,38 @@ function ProcessSection({ items = steps }: { items?: typeof steps }) {
 function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isReelsLoading, setIsReelsLoading] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [reelSearch, setReelSearch] = useState("");
+  const [isFiltering, setIsFiltering] = useState(false);
   const rotations = [-0.5, 0.5, -0.35, 0.35];
+
+  const categories = useMemo(() => {
+    const unique = new Set<string>();
+    items.forEach((reel) => unique.add(reel.category || reel.tag || "Reel"));
+    return ["All", ...Array.from(unique)];
+  }, [items]);
+
+  const filteredReels = useMemo(() => {
+    const query = reelSearch.trim().toLowerCase();
+
+    return items.filter((reel) => {
+      const category = reel.category || reel.tag || "Reel";
+      const matchesCategory = activeCategory === "All" || category === activeCategory;
+      const searchable = [reel.title, reel.tag, category, reel.description]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return matchesCategory && (!query || searchable.includes(query));
+    });
+  }, [activeCategory, items, reelSearch]);
+
+  const visibleReels = filteredReels.slice(0, 6);
+
+  useEffect(() => {
+    setIsFiltering(true);
+    const timeout = window.setTimeout(() => setIsFiltering(false), 360);
+    return () => window.clearTimeout(timeout);
+  }, [activeCategory, reelSearch]);
 
   return (
     <section
@@ -1845,7 +1966,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
       className="relative isolate overflow-hidden bg-transparent text-foreground"
     >
       <div className="relative mx-auto max-w-6xl px-5 py-8">
-        <div className="mb-10 grid items-end gap-6 md:grid-cols-[1fr_auto]">
+        <div className="mb-8 grid items-end gap-6 md:grid-cols-[1fr_auto]">
           <div>
             <span className="script text-3xl text-accent">The Reel Room</span>
             <h2 className="font-display text-3xl font-bold leading-[1.04] md:text-6xl">
@@ -1856,13 +1977,13 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
           </div>
           <div className="flex flex-col gap-4 md:items-end">
             <p className="max-w-sm text-foreground/70 md:text-right">
-              Real client cuts — autoplaying as you arrive. Tap a frame to unmute and feel the room.
+              Real client cuts - filter by category or search the room before opening the full reel
+              library.
             </p>
             <Link
               to="/reels"
               onClick={() => setIsReelsLoading(true)}
               disabled={!isReelsLoading}
-              // aria-busy={isReelsLoading}
               className="inline-flex min-w-36 items-center justify-center gap-2 rounded-full border border-ink/15 bg-card/70 px-6 py-2.5 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur transition-all hover:bg-ink hover:text-cream aria-busy:pointer-events-none aria-busy:opacity-80 dark:border-white/10 dark:bg-card/70 dark:text-card-foreground dark:hover:bg-foreground dark:hover:text-background"
             >
               {isReelsLoading ? (
@@ -1879,41 +2000,122 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
           </div>
         </div>
 
-        <div className="relative">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
-            {items.map((reel, i) => {
-              return (
-                <motion.div
-                  key={reel.title}
-                  initial={{ opacity: 0, y: 40, rotate: rotations[i] * 2 }}
-                  whileInView={{ opacity: 1, y: 0, rotate: rotations[i] }}
-                  whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ type: "spring", stiffness: 90, delay: i * 0.1 }}
-                  className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
-                >
-                  <iframe
-                    src={extractEmbedUrl(reel.src)}
-                    className="absolute inset-0 h-full w-full rounded-2xl border-none"
-                    loading="lazy"
-                    title={reel.title}
-                    allowtransparency="true"
-                    scrolling="no"
-                    allowFullScreen={true}
-                  />
-                  <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
-
-                  <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
-                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
-                    REC · {reel.tag}
-                  </div>
-                  <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
-                    {reel.title}
-                  </h3>
-                </motion.div>
-              );
-            })}
+        <div className="mb-6 grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
+          <div className="min-w-0 overflow-hidden">
+            <div
+              className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+              style={{ scrollbarWidth: "none" }}
+            >
+              {categories.map((category) => {
+                const selected = activeCategory === category;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveCategory(category)}
+                    aria-pressed={selected}
+                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                      selected
+                        ? "border-ink bg-ink text-cream shadow-[3px_3px_0_0_var(--accent)] dark:border-foreground dark:bg-foreground dark:text-background"
+                        : "border-ink/15 bg-background/80 text-foreground/70 hover:border-accent/50 hover:bg-accent/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          <label className="relative block">
+            <span className="sr-only">Search reels</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
+            <Input
+              value={reelSearch}
+              onChange={(event) => setReelSearch(event.target.value)}
+              placeholder="Search reels"
+              className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-accent/30 dark:border-white/10 dark:bg-white/5"
+            />
+          </label>
+        </div>
+
+        <div className="relative min-h-[360px]">
+          {isFiltering && (
+            <div className="absolute -top-3 left-0 right-0 z-20 h-1 overflow-hidden rounded-full bg-ink/10 dark:bg-white/10">
+              <motion.div
+                className="h-full rounded-full bg-accent"
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
+          )}
+
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5" aria-busy={isFiltering}>
+            {isFiltering
+              ? Array.from({ length: Math.min(Math.max(visibleReels.length, 4), 6) }).map(
+                  (_, i) => (
+                    <div
+                      key={`reel-skeleton-${i}`}
+                      className="aspect-[9/16] animate-pulse rounded-2xl border border-ink/10 bg-card/80 shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-white/5"
+                    >
+                      <div className="h-full rounded-2xl bg-gradient-to-b from-foreground/10 via-foreground/5 to-foreground/15" />
+                    </div>
+                  ),
+                )
+              : visibleReels.map((reel, i) => {
+                  const category = reel.category || reel.tag || "Reel";
+                  return (
+                    <motion.div
+                      key={`${reel.title}-${reel.src}`}
+                      initial={{ opacity: 0, y: 40, rotate: rotations[i % rotations.length] * 2 }}
+                      whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length] }}
+                      whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ type: "spring", stiffness: 90, delay: (i % 4) * 0.08 }}
+                      className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
+                    >
+                      <iframe
+                        src={extractEmbedUrl(reel.src)}
+                        className="absolute inset-0 h-full w-full rounded-2xl border-none"
+                        loading="lazy"
+                        title={reel.title}
+                        allowtransparency="true"
+                        scrolling="no"
+                        allowFullScreen={true}
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
+
+                      <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
+                        {category} / {reel.tag}
+                      </div>
+                      <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
+                        {reel.title}
+                      </h3>
+                    </motion.div>
+                  );
+                })}
+          </div>
+
+          {!isFiltering && filteredReels.length === 0 && (
+            <div className="rounded-[1.5rem] border border-dashed border-ink/20 bg-card/70 px-6 py-10 text-center dark:border-white/10 dark:bg-white/5">
+              <p className="font-display text-2xl font-bold">No reels found</p>
+              <p className="mx-auto mt-2 max-w-md text-sm text-foreground/60">
+                Try another category or clear the search to bring the full reel room back.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveCategory("All");
+                  setReelSearch("");
+                }}
+                className="mt-5 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-ink hover:text-cream dark:border-white/10 dark:bg-white/5"
+              >
+                Reset filters
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -2989,7 +3191,7 @@ function Index() {
                 </motion.div>
               ))}
             </div>
-            <Arrow className="absolute -right-4 -top-8 h-16 w-16 text-ink hidden md:block" />
+            {/* <Arrow className="pointer-events-none absolute -right-6 -top-12 z-20 hidden h-28 w-36 rotate-3 text-ink drop-shadow-[0_3px_0_rgba(255,255,255,0.65)] animate-draw md:block lg:-right-10 lg:-top-14 lg:h-32 lg:w-40" /> */}
           </motion.div>
         </div>
       </section>
@@ -3146,39 +3348,56 @@ function Index() {
         </div>
       </footer>
 
-       {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
+      {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
       {/* ============================================ */}
-    
-       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
-      <CartoonButton
-        label="WhatsApp"
-        icon={
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        }
-        color="bg-green-400"
-        className="animate-float"
-        onClick={() => {
-          const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || 'https://wa.me/1234567890';
-          window.open(whatsappLink, '_blank');
-        }}
-      />
 
-      <CartoonButton
-        label="View Our Work"
-        icon={
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-          </svg>
-        }
-        color="bg-white"
-        className="animate-bounce-subtle"
-        onClick={() => {
-          document.getElementById('work')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }}
-      />
-    </div>
+      <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
+        <CartoonButton
+          label="WhatsApp"
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+          }
+          color="bg-green-400"
+          className="animate-float"
+          onClick={() => {
+            const whatsappLink =
+              process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/1234567890";
+            window.open(whatsappLink, "_blank");
+          }}
+        />
+
+        <CartoonButton
+          label="View Our Work"
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+              />
+            </svg>
+          }
+          color="bg-white"
+          className="animate-bounce-subtle"
+          onClick={() => {
+            document.getElementById("work")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+        />
+      </div>
     </main>
   );
 }
