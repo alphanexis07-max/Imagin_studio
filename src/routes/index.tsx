@@ -2787,7 +2787,7 @@ function PortfolioSection({
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-8xl tracking-tight text-foreground">
+        <h2 className="mt-3 font-display text-xl font-bold md:text-6xl tracking-tight text-foreground">
           {content.title.split(" ")[0]}{" "}
           <span className="italic text-accent">{content.title.split(" ").slice(1).join(" ")}</span>
         </h2>
@@ -2863,10 +2863,11 @@ function Index() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
+              className="mx-auto text-accent/80 max-w-2xl text-base md:text-lg "
             >
-              Creativity, strategy, and technology come together in every campaign we build.
-            </motion.p>
+            Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed  
+        
+               </motion.p>
             {/* <div>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -3041,18 +3042,9 @@ function Index() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
           >
-            Creativity, strategy, and technology come together in every campaign we build. We turn
-            brand momentum into measurable growth for fast-moving teams.
+            We bridge the gap between creative imagination and functional engineering. From aggressive growth marketing to powerful custom tech, we build the exact systems you need to scale.
           </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
-          >
-            Creativity, strategy, and technology come together in every campaign we build.
-          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
