@@ -1,4 +1,5 @@
 ﻿import { createFileRoute, Link } from "@tanstack/react-router";
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   useEffect,
@@ -81,6 +82,207 @@ import screenshot4 from "@/assets/carousel-samples/screenshot-4.jpg";
 import screenshot5 from "@/assets/carousel-samples/screenshot-5.jpg";
 import screenshot6 from "@/assets/carousel-samples/screenshot-6.jpg";
 import type { SiteData } from "@/lib/admin/site.functions";
+import { CartoonButton } from "@/components/ui/cartoon-button"; // ADD THIS IMPORT
+
+// ============================================
+// HELPER COMPONENTS FOR HERO ENHANCEMENTS
+// ============================================
+
+// Floating Glass Card Component
+const FloatingCard = ({
+  label,
+  value,
+  delay,
+  className = "",
+  depth = 1,
+}: {
+  label: string;
+  value: string;
+  delay: number;
+  className?: string;
+  depth?: number;
+}) => {
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const x = (e.clientX - centerX) / 20;
+      const y = (e.clientY - centerY) / 20;
+      setMouseX(x);
+      setMouseY(y);
+
+      // Parallax depth
+      const rect2 = ref.current.parentElement?.getBoundingClientRect();
+      if (rect2) {
+        const px = (e.clientX - rect2.left) / rect2.width - 0.5;
+        const py = (e.clientY - rect2.top) / rect2.height - 0.5;
+        setPosition({ x: px * depth * 8, y: py * depth * 8 });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [depth]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`absolute backdrop-blur-[16px] bg-white/80 dark:bg-white/10 rounded-2xl border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-4 min-w-[140px] pointer-events-none ${className}`}
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        y: [0, -8, 0, -12, 0],
+        x: [0, 4, -4, 6, 0],
+        rotate: [0, 1.5, -1.5, 2, 0],
+      }}
+      transition={{
+        opacity: { duration: 0.8, delay: delay + 0.3 },
+        scale: { duration: 0.8, delay: delay + 0.3 },
+        y: {
+          duration: 4 + Math.random() * 3,
+          repeat: Infinity,
+          delay: delay,
+          ease: "easeInOut",
+        },
+        x: {
+          duration: 5 + Math.random() * 4,
+          repeat: Infinity,
+          delay: delay + 0.5,
+          ease: "easeInOut",
+        },
+        rotate: {
+          duration: 6 + Math.random() * 3,
+          repeat: Infinity,
+          delay: delay + 1,
+          ease: "easeInOut",
+        },
+      }}
+      style={{
+        x: position.x,
+        y: position.y,
+        transform: `perspective(800px) rotateX(${mouseY * 0.5}deg) rotateY(${mouseX * 0.5}deg)`,
+      }}
+      whileHover={{
+        scale: 1.06,
+        y: -8,
+        rotate: 0,
+        boxShadow: "0 20px 60px rgba(255, 107, 53, 0.2)",
+        borderColor: "rgba(255, 107, 53, 0.3)",
+        transition: { duration: 0.3, type: "spring", stiffness: 300 },
+      }}
+    >
+      <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500">
+        {label}
+      </p>
+      <p className="text-xl font-bold text-gray-900 dark:text-white mt-1">{value}</p>
+    </motion.div>
+  );
+};
+
+// Ambient Particle Component
+const Particle = ({ delay, size, type = "dot", xRange = 200, yRange = 200 }: any) => {
+  const [position] = useState({
+    x: (Math.random() - 0.5) * xRange,
+    y: (Math.random() - 0.5) * yRange,
+  });
+
+  const shapes = {
+    dot: "rounded-full",
+    star: "rotate-45",
+    sparkle: "rounded-sm",
+    ring: "rounded-full border-2 border-current",
+  };
+
+  return (
+    <motion.div
+      className={`absolute ${shapes[type]} bg-orange-500/20 dark:bg-orange-400/20`}
+      style={{
+        width: size,
+        height: type === "ring" ? size : size,
+        left: "50%",
+        top: "50%",
+        x: position.x,
+        y: position.y,
+        borderColor: type === "ring" ? "rgba(255,107,53,0.2)" : "transparent",
+      }}
+      animate={{
+        opacity: [0.08, 0.2, 0.08],
+        scale: [1, 1.2, 1],
+        x: position.x + (Math.random() - 0.5) * 40,
+        y: position.y + (Math.random() - 0.5) * 40,
+      }}
+      transition={{
+        duration: 4 + Math.random() * 3,
+        repeat: Infinity,
+        delay: delay,
+        ease: "easeInOut",
+      }}
+    />
+  );
+};
+
+// Cursor Glow Component
+const CursorGlow = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+      setIsVisible(true);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  return (
+    <motion.div
+      className="pointer-events-none fixed z-0"
+      animate={{
+        x: position.x - 150,
+        y: position.y - 150,
+        opacity: isVisible ? 0.3 : 0,
+      }}
+      transition={{
+        type: "spring",
+        damping: 30,
+        stiffness: 200,
+        mass: 0.5,
+      }}
+      style={{
+        width: 300,
+        height: 300,
+        background: "radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%)",
+        filter: "blur(40px)",
+      }}
+    />
+  );
+};
+
+// CEO Signature Button Component
+const CEOSignature = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.6, duration: 0.8 }}
+      className="mt-6 flex justify-center relative z-30"
+    ></motion.div>
+  );
+};
+
+// ============================================
+// END HELPER COMPONENTS
+// ============================================
 
 function extractEmbedUrl(url: string) {
   try {
@@ -941,7 +1143,7 @@ function WorkSection() {
 
 function ServicesSection() {
   return (
-    <section id="services" className="relative mx-auto max-w-6xl px-5 py-6 )]">
+    <section id="services" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent">Services that drive digital growth</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
@@ -2427,6 +2629,9 @@ function Index() {
       {/* Nav */}
       <Navbar />
 
+      {/* Cursor Glow - Only in hero section */}
+      <CursorGlow />
+
       {/* HERO */}
       <section className="relative mx-auto max-w-6xl  px-5  pb-8 ">
         <div className="  flex flex-col justify-center pt-12 ">
@@ -2940,6 +3145,40 @@ function Index() {
           </div>
         </div>
       </footer>
+
+       {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
+      {/* ============================================ */}
+    
+       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
+      <CartoonButton
+        label="WhatsApp"
+        icon={
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        }
+        color="bg-green-400"
+        className="animate-float"
+        onClick={() => {
+          const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || 'https://wa.me/1234567890';
+          window.open(whatsappLink, '_blank');
+        }}
+      />
+
+      <CartoonButton
+        label="View Our Work"
+        icon={
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+          </svg>
+        }
+        color="bg-white"
+        className="animate-bounce-subtle"
+        onClick={() => {
+          document.getElementById('work')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}
+      />
+    </div>
     </main>
   );
 }

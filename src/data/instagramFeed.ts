@@ -14,7 +14,7 @@ export const instagramPosts = [
   { id: 'ig-13', type: 'instagram', url: 'https://www.instagram.com/reel/DW0gfgICLn5/?igsh=OGdrNWxhajFzMDFt' },
   { id: 'ig-14', type: 'instagram', url: 'https://www.instagram.com/reel/DZaHdctoS_N/?igsh=cHphdjVzeGdvb2V6' },
   { id: 'ig-15', type: 'instagram', url: 'https://www.instagram.com/reel/DY13YUtyqT-/?igsh=MXJ3cWoyd2ZpNmVnZw==' },
-  { id: 'ig-16', type: 'instagram', url: 'https://www.ins tagram.com/reel/DZZNlSQvCwOzeLC98sRTR0mFRC9N7hJdD5HfkQ0/?igsh=MWsyMmNlYW0wdGNhNQ==' },
+  { id: 'ig-16', type: 'instagram', url: 'https://www.instagram.com/reel/DZZNlSQvCwOzeLC98sRTR0mFRC9N7hJdD5HfkQ0/?igsh=MWsyMmNlYW0wdGNhNQ==' },
   { id: 'ig-17', type: 'instagram', url: 'https://www.instagram.com/reel/DXwZ0-TSfsT/?igsh=MW12M21meWR5cmZocA==' },
   { id: 'ig-18', type: 'instagram', url: 'https://www.instagram.com/reel/DX9d9nDMcx5/?igsh=andvMGNhd3liZ2R6' },
   { id: 'ig-19', type: 'instagram', url: 'https://www.instagram.com/reel/DVQWNB7jO0R/?igsh=MTE3aW1vbmU1b205Yg==' },
