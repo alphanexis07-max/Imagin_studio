@@ -461,7 +461,7 @@ const QuestionAnswerCtas = () => (
       <MobileQuestionCta
         label="Need campaigns, content, and growth systems?"
         icon={<Megaphone className="h-5 w-5" />}
-        href="#work"
+        href="#contact"
         primary
         delay={0.68}
       >
@@ -470,7 +470,7 @@ const QuestionAnswerCtas = () => (
       <MobileQuestionCta
         label="Need websites, apps, and automation built?"
         icon={<Rocket className="h-5 w-5" />}
-        href="#services"
+        href="#contact"
         delay={0.78}
       >
         Development
@@ -504,13 +504,13 @@ const QuestionAnswerCtas = () => (
 
       <div className="relative z-20 row-start-2 flex w-full items-center justify-center gap-2 md:px-[9%]">
         <a
-          href="#work"
+          href="#contact"
           className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
         >
           Marketing <ArrowUpRight className="h-4 w-4" />
         </a>
         <a
-          href="#services"
+          href="#contact"
           className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
         >
           Development
