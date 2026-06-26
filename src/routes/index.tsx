@@ -2423,8 +2423,8 @@ function PortfolioHeroShowcase({
   items?: HeroShowcaseSlide[];
 }) {
   return (
-    <div className="py-6 overflow-x-hidden" id="work">
-      <div className="mb-10 text-center px-5">
+    <div className="py-2 overflow-x-hidden" id="work">
+      <div className="mb-2 text-center px-5">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           {content.title}
@@ -2491,7 +2491,7 @@ function PortfolioGraphicDesign({
 
   return (
     <div className="overflow-x-clip py-6">
-      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <div className="mx-auto max-w-6xl  text-center md:text-start px-5 mb-6 md:mb-8 flex flex-col md:flex-row  md:items-end  md:justify-between gap-4">
         <div>
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
             {content.eyebrow}
@@ -2875,7 +2875,7 @@ function PortfolioSection({
       className="relative isolate overflow-hidden bg-transparent py-12 md:py-20  text-foreground"
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
-      <div className="mx-auto max-w-6xl px-5 text-center mb-16">
+      <div className="mx-auto max-w-6xl px-5 text-center mb-1">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-xl font-bold md:text-6xl tracking-tight text-foreground">
           {content.title.split(" ")[0]}{" "}
@@ -2953,7 +2953,7 @@ function Index() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mx-auto text-accent/80 max-w-2xl text-base md:text-lg "
+              className="mx-auto text-xs md:text-lg bg-foreground/80 px-1.5 mt-4 rounded-full text-white py-1 w-full text-accent/80 max-w-3xl  "
             >
               Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
             </motion.p>
@@ -3173,7 +3173,7 @@ function Index() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto  mt-12 max-w-5xl text-foreground md:text-lg text-accent"
+            className="mx-auto  mt-2 max-w-5xl text-foreground md:text-lg text-accent"
           >
             We bridge the gap between creative imagination and functional engineering. From
             aggressive growth marketing to powerful custom tech, we build the exact systems you need
