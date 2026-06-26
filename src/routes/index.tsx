@@ -1,8 +1,8 @@
 ﻿import { createFileRoute, Link } from "@tanstack/react-router";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   useEffect,
@@ -454,8 +454,9 @@ const MobileQuestionCta = ({
     </motion.div>
     <a
       href={href}
-      className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold lift ${primary ? "bg-ink text-cream" : "border-2 border-ink bg-background text-foreground"
-        }`}
+      className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold lift ${
+        primary ? "bg-ink text-cream" : "border-2 border-ink bg-background text-foreground"
+      }`}
     >
       {children}
     </a>
@@ -1523,86 +1524,86 @@ function normalizeStats(items: CmsItem[]) {
 function normalizeCapabilities(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-      k: asString(item.key, String(index + 1).padStart(2, "0")),
-      t: asString(item.title),
-      d: asString(item.description),
-      icon: iconFromName(item.icon, "Target"),
-      bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"),
-      span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "",
-      big: item.big === true || index === 0,
-      chips: asStringArray(item.chips),
-      metric: asString(item.metric),
-      metricLabel: asString(item.metricLabel),
-    }))
+        k: asString(item.key, String(index + 1).padStart(2, "0")),
+        t: asString(item.title),
+        d: asString(item.description),
+        icon: iconFromName(item.icon, "Target"),
+        bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"),
+        span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "",
+        big: item.big === true || index === 0,
+        chips: asStringArray(item.chips),
+        metric: asString(item.metric),
+        metricLabel: asString(item.metricLabel),
+      }))
     : capabilities;
 }
 function normalizeProcess(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-      n: asString(item.number, String(index + 1).padStart(2, "0")),
-      t: asString(item.title),
-      d: asString(item.description),
-      icon: iconFromName(item.icon, "Search"),
-      color: asString(item.bg, "bg-background"),
-    }))
+        n: asString(item.number, String(index + 1).padStart(2, "0")),
+        t: asString(item.title),
+        d: asString(item.description),
+        icon: iconFromName(item.icon, "Search"),
+        color: asString(item.bg, "bg-background"),
+      }))
     : steps;
 }
 function normalizeCases(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-      name: asString(item.name),
-      sector: asString(item.sector),
-      year: asString(item.year),
-      word: asString(item.word, asString(item.name).toUpperCase()),
-      color: asString(item.color, "bg-accent"),
-      problem: asString(item.problem),
-      metrics: Array.isArray(item.metrics)
-        ? (item.metrics as CmsItem[]).map((metric) => ({
-          k: asString(metric.key),
-          v: asString(metric.value),
-        }))
-        : [],
-      tags: asStringArray(item.tags),
-      rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4),
-    }))
+        name: asString(item.name),
+        sector: asString(item.sector),
+        year: asString(item.year),
+        word: asString(item.word, asString(item.name).toUpperCase()),
+        color: asString(item.color, "bg-accent"),
+        problem: asString(item.problem),
+        metrics: Array.isArray(item.metrics)
+          ? (item.metrics as CmsItem[]).map((metric) => ({
+              k: asString(metric.key),
+              v: asString(metric.value),
+            }))
+          : [],
+        tags: asStringArray(item.tags),
+        rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4),
+      }))
     : cases;
 }
 function normalizeEngagements(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-      icon: iconFromName(item.icon, "Zap"),
-      t: asString(item.name),
-      k: asString(item.duration),
-      d: asString(item.description),
-      bullets: asStringArray(item.bullets),
-      bg: asString(item.bg, "bg-background"),
-      rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2),
-      tag: asString(item.tag),
-      popular: item.popular === true,
-    }))
+        icon: iconFromName(item.icon, "Zap"),
+        t: asString(item.name),
+        k: asString(item.duration),
+        d: asString(item.description),
+        bullets: asStringArray(item.bullets),
+        bg: asString(item.bg, "bg-background"),
+        rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2),
+        tag: asString(item.tag),
+        popular: item.popular === true,
+      }))
     : engagements;
 }
 function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
-      title: asString(item.title, `Project ${index + 1}`),
-      description: asString(item.description),
-      video: asString(
-        item.video,
-        heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? "",
-      ),
-      poster: resolveMediaUrl(
-        item.poster,
-        heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1,
-      ),
-      glow: asString(
-        item.glow,
-        heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40",
-      ),
-      ctaText: asString(item.ctaText, "View Project"),
-      ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
-    }))
+        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+        title: asString(item.title, `Project ${index + 1}`),
+        description: asString(item.description),
+        video: asString(
+          item.video,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? "",
+        ),
+        poster: resolveMediaUrl(
+          item.poster,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1,
+        ),
+        glow: asString(
+          item.glow,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40",
+        ),
+        ctaText: asString(item.ctaText, "View Project"),
+        ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
+      }))
     : heroShowcaseSlides;
 }
 function parseLabelValuePairs(items: unknown[]): Array<{ label: string; value: string }> {
@@ -1627,122 +1628,122 @@ function parseLabelValuePairs(items: unknown[]): Array<{ label: string; value: s
 function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
-      title: asString(item.title, `Edit ${index + 1}`),
-      description: asString(item.description),
-      outcome: asString(item.outcome),
-      video: asString(
-        item.video,
-        videoEditingSlides[index % videoEditingSlides.length]?.video ?? "",
-      ),
-      poster: resolveMediaUrl(
-        item.poster,
-        videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1,
-      ),
-      accentColor: asString(
-        item.accentColor,
-        videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90",
-      ),
-      detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
-    }))
+        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+        title: asString(item.title, `Edit ${index + 1}`),
+        description: asString(item.description),
+        outcome: asString(item.outcome),
+        video: asString(
+          item.video,
+          videoEditingSlides[index % videoEditingSlides.length]?.video ?? "",
+        ),
+        poster: resolveMediaUrl(
+          item.poster,
+          videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1,
+        ),
+        accentColor: asString(
+          item.accentColor,
+          videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90",
+        ),
+        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
+      }))
     : videoEditingSlides;
 }
 function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "GRAPHIC DESIGN"),
-      subcategory: asString(item.subcategory),
-      title: asString(item.title, `Asset ${index + 1}`),
-      description: asString(item.description),
-      image: asString(
-        item.image,
-        fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
-        screenshot1,
-      ),
-      detailUrl: asString(
-        item.detailUrl,
-        asString(
+        categoryLabel: asString(item.categoryLabel, "GRAPHIC DESIGN"),
+        subcategory: asString(item.subcategory),
+        title: asString(item.title, `Asset ${index + 1}`),
+        description: asString(item.description),
+        image: asString(
           item.image,
           fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
-          screenshot1,
+            screenshot1,
         ),
-      ),
-    }))
+        detailUrl: asString(
+          item.detailUrl,
+          asString(
+            item.image,
+            fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
+              screenshot1,
+          ),
+        ),
+      }))
     : fallbackGraphicDesignSlides;
 }
 function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "CRM SOFTWARE"),
-      title: asString(item.title, `System ${index + 1}`),
-      description: asString(item.description),
-      keyFeatures: asStringArray(item.keyFeatures),
-      techStack: asStringArray(item.techStack),
-      businessBenefit: asString(item.businessBenefit),
-      poster: resolveMediaUrl(
-        item.poster,
-        softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
-      ),
-      video: asString(
-        item.video,
-        softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
-      ),
-      accentColor: asString(
-        item.accentColor,
-        softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
-        "from-teal-950/90",
-      ),
-      projectUrl: asString(
-        item.projectUrl,
-        asString(item.ctaLink, asString(item.video, asString(item.poster))),
-      ),
-    }))
+        categoryLabel: asString(item.categoryLabel, "CRM SOFTWARE"),
+        title: asString(item.title, `System ${index + 1}`),
+        description: asString(item.description),
+        keyFeatures: asStringArray(item.keyFeatures),
+        techStack: asStringArray(item.techStack),
+        businessBenefit: asString(item.businessBenefit),
+        poster: resolveMediaUrl(
+          item.poster,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
+        ),
+        video: asString(
+          item.video,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
+        ),
+        accentColor: asString(
+          item.accentColor,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
+            "from-teal-950/90",
+        ),
+        projectUrl: asString(
+          item.projectUrl,
+          asString(item.ctaLink, asString(item.video, asString(item.poster))),
+        ),
+      }))
     : softwareSystemsSlides;
 }
 function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "SEO"),
-      title: asString(item.title, `Analytics ${index + 1}`),
-      description: asString(item.description),
-      metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
-      poster: resolveMediaUrl(
-        item.poster,
-        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1,
-      ),
-      video: asString(
-        item.video,
-        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? "",
-      ),
-      accent: asString(
-        item.accent,
-        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40",
-      ),
-      detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
-    }))
+        categoryLabel: asString(item.categoryLabel, "SEO"),
+        title: asString(item.title, `Analytics ${index + 1}`),
+        description: asString(item.description),
+        metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
+        poster: resolveMediaUrl(
+          item.poster,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1,
+        ),
+        video: asString(
+          item.video,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? "",
+        ),
+        accent: asString(
+          item.accent,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40",
+        ),
+        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
+      }))
     : seoAnalyticsSlides;
 }
 function normalizeStrategicConsulting(items: CmsItem[]): StrategicConsultingCase[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "STRATEGIC PLANNING"),
-      title: asString(item.title, `Case ${index + 1}`),
-      challenge: asString(item.challenge),
-      solution: asString(item.solution),
-      execution: asString(item.execution),
-      results: Array.isArray(item.results) ? parseLabelValuePairs(item.results) : [],
-    }))
+        categoryLabel: asString(item.categoryLabel, "STRATEGIC PLANNING"),
+        title: asString(item.title, `Case ${index + 1}`),
+        challenge: asString(item.challenge),
+        solution: asString(item.solution),
+        execution: asString(item.execution),
+        results: Array.isArray(item.results) ? parseLabelValuePairs(item.results) : [],
+      }))
     : consultingCases;
 }
 function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "Content Writing"),
-      type: asString(item.type, `Item ${index + 1}`),
-      headline: asString(item.headline),
-      metrics: asString(item.metrics),
-      excerpt: asString(item.excerpt),
-    }))
+        categoryLabel: asString(item.categoryLabel, "Content Writing"),
+        type: asString(item.type, `Item ${index + 1}`),
+        headline: asString(item.headline),
+        metrics: asString(item.metrics),
+        excerpt: asString(item.excerpt),
+      }))
     : editorialContent;
 }
 function normalizeReels(items: CmsItem[]) {
@@ -1762,28 +1763,28 @@ function normalizeReels(items: CmsItem[]) {
 function normalizeTestimonials(items: CmsItem[]) {
   return items.length
     ? items.map((item) => ({
-      q: asString(item.quote),
-      name: asString(item.author),
-      co: asString(item.role),
-      verified: asString(item.verified, "Verified"),
-      stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
-    }))
+        q: asString(item.quote),
+        name: asString(item.author),
+        co: asString(item.role),
+        verified: asString(item.verified, "Verified"),
+        stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
+      }))
     : [
-      {
-        q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
-        name: "VP of Product",
-        co: "North American HealthTech Corp",
-        verified: "LinkedIn Verified",
-        stars: 5,
-      },
-      {
-        q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
-        name: "Chief Operating Officer",
-        co: "European Logistics Group",
-        verified: "Clutch 5-Star",
-        stars: 5,
-      },
-    ];
+        {
+          q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
+          name: "VP of Product",
+          co: "North American HealthTech Corp",
+          verified: "LinkedIn Verified",
+          stars: 5,
+        },
+        {
+          q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
+          name: "Chief Operating Officer",
+          co: "European Logistics Group",
+          verified: "Clutch 5-Star",
+          stars: 5,
+        },
+      ];
 }
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
@@ -1990,9 +1991,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
             </h2>
           </div>
           <div className="flex flex-col gap-4 md:items-end">
-            <p className="max-w-sm text-foreground/70 md:text-right">
-            
-            </p>
+            <p className="max-w-sm text-foreground/70 md:text-right"></p>
             <Link
               to="/reels"
               onClick={() => setIsReelsLoading(true)}
@@ -2027,10 +2026,11 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
                     type="button"
                     onClick={() => setActiveCategory(category)}
                     aria-pressed={selected}
-                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${selected
+                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                      selected
                         ? "border-ink bg-ink text-cream shadow-[3px_3px_0_0_var(--accent)] dark:border-foreground dark:bg-foreground dark:text-background"
                         : "border-ink/15 bg-background/80 text-foreground/70 hover:border-accent/50 hover:bg-accent/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
-                      }`}
+                    }`}
                   >
                     {category}
                   </button>
@@ -2065,47 +2065,49 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5" aria-busy={isFiltering}>
             {isFiltering
-              ? Array.from({ length: Math.min(Math.max(visibleReels.length, 4), 6) }).map((_, i) => (
-                <div
-                  key={`reel-skeleton-${i}`}
-                  className="aspect-[9/16] animate-pulse rounded-2xl border border-ink/10 bg-card/80 shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-white/5"
-                >
-                  <div className="h-full rounded-2xl bg-gradient-to-b from-foreground/10 via-foreground/5 to-foreground/15" />
-                </div>
-              ))
-              : visibleReels.map((reel, i) => {
-                const category = reel.category || reel.tag || "Reel";
-                return (
-                  <motion.div
-                    key={`${reel.title}-${reel.src}`}
-                    initial={{ opacity: 0, y: 40, rotate: rotations[i % rotations.length] * 2 }}
-                    whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length] }}
-                    whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ type: "spring", stiffness: 90, delay: (i % 4) * 0.08 }}
-                    className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
-                  >
-                    <iframe
-                      src={extractEmbedUrl(reel.src)}
-                      className="absolute inset-0 h-full w-full rounded-2xl border-none"
-                      loading="lazy"
-                      title={reel.title}
-                      allowtransparency="true"
-                      scrolling="no"
-                      allowFullScreen={true}
-                    />
-                    <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
-
-                    <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
-                      {category} / {reel.tag}
+              ? Array.from({ length: Math.min(Math.max(visibleReels.length, 4), 6) }).map(
+                  (_, i) => (
+                    <div
+                      key={`reel-skeleton-${i}`}
+                      className="aspect-[9/16] animate-pulse rounded-2xl border border-ink/10 bg-card/80 shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-white/5"
+                    >
+                      <div className="h-full rounded-2xl bg-gradient-to-b from-foreground/10 via-foreground/5 to-foreground/15" />
                     </div>
-                    <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
-                      {reel.title}
-                    </h3>
-                  </motion.div>
-                );
-              })}
+                  ),
+                )
+              : visibleReels.map((reel, i) => {
+                  const category = reel.category || reel.tag || "Reel";
+                  return (
+                    <motion.div
+                      key={`${reel.title}-${reel.src}`}
+                      initial={{ opacity: 0, y: 40, rotate: rotations[i % rotations.length] * 2 }}
+                      whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length] }}
+                      whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ type: "spring", stiffness: 90, delay: (i % 4) * 0.08 }}
+                      className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
+                    >
+                      <iframe
+                        src={extractEmbedUrl(reel.src)}
+                        className="absolute inset-0 h-full w-full rounded-2xl border-none"
+                        loading="lazy"
+                        title={reel.title}
+                        allowtransparency="true"
+                        scrolling="no"
+                        allowFullScreen={true}
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
+
+                      <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
+                        {category} / {reel.tag}
+                      </div>
+                      <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
+                        {reel.title}
+                      </h3>
+                    </motion.div>
+                  );
+                })}
           </div>
 
           {!isFiltering && filteredReels.length === 0 && (
@@ -2453,7 +2455,6 @@ function PortfolioVideoEditing({
           {content.description}
         </p>
       </div>
-
     </div>
   );
 }
@@ -2614,15 +2615,15 @@ function PortfolioSEOAnalytics({
           slidesPerView={1}
           spaceBetween={30}
           navigation={{
-            nextEl: '.custom-next',
-            prevEl: '.custom-prev',
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev",
           }}
           modules={[Navigation]}
           breakpoints={{
             768: {
               slidesPerView: 2,
               spaceBetween: 30,
-            }
+            },
           }}
           className="pb-12"
         >
@@ -2651,18 +2652,19 @@ function PortfolioSEOAnalytics({
                   <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
                     {item.description}
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4 mt-2 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    {item.metrics && item.metrics.map((metric, idx) => (
-                      <div key={idx} className="text-center">
-                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                          {metric.value}
+                    {item.metrics &&
+                      item.metrics.map((metric, idx) => (
+                        <div key={idx} className="text-center">
+                          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                            {metric.value}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            {metric.label}
+                          </div>
                         </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                          {metric.label}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
               </div>
@@ -2672,12 +2674,27 @@ function PortfolioSEOAnalytics({
 
         {/* Navigation Arrows */}
         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
-          <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <svg
+            className="w-5 h-5 text-gray-800 dark:text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
-          <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="w-5 h-5 text-gray-800 dark:text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -2908,7 +2925,7 @@ function Index() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-          // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
+            // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
           ></motion.div>
 
           <div className="text-center">
@@ -2932,9 +2949,8 @@ function Index() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mx-auto text-accent/80 max-w-2xl text-base md:text-lg "
             >
-            Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed  
-        
-               </motion.p>
+              Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
+            </motion.p>
             {/* <div>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -3102,14 +3118,33 @@ function Index() {
             </div>
           </div>
         </div>
-        <div className="w-full mt-8 mb-12 text-center flex flex-col justify-center items-center">
+        <section className="relative w-full flex justify-center items-cennter  mx-auto max-w-6xl px-5 py-4 md:py-14">
+          <div className="grid gap-2 sm:grid-cols-3  place-items-center lg:grid-cols-5 grid-cols-[repeat(auto-fit,minmax(180px,1fr))] ">
+            {cmsStats.map((s, i) => (
+              <motion.div
+                key={s.v}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, type: "spring" }}
+                className="rounded-[2rem] border-2 border-ink bg-background p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+              >
+                <div className="font-display text-4xl font-bold text-ink md:text-2xl">{s.k}</div>
+                <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+        <div className="w-full mt-0 mb-12 text-center flex flex-col justify-center items-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
           >
-            We bridge the gap between creative imagination and functional engineering. From aggressive growth marketing to powerful custom tech, we build the exact systems you need to scale.
+            We bridge the gap between creative imagination and functional engineering. From
+            aggressive growth marketing to powerful custom tech, we build the exact systems you need
+            to scale.
           </motion.p>
 
           <motion.div
@@ -3166,10 +3201,8 @@ function Index() {
         items={cmsHeroShowcase}
       />
 
-
       {/* FILM REELS */}
       <FilmReelsSection items={cmsReels} />
-
 
       {/* <PortfolioVideoEditing
         content={portfolioCopy.sections.videoEditing}
@@ -3339,7 +3372,7 @@ function Index() {
         </motion.div>
       </section>
       {/* STATS strip */}
-      <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
+      {/* <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
         <div className="mb-10 text-center">
           <span className="script text-3xl text-accent">Achievements</span>
           <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
@@ -3366,7 +3399,7 @@ function Index() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* FOOTER */}
       <footer className="border-t border-border bg-background">
