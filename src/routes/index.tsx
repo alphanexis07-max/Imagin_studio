@@ -3127,7 +3127,7 @@ function Index() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mx-auto text-xs md:text-lg bg-foreground/80 px-1.5 mt-4 rounded-full text-white py-1 w-full text-accent/80 max-w-3xl  "
+              className=" mx-auto text-xs md:text-lg bg-foreground/80 dark:bg-[#C8C1B6] px-1.5 mt-4 rounded-full text-white py-1 w-full dark:text-[#060000] max-w-3xl  "
             >
               Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
             </motion.p>
@@ -3221,7 +3221,7 @@ function Index() {
                 animate={{ opacity: 0.8, scale: 1 }}
                 transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
                 style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
+                className={`pill-tag absolute z-10 animate-bob  scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
               >
                 {p.txt}
               </motion.div>
@@ -3257,7 +3257,7 @@ function Index() {
                 animate={{ opacity: 0.8, scale: 1, x: 0 }}
                 transition={{ delay: 0.8 + i * 0.12, type: "spring" }}
                 style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos} bg-foreground dark:bg-foreground/20 border border-ink/10`}
+                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}  border border-ink/10`}
               >
                 {p.txt}
               </motion.div>
