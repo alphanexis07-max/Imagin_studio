@@ -53,6 +53,8 @@ import {
   Play,
   ChevronLeft,
   ChevronRight,
+  Code,
+  Smartphone,
 } from "lucide-react";
 import portrait from "@/assets/portrait.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -91,6 +93,19 @@ import story9 from "@/assets/carousel-samples/story-9.jpg";
 import story10 from "@/assets/carousel-samples/story-10.jpg";
 import story11 from "@/assets/carousel-samples/story-11.jpg";
 import story12 from "@/assets/carousel-samples/story-12.jpg";
+
+// ===== THUMBNAIL IMPORTS =====
+import thumbnail1 from "@/assets/thumbanil  - 1_ 2.jpg";
+import thumbnail2 from "@/assets/thumbanil - 2 3.jpg";
+import thumbnail3 from "@/assets/thumbnail - Where every moment_.jpg";
+import thumbnail4 from "@/assets/thumbanil - 2 4.jpg";
+import thumbnail5 from "@/assets/verticle thumbvanil 2 - Step into your cozy hotel room_.jpg";
+import thumbnail6 from "@/assets/thumbanil -1 2.jpg";
+import thumbnail7 from "@/assets/thumbanil -_ 3.jpg";
+import thumbnail8 from "@/assets/sky + line thumbanil_ 1.jpg";
+import thumbnail9 from "@/assets/Thumbanil  copy 2.jpg";
+import thumbnail10 from "@/assets/Thumbanil_ 3.jpg";
+
 import type { SiteData } from "@/lib/admin/site.functions";
 import { CartoonButton } from "@/components/ui/cartoon-button";
 
@@ -926,6 +941,7 @@ type PortfolioSectionCopy = {
 
 type PortfolioContentCopy = SiteData["portfolio"];
 
+// ===== UPDATED GRAPHIC DESIGN SLIDES WITH YOUR THUMBNAILS =====
 const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
     categoryLabel: "GRAPHIC DESIGN",
@@ -954,26 +970,65 @@ const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Advertising",
-    title: "High-Impact Out-Of-Home Graphics",
-    description:
-      "Bold typography and expressive composition built to capture attention across billboards and transit ads.",
-    image: story10,
+    title: "Brand Campaign Asset",
+    description: "High-impact campaign creative for digital advertising rollouts.",
+    image: thumbnail2,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Print Design",
-    title: "Editorial Collage Systems",
-    description:
-      "Magazine-quality spreads and visual systems with layered imagery and refined editorial structure.",
-    image: story11,
+    subcategory: "Hospitality",
+    title: "Pure Earth Stay - Where Every Moment Feels Just Right",
+    description: "Premium hospitality branding for Treebo's Pure Earth Stay experience.",
+    image: thumbnail3,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Visual Storytelling",
-    title: "Narrative Visual Campaigns",
-    description:
-      "Story-driven creative frames that turn brand messaging into immersive visual journeys.",
-    image: story12,
+    subcategory: "Advertising",
+    title: "Clarity First - Construction Follows",
+    description: "Strategic construction branding with clear visual messaging and impact.",
+    image: thumbnail4,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Step Into Your Cozy Hotel Room",
+    description: "Warm and inviting hotel room visual design for memorable guest experiences.",
+    image: thumbnail5,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Modern Systems in Motion",
+    description: "A high-contrast graphic system rooted in modern tech and service design.",
+    image: thumbnail1,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Corporate Branding System",
+    description: "Corporate identity assets optimized for product launches and team wear.",
+    image: thumbnail7,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Sky-Line Visual Identity",
+    description: "A refined design system for architecture, real estate and urban innovation.",
+    image: thumbnail9,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Built on Vision",
+    description: "Vision-driven campaign creative for modern architecture clients.",
+    image: thumbnail10,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Cozy Hotel Room Branding",
+    description: "Hospitality branding with a modern, welcoming visual language.",
+    image: thumbnail6,
   },
 ];
 
@@ -1143,7 +1198,7 @@ const editorialContent = [
 ];
 
 function DiscoveryCallDialog() {
-  const hostEmail = "hello@alphanexius.com";
+  const hostEmail = "info@alphanexius.com";
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
@@ -1338,14 +1393,9 @@ function ServicesSection() {
   return (
     <section id="services" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-10 text-center">
-        <span className="script text-3xl text-accent">Services that drive digital growth</span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-          Services built to move your business forward.
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-          From strategy to execution, we design systems that create momentum, experience, and
-          measurable value.
-        </p>
+        <span className="script text-3xl text-accent"></span>
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl"></h2>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">.</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">
@@ -2073,7 +2123,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
     });
   }, [activeCategory, items, reelSearch]);
 
-  const visibleReels = filteredReels.slice(0, 6);
+  const visibleReels = filteredReels.slice(0, 8);
 
   useEffect(() => {
     setIsFiltering(true);
@@ -2486,9 +2536,9 @@ const partners = [
   "AWS Partner",
   "Google Cloud",
   "Microsoft Azure",
-  "NVIDIA Inception",
-  "Clutch Top Agency",
-  "GoodFirms Leader",
+  "DPIT",
+  "Startup India",
+  "MSME",
 ];
 
 function TrustSection() {
@@ -2534,12 +2584,7 @@ function PortfolioHeroShowcase({
           {content.description}
         </p>
       </div>
-      <FlankCarousel
-        slides={items}
-        /*title=""
-        subtitle=""
-        /*description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."*/
-      />
+      <FlankCarousel slides={items} />
     </div>
   );
 }
@@ -2575,15 +2620,56 @@ function PortfolioGraphicDesign({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // ====== GRAPHIC DESIGN FILTER STATE ======
+  const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
+  const [graphicSearch, setGraphicSearch] = useState("");
+  const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
+
+  const graphicCategories = useMemo(() => {
+    const unique = new Set<string>();
+    items.forEach((slide) => {
+      const category = slide.subcategory || slide.categoryLabel || "Design";
+      unique.add(category);
+    });
+    return ["All", ...Array.from(unique)];
+  }, [items]);
+
+  const filteredGraphicItems = useMemo(() => {
+    const query = graphicSearch.trim().toLowerCase();
+
+    return items.filter((slide) => {
+      const category = slide.subcategory || slide.categoryLabel || "Design";
+      const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+      const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return matchesCategory && (!query || searchable.includes(query));
+    });
+  }, [activeGraphicCategory, items, graphicSearch]);
+
+  useEffect(() => {
+    setIsGraphicFiltering(true);
+    const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
+    return () => window.clearTimeout(timeout);
+  }, [activeGraphicCategory, graphicSearch]);
+  // ====== END GRAPHIC DESIGN FILTER STATE ======
+
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
+      scrollRef.current.scrollBy({
+        left: -350,
+        behavior: "smooth",
+      });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
+      scrollRef.current.scrollBy({
+        left: 350,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -2604,20 +2690,20 @@ function PortfolioGraphicDesign({
             {content.description}
           </p>
         </div>
-        <div className="hidden md:flex gap-2">
+        <div className="flex gap-2">
           <button
             onClick={scrollLeft}
             aria-label="Scroll graphic design left"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={scrollRight}
             aria-label="Scroll graphic design right"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-5 w-5" />
           </button>
         </div>
       </div>
@@ -2688,12 +2774,7 @@ function PortfolioSoftwareSystems({
           {content.description}
         </p>
       </div>
-      <RingCarousel
-        slides={items}
-        title="Software & Systems"
-        subtitle="AUTOMATION & PLATFORMS"
-        description=""
-      />
+      <RingCarousel slides={items} title="" subtitle="" description="" />
     </div>
   );
 }
@@ -2737,8 +2818,7 @@ function PortfolioSEOAnalytics({
           {items.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
-                {/* Image Section - Top */}
-                <div className="relative h-70 md:h-64 lg:h-84 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
+                <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
                   <img
                     src={item.poster}
                     alt={item.title}
@@ -2779,7 +2859,6 @@ function PortfolioSEOAnalytics({
           ))}
         </Swiper>
 
-        {/* Navigation Arrows */}
         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
           <svg
             className="w-5 h-5 text-gray-800 dark:text-white"
@@ -2787,12 +2866,7 @@ function PortfolioSEOAnalytics({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
@@ -3032,7 +3106,6 @@ function Index() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-            // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
           ></motion.div>
 
           <div className="text-center">
@@ -3058,45 +3131,6 @@ function Index() {
             >
               Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
             </motion.p>
-            {/* <div>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
-              >
-                Creativity, strategy, and technology come together in every campaign we build. We
-                turn brand momentum into measurable growth for fast-moving teams.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
-              >
-                Creativity, strategy, and technology come together in every campaign we build.
-              </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="mt-10 flex flex-wrap items-center justify-center gap-3"
-            >
-              <a
-                href="#work"
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-              >
-                View Our Work <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold lift"
-              >
-                Explore services
-              </a>
-            </motion.div>
-            </div> */}
           </div>
         </div>
 
@@ -3193,6 +3227,42 @@ function Index() {
               </motion.div>
             ))}
 
+            {/* NEW LEFT-SIDE PILLS: Web / App / UI/UX */}
+            {[
+              {
+                txt: (
+                  <>
+                    <Code className="h-4 w-4 text-accent" /> Web Development
+                  </>
+                ),
+                pos: "-left-6 top-[8%] md:-left-4",
+                r: "-5deg",
+                d: "0.1s",
+              },
+              {
+                txt: (
+                  <>
+                    <Smartphone className="h-4 w-4 text-accent" /> App Development
+                  </>
+                ),
+                pos: "-left-6 top-[30%] md:-left-4",
+                r: "3deg",
+                d: "0.5s",
+              },
+              
+            ].map((p, i) => (
+              <motion.div
+                key={`left-pill-${i}`}
+                initial={{ opacity: 0, scale: 0.5, x: -20 }}
+                animate={{ opacity: 0.8, scale: 1, x: 0 }}
+                transition={{ delay: 0.8 + i * 0.12, type: "spring" }}
+                style={{ ["--r" as never]: p.r, animationDelay: p.d }}
+                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos} bg-foreground dark:bg-foreground/20 border border-ink/10`}
+              >
+                {p.txt}
+              </motion.div>
+            ))}
+
             {/* "8+ Years" stat — top right, same as original */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -3203,7 +3273,7 @@ function Index() {
               <div className="font-display text-4xl font-bold leading-none">
                 {site.hero.sidebarStat.value}
               </div>
-              <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
+              <div className="text-sm ">{site.hero.sidebarStat.label}</div>
             </motion.div>
 
             {/* Mini testimonial snippet — top left, same as original */}
@@ -3340,10 +3410,6 @@ function Index() {
       {/* FILM REELS */}
       <FilmReelsSection items={cmsReels} />
 
-      {/* <PortfolioVideoEditing
-        content={portfolioCopy.sections.videoEditing}
-        items={cmsVideoEditing}
-      /> */}
       <PortfolioGraphicDesign
         content={portfolioCopy.sections.visualAssets}
         items={cmsVisualAssets}
@@ -3365,7 +3431,7 @@ function Index() {
         items={cmsContentWriting}
       />
 
-      <ServicesSection />
+      {/* <ServicesSection /> */}
 
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
@@ -3418,7 +3484,9 @@ function Index() {
                   whileInView={{ opacity: 1, scale: 1, rotate: i % 2 === 0 ? -2 : 2 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className={`rounded-2xl border-2 border-ink p-5 lift ${i % 2 === 0 ? "bg-accent" : "bg-background"}`}
+                  className={`rounded-2xl border-2 border-ink p-5 lift ${
+                    i % 2 === 0 ? "bg-accent" : "bg-background"
+                  }`}
                 >
                   <Icon className="mb-3 h-5 w-5" />
                   <div className="font-display text-xl font-semibold">{t}</div>
@@ -3437,9 +3505,6 @@ function Index() {
 
       {/* PARTNERS */}
       <TrustSection />
-
-      {/* ENGAGEMENT MODELS */}
-      <FlexibleSection items={cmsEngagements} />
 
       {/* TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
@@ -3507,35 +3572,6 @@ function Index() {
           </div>
         </motion.div>
       </section>
-      {/* STATS strip */}
-      {/* <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
-        <div className="mb-10 text-center">
-          <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-            Milestones that prove our work delivers impact.
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-            From enterprise launches to repeated growth loops, these metrics show the outcomes we
-            create.
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {cmsStats.map((s, i) => (
-            <motion.div
-              key={s.v}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, type: "spring" }}
-              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-            >
-              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
-              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section> */}
 
       {/* FOOTER */}
       <footer className="border-t border-border bg-background">
@@ -3571,8 +3607,6 @@ function Index() {
       </footer>
 
       {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
-      {/* ============================================ */}
-
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
         <CartoonButton
           label="WhatsApp"
@@ -3589,9 +3623,8 @@ function Index() {
           color="bg-green-400"
           className="animate-float"
           onClick={() => {
-            const whatsappLink =
-              process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/1234567890";
-            window.open(whatsappLink, "_blank");
+            const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/+917067068673";
+window.open(whatsappLink, "_blank");
           }}
         />
 
