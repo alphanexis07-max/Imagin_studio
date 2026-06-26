@@ -465,7 +465,7 @@ const MobileQuestionCta = ({
 
 const QuestionAnswerCtas = () => (
   <div className="mx-auto mt-8 w-full max-w-5xl px-2 md:px-0">
-    <div className="grid gap-4 md:hidden">
+    {/* <div className="grid gap-4 md:hidden">
       <MobileQuestionCta
         label="Need campaigns, content, and growth systems?"
         icon={<Megaphone className="h-5 w-5" />}
@@ -483,7 +483,67 @@ const QuestionAnswerCtas = () => (
       >
         Development
       </MobileQuestionCta>
-    </div>
+    </div> */}
+    <div className="grid gap-4 md:hidden">
+  <style>{`
+    @keyframes border-spin {
+      to { --border-angle: 360deg; }
+    }
+    @property --border-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+    .border-beam-mobile {
+      position: relative;
+      border-radius: 9999px;
+      width: fit-content;
+    }
+    .border-beam-mobile::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        var(--beam-color, #a855f7) 88%,
+        transparent 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: border-spin 2.5s linear infinite;
+      pointer-events: none;
+    }
+  `}</style>
+
+  <MobileQuestionCta
+    label="Need campaigns, content, and growth systems?"
+    icon={<Megaphone className="h-5 w-5" />}
+    href="#contact"
+    primary
+    delay={0.68}
+    innerClassName="border-beam-mobile"
+    innerStyle={{ "--beam-color": "#a855f7" } as React.CSSProperties}
+  >
+    Marketing <ArrowUpRight className="h-4 w-4" />
+  </MobileQuestionCta>
+
+  <MobileQuestionCta
+    label="Need websites, apps, and automation built?"
+    icon={<Rocket className="h-5 w-5" />}
+    href="#contact"
+    delay={0.78}
+    innerClassName="border-beam-mobile"
+    innerStyle={{ "--beam-color": "#06b6d4" } as React.CSSProperties}
+  >
+    Development
+  </MobileQuestionCta>
+</div>
 
     <div className="relative hidden min-h-[310px] w-full grid-rows-[1fr_auto] pt-2 md:grid">
       <QuestionCallout
@@ -511,18 +571,59 @@ const QuestionAnswerCtas = () => (
       />
 
       <div className="relative z-20 row-start-2 flex w-full items-center justify-center gap-2 md:px-[9%]">
-        <a
-          href="#contact"
-          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-        >
-          Marketing <ArrowUpRight className="h-4 w-4" />
-        </a>
-        <a
-          href="#contact"
-          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
-        >
-          Development
-        </a>
+        <style>{`
+    @keyframes border-spin {
+      to { --border-angle: 360deg; }
+    }
+    @property --border-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+    .border-beam {
+      position: relative;
+      border-radius: 9999px;
+    }
+    .border-beam::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        var(--beam-color, #a855f7) 88%,
+        transparent 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: border-spin 2.5s linear infinite;
+      pointer-events: none;
+    }
+  `}</style>
+
+        <div className="border-beam" style={{ "--beam-color": "#a855f7" } as React.CSSProperties}>
+          {" "}
+          <a
+            href="#contact"
+            className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+          >
+            Marketing <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+
+        <div className="border-beam" style={{ "--beam-color": "#06b6d4" } as React.CSSProperties}>
+          <a
+            href="#contact"
+            className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+          >
+            Development
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -3137,7 +3238,9 @@ function Index() {
                 transition={{ delay: i * 0.1, type: "spring" }}
                 className="w-full rounded-[2rem] border-2 border-ink bg-background p-4 md:p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
               >
-                <div className="font-display text-2xl md:text-4xl font-bold text-ink md:text-2xl">{s.k}</div>
+                <div className="font-display text-2xl md:text-4xl font-bold text-ink md:text-2xl">
+                  {s.k}
+                </div>
                 <div className="mt-1 text-sm text-foreground/70">{s.v}</div>
               </motion.div>
             ))}
