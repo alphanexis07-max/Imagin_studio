@@ -35,8 +35,7 @@ export const DEFAULT_SITE: SiteData = {
       videoEditing: {
         eyebrow: "Scroll Stopping Hooks",
         title: "VIDEO EDITING",
-        description: "High Speed Story Telling Built to Dominate the Algorithums.",
-      },
+ },
       visualAssets: {
         eyebrow: "Brand Aesthetics",
         title: "GRAPHIC DESIGN",

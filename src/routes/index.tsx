@@ -2437,12 +2437,7 @@ function PortfolioVideoEditing({
           {content.description}
         </p>
       </div>
-      <JumboStack
-        slides={items}
-        title="Video Editing Portfolio"
-        subtitle="REELS & COMMERCIALS"
-        description="Layered priority stack with direct audience response and view count attribution."
-      />
+    
     </div>
   );
 }
