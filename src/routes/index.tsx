@@ -1941,7 +1941,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
     });
   }, [activeCategory, items, reelSearch]);
 
-  const visibleReels = filteredReels.slice(0, 6);
+  const visibleReels = filteredReels.slice(0, 8);
 
   useEffect(() => {
     setIsFiltering(true);
