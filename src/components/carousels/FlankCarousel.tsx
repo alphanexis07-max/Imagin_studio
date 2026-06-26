@@ -152,9 +152,9 @@ interface FlankCarouselProps {
 
 export function FlankCarousel({
   slides = defaultSlides,
-  title = "Flank perspective carousel",
-  subtitle = "Perspective system",
-  description = "A centered three-card view where the client sees the active video clearly without losing context.",
+  title = "",
+  subtitle = "",
+  description = "",
 }: FlankCarouselProps) {
   const carousel = useCarousel({ count: slides.length, initialIndex: 0 });
 

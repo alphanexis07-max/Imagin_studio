@@ -12,6 +12,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Loader } from "@/components/ui/loader";
+import { DevAgentation } from "@/components/dev-agentation";
 import logo from "@/assets/logo.png";
 
 function NotFoundComponent() {
@@ -180,6 +181,7 @@ function RootComponent() {
       {showInitialLoader ? <InitialLoadingOverlay isExiting={loaderExiting} /> : null}
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <DevAgentation />
     </QueryClientProvider>
   );
 }

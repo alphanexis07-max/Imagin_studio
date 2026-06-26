@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Trash2, Edit3, ChevronUp, ChevronDown, X, Plus } from "lucide-react";
 import { detectEmbed, type EmbedKind } from "@/lib/admin/embed";
 import { uploadMedia } from "@/lib/admin/media.functions";
@@ -144,8 +144,8 @@ export function ReelsTab() {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[380px_1fr]">
-      <div className="lg:sticky lg:top-24 lg:self-start">
+    <div className="grid min-w-0 max-w-full gap-6 overflow-hidden xl:grid-cols-[minmax(320px,380px)_minmax(0,1fr)]">
+      <div className="min-w-0 xl:sticky xl:top-24 xl:self-start">
         <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
           <h2 className="mb-2 font-display text-xl font-bold">
             {editingId ? "Edit reel" : "Add reel"}
@@ -154,7 +154,7 @@ export function ReelsTab() {
             Use a video URL or upload a video to Cloudinary. Title and tag are required before saving.
           </p>
           <form onSubmit={handleSubmit} className="space-y-3">
-            <div>
+            <div className="min-w-0 max-w-full overflow-hidden">
               <label className="mb-1 block text-xs font-medium text-muted-foreground">
                 Video URL or uploaded video
               </label>
@@ -196,7 +196,7 @@ export function ReelsTab() {
             <TextField label="Title" value={form.title} onChange={(value) => setForm((p) => ({ ...p, title: value }))} placeholder="Atlas - Origin" maxLength={80} />
             <TextField label="Tag" value={form.tag} onChange={(value) => setForm((p) => ({ ...p, tag: value }))} placeholder="Brand / Reel" maxLength={80} />
 
-            <div>
+            <div className="min-w-0 max-w-full overflow-hidden">
               <label className="mb-1 block text-xs font-medium text-muted-foreground">Description</label>
               <textarea
                 value={form.description}
@@ -249,8 +249,8 @@ export function ReelsTab() {
         </div>
       </div>
 
-      <div>
-        <div className="mb-4 flex items-end justify-between gap-3">
+      <div className="min-w-0 max-w-full overflow-hidden">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
           <h2 className="font-display text-xl font-bold">
             {reels.length} Reel{reels.length !== 1 ? "s" : ""}
           </h2>
@@ -272,11 +272,11 @@ export function ReelsTab() {
           </div>
         )}
 
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           {reels.map((reel, i) => (
             <div
               key={reel.id}
-              className={`flex gap-3 rounded-2xl border p-4 ${editingId === reel.id ? "border-accent bg-accent/10" : "border-border bg-card"}`}
+              className={`flex min-w-0 max-w-full gap-3 overflow-hidden rounded-2xl border p-4 ${editingId === reel.id ? "border-accent bg-accent/10" : "border-border bg-card"}`}
             >
               <div className="h-20 w-28 shrink-0 overflow-hidden rounded-xl border border-border bg-muted">
                 {reel.poster ? (
@@ -287,7 +287,7 @@ export function ReelsTab() {
               </div>
 
               <div className="min-w-0 flex-1">
-                <div>
+                <div className="min-w-0 max-w-full overflow-hidden">
                   <span className={`inline-block rounded-full border px-1.5 py-0.5 text-[10px] font-medium ${KIND_COLORS[reel.kind as EmbedKind] ?? ""}`}>
                     {reel.kind}
                   </span>
