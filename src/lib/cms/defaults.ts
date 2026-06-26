@@ -33,8 +33,9 @@ export const DEFAULT_SITE: SiteData = {
         description: "Our strongest visual services and client outcomes, mapped in full-perspective motion.",
       },
       videoEditing: {
-        eyebrow: "Scroll Stopping Hooks",
-        title: "VIDEO EDITING",
+        eyebrow: "",
+        title: "",
+        description: "",
  },
       visualAssets: {
         eyebrow: "Brand Aesthetics",
