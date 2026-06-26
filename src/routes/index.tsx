@@ -85,6 +85,12 @@ import screenshot3 from "@/assets/carousel-samples/screenshot-3.jpg";
 import screenshot4 from "@/assets/carousel-samples/screenshot-4.jpg";
 import screenshot5 from "@/assets/carousel-samples/screenshot-5.jpg";
 import screenshot6 from "@/assets/carousel-samples/screenshot-6.jpg";
+import story7 from "@/assets/carousel-samples/story-7.jpg";
+import story8 from "@/assets/carousel-samples/story-8.jpg";
+import story9 from "@/assets/carousel-samples/story-9.jpg";
+import story10 from "@/assets/carousel-samples/story-10.jpg";
+import story11 from "@/assets/carousel-samples/story-11.jpg";
+import story12 from "@/assets/carousel-samples/story-12.jpg";
 import type { SiteData } from "@/lib/admin/site.functions";
 import { CartoonButton } from "@/components/ui/cartoon-button";
 
@@ -821,38 +827,45 @@ type PortfolioContentCopy = SiteData["portfolio"];
 const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Branding",
-    title: "Lume Skincare Visual Identity",
-    description: "Color system, custom typography, and premium brand voice.",
-    image: screenshot2,
+    subcategory: "Campaign Launch",
+    title: "Bold Multi-Platform Story Frames",
+    description: "A dynamic hero image set for launch campaigns, blending editorial polish with motion-led impact.",
+    image: story7,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Packaging",
-    title: "Premium Product Packaging",
-    description: "Eco-friendly cosmetic bottle labels and box layouts.",
-    image: screenshot1,
+    title: "Tactile Brand Packaging Concepts",
+    description: "Premium packaging mockups with layered textures, premium finishes, and retail-ready appeal.",
+    image: story8,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Social Media",
-    title: "High-Retention Instagram Creatives",
-    description: "Curated grids, posters, and stories designed for organic conversion.",
-    image: screenshot3,
+    title: "Story-Led Social Content",
+    description: "Swipe-ready story assets and modern editorial layouts designed for high engagement.",
+    image: story9,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Advertising",
-    title: "Out-Of-Home Banner Campaigns",
-    description: "High-contrast billboards and print advertisements for modern transport hubs.",
-    image: screenshot4,
+    title: "High-Impact Out-Of-Home Graphics",
+    description: "Bold typography and expressive composition built to capture attention across billboards and transit ads.",
+    image: story10,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Print Design",
-    title: "Editorial Brand Catalogs",
-    description: "Premium booklets showcasing collection launches.",
-    image: screenshot6,
+    title: "Editorial Collage Systems",
+    description: "Magazine-quality spreads and visual systems with layered imagery and refined editorial structure.",
+    image: story11,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Visual Storytelling",
+    title: "Narrative Visual Campaigns",
+    description: "Story-driven creative frames that turn brand messaging into immersive visual journeys.",
+    image: story12,
   },
 ];
 
@@ -2515,30 +2528,24 @@ function PortfolioGraphicDesign({
             target="_blank"
             rel="noreferrer"
             whileHover={{ y: -8, scale: 1.02 }}
-            className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+            className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
           >
-            <img
-              src={slide.image}
-              alt={slide.title}
-              loading="lazy"
-              className="h-full w-full object-cover"
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.image})` }}
+              aria-hidden="true"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-
-            <span
-              className={`hidden md:block  absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}
-            >
+            <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
               {slide.categoryLabel}
             </span>
-
             {slide.subcategory && (
               <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
                 {slide.subcategory}
               </span>
             )}
-
             <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-              <h4 className="font-display md:text-base sm:text-sm  font-bold leading-tight text-white line-clamp-2">
+              <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
                 {slide.title}
               </h4>
               <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
@@ -2620,14 +2627,15 @@ function PortfolioSEOAnalytics({
             <SwiperSlide key={index}>
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
                 {/* Image Section - Top */}
-                <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg className="w-24 h-24 text-blue-400/50" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                    </svg>
-                  </div>
-                  
-                  <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
+                  <img
+                    src={item.poster}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
                     {item.categoryLabel || "SEO"}
                   </div>
                 </div>
