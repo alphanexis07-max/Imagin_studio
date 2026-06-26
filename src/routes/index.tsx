@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   useEffect,
@@ -567,30 +568,6 @@ const workProjects = [
 ];
 
 const serviceOfferings = [
-  {
-    title: "Brand Strategy",
-    description: "Positioning, voice, and launch systems that make your brand stand out and scale.",
-    icon: Target,
-    accent: "from-orange-500 to-amber-500",
-  },
-  {
-    title: "UI / UX Design",
-    description: "Conversion-first experience design that feels premium and converts consistently.",
-    icon: Layers,
-    accent: "from-sky-500 to-cyan-500",
-  },
-  {
-    title: "Content Creation",
-    description: "Video, social, and editorial systems that keep your brand top of mind.",
-    icon: Sparkles,
-    accent: "from-violet-500 to-fuchsia-500",
-  },
-  {
-    title: "Growth Automation",
-    description: "AI-enabled funnels, workflows, and reporting that reduce manual overhead.",
-    icon: Brain,
-    accent: "from-emerald-500 to-lime-500",
-  },
 ];
 
 /* -- Custom Portfolio Datasets -- */
@@ -1230,13 +1207,12 @@ function ServicesSection() {
   return (
     <section id="services" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-10 text-center">
-        <span className="script text-3xl text-accent">Services that drive digital growth</span>
+        <span className="script text-3xl text-accent"></span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-          Services built to move your business forward.
+          
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-          From strategy to execution, we design systems that create momentum, experience, and
-          measurable value.
+          .
         </p>
       </div>
 
@@ -2223,13 +2199,13 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   );
 }
 
-/* -- Engagement Models -- */
+/* -- Engagement Models --*/
 function FlexibleSection({ items = engagements }: { items?: typeof engagements }) {
   return (
     <section id="engage" className="relative mx-auto max-w-6xl px-5 py-10 md:py-24">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
-          <span className="script text-3xl text-accent">how we work</span>
+          {/*<span className="script text-3xl text-accent">how we work</span>*/}
           <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Flexible by <span className="italic">Design</span>
             <span className="text-accent">.</span>
@@ -2467,6 +2443,41 @@ function PortfolioGraphicDesign({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // ====== GRAPHIC DESIGN FILTER STATE ======
+  const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
+  const [graphicSearch, setGraphicSearch] = useState("");
+  const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
+
+  const graphicCategories = useMemo(() => {
+    const unique = new Set<string>();
+    items.forEach((slide) => {
+      const category = slide.subcategory || slide.categoryLabel || "Design";
+      unique.add(category);
+    });
+    return ["All", ...Array.from(unique)];
+  }, [items]);
+
+  const filteredGraphicItems = useMemo(() => {
+    const query = graphicSearch.trim().toLowerCase();
+    
+    return items.filter((slide) => {
+      const category = slide.subcategory || slide.categoryLabel || "Design";
+      const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+      const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return matchesCategory && (!query || searchable.includes(query));
+    });
+  }, [activeGraphicCategory, items, graphicSearch]);
+
+  useEffect(() => {
+    setIsGraphicFiltering(true);
+    const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
+    return () => window.clearTimeout(timeout);
+  }, [activeGraphicCategory, graphicSearch]);
+  // ====== END GRAPHIC DESIGN FILTER STATE ======
+
   const scrollLeft = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
@@ -2514,8 +2525,51 @@ function PortfolioGraphicDesign({
         </div>
       </div>
 
+      {/* ===== GRAPHIC DESIGN FILTER BAR ===== */}
+      <div className="mx-auto max-w-6xl px-5 mb-6">
+        <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
+          <div className="min-w-0 overflow-hidden">
+            <div
+              className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+              style={{ scrollbarWidth: "none" }}
+            >
+              {graphicCategories.map((category) => {
+                const selected = activeGraphicCategory === category;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveGraphicCategory(category)}
+                    aria-pressed={selected}
+                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                      selected
+                        ? "border-purple-500 bg-purple-500 text-white shadow-[3px_3px_0_0_var(--accent)] dark:border-purple-400 dark:bg-purple-400 dark:text-background"
+                        : "border-ink/15 bg-background/80 text-foreground/70 hover:border-purple-500/50 hover:bg-purple-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <label className="relative block">
+            <span className="sr-only">Search graphic design</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
+            <Input
+              value={graphicSearch}
+              onChange={(event) => setGraphicSearch(event.target.value)}
+              placeholder="Search designs"
+              className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
+            />
+          </label>
+        </div>
+      </div>
+      {/* ===== END GRAPHIC DESIGN FILTER BAR ===== */}
+
       <div
-        // ref={scrollRef}
+        ref={scrollRef}
         onWheel={(event) => {
           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
           event.preventDefault();
@@ -2524,39 +2578,70 @@ function PortfolioGraphicDesign({
         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
         style={{ scrollbarWidth: "none" }}
       >
-        {items.map((slide, idx) => (
-          <motion.a
-            key={idx}
-            href={slide.detailUrl || slide.image}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={{ y: -8, scale: 1.02 }}
-            className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
-          >
+        {isGraphicFiltering ? (
+          Array.from({ length: 4 }).map((_, i) => (
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
-              {slide.categoryLabel}
-            </span>
-            {slide.subcategory && (
-              <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+              key={`graphic-skeleton-${i}`}
+              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+            >
+              <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
+            </div>
+          ))
+        ) : filteredGraphicItems.length > 0 ? (
+          filteredGraphicItems.map((slide, idx) => (
+            <motion.a
+              key={idx}
+              href={slide.detailUrl || slide.image}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
                 {slide.subcategory}
               </span>
-            )}
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-              <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
-                {slide.title}
-              </h4>
-              <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
-                {slide.description}
-              </p>
-            </div>
-          </motion.a>
-        ))}
+              {slide.subcategory && (
+                <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+                  {slide.subcategory}
+                </span>
+              )}
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+                <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+                  {slide.title}
+                </h4>
+                <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+                  {slide.description}
+                </p>
+              </div>
+            </motion.a>
+          ))
+        ) : (
+          <div className="w-full py-12 text-center">
+            <p className="font-display text-xl font-bold text-foreground/60">
+              No designs found
+            </p>
+            <p className="mt-2 text-sm text-foreground/40">
+              Try another category or clear the search
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveGraphicCategory("All");
+                setGraphicSearch("");
+              }}
+              className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
+            >
+              Reset filters
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -2935,45 +3020,6 @@ function Index() {
             Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed  
         
                </motion.p>
-            {/* <div>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
-              >
-                Creativity, strategy, and technology come together in every campaign we build. We
-                turn brand momentum into measurable growth for fast-moving teams.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
-              >
-                Creativity, strategy, and technology come together in every campaign we build.
-              </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="mt-10 flex flex-wrap items-center justify-center gap-3"
-            >
-              <a
-                href="#work"
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-              >
-                View Our Work <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold lift"
-              >
-                Explore services
-              </a>
-            </motion.div>
-            </div> */}
           </div>
         </div>
 
@@ -3269,8 +3315,7 @@ function Index() {
       {/* PARTNERS */}
       <TrustSection />
 
-      {/* ENGAGEMENT MODELS */}
-      <FlexibleSection items={cmsEngagements} />
+      
 
       {/* TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
