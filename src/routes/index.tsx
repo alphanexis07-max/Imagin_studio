@@ -2474,7 +2474,7 @@ function PortfolioGraphicDesign({
             {content.eyebrow}
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-            Section {content.title}
+            {content.title}
           </h2>
           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
             {content.description}
