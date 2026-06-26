@@ -1,5 +1,8 @@
 ﻿import { createFileRoute, Link } from "@tanstack/react-router";
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   useEffect,
@@ -83,7 +86,7 @@ import screenshot4 from "@/assets/carousel-samples/screenshot-4.jpg";
 import screenshot5 from "@/assets/carousel-samples/screenshot-5.jpg";
 import screenshot6 from "@/assets/carousel-samples/screenshot-6.jpg";
 import type { SiteData } from "@/lib/admin/site.functions";
-import { CartoonButton } from "@/components/ui/cartoon-button"; // ADD THIS IMPORT
+import { CartoonButton } from "@/components/ui/cartoon-button";
 
 // ============================================
 // HELPER COMPONENTS FOR HERO ENHANCEMENTS
@@ -119,7 +122,6 @@ const FloatingCard = ({
       setMouseX(x);
       setMouseY(y);
 
-      // Parallax depth
       const rect2 = ref.current.parentElement?.getBoundingClientRect();
       if (rect2) {
         const px = (e.clientX - rect2.left) / rect2.width - 0.5;
@@ -446,9 +448,8 @@ const MobileQuestionCta = ({
     </motion.div>
     <a
       href={href}
-      className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold lift ${
-        primary ? "bg-ink text-cream" : "border-2 border-ink bg-background text-foreground"
-      }`}
+      className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold lift ${primary ? "bg-ink text-cream" : "border-2 border-ink bg-background text-foreground"
+        }`}
     >
       {children}
     </a>
@@ -1509,86 +1510,86 @@ function normalizeStats(items: CmsItem[]) {
 function normalizeCapabilities(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-        k: asString(item.key, String(index + 1).padStart(2, "0")),
-        t: asString(item.title),
-        d: asString(item.description),
-        icon: iconFromName(item.icon, "Target"),
-        bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"),
-        span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "",
-        big: item.big === true || index === 0,
-        chips: asStringArray(item.chips),
-        metric: asString(item.metric),
-        metricLabel: asString(item.metricLabel),
-      }))
+      k: asString(item.key, String(index + 1).padStart(2, "0")),
+      t: asString(item.title),
+      d: asString(item.description),
+      icon: iconFromName(item.icon, "Target"),
+      bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"),
+      span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "",
+      big: item.big === true || index === 0,
+      chips: asStringArray(item.chips),
+      metric: asString(item.metric),
+      metricLabel: asString(item.metricLabel),
+    }))
     : capabilities;
 }
 function normalizeProcess(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-        n: asString(item.number, String(index + 1).padStart(2, "0")),
-        t: asString(item.title),
-        d: asString(item.description),
-        icon: iconFromName(item.icon, "Search"),
-        color: asString(item.bg, "bg-background"),
-      }))
+      n: asString(item.number, String(index + 1).padStart(2, "0")),
+      t: asString(item.title),
+      d: asString(item.description),
+      icon: iconFromName(item.icon, "Search"),
+      color: asString(item.bg, "bg-background"),
+    }))
     : steps;
 }
 function normalizeCases(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-        name: asString(item.name),
-        sector: asString(item.sector),
-        year: asString(item.year),
-        word: asString(item.word, asString(item.name).toUpperCase()),
-        color: asString(item.color, "bg-accent"),
-        problem: asString(item.problem),
-        metrics: Array.isArray(item.metrics)
-          ? (item.metrics as CmsItem[]).map((metric) => ({
-              k: asString(metric.key),
-              v: asString(metric.value),
-            }))
-          : [],
-        tags: asStringArray(item.tags),
-        rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4),
-      }))
+      name: asString(item.name),
+      sector: asString(item.sector),
+      year: asString(item.year),
+      word: asString(item.word, asString(item.name).toUpperCase()),
+      color: asString(item.color, "bg-accent"),
+      problem: asString(item.problem),
+      metrics: Array.isArray(item.metrics)
+        ? (item.metrics as CmsItem[]).map((metric) => ({
+          k: asString(metric.key),
+          v: asString(metric.value),
+        }))
+        : [],
+      tags: asStringArray(item.tags),
+      rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4),
+    }))
     : cases;
 }
 function normalizeEngagements(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-        icon: iconFromName(item.icon, "Zap"),
-        t: asString(item.name),
-        k: asString(item.duration),
-        d: asString(item.description),
-        bullets: asStringArray(item.bullets),
-        bg: asString(item.bg, "bg-background"),
-        rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2),
-        tag: asString(item.tag),
-        popular: item.popular === true,
-      }))
+      icon: iconFromName(item.icon, "Zap"),
+      t: asString(item.name),
+      k: asString(item.duration),
+      d: asString(item.description),
+      bullets: asStringArray(item.bullets),
+      bg: asString(item.bg, "bg-background"),
+      rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2),
+      tag: asString(item.tag),
+      popular: item.popular === true,
+    }))
     : engagements;
 }
 function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
-        title: asString(item.title, `Project ${index + 1}`),
-        description: asString(item.description),
-        video: asString(
-          item.video,
-          heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? "",
-        ),
-        poster: resolveMediaUrl(
-          item.poster,
-          heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1,
-        ),
-        glow: asString(
-          item.glow,
-          heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40",
-        ),
-        ctaText: asString(item.ctaText, "View Project"),
-        ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
-      }))
+      categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+      title: asString(item.title, `Project ${index + 1}`),
+      description: asString(item.description),
+      video: asString(
+        item.video,
+        heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? "",
+      ),
+      poster: resolveMediaUrl(
+        item.poster,
+        heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1,
+      ),
+      glow: asString(
+        item.glow,
+        heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40",
+      ),
+      ctaText: asString(item.ctaText, "View Project"),
+      ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
+    }))
     : heroShowcaseSlides;
 }
 function parseLabelValuePairs(items: unknown[]): Array<{ label: string; value: string }> {
@@ -1613,122 +1614,122 @@ function parseLabelValuePairs(items: unknown[]): Array<{ label: string; value: s
 function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
-        title: asString(item.title, `Edit ${index + 1}`),
-        description: asString(item.description),
-        outcome: asString(item.outcome),
-        video: asString(
-          item.video,
-          videoEditingSlides[index % videoEditingSlides.length]?.video ?? "",
-        ),
-        poster: resolveMediaUrl(
-          item.poster,
-          videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1,
-        ),
-        accentColor: asString(
-          item.accentColor,
-          videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90",
-        ),
-        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
-      }))
+      categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+      title: asString(item.title, `Edit ${index + 1}`),
+      description: asString(item.description),
+      outcome: asString(item.outcome),
+      video: asString(
+        item.video,
+        videoEditingSlides[index % videoEditingSlides.length]?.video ?? "",
+      ),
+      poster: resolveMediaUrl(
+        item.poster,
+        videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1,
+      ),
+      accentColor: asString(
+        item.accentColor,
+        videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90",
+      ),
+      detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
+    }))
     : videoEditingSlides;
 }
 function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "GRAPHIC DESIGN"),
-        subcategory: asString(item.subcategory),
-        title: asString(item.title, `Asset ${index + 1}`),
-        description: asString(item.description),
-        image: asString(
+      categoryLabel: asString(item.categoryLabel, "GRAPHIC DESIGN"),
+      subcategory: asString(item.subcategory),
+      title: asString(item.title, `Asset ${index + 1}`),
+      description: asString(item.description),
+      image: asString(
+        item.image,
+        fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
+        screenshot1,
+      ),
+      detailUrl: asString(
+        item.detailUrl,
+        asString(
           item.image,
           fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
-            screenshot1,
+          screenshot1,
         ),
-        detailUrl: asString(
-          item.detailUrl,
-          asString(
-            item.image,
-            fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
-              screenshot1,
-          ),
-        ),
-      }))
+      ),
+    }))
     : fallbackGraphicDesignSlides;
 }
 function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "CRM SOFTWARE"),
-        title: asString(item.title, `System ${index + 1}`),
-        description: asString(item.description),
-        keyFeatures: asStringArray(item.keyFeatures),
-        techStack: asStringArray(item.techStack),
-        businessBenefit: asString(item.businessBenefit),
-        poster: resolveMediaUrl(
-          item.poster,
-          softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
-        ),
-        video: asString(
-          item.video,
-          softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
-        ),
-        accentColor: asString(
-          item.accentColor,
-          softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
-            "from-teal-950/90",
-        ),
-        projectUrl: asString(
-          item.projectUrl,
-          asString(item.ctaLink, asString(item.video, asString(item.poster))),
-        ),
-      }))
+      categoryLabel: asString(item.categoryLabel, "CRM SOFTWARE"),
+      title: asString(item.title, `System ${index + 1}`),
+      description: asString(item.description),
+      keyFeatures: asStringArray(item.keyFeatures),
+      techStack: asStringArray(item.techStack),
+      businessBenefit: asString(item.businessBenefit),
+      poster: resolveMediaUrl(
+        item.poster,
+        softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
+      ),
+      video: asString(
+        item.video,
+        softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
+      ),
+      accentColor: asString(
+        item.accentColor,
+        softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
+        "from-teal-950/90",
+      ),
+      projectUrl: asString(
+        item.projectUrl,
+        asString(item.ctaLink, asString(item.video, asString(item.poster))),
+      ),
+    }))
     : softwareSystemsSlides;
 }
 function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "SEO"),
-        title: asString(item.title, `Analytics ${index + 1}`),
-        description: asString(item.description),
-        metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
-        poster: resolveMediaUrl(
-          item.poster,
-          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1,
-        ),
-        video: asString(
-          item.video,
-          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? "",
-        ),
-        accent: asString(
-          item.accent,
-          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40",
-        ),
-        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
-      }))
+      categoryLabel: asString(item.categoryLabel, "SEO"),
+      title: asString(item.title, `Analytics ${index + 1}`),
+      description: asString(item.description),
+      metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
+      poster: resolveMediaUrl(
+        item.poster,
+        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1,
+      ),
+      video: asString(
+        item.video,
+        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? "",
+      ),
+      accent: asString(
+        item.accent,
+        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40",
+      ),
+      detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
+    }))
     : seoAnalyticsSlides;
 }
 function normalizeStrategicConsulting(items: CmsItem[]): StrategicConsultingCase[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "STRATEGIC PLANNING"),
-        title: asString(item.title, `Case ${index + 1}`),
-        challenge: asString(item.challenge),
-        solution: asString(item.solution),
-        execution: asString(item.execution),
-        results: Array.isArray(item.results) ? parseLabelValuePairs(item.results) : [],
-      }))
+      categoryLabel: asString(item.categoryLabel, "STRATEGIC PLANNING"),
+      title: asString(item.title, `Case ${index + 1}`),
+      challenge: asString(item.challenge),
+      solution: asString(item.solution),
+      execution: asString(item.execution),
+      results: Array.isArray(item.results) ? parseLabelValuePairs(item.results) : [],
+    }))
     : consultingCases;
 }
 function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "Content Writing"),
-        type: asString(item.type, `Item ${index + 1}`),
-        headline: asString(item.headline),
-        metrics: asString(item.metrics),
-        excerpt: asString(item.excerpt),
-      }))
+      categoryLabel: asString(item.categoryLabel, "Content Writing"),
+      type: asString(item.type, `Item ${index + 1}`),
+      headline: asString(item.headline),
+      metrics: asString(item.metrics),
+      excerpt: asString(item.excerpt),
+    }))
     : editorialContent;
 }
 function normalizeReels(items: CmsItem[]) {
@@ -1748,28 +1749,28 @@ function normalizeReels(items: CmsItem[]) {
 function normalizeTestimonials(items: CmsItem[]) {
   return items.length
     ? items.map((item) => ({
-        q: asString(item.quote),
-        name: asString(item.author),
-        co: asString(item.role),
-        verified: asString(item.verified, "Verified"),
-        stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
-      }))
+      q: asString(item.quote),
+      name: asString(item.author),
+      co: asString(item.role),
+      verified: asString(item.verified, "Verified"),
+      stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
+    }))
     : [
-        {
-          q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
-          name: "VP of Product",
-          co: "North American HealthTech Corp",
-          verified: "LinkedIn Verified",
-          stars: 5,
-        },
-        {
-          q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
-          name: "Chief Operating Officer",
-          co: "European Logistics Group",
-          verified: "Clutch 5-Star",
-          stars: 5,
-        },
-      ];
+      {
+        q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
+        name: "VP of Product",
+        co: "North American HealthTech Corp",
+        verified: "LinkedIn Verified",
+        stars: 5,
+      },
+      {
+        q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
+        name: "Chief Operating Officer",
+        co: "European Logistics Group",
+        verified: "Clutch 5-Star",
+        stars: 5,
+      },
+    ];
 }
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
@@ -1977,7 +1978,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
           </div>
           <div className="flex flex-col gap-4 md:items-end">
             <p className="max-w-sm text-foreground/70 md:text-right">
-              Real client cuts - filter by category or search the room before opening the full reel library.
+            
             </p>
             <Link
               to="/reels"
@@ -2010,11 +2011,10 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
                     type="button"
                     onClick={() => setActiveCategory(category)}
                     aria-pressed={selected}
-                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
-                      selected
+                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${selected
                         ? "border-ink bg-ink text-cream shadow-[3px_3px_0_0_var(--accent)] dark:border-foreground dark:bg-foreground dark:text-background"
                         : "border-ink/15 bg-background/80 text-foreground/70 hover:border-accent/50 hover:bg-accent/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
-                    }`}
+                      }`}
                   >
                     {category}
                   </button>
@@ -2050,46 +2050,46 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5" aria-busy={isFiltering}>
             {isFiltering
               ? Array.from({ length: Math.min(Math.max(visibleReels.length, 4), 6) }).map((_, i) => (
-                  <div
-                    key={`reel-skeleton-${i}`}
-                    className="aspect-[9/16] animate-pulse rounded-2xl border border-ink/10 bg-card/80 shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-white/5"
-                  >
-                    <div className="h-full rounded-2xl bg-gradient-to-b from-foreground/10 via-foreground/5 to-foreground/15" />
-                  </div>
-                ))
+                <div
+                  key={`reel-skeleton-${i}`}
+                  className="aspect-[9/16] animate-pulse rounded-2xl border border-ink/10 bg-card/80 shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-white/5"
+                >
+                  <div className="h-full rounded-2xl bg-gradient-to-b from-foreground/10 via-foreground/5 to-foreground/15" />
+                </div>
+              ))
               : visibleReels.map((reel, i) => {
-                  const category = reel.category || reel.tag || "Reel";
-                  return (
-                    <motion.div
-                      key={`${reel.title}-${reel.src}`}
-                      initial={{ opacity: 0, y: 40, rotate: rotations[i % rotations.length] * 2 }}
-                      whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length] }}
-                      whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
-                      viewport={{ once: true, margin: "-80px" }}
-                      transition={{ type: "spring", stiffness: 90, delay: (i % 4) * 0.08 }}
-                      className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
-                    >
-                      <iframe
-                        src={extractEmbedUrl(reel.src)}
-                        className="absolute inset-0 h-full w-full rounded-2xl border-none"
-                        loading="lazy"
-                        title={reel.title}
-                        allowtransparency="true"
-                        scrolling="no"
-                        allowFullScreen={true}
-                      />
-                      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
+                const category = reel.category || reel.tag || "Reel";
+                return (
+                  <motion.div
+                    key={`${reel.title}-${reel.src}`}
+                    initial={{ opacity: 0, y: 40, rotate: rotations[i % rotations.length] * 2 }}
+                    whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length] }}
+                    whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ type: "spring", stiffness: 90, delay: (i % 4) * 0.08 }}
+                    className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
+                  >
+                    <iframe
+                      src={extractEmbedUrl(reel.src)}
+                      className="absolute inset-0 h-full w-full rounded-2xl border-none"
+                      loading="lazy"
+                      title={reel.title}
+                      allowtransparency="true"
+                      scrolling="no"
+                      allowFullScreen={true}
+                    />
+                    <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
 
-                      <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
-                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
-                        {category} / {reel.tag}
-                      </div>
-                      <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
-                        {reel.title}
-                      </h3>
-                    </motion.div>
-                  );
-                })}
+                    <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
+                      {category} / {reel.tag}
+                    </div>
+                    <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
+                      {reel.title}
+                    </h3>
+                  </motion.div>
+                );
+              })}
           </div>
 
           {!isFiltering && filteredReels.length === 0 && (
@@ -2411,9 +2411,9 @@ function PortfolioHeroShowcase({
       </div>
       <FlankCarousel
         slides={items}
-        title="Hero Showcase"
-        subtitle="FEATURED WORKS"
-        description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."
+        /*title=""
+        subtitle=""
+        /*description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."*/
       />
     </div>
   );
@@ -2437,12 +2437,7 @@ function PortfolioVideoEditing({
           {content.description}
         </p>
       </div>
-      <JumboStack
-        slides={items}
-        title="Video Editing Portfolio"
-        subtitle="REELS & COMMERCIALS"
-        description="Layered priority stack with direct audience response and view count attribution."
-      />
+
     </div>
   );
 }
@@ -2479,7 +2474,7 @@ function PortfolioGraphicDesign({
             {content.eyebrow}
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-            Section {content.title}
+            {content.title}
           </h2>
           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
             {content.description}
@@ -2579,7 +2574,7 @@ function PortfolioSoftwareSystems({
         slides={items}
         title="Software & Systems"
         subtitle="AUTOMATION & PLATFORMS"
-        description="Cylinder-style rotating visual carousel showcasing architecture details and business impact"
+        description=""
       />
     </div>
   );
@@ -2603,12 +2598,79 @@ function PortfolioSEOAnalytics({
           {content.description}
         </p>
       </div>
-      <TriangleMask
-        slides={items}
-        title="SEO & Analytics"
-        subtitle="COMPLEX SEARCH FUNNELS"
-        description="Soft triangular mask frame focusing on documented traffic graphs and conversion improvements."
-      />
+
+      <div className="relative max-w-7xl mx-auto px-4">
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={30}
+          navigation={{
+            nextEl: '.custom-next',
+            prevEl: '.custom-prev',
+          }}
+          modules={[Navigation]}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            }
+          }}
+          className="pb-12"
+        >
+          {items.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
+                {/* Image Section - Top */}
+                <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <svg className="w-24 h-24 text-blue-400/50" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                  </div>
+                  
+                  <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    {item.categoryLabel || "SEO"}
+                  </div>
+                </div>
+
+                {/* Content Section - Bottom */}
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                    {item.description}
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-4 mt-2 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    {item.metrics && item.metrics.map((metric, idx) => (
+                      <div key={idx} className="text-center">
+                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                          {metric.value}
+                        </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                          {metric.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Navigation Arrows */}
+        <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
+          <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
+          <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
@@ -2835,7 +2897,7 @@ function Index() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-            // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
+          // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
           ></motion.div>
 
           <div className="text-center">
@@ -2861,45 +2923,6 @@ function Index() {
             >
               Creativity, strategy, and technology come together in every campaign we build.
             </motion.p>
-            {/* <div>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
-              >
-                Creativity, strategy, and technology come together in every campaign we build. We
-                turn brand momentum into measurable growth for fast-moving teams.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
-              >
-                Creativity, strategy, and technology come together in every campaign we build.
-              </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="mt-10 flex flex-wrap items-center justify-center gap-3"
-            >
-              <a
-                href="#work"
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-              >
-                View Our Work <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold lift"
-              >
-                Explore services
-              </a>
-            </motion.div>
-            </div> */}
           </div>
         </div>
 
@@ -3100,10 +3123,16 @@ function Index() {
         content={portfolioCopy.sections.heroShowcase}
         items={cmsHeroShowcase}
       />
-      <PortfolioVideoEditing
+
+
+      {/* FILM REELS */}
+      <FilmReelsSection items={cmsReels} />
+
+
+      {/* <PortfolioVideoEditing
         content={portfolioCopy.sections.videoEditing}
         items={cmsVideoEditing}
-      />
+      /> */}
       <PortfolioGraphicDesign
         content={portfolioCopy.sections.visualAssets}
         items={cmsVisualAssets}
@@ -3185,19 +3214,9 @@ function Index() {
                 </motion.div>
               ))}
             </div>
-            {/* <Arrow className="pointer-events-none absolute -right-6 -top-12 z-20 hidden h-28 w-36 rotate-3 text-ink drop-shadow-[0_3px_0_rgba(255,255,255,0.65)] animate-draw md:block lg:-right-10 lg:-top-14 lg:h-32 lg:w-40" /> */}
           </motion.div>
         </div>
       </section>
-
-      {/* CORE CAPABILITIES */}
-      <CoreCapabilitiesSection items={cmsCapabilities} />
-
-      {/* 6-STEP PROCESS */}
-      <ProcessSection items={cmsProcess} />
-
-      {/* FILM REELS */}
-      <FilmReelsSection items={cmsReels} />
 
       {/* CASE STUDIES */}
       <CaseStudiesSection items={cmsCases} />
@@ -3260,8 +3279,6 @@ function Index() {
           className="relative overflow-hidden rounded-[2.5rem] border-2 border-ink bg-accent p-10 text-center md:p-20 shimmer"
         >
           <Star4 className="absolute left-8 top-8 h-8 w-8 text-ink animate-spin-slow" />
-          {/* <Star4 className="absolute right-10 top-12 h-6 w-6 text-ink animate-spin-slow" /> */}
-          {/* <Star4 className="absolute bottom-10 left-1/4 h-5 w-5 text-ink animate-spin-slow" /> */}
 
           <span className="script text-3xl">{site.contact.eyebrow}</span>
           <h2 className="font-display text-5xl font-bold leading-[1.05] md:text-7xl">
@@ -3342,39 +3359,39 @@ function Index() {
         </div>
       </footer>
 
-       {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
+      {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
       {/* ============================================ */}
-    
-       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
-      <CartoonButton
-        label="WhatsApp"
-        icon={
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        }
-        color="bg-green-400"
-        className="animate-float"
-        onClick={() => {
-          const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || 'https://wa.me/1234567890';
-          window.open(whatsappLink, '_blank');
-        }}
-      />
 
-      <CartoonButton
-        label="View Our Work"
-        icon={
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-          </svg>
-        }
-        color="bg-white"
-        className="animate-bounce-subtle"
-        onClick={() => {
-          document.getElementById('work')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }}
-      />
-    </div>
+      <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
+        <CartoonButton
+          label="WhatsApp"
+          icon={
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+          }
+          color="bg-green-400"
+          className="animate-float"
+          onClick={() => {
+            const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || 'https://wa.me/1234567890';
+            window.open(whatsappLink, '_blank');
+          }}
+        />
+
+        <CartoonButton
+          label="View Our Work"
+          icon={
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+          }
+          color="bg-white"
+          className="animate-bounce-subtle"
+          onClick={() => {
+            document.getElementById('work')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        />
+      </div>
     </main>
   );
 }
