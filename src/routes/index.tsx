@@ -2073,7 +2073,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
     });
   }, [activeCategory, items, reelSearch]);
 
-  const visibleReels = filteredReels.slice(0, 6);
+  const visibleReels = filteredReels.slice(0, 8);
 
   useEffect(() => {
     setIsFiltering(true);
@@ -2486,9 +2486,9 @@ const partners = [
   "AWS Partner",
   "Google Cloud",
   "Microsoft Azure",
-  "NVIDIA Inception",
-  "Clutch Top Agency",
-  "GoodFirms Leader",
+  "DPIT",
+  "Startup India",
+  "MSME",
 ];
 
 function TrustSection() {
@@ -2690,8 +2690,8 @@ function PortfolioSoftwareSystems({
       </div>
       <RingCarousel
         slides={items}
-        title="Software & Systems"
-        subtitle="AUTOMATION & PLATFORMS"
+        title=""
+        subtitle=""
         description=""
       />
     </div>
