@@ -1055,7 +1055,7 @@ const editorialContent = [
 ];
 
 function DiscoveryCallDialog() {
-  const hostEmail = "hello@alphanexius.com";
+  const hostEmail = "info@alphanexius.com";
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
@@ -3522,9 +3522,8 @@ function Index() {
           color="bg-green-400"
           className="animate-float"
           onClick={() => {
-            const whatsappLink =
-              process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/1234567890";
-            window.open(whatsappLink, "_blank");
+            const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/+917067068673";
+window.open(whatsappLink, "_blank");
           }}
         />
 
