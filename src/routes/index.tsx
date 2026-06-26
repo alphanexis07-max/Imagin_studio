@@ -53,6 +53,8 @@ import {
   Play,
   ChevronLeft,
   ChevronRight,
+  Code,
+  Smartphone,
 } from "lucide-react";
 import portrait from "@/assets/portrait.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -91,6 +93,19 @@ import story9 from "@/assets/carousel-samples/story-9.jpg";
 import story10 from "@/assets/carousel-samples/story-10.jpg";
 import story11 from "@/assets/carousel-samples/story-11.jpg";
 import story12 from "@/assets/carousel-samples/story-12.jpg";
+
+// ===== THUMBNAIL IMPORTS =====
+import thumbnail1 from "@/assets/thumbanil  - 1_ 2.jpg";
+import thumbnail2 from "@/assets/thumbanil - 2 3.jpg";
+import thumbnail3 from "@/assets/thumbnail - Where every moment_.jpg";
+import thumbnail4 from "@/assets/thumbanil - 2 4.jpg";
+import thumbnail5 from "@/assets/verticle thumbvanil 2 - Step into your cozy hotel room_.jpg";
+import thumbnail6 from "@/assets/thumbanil -1 2.jpg";
+import thumbnail7 from "@/assets/thumbanil -_ 3.jpg";
+import thumbnail8 from "@/assets/sky + line thumbanil_ 1.jpg";
+import thumbnail9 from "@/assets/Thumbanil  copy 2.jpg";
+import thumbnail10 from "@/assets/Thumbanil_ 3.jpg";
+
 import type { SiteData } from "@/lib/admin/site.functions";
 import { CartoonButton } from "@/components/ui/cartoon-button";
 
@@ -567,8 +582,7 @@ const workProjects = [
   },
 ];
 
-const serviceOfferings = [
-];
+const serviceOfferings = [];
 
 /* -- Custom Portfolio Datasets -- */
 const categoryColors: Record<string, { badge: string; border: string; text: string }> = {
@@ -801,48 +815,77 @@ type PortfolioSectionCopy = {
 
 type PortfolioContentCopy = SiteData["portfolio"];
 
+// ===== UPDATED GRAPHIC DESIGN SLIDES WITH YOUR THUMBNAILS =====
 const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Campaign Launch",
-    title: "Bold Multi-Platform Story Frames",
-    description: "A dynamic hero image set for launch campaigns, blending editorial polish with motion-led impact.",
-    image: story7,
-  },
-  {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Packaging",
-    title: "Tactile Brand Packaging Concepts",
-    description: "Premium packaging mockups with layered textures, premium finishes, and retail-ready appeal.",
-    image: story8,
-  },
-  {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Social Media",
-    title: "Story-Led Social Content",
-    description: "Swipe-ready story assets and modern editorial layouts designed for high engagement.",
-    image: story9,
+    subcategory: "Modernization",
+    title: "Skyline Modernization",
+    description: "A bold rebrand concept for modern architecture and urban systems.",
+    image: thumbnail8,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Advertising",
-    title: "High-Impact Out-Of-Home Graphics",
-    description: "Bold typography and expressive composition built to capture attention across billboards and transit ads.",
-    image: story10,
+    title: "Brand Campaign Asset",
+    description: "High-impact campaign creative for digital advertising rollouts.",
+    image: thumbnail2,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Print Design",
-    title: "Editorial Collage Systems",
-    description: "Magazine-quality spreads and visual systems with layered imagery and refined editorial structure.",
-    image: story11,
+    subcategory: "Hospitality",
+    title: "Pure Earth Stay - Where Every Moment Feels Just Right",
+    description: "Premium hospitality branding for Treebo's Pure Earth Stay experience.",
+    image: thumbnail3,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Visual Storytelling",
-    title: "Narrative Visual Campaigns",
-    description: "Story-driven creative frames that turn brand messaging into immersive visual journeys.",
-    image: story12,
+    subcategory: "Advertising",
+    title: "Clarity First - Construction Follows",
+    description: "Strategic construction branding with clear visual messaging and impact.",
+    image: thumbnail4,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Step Into Your Cozy Hotel Room",
+    description: "Warm and inviting hotel room visual design for memorable guest experiences.",
+    image: thumbnail5,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Modern Systems in Motion",
+    description: "A high-contrast graphic system rooted in modern tech and service design.",
+    image: thumbnail1,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Corporate Branding System",
+    description: "Corporate identity assets optimized for product launches and team wear.",
+    image: thumbnail7,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Sky-Line Visual Identity",
+    description: "A refined design system for architecture, real estate and urban innovation.",
+    image: thumbnail9,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Built on Vision",
+    description: "Vision-driven campaign creative for modern architecture clients.",
+    image: thumbnail10,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Cozy Hotel Room Branding",
+    description: "Hospitality branding with a modern, welcoming visual language.",
+    image: thumbnail6,
   },
 ];
 
@@ -1208,12 +1251,8 @@ function ServicesSection() {
     <section id="services" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent"></span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-          
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-          .
-        </p>
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl"></h2>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">.</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">
@@ -2402,12 +2441,7 @@ function PortfolioHeroShowcase({
           {content.description}
         </p>
       </div>
-      <FlankCarousel
-        slides={items}
-        /*title=""
-        subtitle=""
-        /*description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."*/
-      />
+      <FlankCarousel slides={items} />
     </div>
   );
 }
@@ -2459,7 +2493,7 @@ function PortfolioGraphicDesign({
 
   const filteredGraphicItems = useMemo(() => {
     const query = graphicSearch.trim().toLowerCase();
-    
+
     return items.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
@@ -2480,13 +2514,19 @@ function PortfolioGraphicDesign({
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
+      scrollRef.current.scrollBy({
+        left: -350,
+        behavior: "smooth",
+      });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
+      scrollRef.current.scrollBy({
+        left: 350,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -2507,20 +2547,20 @@ function PortfolioGraphicDesign({
             {content.description}
           </p>
         </div>
-        <div className="hidden md:flex gap-2">
+        <div className="flex gap-2">
           <button
             onClick={scrollLeft}
             aria-label="Scroll graphic design left"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={scrollRight}
             aria-label="Scroll graphic design right"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-5 w-5" />
           </button>
         </div>
       </div>
@@ -2624,9 +2664,7 @@ function PortfolioGraphicDesign({
           ))
         ) : (
           <div className="w-full py-12 text-center">
-            <p className="font-display text-xl font-bold text-foreground/60">
-              No designs found
-            </p>
+            <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
             <p className="mt-2 text-sm text-foreground/40">
               Try another category or clear the search
             </p>
@@ -2665,12 +2703,7 @@ function PortfolioSoftwareSystems({
           {content.description}
         </p>
       </div>
-      <RingCarousel
-        slides={items}
-        title=""
-        subtitle=""
-        description=""
-      />
+      <RingCarousel slides={items} title="" subtitle="" description="" />
     </div>
   );
 }
@@ -2714,7 +2747,6 @@ function PortfolioSEOAnalytics({
           {items.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
-                {/* Image Section - Top */}
                 <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
                   <img
                     src={item.poster}
@@ -2728,7 +2760,6 @@ function PortfolioSEOAnalytics({
                   </div>
                 </div>
 
-                {/* Content Section - Bottom */}
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">
                     {item.title}
@@ -2756,7 +2787,6 @@ function PortfolioSEOAnalytics({
           ))}
         </Swiper>
 
-        {/* Navigation Arrows */}
         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
           <svg
             className="w-5 h-5 text-gray-800 dark:text-white"
@@ -2764,12 +2794,7 @@ function PortfolioSEOAnalytics({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
@@ -3009,7 +3034,6 @@ function Index() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-            // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
           ></motion.div>
 
           <div className="text-center">
@@ -3033,9 +3057,8 @@ function Index() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mx-auto text-accent/80 max-w-2xl text-base md:text-lg "
             >
-            Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed  
-        
-               </motion.p>
+              Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
+            </motion.p>
           </div>
         </div>
 
@@ -3132,6 +3155,42 @@ function Index() {
               </motion.div>
             ))}
 
+            {/* NEW LEFT-SIDE PILLS: Web / App / UI/UX */}
+            {[
+              {
+                txt: (
+                  <>
+                    <Code className="h-4 w-4 text-accent" /> Web Development
+                  </>
+                ),
+                pos: "-left-6 top-[8%] md:-left-4",
+                r: "-5deg",
+                d: "0.1s",
+              },
+              {
+                txt: (
+                  <>
+                    <Smartphone className="h-4 w-4 text-accent" /> App Development
+                  </>
+                ),
+                pos: "-left-6 top-[30%] md:-left-4",
+                r: "3deg",
+                d: "0.5s",
+              },
+              
+            ].map((p, i) => (
+              <motion.div
+                key={`left-pill-${i}`}
+                initial={{ opacity: 0, scale: 0.5, x: -20 }}
+                animate={{ opacity: 0.8, scale: 1, x: 0 }}
+                transition={{ delay: 0.8 + i * 0.12, type: "spring" }}
+                style={{ ["--r" as never]: p.r, animationDelay: p.d }}
+                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos} bg-foreground dark:bg-foreground/20 border border-ink/10`}
+              >
+                {p.txt}
+              </motion.div>
+            ))}
+
             {/* "8+ Years" stat — top right, same as original */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -3142,7 +3201,7 @@ function Index() {
               <div className="font-display text-4xl font-bold leading-none">
                 {site.hero.sidebarStat.value}
               </div>
-              <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
+              <div className="text-sm ">{site.hero.sidebarStat.label}</div>
             </motion.div>
 
             {/* Mini testimonial snippet — top left, same as original */}
@@ -3250,10 +3309,6 @@ function Index() {
       {/* FILM REELS */}
       <FilmReelsSection items={cmsReels} />
 
-      {/* <PortfolioVideoEditing
-        content={portfolioCopy.sections.videoEditing}
-        items={cmsVideoEditing}
-      /> */}
       <PortfolioGraphicDesign
         content={portfolioCopy.sections.visualAssets}
         items={cmsVisualAssets}
@@ -3328,7 +3383,9 @@ function Index() {
                   whileInView={{ opacity: 1, scale: 1, rotate: i % 2 === 0 ? -2 : 2 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className={`rounded-2xl border-2 border-ink p-5 lift ${i % 2 === 0 ? "bg-accent" : "bg-background"}`}
+                  className={`rounded-2xl border-2 border-ink p-5 lift ${
+                    i % 2 === 0 ? "bg-accent" : "bg-background"
+                  }`}
                 >
                   <Icon className="mb-3 h-5 w-5" />
                   <div className="font-display text-xl font-semibold">{t}</div>
@@ -3347,8 +3404,6 @@ function Index() {
 
       {/* PARTNERS */}
       <TrustSection />
-
-      
 
       {/* TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
@@ -3416,35 +3471,6 @@ function Index() {
           </div>
         </motion.div>
       </section>
-      {/* STATS strip */}
-      {/* <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
-        <div className="mb-10 text-center">
-          <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-            Milestones that prove our work delivers impact.
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-            From enterprise launches to repeated growth loops, these metrics show the outcomes we
-            create.
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {cmsStats.map((s, i) => (
-            <motion.div
-              key={s.v}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, type: "spring" }}
-              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-            >
-              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
-              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section> */}
 
       {/* FOOTER */}
       <footer className="border-t border-border bg-background">
@@ -3480,8 +3506,6 @@ function Index() {
       </footer>
 
       {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
-      {/* ============================================ */}
-
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
         <CartoonButton
           label="WhatsApp"
