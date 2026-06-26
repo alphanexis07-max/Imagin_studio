@@ -194,7 +194,8 @@ export function FlankCarousel({
             const scale = isCenter ? 1 : 0.7;
             const opacity = isCenter ? 1 : 0.4;
             const zIndex = isCenter ? 20 : 10 - Math.abs(offset);
-            const openUrl = slide.ctaLink && slide.ctaLink !== "#" ? slide.ctaLink : slide.video || slide.poster;
+            const openUrl =
+              slide.ctaLink && slide.ctaLink !== "#" ? slide.ctaLink : slide.video || slide.poster;
 
             const getBadgeStyles = (label: string) => {
               const cleaned = label.toUpperCase();
@@ -284,13 +285,15 @@ export function FlankCarousel({
                   MODIFICATION 2: Reduced padding to shrink the white content area.
                   Also reduced margins between text elements.
                 */}
-                <div className="p-3 sm:p-3 md:p-3.5">
-                  <h4 className="font-display text-base sm:text-lg md:text-xl font-bold text-card-foreground dark:text-white">
-                    {slide.title}
-                  </h4>
-                  <p className="mt-1 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400 line-clamp-2">
-                    {slide.description}
-                  </p>
+                <div className="p-3 flex flex-col md:flex-row justify-between  sm:p-3 md:p-3.5">
+                  <div>
+                    <h4 className="font-display text-base sm:text-lg md:text-xl font-bold text-card-foreground dark:text-white">
+                      {slide.title}
+                    </h4>
+                    <p className="mt-1 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400 line-clamp-2">
+                      {slide.description}
+                    </p>
+                  </div>
 
                   <AnimatePresence>
                     {isCenter && (
@@ -323,26 +326,26 @@ export function FlankCarousel({
       </motion.div>
 
       {/* SMALLER NAVIGATION BUTTONS */}
-     <div className="mt-8 md:mt-4 sm:mt-8 flex items-center justify-center gap-2 sm:gap-3 z-20 relative">
-  <Button
-    onClick={carousel.prev}
-    aria-label="Previous Slide"
-    variant="outline"
-    size="sm"
-    className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
-  >
-    <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-  </Button>
-  <Button
-    onClick={carousel.next}
-    aria-label="Next Slide"
-    variant="outline"
-    size="sm"
-    className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
-  >
-    <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-  </Button>
-</div>
+      <div className="mt-20 md:mt-8 sm:mt-16 flex items-center justify-center gap-2 sm:gap-3 z-20 relative">
+        <Button
+          onClick={carousel.prev}
+          aria-label="Previous Slide"
+          variant="outline"
+          size="sm"
+          className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
+        >
+          <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+        </Button>
+        <Button
+          onClick={carousel.next}
+          aria-label="Next Slide"
+          variant="outline"
+          size="sm"
+          className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
+        >
+          <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+        </Button>
+      </div>
     </section>
   );
 }
