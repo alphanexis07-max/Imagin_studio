@@ -53,8 +53,6 @@ import {
   Play,
   ChevronLeft,
   ChevronRight,
-  Code,
-  Smartphone,
 } from "lucide-react";
 import portrait from "@/assets/portrait.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -93,19 +91,6 @@ import story9 from "@/assets/carousel-samples/story-9.jpg";
 import story10 from "@/assets/carousel-samples/story-10.jpg";
 import story11 from "@/assets/carousel-samples/story-11.jpg";
 import story12 from "@/assets/carousel-samples/story-12.jpg";
-
-// ===== THUMBNAIL IMPORTS =====
-import thumbnail1 from "@/assets/thumbanil  - 1_ 2.jpg";
-import thumbnail2 from "@/assets/thumbanil - 2 3.jpg";
-import thumbnail3 from "@/assets/thumbnail - Where every moment_.jpg";
-import thumbnail4 from "@/assets/thumbanil - 2 4.jpg";
-import thumbnail5 from "@/assets/verticle thumbvanil 2 - Step into your cozy hotel room_.jpg";
-import thumbnail6 from "@/assets/thumbanil -1 2.jpg";
-import thumbnail7 from "@/assets/thumbanil -_ 3.jpg";
-import thumbnail8 from "@/assets/sky + line thumbanil_ 1.jpg";
-import thumbnail9 from "@/assets/Thumbanil  copy 2.jpg";
-import thumbnail10 from "@/assets/Thumbanil_ 3.jpg";
-
 import type { SiteData } from "@/lib/admin/site.functions";
 import { CartoonButton } from "@/components/ui/cartoon-button";
 
@@ -480,7 +465,7 @@ const MobileQuestionCta = ({
 
 const QuestionAnswerCtas = () => (
   <div className="mx-auto mt-8 w-full max-w-5xl px-2 md:px-0">
-    {/* <div className="grid gap-4 md:hidden">
+    <div className="grid gap-4 md:hidden">
       <MobileQuestionCta
         label="Need campaigns, content, and growth systems?"
         icon={<Megaphone className="h-5 w-5" />}
@@ -498,67 +483,7 @@ const QuestionAnswerCtas = () => (
       >
         Development
       </MobileQuestionCta>
-    </div> */}
-    <div className="grid gap-4 md:hidden">
-  <style>{`
-    @keyframes border-spin {
-      to { --border-angle: 360deg; }
-    }
-    @property --border-angle {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: 0deg;
-    }
-    .border-beam-mobile {
-      position: relative;
-      border-radius: 9999px;
-      width: fit-content;
-    }
-    .border-beam-mobile::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: inherit;
-      padding: 2px;
-      background: conic-gradient(
-        from var(--border-angle),
-        transparent 70%,
-        var(--beam-color, #a855f7) 88%,
-        transparent 100%
-      );
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: border-spin 2.5s linear infinite;
-      pointer-events: none;
-    }
-  `}</style>
-
-  <MobileQuestionCta
-    label="Need campaigns, content, and growth systems?"
-    icon={<Megaphone className="h-5 w-5" />}
-    href="#contact"
-    primary
-    delay={0.68}
-    innerClassName="border-beam-mobile"
-    innerStyle={{ "--beam-color": "#a855f7" } as React.CSSProperties}
-  >
-    Marketing <ArrowUpRight className="h-4 w-4" />
-  </MobileQuestionCta>
-
-  <MobileQuestionCta
-    label="Need websites, apps, and automation built?"
-    icon={<Rocket className="h-5 w-5" />}
-    href="#contact"
-    delay={0.78}
-    innerClassName="border-beam-mobile"
-    innerStyle={{ "--beam-color": "#06b6d4" } as React.CSSProperties}
-  >
-    Development
-  </MobileQuestionCta>
-</div>
+    </div>
 
     <div className="relative hidden min-h-[310px] w-full grid-rows-[1fr_auto] pt-2 md:grid">
       <QuestionCallout
@@ -586,59 +511,18 @@ const QuestionAnswerCtas = () => (
       />
 
       <div className="relative z-20 row-start-2 flex w-full items-center justify-center gap-2 md:px-[9%]">
-        <style>{`
-    @keyframes border-spin {
-      to { --border-angle: 360deg; }
-    }
-    @property --border-angle {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: 0deg;
-    }
-    .border-beam {
-      position: relative;
-      border-radius: 9999px;
-    }
-    .border-beam::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: inherit;
-      padding: 2px;
-      background: conic-gradient(
-        from var(--border-angle),
-        transparent 70%,
-        var(--beam-color, #a855f7) 88%,
-        transparent 100%
-      );
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: border-spin 2.5s linear infinite;
-      pointer-events: none;
-    }
-  `}</style>
-
-        <div className="border-beam" style={{ "--beam-color": "#a855f7" } as React.CSSProperties}>
-          {" "}
-          <a
-            href="#contact"
-            className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-          >
-            Marketing <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </div>
-
-        <div className="border-beam" style={{ "--beam-color": "#06b6d4" } as React.CSSProperties}>
-          <a
-            href="#contact"
-            className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
-          >
-            Development
-          </a>
-        </div>
+        <a
+          href="#contact"
+          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+        >
+          Marketing <ArrowUpRight className="h-4 w-4" />
+        </a>
+        <a
+          href="#contact"
+          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+        >
+          Development
+        </a>
       </div>
     </div>
   </div>
@@ -684,30 +568,6 @@ const workProjects = [
 ];
 
 const serviceOfferings = [
-  {
-    title: "Brand Strategy",
-    description: "Positioning, voice, and launch systems that make your brand stand out and scale.",
-    icon: Target,
-    accent: "from-orange-500 to-amber-500",
-  },
-  {
-    title: "UI / UX Design",
-    description: "Conversion-first experience design that feels premium and converts consistently.",
-    icon: Layers,
-    accent: "from-sky-500 to-cyan-500",
-  },
-  {
-    title: "Content Creation",
-    description: "Video, social, and editorial systems that keep your brand top of mind.",
-    icon: Sparkles,
-    accent: "from-violet-500 to-fuchsia-500",
-  },
-  {
-    title: "Growth Automation",
-    description: "AI-enabled funnels, workflows, and reporting that reduce manual overhead.",
-    icon: Brain,
-    accent: "from-emerald-500 to-lime-500",
-  },
 ];
 
 /* -- Custom Portfolio Datasets -- */
@@ -941,94 +801,48 @@ type PortfolioSectionCopy = {
 
 type PortfolioContentCopy = SiteData["portfolio"];
 
-// ===== UPDATED GRAPHIC DESIGN SLIDES WITH YOUR THUMBNAILS =====
 const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Campaign Launch",
     title: "Bold Multi-Platform Story Frames",
-    description:
-      "A dynamic hero image set for launch campaigns, blending editorial polish with motion-led impact.",
+    description: "A dynamic hero image set for launch campaigns, blending editorial polish with motion-led impact.",
     image: story7,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Packaging",
     title: "Tactile Brand Packaging Concepts",
-    description:
-      "Premium packaging mockups with layered textures, premium finishes, and retail-ready appeal.",
+    description: "Premium packaging mockups with layered textures, premium finishes, and retail-ready appeal.",
     image: story8,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Social Media",
     title: "Story-Led Social Content",
-    description:
-      "Swipe-ready story assets and modern editorial layouts designed for high engagement.",
+    description: "Swipe-ready story assets and modern editorial layouts designed for high engagement.",
     image: story9,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Advertising",
-    title: "Brand Campaign Asset",
-    description: "High-impact campaign creative for digital advertising rollouts.",
-    image: thumbnail2,
+    title: "High-Impact Out-Of-Home Graphics",
+    description: "Bold typography and expressive composition built to capture attention across billboards and transit ads.",
+    image: story10,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Hospitality",
-    title: "Pure Earth Stay - Where Every Moment Feels Just Right",
-    description: "Premium hospitality branding for Treebo's Pure Earth Stay experience.",
-    image: thumbnail3,
+    subcategory: "Print Design",
+    title: "Editorial Collage Systems",
+    description: "Magazine-quality spreads and visual systems with layered imagery and refined editorial structure.",
+    image: story11,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
-    title: "Clarity First - Construction Follows",
-    description: "Strategic construction branding with clear visual messaging and impact.",
-    image: thumbnail4,
-  },
-  {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
-    title: "Step Into Your Cozy Hotel Room",
-    description: "Warm and inviting hotel room visual design for memorable guest experiences.",
-    image: thumbnail5,
-  },
-  {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Modernization",
-    title: "Modern Systems in Motion",
-    description: "A high-contrast graphic system rooted in modern tech and service design.",
-    image: thumbnail1,
-  },
-  {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
-    title: "Corporate Branding System",
-    description: "Corporate identity assets optimized for product launches and team wear.",
-    image: thumbnail7,
-  },
-  {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Modernization",
-    title: "Sky-Line Visual Identity",
-    description: "A refined design system for architecture, real estate and urban innovation.",
-    image: thumbnail9,
-  },
-  {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
-    title: "Built on Vision",
-    description: "Vision-driven campaign creative for modern architecture clients.",
-    image: thumbnail10,
-  },
-  {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Modernization",
-    title: "Cozy Hotel Room Branding",
-    description: "Hospitality branding with a modern, welcoming visual language.",
-    image: thumbnail6,
+    subcategory: "Visual Storytelling",
+    title: "Narrative Visual Campaigns",
+    description: "Story-driven creative frames that turn brand messaging into immersive visual journeys.",
+    image: story12,
   },
 ];
 
@@ -1198,7 +1012,7 @@ const editorialContent = [
 ];
 
 function DiscoveryCallDialog() {
-  const hostEmail = "info@alphanexius.com";
+  const hostEmail = "hello@alphanexius.com";
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
@@ -1394,8 +1208,12 @@ function ServicesSection() {
     <section id="services" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent"></span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl"></h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">.</p>
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
+          
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
+          .
+        </p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">
@@ -2382,13 +2200,13 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   );
 }
 
-/* -- Engagement Models -- */
+/* -- Engagement Models --*/
 function FlexibleSection({ items = engagements }: { items?: typeof engagements }) {
   return (
     <section id="engage" className="relative mx-auto max-w-6xl px-5 py-10 md:py-24">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
-          <span className="script text-3xl text-accent">how we work</span>
+          {/*<span className="script text-3xl text-accent">how we work</span>*/}
           <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Flexible by <span className="italic">Design</span>
             <span className="text-accent">.</span>
@@ -2543,7 +2361,7 @@ const partners = [
 
 function TrustSection() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-2 ">
+    <section className="relative mx-auto max-w-6xl px-5 py-6 md:py-16">
       <p className="mb-8 text-center text-sm font-bold uppercase tracking-widest text-foreground/40">
         Certified & recognised by
       </p>
@@ -2574,8 +2392,8 @@ function PortfolioHeroShowcase({
   items?: HeroShowcaseSlide[];
 }) {
   return (
-    <div className="py-2 overflow-x-hidden" id="work">
-      <div className="mb-2 text-center px-5">
+    <div className="py-6 overflow-x-hidden" id="work">
+      <div className="mb-10 text-center px-5">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           {content.title}
@@ -2584,7 +2402,12 @@ function PortfolioHeroShowcase({
           {content.description}
         </p>
       </div>
-      <FlankCarousel slides={items} />
+      <FlankCarousel
+        slides={items}
+        /*title=""
+        subtitle=""
+        /*description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."*/
+      />
     </div>
   );
 }
@@ -2611,151 +2434,6 @@ function PortfolioVideoEditing({
   );
 }
 
-// function PortfolioGraphicDesign({
-//   content = DEFAULT_SITE.portfolio.sections.visualAssets,
-//   items = fallbackGraphicDesignSlides,
-// }: {
-//   content?: PortfolioSectionCopy;
-//   items?: VisualAssetSlide[];
-// }) {
-//   const scrollRef = useRef<HTMLDivElement>(null);
-
-//   // ====== GRAPHIC DESIGN FILTER STATE ======
-//   const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
-//   const [graphicSearch, setGraphicSearch] = useState("");
-//   const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
-
-//   const graphicCategories = useMemo(() => {
-//     const unique = new Set<string>();
-//     items.forEach((slide) => {
-//       const category = slide.subcategory || slide.categoryLabel || "Design";
-//       unique.add(category);
-//     });
-//     return ["All", ...Array.from(unique)];
-//   }, [items]);
-
-//   const filteredGraphicItems = useMemo(() => {
-//     const query = graphicSearch.trim().toLowerCase();
-
-//     return items.filter((slide) => {
-//       const category = slide.subcategory || slide.categoryLabel || "Design";
-//       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
-//       const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
-//         .filter(Boolean)
-//         .join(" ")
-//         .toLowerCase();
-//       return matchesCategory && (!query || searchable.includes(query));
-//     });
-//   }, [activeGraphicCategory, items, graphicSearch]);
-
-//   useEffect(() => {
-//     setIsGraphicFiltering(true);
-//     const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
-//     return () => window.clearTimeout(timeout);
-//   }, [activeGraphicCategory, graphicSearch]);
-//   // ====== END GRAPHIC DESIGN FILTER STATE ======
-
-//   const scrollLeft = () => {
-//     if (scrollRef.current) {
-//       scrollRef.current.scrollBy({
-//         left: -350,
-//         behavior: "smooth",
-//       });
-//     }
-//   };
-
-//   const scrollRight = () => {
-//     if (scrollRef.current) {
-//       scrollRef.current.scrollBy({
-//         left: 350,
-//         behavior: "smooth",
-//       });
-//     }
-//   };
-
-//   const badgeStyle =
-//     "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
-
-//   return (
-//     <div className="overflow-x-clip py-6">
-//       <div className="mx-auto max-w-6xl  text-center md:text-start px-5 mb-6 md:mb-8 flex flex-col md:flex-row  md:items-end  md:justify-between gap-4">
-//         <div>
-//           <span className="script text-3xl text-purple-600 dark:text-purple-400">
-//             {content.eyebrow}
-//           </span>
-//           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-//             {content.title}
-//           </h2>
-//           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
-//             {content.description}
-//           </p>
-//         </div>
-//         <div className="flex gap-2">
-//           <button
-//             onClick={scrollLeft}
-//             aria-label="Scroll graphic design left"
-//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
-//           >
-//             <ChevronLeft className="h-5 w-5" />
-//           </button>
-//           <button
-//             onClick={scrollRight}
-//             aria-label="Scroll graphic design right"
-//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
-//           >
-//             <ChevronRight className="h-5 w-5" />
-//           </button>
-//         </div>
-//       </div>
-
-//       <div
-//         // ref={scrollRef}
-//         onWheel={(event) => {
-//           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-//           event.preventDefault();
-//           scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
-//         }}
-//         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
-//         style={{ scrollbarWidth: "none" }}
-//       >
-//         {items.map((slide, idx) => (
-//           <motion.a
-//             key={idx}
-//             href={slide.detailUrl || slide.image}
-//             target="_blank"
-//             rel="noreferrer"
-//             whileHover={{ y: -8, scale: 1.02 }}
-//             className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
-//           >
-//             <div
-//               className="absolute inset-0 bg-cover bg-center"
-//               style={{ backgroundImage: `url(${slide.image})` }}
-//               aria-hidden="true"
-//             />
-//             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-//             <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
-//               {slide.categoryLabel}
-//             </span>
-//             {slide.subcategory && (
-//               <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
-//                 {slide.subcategory}
-//               </span>
-//             )}
-//             <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-//               <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
-//                 {slide.title}
-//               </h4>
-//               <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
-//                 {slide.description}
-//               </p>
-//             </div>
-//           </motion.a>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
 function PortfolioGraphicDesign({
   content = DEFAULT_SITE.portfolio.sections.visualAssets,
   items = fallbackGraphicDesignSlides,
@@ -2781,7 +2459,7 @@ function PortfolioGraphicDesign({
 
   const filteredGraphicItems = useMemo(() => {
     const query = graphicSearch.trim().toLowerCase();
-
+    
     return items.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
@@ -2802,19 +2480,13 @@ function PortfolioGraphicDesign({
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: -350,
-        behavior: "smooth",
-      });
+      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: 350,
-        behavior: "smooth",
-      });
+      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
     }
   };
 
@@ -2823,7 +2495,7 @@ function PortfolioGraphicDesign({
 
   return (
     <div className="overflow-x-clip py-6">
-      <div className="mx-auto max-w-6xl  text-center md:text-start px-5 mb-6 md:mb-8 flex flex-col md:flex-row  md:items-end  md:justify-between gap-4">
+      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
             {content.eyebrow}
@@ -2835,26 +2507,69 @@ function PortfolioGraphicDesign({
             {content.description}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="hidden md:flex gap-2">
           <button
             onClick={scrollLeft}
             aria-label="Scroll graphic design left"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-4 w-4" />
           </button>
           <button
             onClick={scrollRight}
             aria-label="Scroll graphic design right"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-4 w-4" />
           </button>
         </div>
       </div>
 
+      {/* ===== GRAPHIC DESIGN FILTER BAR ===== */}
+      <div className="mx-auto max-w-6xl px-5 mb-6">
+        <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
+          <div className="min-w-0 overflow-hidden">
+            <div
+              className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+              style={{ scrollbarWidth: "none" }}
+            >
+              {graphicCategories.map((category) => {
+                const selected = activeGraphicCategory === category;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveGraphicCategory(category)}
+                    aria-pressed={selected}
+                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                      selected
+                        ? "border-purple-500 bg-purple-500 text-white shadow-[3px_3px_0_0_var(--accent)] dark:border-purple-400 dark:bg-purple-400 dark:text-background"
+                        : "border-ink/15 bg-background/80 text-foreground/70 hover:border-purple-500/50 hover:bg-purple-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <label className="relative block">
+            <span className="sr-only">Search graphic design</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
+            <Input
+              value={graphicSearch}
+              onChange={(event) => setGraphicSearch(event.target.value)}
+              placeholder="Search designs"
+              className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
+            />
+          </label>
+        </div>
+      </div>
+      {/* ===== END GRAPHIC DESIGN FILTER BAR ===== */}
+
       <div
-        // ref={scrollRef}
+        ref={scrollRef}
         onWheel={(event) => {
           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
           event.preventDefault();
@@ -2863,39 +2578,70 @@ function PortfolioGraphicDesign({
         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
         style={{ scrollbarWidth: "none" }}
       >
-        {items.map((slide, idx) => (
-          <motion.a
-            key={idx}
-            href={slide.detailUrl || slide.image}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={{ y: -8, scale: 1.02 }}
-            className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
-          >
+        {isGraphicFiltering ? (
+          Array.from({ length: 4 }).map((_, i) => (
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
-              {slide.categoryLabel}
-            </span>
-            {slide.subcategory && (
-              <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+              key={`graphic-skeleton-${i}`}
+              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+            >
+              <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
+            </div>
+          ))
+        ) : filteredGraphicItems.length > 0 ? (
+          filteredGraphicItems.map((slide, idx) => (
+            <motion.a
+              key={idx}
+              href={slide.detailUrl || slide.image}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
                 {slide.subcategory}
               </span>
-            )}
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-              <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
-                {slide.title}
-              </h4>
-              <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
-                {slide.description}
-              </p>
-            </div>
-          </motion.a>
-        ))}
+              {slide.subcategory && (
+                <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+                  {slide.subcategory}
+                </span>
+              )}
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+                <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+                  {slide.title}
+                </h4>
+                <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+                  {slide.description}
+                </p>
+              </div>
+            </motion.a>
+          ))
+        ) : (
+          <div className="w-full py-12 text-center">
+            <p className="font-display text-xl font-bold text-foreground/60">
+              No designs found
+            </p>
+            <p className="mt-2 text-sm text-foreground/40">
+              Try another category or clear the search
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveGraphicCategory("All");
+                setGraphicSearch("");
+              }}
+              className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
+            >
+              Reset filters
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -2919,7 +2665,12 @@ function PortfolioSoftwareSystems({
           {content.description}
         </p>
       </div>
-      <RingCarousel slides={items} title="" subtitle="" description="" />
+      <RingCarousel
+        slides={items}
+        title=""
+        subtitle=""
+        description=""
+      />
     </div>
   );
 }
@@ -2963,6 +2714,7 @@ function PortfolioSEOAnalytics({
           {items.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
+                {/* Image Section - Top */}
                 <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
                   <img
                     src={item.poster}
@@ -2977,19 +2729,19 @@ function PortfolioSEOAnalytics({
                 </div>
 
                 {/* Content Section - Bottom */}
-                <div className="p-4 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-foreground dark:text-white ">
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">
                     {item.title}
                   </h3>
-                  {/* <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
                     {item.description}
-                  </p> */}
+                  </p>
 
-                  <div className="grid grid-cols-2 gap-4  pt-2 border-t border-gray-200 dark:border-gray-700">
+                  <div className="grid grid-cols-2 gap-4 mt-2 pt-4 border-t border-gray-200 dark:border-gray-700">
                     {item.metrics &&
                       item.metrics.map((metric, idx) => (
                         <div key={idx} className="text-center">
-                          <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                             {metric.value}
                           </div>
                           <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -3004,6 +2756,7 @@ function PortfolioSEOAnalytics({
           ))}
         </Swiper>
 
+        {/* Navigation Arrows */}
         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
           <svg
             className="w-5 h-5 text-gray-800 dark:text-white"
@@ -3011,7 +2764,12 @@ function PortfolioSEOAnalytics({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
@@ -3195,7 +2953,7 @@ function PortfolioSection({
       className="relative isolate overflow-hidden bg-transparent py-12 md:py-20  text-foreground"
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
-      <div className="mx-auto max-w-6xl px-5 text-center mb-1">
+      <div className="mx-auto max-w-6xl px-5 text-center mb-16">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-xl font-bold md:text-6xl tracking-tight text-foreground">
           {content.title.split(" ")[0]}{" "}
@@ -3251,6 +3009,7 @@ function Index() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
+            // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
           ></motion.div>
 
           <div className="text-center">
@@ -3272,10 +3031,11 @@ function Index() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className=" mx-auto text-xs md:text-lg bg-foreground/80 dark:bg-[#C8C1B6] px-1.5 mt-4 rounded-full text-white py-1 w-full dark:text-[#060000] max-w-3xl  "
+              className="mx-auto text-accent/80 max-w-2xl text-base md:text-lg "
             >
-              Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
-            </motion.p>
+            Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed  
+        
+               </motion.p>
           </div>
         </div>
 
@@ -3355,7 +3115,7 @@ function Index() {
                     <Megaphone className="h-4 w-4 text-accent" /> Social Media
                   </>
                 ),
-                pos: "-right-6 bottom-[10%] md:right-8",
+                pos: "-right-6 bottom-[15%] md:right-8",
                 r: "6deg",
                 d: "1.2s",
               },
@@ -3366,43 +3126,7 @@ function Index() {
                 animate={{ opacity: 0.8, scale: 1 }}
                 transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
                 style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-                className={`pill-tag absolute z-10 animate-bob  scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
-              >
-                {p.txt}
-              </motion.div>
-            ))}
-
-            {/* NEW LEFT-SIDE PILLS: Web / App / UI/UX */}
-            {[
-              {
-                txt: (
-                  <>
-                    <Code className="h-4 w-4 text-accent" /> Web Development
-                  </>
-                ),
-                pos: "-right-6 top-[55%] md:-right-4",
-                r: "5deg",
-                d: "0.1s",
-              },
-              {
-                txt: (
-                  <>
-                    <Smartphone className="h-4 w-4 text-accent" /> App Development
-                  </>
-                ),
-                pos: "-left-6 top-[30%] md:-left-4",
-                r: "3deg",
-                d: "0.5s",
-              },
-              
-            ].map((p, i) => (
-              <motion.div
-                key={`left-pill-${i}`}
-                initial={{ opacity: 0, scale: 0.5, x: -20 }}
-                animate={{ opacity: 0.8, scale: 1, x: 0 }}
-                transition={{ delay: 0.8 + i * 0.12, type: "spring" }}
-                style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}  border border-ink/10`}
+                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
               >
                 {p.txt}
               </motion.div>
@@ -3418,7 +3142,7 @@ function Index() {
               <div className="font-display text-4xl font-bold leading-none">
                 {site.hero.sidebarStat.value}
               </div>
-              <div className="text-sm ">{site.hero.sidebarStat.label}</div>
+              <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
             </motion.div>
 
             {/* Mini testimonial snippet — top left, same as original */}
@@ -3440,50 +3164,21 @@ function Index() {
             </div>
           </div>
         </div>
-        {/* Stats section */}
-        <section className="relative w-full mt-4 flex justify-center items-center mx-auto max-w-6xl px-2 py-4 md:py-14">
-          {/* ── Desktop grid (md+) — unchanged ── */}
-          <div className="hidden md:grid gap-3 grid-cols-5 place-items-center w-full">
+        <section className="relative w-full flex justify-center items-cennter  mx-auto max-w-6xl px-5 py-4 md:py-14">
+          <div className="grid gap-2 sm:grid-cols-3  place-items-center lg:grid-cols-5 grid-cols-[repeat(auto-fit,minmax(180px,1fr))] ">
             {cmsStats.map((s, i) => (
               <motion.div
                 key={s.v}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, type: "spring" }}
-                className="w-full rounded-[2rem] border-2 border-ink bg-background p-4 md:p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+                transition={{ delay: i * 0.08, type: "spring" }}
+                className="rounded-[2rem] border-2 border-ink bg-background p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
               >
-                <div className="font-display text-2xl md:text-4xl font-bold text-ink md:text-2xl">
-                  {s.k}
-                </div>
-                <div className="mt-1 text-sm text-foreground/70">{s.v}</div>
+                <div className="font-display text-4xl font-bold text-ink md:text-2xl">{s.k}</div>
+                <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
               </motion.div>
             ))}
-          </div>
-
-          {/* ── Mobile marquee (below md) ── */}
-          <div className="md:hidden w-full overflow-hidden">
-            <motion.div
-              className="flex gap-3"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{
-                duration: cmsStats.length * 2.2, // tune speed here
-                ease: "linear",
-                repeat: Infinity,
-              }}
-              style={{ width: "max-content" }}
-            >
-              {/* Duplicate items so the loop is seamless */}
-              {[...cmsStats, ...cmsStats].map((s, i) => (
-                <div
-                  key={i}
-                  className="w-[42vw] shrink-0 rounded-[2rem] border-2 border-ink bg-background px-4 py-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-                >
-                  <div className="font-display text-2xl font-bold text-ink">{s.k}</div>
-                  <div className="mt-1 text-sm text-foreground/70">{s.v}</div>
-                </div>
-              ))}
-            </motion.div>
           </div>
         </section>
         <div className="w-full mt-0 mb-12 text-center flex flex-col justify-center items-center">
@@ -3491,7 +3186,7 @@ function Index() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto  mt-2 max-w-5xl text-foreground md:text-lg text-accent"
+            className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
           >
             We bridge the gap between creative imagination and functional engineering. From
             aggressive growth marketing to powerful custom tech, we build the exact systems you need
@@ -3555,6 +3250,10 @@ function Index() {
       {/* FILM REELS */}
       <FilmReelsSection items={cmsReels} />
 
+      {/* <PortfolioVideoEditing
+        content={portfolioCopy.sections.videoEditing}
+        items={cmsVideoEditing}
+      /> */}
       <PortfolioGraphicDesign
         content={portfolioCopy.sections.visualAssets}
         items={cmsVisualAssets}
@@ -3576,7 +3275,7 @@ function Index() {
         items={cmsContentWriting}
       />
 
-      {/* <ServicesSection /> */}
+      <ServicesSection />
 
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
@@ -3629,9 +3328,7 @@ function Index() {
                   whileInView={{ opacity: 1, scale: 1, rotate: i % 2 === 0 ? -2 : 2 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className={`rounded-2xl border-2 border-ink p-5 lift ${
-                    i % 2 === 0 ? "bg-accent" : "bg-background"
-                  }`}
+                  className={`rounded-2xl border-2 border-ink p-5 lift ${i % 2 === 0 ? "bg-accent" : "bg-background"}`}
                 >
                   <Icon className="mb-3 h-5 w-5" />
                   <div className="font-display text-xl font-semibold">{t}</div>
@@ -3650,6 +3347,8 @@ function Index() {
 
       {/* PARTNERS */}
       <TrustSection />
+
+      
 
       {/* TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
@@ -3717,6 +3416,35 @@ function Index() {
           </div>
         </motion.div>
       </section>
+      {/* STATS strip */}
+      {/* <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
+        <div className="mb-10 text-center">
+          <span className="script text-3xl text-accent">Achievements</span>
+          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
+            Milestones that prove our work delivers impact.
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
+            From enterprise launches to repeated growth loops, these metrics show the outcomes we
+            create.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {cmsStats.map((s, i) => (
+            <motion.div
+              key={s.v}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, type: "spring" }}
+              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+            >
+              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
+              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section> */}
 
       {/* FOOTER */}
       <footer className="border-t border-border bg-background">
@@ -3752,6 +3480,8 @@ function Index() {
       </footer>
 
       {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
+      {/* ============================================ */}
+
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
         <CartoonButton
           label="WhatsApp"
@@ -3768,8 +3498,9 @@ function Index() {
           color="bg-green-400"
           className="animate-float"
           onClick={() => {
-            const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/+917067068673";
-window.open(whatsappLink, "_blank");
+            const whatsappLink =
+              process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/1234567890";
+            window.open(whatsappLink, "_blank");
           }}
         />
 
