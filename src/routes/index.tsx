@@ -2611,6 +2611,151 @@ function PortfolioVideoEditing({
   );
 }
 
+// function PortfolioGraphicDesign({
+//   content = DEFAULT_SITE.portfolio.sections.visualAssets,
+//   items = fallbackGraphicDesignSlides,
+// }: {
+//   content?: PortfolioSectionCopy;
+//   items?: VisualAssetSlide[];
+// }) {
+//   const scrollRef = useRef<HTMLDivElement>(null);
+
+//   // ====== GRAPHIC DESIGN FILTER STATE ======
+//   const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
+//   const [graphicSearch, setGraphicSearch] = useState("");
+//   const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
+
+//   const graphicCategories = useMemo(() => {
+//     const unique = new Set<string>();
+//     items.forEach((slide) => {
+//       const category = slide.subcategory || slide.categoryLabel || "Design";
+//       unique.add(category);
+//     });
+//     return ["All", ...Array.from(unique)];
+//   }, [items]);
+
+//   const filteredGraphicItems = useMemo(() => {
+//     const query = graphicSearch.trim().toLowerCase();
+
+//     return items.filter((slide) => {
+//       const category = slide.subcategory || slide.categoryLabel || "Design";
+//       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+//       const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
+//         .filter(Boolean)
+//         .join(" ")
+//         .toLowerCase();
+//       return matchesCategory && (!query || searchable.includes(query));
+//     });
+//   }, [activeGraphicCategory, items, graphicSearch]);
+
+//   useEffect(() => {
+//     setIsGraphicFiltering(true);
+//     const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
+//     return () => window.clearTimeout(timeout);
+//   }, [activeGraphicCategory, graphicSearch]);
+//   // ====== END GRAPHIC DESIGN FILTER STATE ======
+
+//   const scrollLeft = () => {
+//     if (scrollRef.current) {
+//       scrollRef.current.scrollBy({
+//         left: -350,
+//         behavior: "smooth",
+//       });
+//     }
+//   };
+
+//   const scrollRight = () => {
+//     if (scrollRef.current) {
+//       scrollRef.current.scrollBy({
+//         left: 350,
+//         behavior: "smooth",
+//       });
+//     }
+//   };
+
+//   const badgeStyle =
+//     "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
+
+//   return (
+//     <div className="overflow-x-clip py-6">
+//       <div className="mx-auto max-w-6xl  text-center md:text-start px-5 mb-6 md:mb-8 flex flex-col md:flex-row  md:items-end  md:justify-between gap-4">
+//         <div>
+//           <span className="script text-3xl text-purple-600 dark:text-purple-400">
+//             {content.eyebrow}
+//           </span>
+//           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+//             {content.title}
+//           </h2>
+//           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
+//             {content.description}
+//           </p>
+//         </div>
+//         <div className="flex gap-2">
+//           <button
+//             onClick={scrollLeft}
+//             aria-label="Scroll graphic design left"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
+//           >
+//             <ChevronLeft className="h-5 w-5" />
+//           </button>
+//           <button
+//             onClick={scrollRight}
+//             aria-label="Scroll graphic design right"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
+//           >
+//             <ChevronRight className="h-5 w-5" />
+//           </button>
+//         </div>
+//       </div>
+
+//       <div
+//         // ref={scrollRef}
+//         onWheel={(event) => {
+//           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+//           event.preventDefault();
+//           scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+//         }}
+//         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
+//         style={{ scrollbarWidth: "none" }}
+//       >
+//         {items.map((slide, idx) => (
+//           <motion.a
+//             key={idx}
+//             href={slide.detailUrl || slide.image}
+//             target="_blank"
+//             rel="noreferrer"
+//             whileHover={{ y: -8, scale: 1.02 }}
+//             className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+//           >
+//             <div
+//               className="absolute inset-0 bg-cover bg-center"
+//               style={{ backgroundImage: `url(${slide.image})` }}
+//               aria-hidden="true"
+//             />
+//             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+//             <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
+//               {slide.categoryLabel}
+//             </span>
+//             {slide.subcategory && (
+//               <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+//                 {slide.subcategory}
+//               </span>
+//             )}
+//             <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+//               <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+//                 {slide.title}
+//               </h4>
+//               <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+//                 {slide.description}
+//               </p>
+//             </div>
+//           </motion.a>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
+
 function PortfolioGraphicDesign({
   content = DEFAULT_SITE.portfolio.sections.visualAssets,
   items = fallbackGraphicDesignSlides,
@@ -2636,7 +2781,7 @@ function PortfolioGraphicDesign({
 
   const filteredGraphicItems = useMemo(() => {
     const query = graphicSearch.trim().toLowerCase();
-
+    
     return items.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
@@ -2657,19 +2802,13 @@ function PortfolioGraphicDesign({
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: -350,
-        behavior: "smooth",
-      });
+      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: 350,
-        behavior: "smooth",
-      });
+      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
     }
   };
 
@@ -2678,7 +2817,7 @@ function PortfolioGraphicDesign({
 
   return (
     <div className="overflow-x-clip py-6">
-      <div className="mx-auto max-w-6xl  text-center md:text-start px-5 mb-6 md:mb-8 flex flex-col md:flex-row  md:items-end  md:justify-between gap-4">
+      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
             {content.eyebrow}
@@ -2690,26 +2829,69 @@ function PortfolioGraphicDesign({
             {content.description}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="hidden md:flex gap-2">
           <button
             onClick={scrollLeft}
             aria-label="Scroll graphic design left"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-4 w-4" />
           </button>
           <button
             onClick={scrollRight}
             aria-label="Scroll graphic design right"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-4 w-4" />
           </button>
         </div>
       </div>
 
+      {/* ===== GRAPHIC DESIGN FILTER BAR ===== */}
+      <div className="mx-auto max-w-6xl px-5 mb-6">
+        <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
+          <div className="min-w-0 overflow-hidden">
+            <div
+              className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+              style={{ scrollbarWidth: "none" }}
+            >
+              {graphicCategories.map((category) => {
+                const selected = activeGraphicCategory === category;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveGraphicCategory(category)}
+                    aria-pressed={selected}
+                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                      selected
+                        ? "border-purple-500 bg-purple-500 text-white shadow-[3px_3px_0_0_var(--accent)] dark:border-purple-400 dark:bg-purple-400 dark:text-background"
+                        : "border-ink/15 bg-background/80 text-foreground/70 hover:border-purple-500/50 hover:bg-purple-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <label className="relative block">
+            <span className="sr-only">Search graphic design</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
+            <Input
+              value={graphicSearch}
+              onChange={(event) => setGraphicSearch(event.target.value)}
+              placeholder="Search designs"
+              className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
+            />
+          </label>
+        </div>
+      </div>
+      {/* ===== END GRAPHIC DESIGN FILTER BAR ===== */}
+
       <div
-        // ref={scrollRef}
+        ref={scrollRef}
         onWheel={(event) => {
           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
           event.preventDefault();
@@ -2718,39 +2900,70 @@ function PortfolioGraphicDesign({
         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
         style={{ scrollbarWidth: "none" }}
       >
-        {items.map((slide, idx) => (
-          <motion.a
-            key={idx}
-            href={slide.detailUrl || slide.image}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={{ y: -8, scale: 1.02 }}
-            className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
-          >
+        {isGraphicFiltering ? (
+          Array.from({ length: 4 }).map((_, i) => (
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
-              {slide.categoryLabel}
-            </span>
-            {slide.subcategory && (
-              <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+              key={`graphic-skeleton-${i}`}
+              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+            >
+              <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
+            </div>
+          ))
+        ) : filteredGraphicItems.length > 0 ? (
+          filteredGraphicItems.map((slide, idx) => (
+            <motion.a
+              key={idx}
+              href={slide.detailUrl || slide.image}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
                 {slide.subcategory}
               </span>
-            )}
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-              <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
-                {slide.title}
-              </h4>
-              <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
-                {slide.description}
-              </p>
-            </div>
-          </motion.a>
-        ))}
+              {slide.subcategory && (
+                <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+                  {slide.subcategory}
+                </span>
+              )}
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+                <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+                  {slide.title}
+                </h4>
+                <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+                  {slide.description}
+                </p>
+              </div>
+            </motion.a>
+          ))
+        ) : (
+          <div className="w-full py-12 text-center">
+            <p className="font-display text-xl font-bold text-foreground/60">
+              No designs found
+            </p>
+            <p className="mt-2 text-sm text-foreground/40">
+              Try another category or clear the search
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveGraphicCategory("All");
+                setGraphicSearch("");
+              }}
+              className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
+            >
+              Reset filters
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
