@@ -3375,22 +3375,39 @@ function PortfolioGraphicDesign({
           {/* Banner rail */}
           <div
             ref={bannerScrollRef}
+            onScroll={() => {
+              const container = bannerScrollRef.current;
+              if (!container || bannerItems.length === 0) return;
+
+              const cardElement = container.children[0] as HTMLElement;
+              if (!cardElement) return;
+
+              const totalItemWidth = cardElement.offsetWidth + 20; // 20px is gap-5
+              const boundaryWidth = totalItemWidth * bannerItems.length;
+
+              // Instant boundary snapping for infinite loop effect
+              if (container.scrollLeft <= 0) {
+                container.scrollLeft = boundaryWidth;
+              } else if (container.scrollLeft >= boundaryWidth * 2) {
+                container.scrollLeft = boundaryWidth;
+              }
+            }}
             onWheel={(e) => {
               if (!bannerScrollRef.current || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
               e.preventDefault();
-              bannerScrollRef.current.scrollBy({ left: e.deltaY, behavior: "auto" });
+              bannerScrollRef.current.scrollLeft += e.deltaY;
             }}
             className="flex gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
             style={{ scrollbarWidth: "none" }}
           >
-            {bannerItems.map((slide, idx) => (
+            {/* Triple the items right inside the map to create the infinite scroll clones seamlessly */}
+            {[...bannerItems, ...bannerItems, ...bannerItems].map((slide, idx) => (
               <motion.a
                 key={idx}
                 href={slide.detailUrl || slide.image}
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ y: -6, scale: 1.015 }}
-                // Wide card: landscape aspect ratio, no cropping
                 className="relative shrink-0 w-[min(82vw,560px)] aspect-[4/1] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_20px_55px_-30px_rgba(0,0,0,0.6)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
               >
                 <img
@@ -3455,6 +3472,116 @@ function PortfolioSoftwareSystems({
   );
 }
 
+// function PortfolioSEOAnalytics({
+//   content = DEFAULT_SITE.portfolio.sections.seoAnalytics,
+//   items = seoAnalyticsSlides,
+// }: {
+//   content?: PortfolioSectionCopy;
+//   items?: SeoAnalyticsSlide[];
+// }) {
+//   return (
+//     <div className="py-12 mt-8 md:mt-2 md:py-12">
+//       <div className="mb-10 text-center px-5">
+//         <span className="script text-3xl text-blue-400">{content.eyebrow}</span>
+//         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+//           {content.title}
+//         </h2>
+//         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
+//           {content.description}
+//         </p>
+//       </div>
+
+//       <div className="relative max-w-7xl mx-auto px-4">
+//         <Swiper
+//           slidesPerView={1}
+//           spaceBetween={30}
+//           navigation={{
+//             nextEl: ".custom-next",
+//             prevEl: ".custom-prev",
+//           }}
+//           modules={[Navigation]}
+//           breakpoints={{
+//             768: {
+//               slidesPerView: 2,
+//               spaceBetween: 30,
+//             },
+//           }}
+//           className="pb-12"
+//         >
+//           {items.map((item, index) => (
+//             <SwiperSlide key={index}>
+//               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
+//                 <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
+//                   <img
+//                     src={item.poster}
+//                     alt={item.title}
+//                     className="w-full h-full object-cover"
+//                     loading="lazy"
+//                   />
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+//                   <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
+//                     {item.categoryLabel || "SEO"}
+//                   </div>
+//                 </div>
+
+//                 {/* Content Section - Bottom */}
+//                 <div className="p-4 flex-1 flex flex-col">
+//                   <h3 className="text-xl font-bold text-foreground dark:text-white ">
+//                     {item.title}
+//                   </h3>
+//                   {/* <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
+//                     {item.description}
+//                   </p> */}
+
+//                   <div className="grid grid-cols-2 gap-4  pt-2 border-t border-gray-200 dark:border-gray-700">
+//                     {item.metrics &&
+//                       item.metrics.map((metric, idx) => (
+//                         <div key={idx} className="text-center">
+//                           <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
+//                             {metric.value}
+//                           </div>
+//                           <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+//                             {metric.label}
+//                           </div>
+//                         </div>
+//                       ))}
+//                   </div>
+//                 </div>
+//               </div>
+//             </SwiperSlide>
+//           ))}
+//         </Swiper>
+
+//         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
+//           <svg
+//             className="w-5 h-5 text-gray-800 dark:text-white"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth={2}
+//               d="M15 19l-7-7 7-7"
+//             />
+//           </svg>
+//         </button>
+//         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
+//           <svg
+//             className="w-5 h-5 text-gray-800 dark:text-white"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+//           </svg>
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
+
 function PortfolioSEOAnalytics({
   content = DEFAULT_SITE.portfolio.sections.seoAnalytics,
   items = seoAnalyticsSlides,
@@ -3478,6 +3605,7 @@ function PortfolioSEOAnalytics({
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
+          loop={true}
           navigation={{
             nextEl: ".custom-next",
             prevEl: ".custom-prev",
