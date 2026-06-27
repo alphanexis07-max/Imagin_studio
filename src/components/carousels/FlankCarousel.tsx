@@ -188,14 +188,14 @@ export function FlankCarousel({
             const offset = computeOffset(index, carousel.activeIndex, slides.length);
             const isCenter = offset === 0;
             const isVisible = Math.abs(offset) <= 1;
-            // SMALLER CARD SPACING
             const x = offset * 180;
             const y = Math.abs(offset) * 15;
             const rotateY = offset * 18;
             const scale = isCenter ? 1 : 0.7;
             const opacity = isCenter ? 1 : 0.4;
             const zIndex = isCenter ? 20 : 10 - Math.abs(offset);
-            const openUrl = slide.ctaLink && slide.ctaLink !== "#" ? slide.ctaLink : slide.video || slide.poster;
+            const openUrl =
+              slide.ctaLink && slide.ctaLink !== "#" ? slide.ctaLink : slide.video || slide.poster;
 
             const getBadgeStyles = (label: string) => {
               const cleaned = label.toUpperCase();
@@ -237,7 +237,6 @@ export function FlankCarousel({
                   duration: 0.2,
                   ease: "easeOut",
                 }}
-                // SMALLER CARD SIZE
                 className={`absolute left-1/2 top-1/2 w-[min(30rem,90vw)] sm:w-[min(34rem,88vw)] md:w-[min(38rem,85vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-ink/10 bg-card/95 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl ${slide.glow || "shadow-black/50"}`}
                 style={{
                   zIndex,
@@ -246,8 +245,11 @@ export function FlankCarousel({
                   willChange: "transform, opacity",
                 }}
               >
-                {/* SMALLER MEDIA HEIGHT */}
-                <div className="relative h-[min(30vh,20rem)] bg-muted dark:bg-[#0b0f14]">
+                {/* 
+                  MODIFICATION 1: Increased media height from 30vh to 45vh 
+                  to make the video/image much more prominent.
+                */}
+                <div className="relative h-[min(45vh,26rem)] bg-muted dark:bg-[#0b0f14]">
                   {slide.video ? (
                     <CarouselVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
@@ -279,14 +281,19 @@ export function FlankCarousel({
                   )}
                 </div>
 
-                {/* SMALLER CONTENT */}
-                <div className="p-4 sm:p-5 md:p-5">
-                  <h4 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-card-foreground dark:text-white">
-                    {slide.title}
-                  </h4>
-                  <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400 line-clamp-2">
-                    {slide.description}
-                  </p>
+                {/* 
+                  MODIFICATION 2: Reduced padding to shrink the white content area.
+                  Also reduced margins between text elements.
+                */}
+                <div className="p-3 flex flex-col md:flex-row justify-between  sm:p-3 md:p-3.5">
+                  <div>
+                    <h4 className="font-display text-base sm:text-lg md:text-xl font-bold text-card-foreground dark:text-white">
+                      {slide.title}
+                    </h4>
+                    <p className="mt-1 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400 line-clamp-2">
+                      {slide.description}
+                    </p>
+                  </div>
 
                   <AnimatePresence>
                     {isCenter && (
@@ -298,13 +305,12 @@ export function FlankCarousel({
                           duration: 0.2,
                           ease: "easeOut",
                         }}
-                        className="overflow-hidden mt-3"
+                        className="overflow-hidden mt-2"
                       >
                         <a
                           href={slide.ctaLink || openUrl || "#"}
                           target="_blank"
                           rel="noreferrer"
-                          // SMALLER BUTTON
                           className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-1.5 text-[10px] font-bold text-cream transition duration-200 hover:bg-ink/90 active:scale-95 z-20 dark:bg-white dark:text-[#111827] dark:hover:bg-white/95"
                         >
                           {slide.ctaText || "View Project"}
@@ -320,26 +326,26 @@ export function FlankCarousel({
       </motion.div>
 
       {/* SMALLER NAVIGATION BUTTONS */}
-     <div className="mt-8 md:mt-4 sm:mt-8 flex items-center justify-center gap-2 sm:gap-3 z-20 relative">
-  <Button
-    onClick={carousel.prev}
-    aria-label="Previous Slide"
-    variant="outline"
-    size="sm"
-    className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
-  >
-    <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-  </Button>
-  <Button
-    onClick={carousel.next}
-    aria-label="Next Slide"
-    variant="outline"
-    size="sm"
-    className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
-  >
-    <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-  </Button>
-</div>
+      <div className="mt-20 md:mt-8 sm:mt-16 flex items-center justify-center gap-2 sm:gap-3 z-20 relative">
+        <Button
+          onClick={carousel.prev}
+          aria-label="Previous Slide"
+          variant="outline"
+          size="sm"
+          className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
+        >
+          <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+        </Button>
+        <Button
+          onClick={carousel.next}
+          aria-label="Next Slide"
+          variant="outline"
+          size="sm"
+          className={`${carouselButtonClass} h-8 w-8 sm:h-9 sm:w-9`}
+        >
+          <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+        </Button>
+      </div>
     </section>
   );
 }

@@ -77,9 +77,9 @@ export const DEFAULT_SITE: SiteData = {
   contact: {
     eyebrow: "let's build something",
     headline: "Ready to scale? Let's talk.",
-    blurb: "Reply within 24 hours - Open for Q3 2026 partnerships - US / EU / APAC",
-    email: "hello@alphanexius.com",
-    bookCallUrl: "tel:+1234567890",
+    blurb: "Reply within 24 hours - Open for partnerships",
+    email: "info@alphanexius.com",
+    bookCallUrl: "tel:917067068673",
   },
   footer: {
     copyright: "© 2026 AlphaNexis - Growth, by design",

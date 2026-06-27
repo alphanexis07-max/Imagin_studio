@@ -148,9 +148,7 @@ export function RingCarousel({
             {title}
           </h3>
         </div>
-        <p className={moduleDescriptionClass}>
-          {description}
-        </p>
+        <p className={moduleDescriptionClass}>{description}</p>
       </div>
 
       <motion.div
@@ -179,13 +177,18 @@ export function RingCarousel({
             const getBadgeStyles = (label: string) => {
               const cleaned = label.toUpperCase();
               if (cleaned.includes("CRM")) return "bg-teal-500/25 border-teal-500/40 text-teal-400";
-              if (cleaned.includes("PROJECT") || cleaned.includes("MANAGEMENT")) return "bg-indigo-500/25 border-indigo-500/40 text-indigo-400";
-              if (cleaned.includes("SALES") || cleaned.includes("APP")) return "bg-pink-500/25 border-pink-500/40 text-pink-400";
-              if (cleaned.includes("BUSINESS") || cleaned.includes("AUTOMATION")) return "bg-amber-500/25 border-amber-500/40 text-amber-400";
+              if (cleaned.includes("PROJECT") || cleaned.includes("MANAGEMENT"))
+                return "bg-indigo-500/25 border-indigo-500/40 text-indigo-400";
+              if (cleaned.includes("SALES") || cleaned.includes("APP"))
+                return "bg-pink-500/25 border-pink-500/40 text-pink-400";
+              if (cleaned.includes("BUSINESS") || cleaned.includes("AUTOMATION"))
+                return "bg-amber-500/25 border-amber-500/40 text-amber-400";
               return "bg-white/10 border-white/20 text-white";
             };
 
-            const badgeStyle = slide.categoryLabel ? getBadgeStyles(slide.categoryLabel) : "bg-white/10 border-white/20 text-white";
+            const badgeStyle = slide.categoryLabel
+              ? getBadgeStyles(slide.categoryLabel)
+              : "bg-white/10 border-white/20 text-white";
 
             return (
               <motion.div
@@ -204,13 +207,21 @@ export function RingCarousel({
                 }}
                 transition={smooth}
               >
-                <div className="relative h-[min(40vh,24rem)] bg-muted dark:bg-[#0b0f14]">
+                <div className="relative h-[min(60vh,24rem)] bg-muted dark:bg-[#0b0f14]">
                   {slide.video ? (
                     <RingVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
-                    slide.poster && <img src={slide.poster} alt={slide.title} className="h-full w-full object-cover" />
+                    slide.poster && (
+                      <img
+                        src={slide.poster}
+                        alt={slide.title}
+                        className="h-full w-full object-cover"
+                      />
+                    )
                   )}
-                  <div className={`absolute inset-0 bg-gradient-to-t ${slide.accentColor || "from-teal-950/80"} via-transparent to-black/35`} />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t ${slide.accentColor || "from-teal-950/80"} via-transparent to-black/35`}
+                  />
                   {isCenter && openUrl && (
                     <a
                       href={openUrl}
@@ -220,22 +231,28 @@ export function RingCarousel({
                       className="absolute inset-0 z-[5]"
                     />
                   )}
-                  
+
                   {slide.categoryLabel && (
-                    <span className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}>
+                    <span
+                      className={`absolute right-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md z-10`}
+                    >
                       {slide.categoryLabel}
                     </span>
                   )}
                 </div>
 
-                <div className="p-4 sm:p-6 md:p-6 lg:p-8">
-                  <h4 className="font-display text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold leading-tight text-card-foreground dark:text-white">
-                    {slide.title}
-                  </h4>
-                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400">{slide.description}</p>
-                  
+                <div className="p-4 flex flex-col md:flex-row items-center justify-between sm:p-6 md:p-6 lg:p-8">
+                  <div >
+                    <h4 className="font-display text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold leading-tight text-card-foreground dark:text-white">
+                      {slide.title}
+                    </h4>
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground dark:text-gray-400">
+                      {slide.description}
+                    </p>
+                  </div>
+
                   {/* Detailed software metadata */}
-                  <div className="mt-4 grid grid-cols-2 gap-4 border-t border-ink/10 pt-4 text-left dark:border-white/10">
+                  {/* <div className="mt-4 grid grid-cols-2 gap-4 border-t border-ink/10 pt-4 text-left dark:border-white/10">
                     {slide.keyFeatures && (
                       <div>
                         <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground dark:text-gray-500">Key Features</span>
@@ -269,13 +286,13 @@ export function RingCarousel({
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
                   {openUrl && (
                     <a
                       href={openUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-5 inline-flex rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#111827]"
+                      className="mt-5 mr-auto md:mr-2 inline-flex rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#111827]"
                     >
                       Open application
                     </a>
@@ -310,5 +327,3 @@ export function RingCarousel({
     </section>
   );
 }
-
-

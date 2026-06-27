@@ -1,8 +1,8 @@
 ﻿import { createFileRoute, Link } from "@tanstack/react-router";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   useEffect,
@@ -53,6 +53,8 @@ import {
   Play,
   ChevronLeft,
   ChevronRight,
+  Code,
+  Smartphone,
 } from "lucide-react";
 import portrait from "@/assets/portrait.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -85,6 +87,25 @@ import screenshot3 from "@/assets/carousel-samples/screenshot-3.jpg";
 import screenshot4 from "@/assets/carousel-samples/screenshot-4.jpg";
 import screenshot5 from "@/assets/carousel-samples/screenshot-5.jpg";
 import screenshot6 from "@/assets/carousel-samples/screenshot-6.jpg";
+import story7 from "@/assets/carousel-samples/story-7.jpg";
+import story8 from "@/assets/carousel-samples/story-8.jpg";
+import story9 from "@/assets/carousel-samples/story-9.jpg";
+import story10 from "@/assets/carousel-samples/story-10.jpg";
+import story11 from "@/assets/carousel-samples/story-11.jpg";
+import story12 from "@/assets/carousel-samples/story-12.jpg";
+
+// ===== THUMBNAIL IMPORTS =====
+import thumbnail1 from "@/assets/thumbanil  - 1_ 2.jpg";
+import thumbnail2 from "@/assets/thumbanil - 2 3.jpg";
+import thumbnail3 from "@/assets/thumbnail - Where every moment_.jpg";
+import thumbnail4 from "@/assets/thumbanil - 2 4.jpg";
+import thumbnail5 from "@/assets/verticle thumbvanil 2 - Step into your cozy hotel room_.jpg";
+import thumbnail6 from "@/assets/thumbanil -1 2.jpg";
+import thumbnail7 from "@/assets/thumbanil -_ 3.jpg";
+import thumbnail8 from "@/assets/sky + line thumbanil_ 1.jpg";
+import thumbnail9 from "@/assets/Thumbanil  copy 2.jpg";
+import thumbnail10 from "@/assets/Thumbanil_ 3.jpg";
+
 import type { SiteData } from "@/lib/admin/site.functions";
 import { CartoonButton } from "@/components/ui/cartoon-button";
 
@@ -448,8 +469,9 @@ const MobileQuestionCta = ({
     </motion.div>
     <a
       href={href}
-      className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold lift ${primary ? "bg-ink text-cream" : "border-2 border-ink bg-background text-foreground"
-        }`}
+      className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold lift ${
+        primary ? "bg-ink text-cream" : "border-2 border-ink bg-background text-foreground"
+      }`}
     >
       {children}
     </a>
@@ -458,7 +480,7 @@ const MobileQuestionCta = ({
 
 const QuestionAnswerCtas = () => (
   <div className="mx-auto mt-8 w-full max-w-5xl px-2 md:px-0">
-    <div className="grid gap-4 md:hidden">
+    {/* <div className="grid gap-4 md:hidden">
       <MobileQuestionCta
         label="Need campaigns, content, and growth systems?"
         icon={<Megaphone className="h-5 w-5" />}
@@ -476,7 +498,67 @@ const QuestionAnswerCtas = () => (
       >
         Development
       </MobileQuestionCta>
-    </div>
+    </div> */}
+    <div className="grid gap-4 md:hidden">
+  <style>{`
+    @keyframes border-spin {
+      to { --border-angle: 360deg; }
+    }
+    @property --border-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+    .border-beam-mobile {
+      position: relative;
+      border-radius: 9999px;
+      width: fit-content;
+    }
+    .border-beam-mobile::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        var(--beam-color, #a855f7) 88%,
+        transparent 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: border-spin 2.5s linear infinite;
+      pointer-events: none;
+    }
+  `}</style>
+
+  <MobileQuestionCta
+    label="Need campaigns, content, and growth systems?"
+    icon={<Megaphone className="h-5 w-5" />}
+    href="#contact"
+    primary
+    delay={0.68}
+    innerClassName="border-beam-mobile"
+    innerStyle={{ "--beam-color": "#a855f7" } as React.CSSProperties}
+  >
+    Marketing <ArrowUpRight className="h-4 w-4" />
+  </MobileQuestionCta>
+
+  <MobileQuestionCta
+    label="Need websites, apps, and automation built?"
+    icon={<Rocket className="h-5 w-5" />}
+    href="#contact"
+    delay={0.78}
+    innerClassName="border-beam-mobile"
+    innerStyle={{ "--beam-color": "#06b6d4" } as React.CSSProperties}
+  >
+    Development
+  </MobileQuestionCta>
+</div>
 
     <div className="relative hidden min-h-[310px] w-full grid-rows-[1fr_auto] pt-2 md:grid">
       <QuestionCallout
@@ -504,18 +586,59 @@ const QuestionAnswerCtas = () => (
       />
 
       <div className="relative z-20 row-start-2 flex w-full items-center justify-center gap-2 md:px-[9%]">
-        <a
-          href="#contact"
-          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-        >
-          Marketing <ArrowUpRight className="h-4 w-4" />
-        </a>
-        <a
-          href="#contact"
-          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
-        >
-          Development
-        </a>
+        <style>{`
+    @keyframes border-spin {
+      to { --border-angle: 360deg; }
+    }
+    @property --border-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+    .border-beam {
+      position: relative;
+      border-radius: 9999px;
+    }
+    .border-beam::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        var(--beam-color, #a855f7) 88%,
+        transparent 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: border-spin 2.5s linear infinite;
+      pointer-events: none;
+    }
+  `}</style>
+
+        <div className="border-beam" style={{ "--beam-color": "#a855f7" } as React.CSSProperties}>
+          {" "}
+          <a
+            href="#contact"
+            className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+          >
+            Marketing <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+
+        <div className="border-beam" style={{ "--beam-color": "#06b6d4" } as React.CSSProperties}>
+          <a
+            href="#contact"
+            className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+          >
+            Development
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -818,41 +941,94 @@ type PortfolioSectionCopy = {
 
 type PortfolioContentCopy = SiteData["portfolio"];
 
+// ===== UPDATED GRAPHIC DESIGN SLIDES WITH YOUR THUMBNAILS =====
 const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Branding",
-    title: "Lume Skincare Visual Identity",
-    description: "Color system, custom typography, and premium brand voice.",
-    image: screenshot2,
+    subcategory: "Campaign Launch",
+    title: "Bold Multi-Platform Story Frames",
+    description:
+      "A dynamic hero image set for launch campaigns, blending editorial polish with motion-led impact.",
+    image: story7,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Packaging",
-    title: "Premium Product Packaging",
-    description: "Eco-friendly cosmetic bottle labels and box layouts.",
-    image: screenshot1,
+    title: "Tactile Brand Packaging Concepts",
+    description:
+      "Premium packaging mockups with layered textures, premium finishes, and retail-ready appeal.",
+    image: story8,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Social Media",
-    title: "High-Retention Instagram Creatives",
-    description: "Curated grids, posters, and stories designed for organic conversion.",
-    image: screenshot3,
+    title: "Story-Led Social Content",
+    description:
+      "Swipe-ready story assets and modern editorial layouts designed for high engagement.",
+    image: story9,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Advertising",
-    title: "Out-Of-Home Banner Campaigns",
-    description: "High-contrast billboards and print advertisements for modern transport hubs.",
-    image: screenshot4,
+    title: "Brand Campaign Asset",
+    description: "High-impact campaign creative for digital advertising rollouts.",
+    image: thumbnail2,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Print Design",
-    title: "Editorial Brand Catalogs",
-    description: "Premium booklets showcasing collection launches.",
-    image: screenshot6,
+    subcategory: "Hospitality",
+    title: "Pure Earth Stay - Where Every Moment Feels Just Right",
+    description: "Premium hospitality branding for Treebo's Pure Earth Stay experience.",
+    image: thumbnail3,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Clarity First - Construction Follows",
+    description: "Strategic construction branding with clear visual messaging and impact.",
+    image: thumbnail4,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Step Into Your Cozy Hotel Room",
+    description: "Warm and inviting hotel room visual design for memorable guest experiences.",
+    image: thumbnail5,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Modern Systems in Motion",
+    description: "A high-contrast graphic system rooted in modern tech and service design.",
+    image: thumbnail1,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Corporate Branding System",
+    description: "Corporate identity assets optimized for product launches and team wear.",
+    image: thumbnail7,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Sky-Line Visual Identity",
+    description: "A refined design system for architecture, real estate and urban innovation.",
+    image: thumbnail9,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Built on Vision",
+    description: "Vision-driven campaign creative for modern architecture clients.",
+    image: thumbnail10,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Cozy Hotel Room Branding",
+    description: "Hospitality branding with a modern, welcoming visual language.",
+    image: thumbnail6,
   },
 ];
 
@@ -1022,7 +1198,7 @@ const editorialContent = [
 ];
 
 function DiscoveryCallDialog() {
-  const hostEmail = "hello@alphanexius.com";
+  const hostEmail = "info@alphanexius.com";
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
@@ -1217,14 +1393,9 @@ function ServicesSection() {
   return (
     <section id="services" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-10 text-center">
-        <span className="script text-3xl text-accent">Services that drive digital growth</span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-          Services built to move your business forward.
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-          From strategy to execution, we design systems that create momentum, experience, and
-          measurable value.
-        </p>
+        <span className="script text-3xl text-accent"></span>
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl"></h2>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">.</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">
@@ -1510,86 +1681,86 @@ function normalizeStats(items: CmsItem[]) {
 function normalizeCapabilities(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-      k: asString(item.key, String(index + 1).padStart(2, "0")),
-      t: asString(item.title),
-      d: asString(item.description),
-      icon: iconFromName(item.icon, "Target"),
-      bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"),
-      span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "",
-      big: item.big === true || index === 0,
-      chips: asStringArray(item.chips),
-      metric: asString(item.metric),
-      metricLabel: asString(item.metricLabel),
-    }))
+        k: asString(item.key, String(index + 1).padStart(2, "0")),
+        t: asString(item.title),
+        d: asString(item.description),
+        icon: iconFromName(item.icon, "Target"),
+        bg: asString(item.bg, index === 0 ? "bg-accent" : "bg-background"),
+        span: item.big === true || index === 0 ? "md:col-span-2 md:row-span-2" : "",
+        big: item.big === true || index === 0,
+        chips: asStringArray(item.chips),
+        metric: asString(item.metric),
+        metricLabel: asString(item.metricLabel),
+      }))
     : capabilities;
 }
 function normalizeProcess(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-      n: asString(item.number, String(index + 1).padStart(2, "0")),
-      t: asString(item.title),
-      d: asString(item.description),
-      icon: iconFromName(item.icon, "Search"),
-      color: asString(item.bg, "bg-background"),
-    }))
+        n: asString(item.number, String(index + 1).padStart(2, "0")),
+        t: asString(item.title),
+        d: asString(item.description),
+        icon: iconFromName(item.icon, "Search"),
+        color: asString(item.bg, "bg-background"),
+      }))
     : steps;
 }
 function normalizeCases(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-      name: asString(item.name),
-      sector: asString(item.sector),
-      year: asString(item.year),
-      word: asString(item.word, asString(item.name).toUpperCase()),
-      color: asString(item.color, "bg-accent"),
-      problem: asString(item.problem),
-      metrics: Array.isArray(item.metrics)
-        ? (item.metrics as CmsItem[]).map((metric) => ({
-          k: asString(metric.key),
-          v: asString(metric.value),
-        }))
-        : [],
-      tags: asStringArray(item.tags),
-      rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4),
-    }))
+        name: asString(item.name),
+        sector: asString(item.sector),
+        year: asString(item.year),
+        word: asString(item.word, asString(item.name).toUpperCase()),
+        color: asString(item.color, "bg-accent"),
+        problem: asString(item.problem),
+        metrics: Array.isArray(item.metrics)
+          ? (item.metrics as CmsItem[]).map((metric) => ({
+              k: asString(metric.key),
+              v: asString(metric.value),
+            }))
+          : [],
+        tags: asStringArray(item.tags),
+        rot: asNumber(item.rotation, index % 2 === 0 ? -1.4 : 1.4),
+      }))
     : cases;
 }
 function normalizeEngagements(items: CmsItem[]) {
   return items.length
     ? items.map((item, index) => ({
-      icon: iconFromName(item.icon, "Zap"),
-      t: asString(item.name),
-      k: asString(item.duration),
-      d: asString(item.description),
-      bullets: asStringArray(item.bullets),
-      bg: asString(item.bg, "bg-background"),
-      rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2),
-      tag: asString(item.tag),
-      popular: item.popular === true,
-    }))
+        icon: iconFromName(item.icon, "Zap"),
+        t: asString(item.name),
+        k: asString(item.duration),
+        d: asString(item.description),
+        bullets: asStringArray(item.bullets),
+        bg: asString(item.bg, "bg-background"),
+        rot: asNumber(item.rotation, index % 2 === 0 ? -1.2 : 1.2),
+        tag: asString(item.tag),
+        popular: item.popular === true,
+      }))
     : engagements;
 }
 function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
-      title: asString(item.title, `Project ${index + 1}`),
-      description: asString(item.description),
-      video: asString(
-        item.video,
-        heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? "",
-      ),
-      poster: resolveMediaUrl(
-        item.poster,
-        heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1,
-      ),
-      glow: asString(
-        item.glow,
-        heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40",
-      ),
-      ctaText: asString(item.ctaText, "View Project"),
-      ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
-    }))
+        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+        title: asString(item.title, `Project ${index + 1}`),
+        description: asString(item.description),
+        video: asString(
+          item.video,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.video ?? "",
+        ),
+        poster: resolveMediaUrl(
+          item.poster,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.poster ?? screenshot1,
+        ),
+        glow: asString(
+          item.glow,
+          heroShowcaseSlides[index % heroShowcaseSlides.length]?.glow ?? "shadow-red-950/40",
+        ),
+        ctaText: asString(item.ctaText, "View Project"),
+        ctaLink: asString(item.ctaLink, asString(item.video, asString(item.poster, "#portfolio"))),
+      }))
     : heroShowcaseSlides;
 }
 function parseLabelValuePairs(items: unknown[]): Array<{ label: string; value: string }> {
@@ -1614,122 +1785,122 @@ function parseLabelValuePairs(items: unknown[]): Array<{ label: string; value: s
 function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
-      title: asString(item.title, `Edit ${index + 1}`),
-      description: asString(item.description),
-      outcome: asString(item.outcome),
-      video: asString(
-        item.video,
-        videoEditingSlides[index % videoEditingSlides.length]?.video ?? "",
-      ),
-      poster: resolveMediaUrl(
-        item.poster,
-        videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1,
-      ),
-      accentColor: asString(
-        item.accentColor,
-        videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90",
-      ),
-      detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
-    }))
+        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+        title: asString(item.title, `Edit ${index + 1}`),
+        description: asString(item.description),
+        outcome: asString(item.outcome),
+        video: asString(
+          item.video,
+          videoEditingSlides[index % videoEditingSlides.length]?.video ?? "",
+        ),
+        poster: resolveMediaUrl(
+          item.poster,
+          videoEditingSlides[index % videoEditingSlides.length]?.poster ?? screenshot1,
+        ),
+        accentColor: asString(
+          item.accentColor,
+          videoEditingSlides[index % videoEditingSlides.length]?.accentColor ?? "from-red-950/90",
+        ),
+        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
+      }))
     : videoEditingSlides;
 }
 function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "GRAPHIC DESIGN"),
-      subcategory: asString(item.subcategory),
-      title: asString(item.title, `Asset ${index + 1}`),
-      description: asString(item.description),
-      image: asString(
-        item.image,
-        fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
-        screenshot1,
-      ),
-      detailUrl: asString(
-        item.detailUrl,
-        asString(
+        categoryLabel: asString(item.categoryLabel, "GRAPHIC DESIGN"),
+        subcategory: asString(item.subcategory),
+        title: asString(item.title, `Asset ${index + 1}`),
+        description: asString(item.description),
+        image: asString(
           item.image,
           fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
-          screenshot1,
+            screenshot1,
         ),
-      ),
-    }))
+        detailUrl: asString(
+          item.detailUrl,
+          asString(
+            item.image,
+            fallbackGraphicDesignSlides[index % fallbackGraphicDesignSlides.length]?.image ??
+              screenshot1,
+          ),
+        ),
+      }))
     : fallbackGraphicDesignSlides;
 }
 function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "CRM SOFTWARE"),
-      title: asString(item.title, `System ${index + 1}`),
-      description: asString(item.description),
-      keyFeatures: asStringArray(item.keyFeatures),
-      techStack: asStringArray(item.techStack),
-      businessBenefit: asString(item.businessBenefit),
-      poster: resolveMediaUrl(
-        item.poster,
-        softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
-      ),
-      video: asString(
-        item.video,
-        softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
-      ),
-      accentColor: asString(
-        item.accentColor,
-        softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
-        "from-teal-950/90",
-      ),
-      projectUrl: asString(
-        item.projectUrl,
-        asString(item.ctaLink, asString(item.video, asString(item.poster))),
-      ),
-    }))
+        categoryLabel: asString(item.categoryLabel, "CRM SOFTWARE"),
+        title: asString(item.title, `System ${index + 1}`),
+        description: asString(item.description),
+        keyFeatures: asStringArray(item.keyFeatures),
+        techStack: asStringArray(item.techStack),
+        businessBenefit: asString(item.businessBenefit),
+        poster: resolveMediaUrl(
+          item.poster,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
+        ),
+        video: asString(
+          item.video,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
+        ),
+        accentColor: asString(
+          item.accentColor,
+          softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
+            "from-teal-950/90",
+        ),
+        projectUrl: asString(
+          item.projectUrl,
+          asString(item.ctaLink, asString(item.video, asString(item.poster))),
+        ),
+      }))
     : softwareSystemsSlides;
 }
 function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "SEO"),
-      title: asString(item.title, `Analytics ${index + 1}`),
-      description: asString(item.description),
-      metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
-      poster: resolveMediaUrl(
-        item.poster,
-        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1,
-      ),
-      video: asString(
-        item.video,
-        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? "",
-      ),
-      accent: asString(
-        item.accent,
-        seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40",
-      ),
-      detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
-    }))
+        categoryLabel: asString(item.categoryLabel, "SEO"),
+        title: asString(item.title, `Analytics ${index + 1}`),
+        description: asString(item.description),
+        metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
+        poster: resolveMediaUrl(
+          item.poster,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.poster ?? screenshot1,
+        ),
+        video: asString(
+          item.video,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.video ?? "",
+        ),
+        accent: asString(
+          item.accent,
+          seoAnalyticsSlides[index % seoAnalyticsSlides.length]?.accent ?? "from-green-950/40",
+        ),
+        detailUrl: asString(item.detailUrl, asString(item.video, asString(item.poster))),
+      }))
     : seoAnalyticsSlides;
 }
 function normalizeStrategicConsulting(items: CmsItem[]): StrategicConsultingCase[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "STRATEGIC PLANNING"),
-      title: asString(item.title, `Case ${index + 1}`),
-      challenge: asString(item.challenge),
-      solution: asString(item.solution),
-      execution: asString(item.execution),
-      results: Array.isArray(item.results) ? parseLabelValuePairs(item.results) : [],
-    }))
+        categoryLabel: asString(item.categoryLabel, "STRATEGIC PLANNING"),
+        title: asString(item.title, `Case ${index + 1}`),
+        challenge: asString(item.challenge),
+        solution: asString(item.solution),
+        execution: asString(item.execution),
+        results: Array.isArray(item.results) ? parseLabelValuePairs(item.results) : [],
+      }))
     : consultingCases;
 }
 function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
   return items.length
     ? items.map((item, index) => ({
-      categoryLabel: asString(item.categoryLabel, "Content Writing"),
-      type: asString(item.type, `Item ${index + 1}`),
-      headline: asString(item.headline),
-      metrics: asString(item.metrics),
-      excerpt: asString(item.excerpt),
-    }))
+        categoryLabel: asString(item.categoryLabel, "Content Writing"),
+        type: asString(item.type, `Item ${index + 1}`),
+        headline: asString(item.headline),
+        metrics: asString(item.metrics),
+        excerpt: asString(item.excerpt),
+      }))
     : editorialContent;
 }
 function normalizeReels(items: CmsItem[]) {
@@ -1749,28 +1920,28 @@ function normalizeReels(items: CmsItem[]) {
 function normalizeTestimonials(items: CmsItem[]) {
   return items.length
     ? items.map((item) => ({
-      q: asString(item.quote),
-      name: asString(item.author),
-      co: asString(item.role),
-      verified: asString(item.verified, "Verified"),
-      stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
-    }))
+        q: asString(item.quote),
+        name: asString(item.author),
+        co: asString(item.role),
+        verified: asString(item.verified, "Verified"),
+        stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
+      }))
     : [
-      {
-        q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
-        name: "VP of Product",
-        co: "North American HealthTech Corp",
-        verified: "LinkedIn Verified",
-        stars: 5,
-      },
-      {
-        q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
-        name: "Chief Operating Officer",
-        co: "European Logistics Group",
-        verified: "Clutch 5-Star",
-        stars: 5,
-      },
-    ];
+        {
+          q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
+          name: "VP of Product",
+          co: "North American HealthTech Corp",
+          verified: "LinkedIn Verified",
+          stars: 5,
+        },
+        {
+          q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
+          name: "Chief Operating Officer",
+          co: "European Logistics Group",
+          verified: "Clutch 5-Star",
+          stars: 5,
+        },
+      ];
 }
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
@@ -1952,7 +2123,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
     });
   }, [activeCategory, items, reelSearch]);
 
-  const visibleReels = filteredReels.slice(0, 6);
+  const visibleReels = filteredReels.slice(0, 8);
 
   useEffect(() => {
     setIsFiltering(true);
@@ -1977,9 +2148,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
             </h2>
           </div>
           <div className="flex flex-col gap-4 md:items-end">
-            <p className="max-w-sm text-foreground/70 md:text-right">
-            
-            </p>
+            <p className="max-w-sm text-foreground/70 md:text-right"></p>
             <Link
               to="/reels"
               onClick={() => setIsReelsLoading(true)}
@@ -2002,7 +2171,10 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
 
         <div className="mb-6 grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
           <div className="min-w-0 overflow-hidden">
-            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none" style={{ scrollbarWidth: "none" }}>
+            <div
+              className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+              style={{ scrollbarWidth: "none" }}
+            >
               {categories.map((category) => {
                 const selected = activeCategory === category;
                 return (
@@ -2011,10 +2183,11 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
                     type="button"
                     onClick={() => setActiveCategory(category)}
                     aria-pressed={selected}
-                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${selected
+                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                      selected
                         ? "border-ink bg-ink text-cream shadow-[3px_3px_0_0_var(--accent)] dark:border-foreground dark:bg-foreground dark:text-background"
                         : "border-ink/15 bg-background/80 text-foreground/70 hover:border-accent/50 hover:bg-accent/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
-                      }`}
+                    }`}
                   >
                     {category}
                   </button>
@@ -2049,47 +2222,49 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5" aria-busy={isFiltering}>
             {isFiltering
-              ? Array.from({ length: Math.min(Math.max(visibleReels.length, 4), 6) }).map((_, i) => (
-                <div
-                  key={`reel-skeleton-${i}`}
-                  className="aspect-[9/16] animate-pulse rounded-2xl border border-ink/10 bg-card/80 shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-white/5"
-                >
-                  <div className="h-full rounded-2xl bg-gradient-to-b from-foreground/10 via-foreground/5 to-foreground/15" />
-                </div>
-              ))
-              : visibleReels.map((reel, i) => {
-                const category = reel.category || reel.tag || "Reel";
-                return (
-                  <motion.div
-                    key={`${reel.title}-${reel.src}`}
-                    initial={{ opacity: 0, y: 40, rotate: rotations[i % rotations.length] * 2 }}
-                    whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length] }}
-                    whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ type: "spring", stiffness: 90, delay: (i % 4) * 0.08 }}
-                    className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
-                  >
-                    <iframe
-                      src={extractEmbedUrl(reel.src)}
-                      className="absolute inset-0 h-full w-full rounded-2xl border-none"
-                      loading="lazy"
-                      title={reel.title}
-                      allowtransparency="true"
-                      scrolling="no"
-                      allowFullScreen={true}
-                    />
-                    <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
-
-                    <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
-                      {category} / {reel.tag}
+              ? Array.from({ length: Math.min(Math.max(visibleReels.length, 4), 6) }).map(
+                  (_, i) => (
+                    <div
+                      key={`reel-skeleton-${i}`}
+                      className="aspect-[9/16] animate-pulse rounded-2xl border border-ink/10 bg-card/80 shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-white/5"
+                    >
+                      <div className="h-full rounded-2xl bg-gradient-to-b from-foreground/10 via-foreground/5 to-foreground/15" />
                     </div>
-                    <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
-                      {reel.title}
-                    </h3>
-                  </motion.div>
-                );
-              })}
+                  ),
+                )
+              : visibleReels.map((reel, i) => {
+                  const category = reel.category || reel.tag || "Reel";
+                  return (
+                    <motion.div
+                      key={`${reel.title}-${reel.src}`}
+                      initial={{ opacity: 0, y: 40, rotate: rotations[i % rotations.length] * 2 }}
+                      whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length] }}
+                      whileHover={{ y: -8, rotate: 0, scale: 1.02 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ type: "spring", stiffness: 90, delay: (i % 4) * 0.08 }}
+                      className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-ink/10 bg-card shadow-[0_22px_60px_-38px_rgba(0,0,0,0.5)] ring-1 ring-white/30 dark:border-white/10 dark:bg-card dark:ring-white/5"
+                    >
+                      <iframe
+                        src={extractEmbedUrl(reel.src)}
+                        className="absolute inset-0 h-full w-full rounded-2xl border-none"
+                        loading="lazy"
+                        title={reel.title}
+                        allowtransparency="true"
+                        scrolling="no"
+                        allowFullScreen={true}
+                      />
+                      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/10 to-black/25 transition-opacity duration-300 group-hover:opacity-90" />
+
+                      <div className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
+                        {category} / {reel.tag}
+                      </div>
+                      <h3 className="absolute bottom-4 left-4 right-4 font-display text-base font-bold leading-tight text-white drop-shadow-lg md:text-lg">
+                        {reel.title}
+                      </h3>
+                    </motion.div>
+                  );
+                })}
           </div>
 
           {!isFiltering && filteredReels.length === 0 && (
@@ -2361,14 +2536,14 @@ const partners = [
   "AWS Partner",
   "Google Cloud",
   "Microsoft Azure",
-  "NVIDIA Inception",
-  "Clutch Top Agency",
-  "GoodFirms Leader",
+  "DPIT",
+  "Startup India",
+  "MSME",
 ];
 
 function TrustSection() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-6 md:py-16">
+    <section className="relative mx-auto max-w-6xl px-5 py-2 ">
       <p className="mb-8 text-center text-sm font-bold uppercase tracking-widest text-foreground/40">
         Certified & recognised by
       </p>
@@ -2399,8 +2574,8 @@ function PortfolioHeroShowcase({
   items?: HeroShowcaseSlide[];
 }) {
   return (
-    <div className="py-6 overflow-x-hidden" id="work">
-      <div className="mb-10 text-center px-5">
+    <div className="py-2 overflow-x-hidden" id="work">
+      <div className="mb-2 text-center px-5">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           {content.title}
@@ -2409,12 +2584,7 @@ function PortfolioHeroShowcase({
           {content.description}
         </p>
       </div>
-      <FlankCarousel
-        slides={items}
-        /*title=""
-        subtitle=""
-        /*description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."*/
-      />
+      <FlankCarousel slides={items} />
     </div>
   );
 }
@@ -2437,7 +2607,6 @@ function PortfolioVideoEditing({
           {content.description}
         </p>
       </div>
-
     </div>
   );
 }
@@ -2451,15 +2620,56 @@ function PortfolioGraphicDesign({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // ====== GRAPHIC DESIGN FILTER STATE ======
+  const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
+  const [graphicSearch, setGraphicSearch] = useState("");
+  const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
+
+  const graphicCategories = useMemo(() => {
+    const unique = new Set<string>();
+    items.forEach((slide) => {
+      const category = slide.subcategory || slide.categoryLabel || "Design";
+      unique.add(category);
+    });
+    return ["All", ...Array.from(unique)];
+  }, [items]);
+
+  const filteredGraphicItems = useMemo(() => {
+    const query = graphicSearch.trim().toLowerCase();
+
+    return items.filter((slide) => {
+      const category = slide.subcategory || slide.categoryLabel || "Design";
+      const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+      const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return matchesCategory && (!query || searchable.includes(query));
+    });
+  }, [activeGraphicCategory, items, graphicSearch]);
+
+  useEffect(() => {
+    setIsGraphicFiltering(true);
+    const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
+    return () => window.clearTimeout(timeout);
+  }, [activeGraphicCategory, graphicSearch]);
+  // ====== END GRAPHIC DESIGN FILTER STATE ======
+
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
+      scrollRef.current.scrollBy({
+        left: -350,
+        behavior: "smooth",
+      });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
+      scrollRef.current.scrollBy({
+        left: 350,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -2468,7 +2678,7 @@ function PortfolioGraphicDesign({
 
   return (
     <div className="overflow-x-clip py-6">
-      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <div className="mx-auto max-w-6xl  text-center md:text-start px-5 mb-6 md:mb-8 flex flex-col md:flex-row  md:items-end  md:justify-between gap-4">
         <div>
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
             {content.eyebrow}
@@ -2480,20 +2690,20 @@ function PortfolioGraphicDesign({
             {content.description}
           </p>
         </div>
-        <div className="hidden md:flex gap-2">
+        <div className="flex gap-2">
           <button
             onClick={scrollLeft}
             aria-label="Scroll graphic design left"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={scrollRight}
             aria-label="Scroll graphic design right"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-5 w-5" />
           </button>
         </div>
       </div>
@@ -2515,30 +2725,24 @@ function PortfolioGraphicDesign({
             target="_blank"
             rel="noreferrer"
             whileHover={{ y: -8, scale: 1.02 }}
-            className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] shimmer dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+            className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
           >
-            <img
-              src={slide.image}
-              alt={slide.title}
-              loading="lazy"
-              className="h-full w-full object-cover"
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.image})` }}
+              aria-hidden="true"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-
-            <span
-              className={`hidden md:block  absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}
-            >
+            <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
               {slide.categoryLabel}
             </span>
-
             {slide.subcategory && (
               <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
                 {slide.subcategory}
               </span>
             )}
-
             <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-              <h4 className="font-display md:text-base sm:text-sm  font-bold leading-tight text-white line-clamp-2">
+              <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
                 {slide.title}
               </h4>
               <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
@@ -2570,12 +2774,7 @@ function PortfolioSoftwareSystems({
           {content.description}
         </p>
       </div>
-      <RingCarousel
-        slides={items}
-        title="Software & Systems"
-        subtitle="AUTOMATION & PLATFORMS"
-        description=""
-      />
+      <RingCarousel slides={items} title="" subtitle="" description="" />
     </div>
   );
 }
@@ -2604,54 +2803,55 @@ function PortfolioSEOAnalytics({
           slidesPerView={1}
           spaceBetween={30}
           navigation={{
-            nextEl: '.custom-next',
-            prevEl: '.custom-prev',
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev",
           }}
           modules={[Navigation]}
           breakpoints={{
             768: {
               slidesPerView: 2,
               spaceBetween: 30,
-            }
+            },
           }}
           className="pb-12"
         >
           {items.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
-                {/* Image Section - Top */}
-                <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg className="w-24 h-24 text-blue-400/50" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                    </svg>
-                  </div>
-                  
-                  <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
+                  <img
+                    src={item.poster}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
                     {item.categoryLabel || "SEO"}
                   </div>
                 </div>
 
                 {/* Content Section - Bottom */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">
+                <div className="p-4 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-foreground dark:text-white ">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                  {/* <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
                     {item.description}
-                  </p>
-                  
-                  <div className="grid grid-cols-2 gap-4 mt-2 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    {item.metrics && item.metrics.map((metric, idx) => (
-                      <div key={idx} className="text-center">
-                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                          {metric.value}
+                  </p> */}
+
+                  <div className="grid grid-cols-2 gap-4  pt-2 border-t border-gray-200 dark:border-gray-700">
+                    {item.metrics &&
+                      item.metrics.map((metric, idx) => (
+                        <div key={idx} className="text-center">
+                          <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                            {metric.value}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            {metric.label}
+                          </div>
                         </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                          {metric.label}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
               </div>
@@ -2659,14 +2859,23 @@ function PortfolioSEOAnalytics({
           ))}
         </Swiper>
 
-        {/* Navigation Arrows */}
         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
-          <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="w-5 h-5 text-gray-800 dark:text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
-          <svg className="w-5 h-5 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="w-5 h-5 text-gray-800 dark:text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -2841,9 +3050,9 @@ function PortfolioSection({
       className="relative isolate overflow-hidden bg-transparent py-12 md:py-20  text-foreground"
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
-      <div className="mx-auto max-w-6xl px-5 text-center mb-16">
+      <div className="mx-auto max-w-6xl px-5 text-center mb-1">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
-        <h2 className="mt-3 font-display text-4xl font-bold md:text-8xl tracking-tight text-foreground">
+        <h2 className="mt-3 font-display text-xl font-bold md:text-6xl tracking-tight text-foreground">
           {content.title.split(" ")[0]}{" "}
           <span className="italic text-accent">{content.title.split(" ").slice(1).join(" ")}</span>
         </h2>
@@ -2897,7 +3106,6 @@ function Index() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-          // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
           ></motion.div>
 
           <div className="text-center">
@@ -2919,9 +3127,9 @@ function Index() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
+              className=" mx-auto text-xs md:text-lg bg-foreground/80 dark:bg-[#C8C1B6] px-1.5 mt-4 rounded-full text-white py-1 w-full dark:text-[#060000] max-w-3xl  "
             >
-              Creativity, strategy, and technology come together in every campaign we build.
+              Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
             </motion.p>
           </div>
         </div>
@@ -3002,7 +3210,7 @@ function Index() {
                     <Megaphone className="h-4 w-4 text-accent" /> Social Media
                   </>
                 ),
-                pos: "-right-6 bottom-[15%] md:right-8",
+                pos: "-right-6 bottom-[10%] md:right-8",
                 r: "6deg",
                 d: "1.2s",
               },
@@ -3013,7 +3221,43 @@ function Index() {
                 animate={{ opacity: 0.8, scale: 1 }}
                 transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
                 style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
+                className={`pill-tag absolute z-10 animate-bob  scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
+              >
+                {p.txt}
+              </motion.div>
+            ))}
+
+            {/* NEW LEFT-SIDE PILLS: Web / App / UI/UX */}
+            {[
+              {
+                txt: (
+                  <>
+                    <Code className="h-4 w-4 text-accent" /> Web Development
+                  </>
+                ),
+                pos: "-right-6 top-[55%] md:-right-4",
+                r: "5deg",
+                d: "0.1s",
+              },
+              {
+                txt: (
+                  <>
+                    <Smartphone className="h-4 w-4 text-accent" /> App Development
+                  </>
+                ),
+                pos: "-left-6 top-[30%] md:-left-4",
+                r: "3deg",
+                d: "0.5s",
+              },
+              
+            ].map((p, i) => (
+              <motion.div
+                key={`left-pill-${i}`}
+                initial={{ opacity: 0, scale: 0.5, x: -20 }}
+                animate={{ opacity: 0.8, scale: 1, x: 0 }}
+                transition={{ delay: 0.8 + i * 0.12, type: "spring" }}
+                style={{ ["--r" as never]: p.r, animationDelay: p.d }}
+                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}  border border-ink/10`}
               >
                 {p.txt}
               </motion.div>
@@ -3029,7 +3273,7 @@ function Index() {
               <div className="font-display text-4xl font-bold leading-none">
                 {site.hero.sidebarStat.value}
               </div>
-              <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
+              <div className="text-sm ">{site.hero.sidebarStat.label}</div>
             </motion.div>
 
             {/* Mini testimonial snippet — top left, same as original */}
@@ -3051,25 +3295,64 @@ function Index() {
             </div>
           </div>
         </div>
-        <div className="w-full mt-8 mb-12 text-center flex flex-col justify-center items-center">
+        {/* Stats section */}
+        <section className="relative w-full mt-4 flex justify-center items-center mx-auto max-w-6xl px-2 py-4 md:py-14">
+          {/* ── Desktop grid (md+) — unchanged ── */}
+          <div className="hidden md:grid gap-3 grid-cols-5 place-items-center w-full">
+            {cmsStats.map((s, i) => (
+              <motion.div
+                key={s.v}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, type: "spring" }}
+                className="w-full rounded-[2rem] border-2 border-ink bg-background p-4 md:p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+              >
+                <div className="font-display text-2xl md:text-4xl font-bold text-ink md:text-2xl">
+                  {s.k}
+                </div>
+                <div className="mt-1 text-sm text-foreground/70">{s.v}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* ── Mobile marquee (below md) ── */}
+          <div className="md:hidden w-full overflow-hidden">
+            <motion.div
+              className="flex gap-3"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                duration: cmsStats.length * 2.2, // tune speed here
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              style={{ width: "max-content" }}
+            >
+              {/* Duplicate items so the loop is seamless */}
+              {[...cmsStats, ...cmsStats].map((s, i) => (
+                <div
+                  key={i}
+                  className="w-[42vw] shrink-0 rounded-[2rem] border-2 border-ink bg-background px-4 py-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+                >
+                  <div className="font-display text-2xl font-bold text-ink">{s.k}</div>
+                  <div className="mt-1 text-sm text-foreground/70">{s.v}</div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+        <div className="w-full mt-0 mb-12 text-center flex flex-col justify-center items-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
+            className="mx-auto  mt-2 max-w-5xl text-foreground md:text-lg text-accent"
           >
-            Creativity, strategy, and technology come together in every campaign we build. We turn
-            brand momentum into measurable growth for fast-moving teams.
+            We bridge the gap between creative imagination and functional engineering. From
+            aggressive growth marketing to powerful custom tech, we build the exact systems you need
+            to scale.
           </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto  max-w-2xl text-base md:text-lg text-foreground/70"
-          >
-            Creativity, strategy, and technology come together in every campaign we build.
-          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -3124,15 +3407,9 @@ function Index() {
         items={cmsHeroShowcase}
       />
 
-
       {/* FILM REELS */}
       <FilmReelsSection items={cmsReels} />
 
-
-      {/* <PortfolioVideoEditing
-        content={portfolioCopy.sections.videoEditing}
-        items={cmsVideoEditing}
-      /> */}
       <PortfolioGraphicDesign
         content={portfolioCopy.sections.visualAssets}
         items={cmsVisualAssets}
@@ -3154,7 +3431,7 @@ function Index() {
         items={cmsContentWriting}
       />
 
-      <ServicesSection />
+      {/* <ServicesSection /> */}
 
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
@@ -3207,7 +3484,9 @@ function Index() {
                   whileInView={{ opacity: 1, scale: 1, rotate: i % 2 === 0 ? -2 : 2 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className={`rounded-2xl border-2 border-ink p-5 lift ${i % 2 === 0 ? "bg-accent" : "bg-background"}`}
+                  className={`rounded-2xl border-2 border-ink p-5 lift ${
+                    i % 2 === 0 ? "bg-accent" : "bg-background"
+                  }`}
                 >
                   <Icon className="mb-3 h-5 w-5" />
                   <div className="font-display text-xl font-semibold">{t}</div>
@@ -3226,9 +3505,6 @@ function Index() {
 
       {/* PARTNERS */}
       <TrustSection />
-
-      {/* ENGAGEMENT MODELS */}
-      <FlexibleSection items={cmsEngagements} />
 
       {/* TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
@@ -3296,35 +3572,6 @@ function Index() {
           </div>
         </motion.div>
       </section>
-      {/* STATS strip */}
-      <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
-        <div className="mb-10 text-center">
-          <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-            Milestones that prove our work delivers impact.
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-            From enterprise launches to repeated growth loops, these metrics show the outcomes we
-            create.
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {cmsStats.map((s, i) => (
-            <motion.div
-              key={s.v}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, type: "spring" }}
-              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-            >
-              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
-              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
       {/* FOOTER */}
       <footer className="border-t border-border bg-background">
@@ -3360,35 +3607,49 @@ function Index() {
       </footer>
 
       {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
-      {/* ============================================ */}
-
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
         <CartoonButton
           label="WhatsApp"
           icon={
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
             </svg>
           }
           color="bg-green-400"
           className="animate-float"
           onClick={() => {
-            const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || 'https://wa.me/1234567890';
-            window.open(whatsappLink, '_blank');
+            const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/+917067068673";
+window.open(whatsappLink, "_blank");
           }}
         />
 
         <CartoonButton
           label="View Our Work"
           icon={
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+              />
             </svg>
           }
           color="bg-white"
           className="animate-bounce-subtle"
           onClick={() => {
-            document.getElementById('work')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.getElementById("work")?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
         />
       </div>
