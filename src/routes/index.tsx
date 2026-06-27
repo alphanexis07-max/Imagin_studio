@@ -2137,8 +2137,8 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
       ref={sectionRef}
       className="relative isolate overflow-hidden bg-transparent text-foreground"
     >
-      <div className="relative mx-auto max-w-6xl px-5 py-8">
-        <div className="mb-8 grid items-end gap-6 md:grid-cols-[1fr_auto]">
+      <div className="relative mx-auto max-w-6xl px-5 py-2">
+        <div className="mb-8 flex flex-col justify-center  items-end text-center gap-1 ">
           <div>
             <span className="script text-3xl text-accent">The Reel Room</span>
             <h2 className="font-display text-3xl font-bold leading-[1.04] md:text-6xl">
@@ -3194,18 +3194,18 @@ function PortfolioGraphicDesign({
   const scrollBannerRight = () => bannerScrollRef.current?.scrollBy({ left: 520, behavior: "smooth" });
 
   return (
-    <div className="overflow-x-clip py-6">
+    <div className="overflow-x-clip  py-6">
 
       {/* ─────────── HEADER ─────────── */}
-      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-        <div>
+      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col  items-end justify-center gap-4">
+        <div className="w-full flex flex-col justify-center items-center text-center">
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
             {content.eyebrow}
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
             {content.title}
           </h2>
-          <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
+          <p className="mt-4 max-w-2xl text-center text-foreground/65 dark:text-gray-400">
             {content.description}
           </p>
         </div>
