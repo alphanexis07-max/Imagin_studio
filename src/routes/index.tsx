@@ -2823,6 +2823,293 @@ function PortfolioVideoEditing({
 //     </div>
 //   );
 // }
+// function PortfolioGraphicDesign({
+//   content = DEFAULT_SITE.portfolio.sections.visualAssets,
+//   items = fallbackGraphicDesignSlides,
+// }: {
+//   content?: PortfolioSectionCopy;
+//   items?: VisualAssetSlide[];
+// }) {
+//   const scrollRef = useRef<HTMLDivElement>(null);
+//   const bannerScrollRef = useRef<HTMLDivElement>(null);
+
+//   // ====== GRAPHIC DESIGN FILTER STATE ======
+//   const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
+//   const [graphicSearch, setGraphicSearch] = useState("");
+//   const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
+
+//   // Split banners from portrait cards
+//   const portraitItems = useMemo(() => items.filter((s) => s.type !== "banner"), [items]);
+//   const bannerItems = useMemo(() => items.filter((s) => s.type === "banner"), [items]);
+
+//   const graphicCategories = useMemo(() => {
+//     const unique = new Set<string>();
+//     portraitItems.forEach((slide) => {
+//       const category = slide.subcategory || slide.categoryLabel || "Design";
+//       unique.add(category);
+//     });
+//     return ["All", ...Array.from(unique)];
+//   }, [portraitItems]);
+
+//   const filteredGraphicItems = useMemo(() => {
+//     const query = graphicSearch.trim().toLowerCase();
+//     return portraitItems.filter((slide) => {
+//       const category = slide.subcategory || slide.categoryLabel || "Design";
+//       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+//       const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
+//         .filter(Boolean)
+//         .join(" ")
+//         .toLowerCase();
+//       return matchesCategory && (!query || searchable.includes(query));
+//     });
+//   }, [activeGraphicCategory, portraitItems, graphicSearch]);
+
+//   useEffect(() => {
+//     setIsGraphicFiltering(true);
+//     const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
+//     return () => window.clearTimeout(timeout);
+//   }, [activeGraphicCategory, graphicSearch]);
+//   // ====== END FILTER STATE ======
+
+//   const scrollLeft = () => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
+//   const scrollRight = () => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
+//   const scrollBannerLeft = () =>
+//     bannerScrollRef.current?.scrollBy({ left: -500, behavior: "smooth" });
+//   const scrollBannerRight = () =>
+//     bannerScrollRef.current?.scrollBy({ left: 500, behavior: "smooth" });
+
+//   return (
+//     <div className="overflow-x-clip py-6">
+//       {/* ─────────── HEADER ─────────── */}
+//       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+//         <div>
+//           <span className="script text-3xl text-purple-600 dark:text-purple-400">
+//             {content.eyebrow}
+//           </span>
+//           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+//             {content.title}
+//           </h2>
+//           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
+//             {content.description}
+//           </p>
+//         </div>
+//         <div className="hidden md:flex gap-2">
+//           <button
+//             onClick={scrollLeft}
+//             aria-label="Scroll graphic design left"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//           >
+//             <ChevronLeft className="h-4 w-4" />
+//           </button>
+//           <button
+//             onClick={scrollRight}
+//             aria-label="Scroll graphic design right"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//           >
+//             <ChevronRight className="h-4 w-4" />
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* ─────────── FILTER BAR ─────────── */}
+//       <div className="mx-auto max-w-6xl px-5 mb-6">
+//         <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
+//           <div className="min-w-0 overflow-hidden">
+//             <div
+//               className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+//               style={{ scrollbarWidth: "none" }}
+//             >
+//               {graphicCategories.map((category) => {
+//                 const selected = activeGraphicCategory === category;
+//                 return (
+//                   <button
+//                     key={category}
+//                     type="button"
+//                     onClick={() => setActiveGraphicCategory(category)}
+//                     aria-pressed={selected}
+//                     className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+//                       selected
+//                         ? "border-purple-500 bg-purple-500 text-white shadow-[3px_3px_0_0_var(--accent)] dark:border-purple-400 dark:bg-purple-400 dark:text-background"
+//                         : "border-ink/15 bg-background/80 text-foreground/70 hover:border-purple-500/50 hover:bg-purple-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
+//                     }`}
+//                   >
+//                     {category}
+//                   </button>
+//                 );
+//               })}
+//             </div>
+//           </div>
+//           <label className="relative block">
+//             <span className="sr-only">Search graphic design</span>
+//             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
+//             <Input
+//               value={graphicSearch}
+//               onChange={(event) => setGraphicSearch(event.target.value)}
+//               placeholder="Search designs"
+//               className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
+//             />
+//           </label>
+//         </div>
+//       </div>
+
+//       {/* ─────────── PORTRAIT CARD RAIL ─────────── */}
+//       <div
+//         ref={scrollRef}
+//         onWheel={(event) => {
+//           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+//           event.preventDefault();
+//           scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+//         }}
+//         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
+//         style={{ scrollbarWidth: "none" }}
+//       >
+//         {isGraphicFiltering ? (
+//           Array.from({ length: 4 }).map((_, i) => (
+//             <div
+//               key={`graphic-skeleton-${i}`}
+//               className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+//             >
+//               <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
+//             </div>
+//           ))
+//         ) : filteredGraphicItems.length > 0 ? (
+//           filteredGraphicItems.map((slide, idx) => (
+//             <motion.a
+//               key={idx}
+//               href={slide.detailUrl || slide.image}
+//               target="_blank"
+//               rel="noreferrer"
+//               whileHover={{ y: -8, scale: 1.02 }}
+//               // ↓ Fixed: uniform size + object-contain so nothing crops
+//               className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+//             >
+//               <img
+//                 src={slide.image}
+//                 alt={slide.title}
+//                 loading="lazy"
+//                 className="absolute inset-0 h-full w-full object-contain"
+//               />
+//               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+//               <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
+//                 {slide.subcategory}
+//               </span>
+//               {slide.subcategory && (
+//                 <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+//                   {slide.subcategory}
+//                 </span>
+//               )}
+//               <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+//                 <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+//                   {slide.title}
+//                 </h4>
+//                 <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+//                   {slide.description}
+//                 </p>
+//               </div>
+//             </motion.a>
+//           ))
+//         ) : (
+//           <div className="w-full py-12 text-center">
+//             <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
+//             <p className="mt-2 text-sm text-foreground/40">
+//               Try another category or clear the search
+//             </p>
+//             <button
+//               type="button"
+//               onClick={() => {
+//                 setActiveGraphicCategory("All");
+//                 setGraphicSearch("");
+//               }}
+//               className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
+//             >
+//               Reset filters
+//             </button>
+//           </div>
+//         )}
+//       </div>
+
+//       {/* ─────────── BANNER SECTION ─────────── */}
+//       {bannerItems.length > 0 && (
+//         <div className="mt-10">
+//           {/* Banner section header */}
+//           <div className="mx-auto max-w-6xl px-5 mb-5 flex items-center justify-between">
+//             <div>
+//               <span className="script text-2xl text-purple-600 dark:text-purple-400">Featured</span>
+//               <h3 className="mt-1 font-display text-2xl font-bold md:text-3xl tracking-tight text-foreground dark:text-white">
+//                 Banners & Covers
+//               </h3>
+//             </div>
+//             <div className="hidden md:flex gap-2">
+//               <button
+//                 onClick={scrollBannerLeft}
+//                 aria-label="Scroll banners left"
+//                 className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//               >
+//                 <ChevronLeft className="h-4 w-4" />
+//               </button>
+//               <button
+//                 onClick={scrollBannerRight}
+//                 aria-label="Scroll banners right"
+//                 className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//               >
+//                 <ChevronRight className="h-4 w-4" />
+//               </button>
+//             </div>
+//           </div>
+
+//           {/* Banner rail */}
+//           <div
+//             ref={bannerScrollRef}
+//             onWheel={(event) => {
+//               if (!bannerScrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY))
+//                 return;
+//               event.preventDefault();
+//               bannerScrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+//             }}
+//             className="flex gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
+//             style={{ scrollbarWidth: "none" }}
+//           >
+//             {bannerItems.map((slide, idx) => (
+//               <motion.a
+//                 key={idx}
+//                 href={slide.detailUrl || slide.image}
+//                 target="_blank"
+//                 rel="noreferrer"
+//                 whileHover={{ y: -6, scale: 1.015 }}
+//                 // ↓ Banner card: wide aspect ratio, fixed height, no cropping
+//                 className="relative shrink-0 w-[min(85vw,520px)] aspect-[16/7] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.55)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+//               >
+//                 <img
+//                   src={slide.image}
+//                   alt={slide.title}
+//                   loading="lazy"
+//                   className="absolute inset-0 h-full w-full object-contain"
+//                 />
+//                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+
+//                 {/* Banner badge */}
+//                 <span className="absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/20 border-purple-500/40 text-purple-300 backdrop-blur-md">
+//                   {slide.subcategory ?? "Banner"}
+//                 </span>
+
+//                 {/* Banner text */}
+//                 <div className="absolute bottom-0 left-0 right-0 p-5 text-left">
+//                   <h4 className="font-display text-lg md:text-xl font-bold leading-tight text-white line-clamp-1">
+//                     {slide.title}
+//                   </h4>
+//                   <p className="mt-1 text-sm leading-5 text-white/75 line-clamp-1">
+//                     {slide.description}
+//                   </p>
+//                 </div>
+//               </motion.a>
+//             ))}
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
 function PortfolioGraphicDesign({
   content = DEFAULT_SITE.portfolio.sections.visualAssets,
   items = fallbackGraphicDesignSlides,
@@ -2833,14 +3120,38 @@ function PortfolioGraphicDesign({
   const scrollRef = useRef<HTMLDivElement>(null);
   const bannerScrollRef = useRef<HTMLDivElement>(null);
 
+  // ====== ASPECT RATIO DETECTION STATE ======
+  // Maps image URL → true (banner/landscape) | false (portrait)
+  const [bannerMap, setBannerMap] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    items.forEach((slide) => {
+      if (!slide.image || slide.image in bannerMap) return;
+      const img = new Image();
+      img.onload = () => {
+        const isBanner = img.naturalWidth > img.naturalHeight;
+        setBannerMap((prev) => ({ ...prev, [slide.image]: isBanner }));
+      };
+      img.src = slide.image;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
+
+  // Split based on detected aspect ratio (default to portrait until loaded)
+  const portraitItems = useMemo(
+    () => items.filter((s) => bannerMap[s.image] !== true),
+    [items, bannerMap]
+  );
+  const bannerItems = useMemo(
+    () => items.filter((s) => bannerMap[s.image] === true),
+    [items, bannerMap]
+  );
+  // ====== END ASPECT RATIO DETECTION ======
+
   // ====== GRAPHIC DESIGN FILTER STATE ======
   const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
   const [graphicSearch, setGraphicSearch] = useState("");
   const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
-
-  // Split banners from portrait cards
-  const portraitItems = useMemo(() => items.filter((s) => s.type !== "banner"), [items]);
-  const bannerItems = useMemo(() => items.filter((s) => s.type === "banner"), [items]);
 
   const graphicCategories = useMemo(() => {
     const unique = new Set<string>();
@@ -2855,8 +3166,14 @@ function PortfolioGraphicDesign({
     const query = graphicSearch.trim().toLowerCase();
     return portraitItems.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
-      const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
-      const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
+      const matchesCategory =
+        activeGraphicCategory === "All" || category === activeGraphicCategory;
+      const searchable = [
+        slide.title,
+        slide.description,
+        slide.subcategory,
+        slide.categoryLabel,
+      ]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
@@ -2873,13 +3190,12 @@ function PortfolioGraphicDesign({
 
   const scrollLeft = () => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
   const scrollRight = () => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
-  const scrollBannerLeft = () =>
-    bannerScrollRef.current?.scrollBy({ left: -500, behavior: "smooth" });
-  const scrollBannerRight = () =>
-    bannerScrollRef.current?.scrollBy({ left: 500, behavior: "smooth" });
+  const scrollBannerLeft = () => bannerScrollRef.current?.scrollBy({ left: -520, behavior: "smooth" });
+  const scrollBannerRight = () => bannerScrollRef.current?.scrollBy({ left: 520, behavior: "smooth" });
 
   return (
     <div className="overflow-x-clip py-6">
+
       {/* ─────────── HEADER ─────────── */}
       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
@@ -2896,14 +3212,14 @@ function PortfolioGraphicDesign({
         <div className="hidden md:flex gap-2">
           <button
             onClick={scrollLeft}
-            aria-label="Scroll graphic design left"
+            aria-label="Scroll left"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
           <button
             onClick={scrollRight}
-            aria-label="Scroll graphic design right"
+            aria-label="Scroll right"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
           >
             <ChevronRight className="h-4 w-4" />
@@ -2944,7 +3260,7 @@ function PortfolioGraphicDesign({
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
             <Input
               value={graphicSearch}
-              onChange={(event) => setGraphicSearch(event.target.value)}
+              onChange={(e) => setGraphicSearch(e.target.value)}
               placeholder="Search designs"
               className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
             />
@@ -2955,10 +3271,10 @@ function PortfolioGraphicDesign({
       {/* ─────────── PORTRAIT CARD RAIL ─────────── */}
       <div
         ref={scrollRef}
-        onWheel={(event) => {
-          if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-          event.preventDefault();
-          scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+        onWheel={(e) => {
+          if (!scrollRef.current || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+          e.preventDefault();
+          scrollRef.current.scrollBy({ left: e.deltaY, behavior: "auto" });
         }}
         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
         style={{ scrollbarWidth: "none" }}
@@ -2966,8 +3282,8 @@ function PortfolioGraphicDesign({
         {isGraphicFiltering ? (
           Array.from({ length: 4 }).map((_, i) => (
             <div
-              key={`graphic-skeleton-${i}`}
-              className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+              key={`skeleton-${i}`}
+              className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 dark:border-white/10 dark:bg-white/5 animate-pulse"
             >
               <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
             </div>
@@ -2980,8 +3296,7 @@ function PortfolioGraphicDesign({
               target="_blank"
               rel="noreferrer"
               whileHover={{ y: -8, scale: 1.02 }}
-              // ↓ Fixed: uniform size + object-contain so nothing crops
-              className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+              className="relative shrink-0 w-[200px] aspect-[4/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
             >
               <img
                 src={slide.image}
@@ -2999,7 +3314,7 @@ function PortfolioGraphicDesign({
                 </span>
               )}
               <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-                <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+                <h4 className="font-display text-sm md:text-base font-bold leading-tight text-white line-clamp-2">
                   {slide.title}
                 </h4>
                 <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
@@ -3011,15 +3326,10 @@ function PortfolioGraphicDesign({
         ) : (
           <div className="w-full py-12 text-center">
             <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
-            <p className="mt-2 text-sm text-foreground/40">
-              Try another category or clear the search
-            </p>
+            <p className="mt-2 text-sm text-foreground/40">Try another category or clear the search</p>
             <button
               type="button"
-              onClick={() => {
-                setActiveGraphicCategory("All");
-                setGraphicSearch("");
-              }}
+              onClick={() => { setActiveGraphicCategory("All"); setGraphicSearch(""); }}
               className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
             >
               Reset filters
@@ -3028,29 +3338,35 @@ function PortfolioGraphicDesign({
         )}
       </div>
 
-      {/* ─────────── BANNER SECTION ─────────── */}
+      {/* ─────────── BANNER SECTION (auto-detected, hidden if none) ─────────── */}
       {bannerItems.length > 0 && (
-        <div className="mt-10">
-          {/* Banner section header */}
-          <div className="mx-auto max-w-6xl px-5 mb-5 flex items-center justify-between">
-            <div>
-              <span className="script text-2xl text-purple-600 dark:text-purple-400">Featured</span>
-              <h3 className="mt-1 font-display text-2xl font-bold md:text-3xl tracking-tight text-foreground dark:text-white">
-                Banners & Covers
+        <div className="mt-12 border-t border-ink/8 pt-2 dark:border-white/8">
+
+          {/* Banner header */}
+          <div className="mx-auto max-w-6xl px-5 mb-6 flex items-end justify-end">
+            {/* <div>
+              <span className="script text-2xl text-purple-600 dark:text-purple-400">
+                Wide Format
+              </span>
+              <h3 className="mt-2 font-display text-3xl font-bold md:text-4xl tracking-tight text-foreground dark:text-white">
+                Banners &amp; Covers
               </h3>
-            </div>
-            <div className="hidden md:flex gap-2">
+              <p className="mt-2 text-sm text-foreground/55 dark:text-gray-400">
+                Landscape artwork, social covers, and promotional banners
+              </p>
+            </div> */}
+            <div className="hidden md:flex gap-2 shrink-0 ml-6">
               <button
                 onClick={scrollBannerLeft}
                 aria-label="Scroll banners left"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
               <button
                 onClick={scrollBannerRight}
                 aria-label="Scroll banners right"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
@@ -3060,11 +3376,10 @@ function PortfolioGraphicDesign({
           {/* Banner rail */}
           <div
             ref={bannerScrollRef}
-            onWheel={(event) => {
-              if (!bannerScrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY))
-                return;
-              event.preventDefault();
-              bannerScrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+            onWheel={(e) => {
+              if (!bannerScrollRef.current || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+              e.preventDefault();
+              bannerScrollRef.current.scrollBy({ left: e.deltaY, behavior: "auto" });
             }}
             className="flex gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
             style={{ scrollbarWidth: "none" }}
@@ -3076,8 +3391,8 @@ function PortfolioGraphicDesign({
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ y: -6, scale: 1.015 }}
-                // ↓ Banner card: wide aspect ratio, fixed height, no cropping
-                className="relative shrink-0 w-[min(85vw,520px)] aspect-[16/7] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.55)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+                // Wide card: landscape aspect ratio, no cropping
+                className="relative shrink-0 w-[min(82vw,560px)] aspect-[4/1] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_20px_55px_-30px_rgba(0,0,0,0.6)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
               >
                 <img
                   src={slide.image}
@@ -3085,19 +3400,27 @@ function PortfolioGraphicDesign({
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                {/* subtle vignette only at bottom for text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent" />
 
-                {/* Banner badge */}
-                <span className="absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/20 border-purple-500/40 text-purple-300 backdrop-blur-md">
-                  {slide.subcategory ?? "Banner"}
+                {/* Category badge */}
+                {slide.subcategory && (
+                  <span className="absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/20 border-purple-500/40 text-purple-300 backdrop-blur-md">
+                    {slide.subcategory}
+                  </span>
+                )}
+
+                {/* "Banner" pill — top right */}
+                <span className="absolute right-4 top-4 rounded-full border border-white/15 bg-black/40 px-2.5 py-1 text-[9px] font-mono text-white/70 backdrop-blur">
+                  Banner
                 </span>
 
-                {/* Banner text */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-left">
-                  <h4 className="font-display text-lg md:text-xl font-bold leading-tight text-white line-clamp-1">
+                {/* Text overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h4 className="font-display text-base md:text-lg font-bold leading-tight text-white line-clamp-1">
                     {slide.title}
                   </h4>
-                  <p className="mt-1 text-sm leading-5 text-white/75 line-clamp-1">
+                  <p className="mt-1 text-xs leading-5 text-white/70 line-clamp-1">
                     {slide.description}
                   </p>
                 </div>
@@ -3106,6 +3429,7 @@ function PortfolioGraphicDesign({
           </div>
         </div>
       )}
+
     </div>
   );
 }
