@@ -3140,11 +3140,11 @@ function PortfolioGraphicDesign({
   // Split based on detected aspect ratio (default to portrait until loaded)
   const portraitItems = useMemo(
     () => items.filter((s) => bannerMap[s.image] !== true),
-    [items, bannerMap]
+    [items, bannerMap],
   );
   const bannerItems = useMemo(
     () => items.filter((s) => bannerMap[s.image] === true),
-    [items, bannerMap]
+    [items, bannerMap],
   );
   // ====== END ASPECT RATIO DETECTION ======
 
@@ -3166,14 +3166,8 @@ function PortfolioGraphicDesign({
     const query = graphicSearch.trim().toLowerCase();
     return portraitItems.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
-      const matchesCategory =
-        activeGraphicCategory === "All" || category === activeGraphicCategory;
-      const searchable = [
-        slide.title,
-        slide.description,
-        slide.subcategory,
-        slide.categoryLabel,
-      ]
+      const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+      const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
@@ -3190,12 +3184,13 @@ function PortfolioGraphicDesign({
 
   const scrollLeft = () => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
   const scrollRight = () => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
-  const scrollBannerLeft = () => bannerScrollRef.current?.scrollBy({ left: -520, behavior: "smooth" });
-  const scrollBannerRight = () => bannerScrollRef.current?.scrollBy({ left: 520, behavior: "smooth" });
+  const scrollBannerLeft = () =>
+    bannerScrollRef.current?.scrollBy({ left: -520, behavior: "smooth" });
+  const scrollBannerRight = () =>
+    bannerScrollRef.current?.scrollBy({ left: 520, behavior: "smooth" });
 
   return (
     <div className="overflow-x-clip my-8 py-10">
-
       {/* ─────────── HEADER ─────────── */}
       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col  items-end justify-center gap-4">
         <div className="w-full flex flex-col justify-center items-center text-center">
@@ -3326,10 +3321,15 @@ function PortfolioGraphicDesign({
         ) : (
           <div className="w-full py-12 text-center">
             <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
-            <p className="mt-2 text-sm text-foreground/40">Try another category or clear the search</p>
+            <p className="mt-2 text-sm text-foreground/40">
+              Try another category or clear the search
+            </p>
             <button
               type="button"
-              onClick={() => { setActiveGraphicCategory("All"); setGraphicSearch(""); }}
+              onClick={() => {
+                setActiveGraphicCategory("All");
+                setGraphicSearch("");
+              }}
               className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
             >
               Reset filters
@@ -3341,7 +3341,6 @@ function PortfolioGraphicDesign({
       {/* ─────────── BANNER SECTION (auto-detected, hidden if none) ─────────── */}
       {bannerItems.length > 0 && (
         <div className="mt-12 border-t border-ink/8 pt-2 dark:border-white/8">
-
           {/* Banner header */}
           <div className="mx-auto max-w-6xl px-5 mb-6 flex items-end justify-end">
             {/* <div>
@@ -3429,7 +3428,6 @@ function PortfolioGraphicDesign({
           </div>
         </div>
       )}
-
     </div>
   );
 }
@@ -3970,17 +3968,23 @@ function Index() {
             </motion.div>
           </div>
 
-          <div className="mt-3 flex justify-center px-4">
-            <div className="ceo-identity-badge" role="note" aria-label="Ankit Sen, founder and CEO">
-              <span className="ceo-identity-badge__name">Ankit Sen</span>
-              <span className="ceo-identity-badge__role">Founder & CEO</span>
+          <a href="https://www.linkedin.com/in/ankit-sen-3a0725165" target="_blank">
+            <div className="mt-3 flex justify-center px-4">
+              <div
+                className="ceo-identity-badge"
+                role="note"
+                aria-label="Ankit Sen, founder and CEO"
+              >
+                <span className="ceo-identity-badge__name">Ankit Sen</span>
+                <span className="ceo-identity-badge__role">Founder & CEO</span>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
         {/* Stats section */}
         <section className="relative w-full mt-4 flex justify-center items-center mx-auto max-w-6xl px-2 py-4 md:py-14">
           {/* ── Desktop grid (md+) — unchanged ── */}
-          <div className="hidden md:grid gap-3 grid-cols-5 place-items-center w-full">
+          <div className="hidden  md:grid gap-3 grid-cols-4  place-items-center ">
             {cmsStats.map((s, i) => (
               <motion.div
                 key={s.v}
@@ -3988,7 +3992,7 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, type: "spring" }}
-                className="w-full rounded-[2rem] border-2 border-ink bg-background p-4 md:p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+                className="w-full mx-auto rounded-[2rem] border-2 border-ink bg-background p-4 md:p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
               >
                 <div className="font-display text-2xl md:text-4xl font-bold text-ink md:text-2xl">
                   {s.k}
