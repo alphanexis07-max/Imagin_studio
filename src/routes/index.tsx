@@ -500,7 +500,7 @@ const QuestionAnswerCtas = () => (
       </MobileQuestionCta>
     </div> */}
     <div className="grid gap-4 md:hidden">
-  <style>{`
+      <style>{`
     @keyframes border-spin {
       to { --border-angle: 360deg; }
     }
@@ -536,29 +536,29 @@ const QuestionAnswerCtas = () => (
     }
   `}</style>
 
-  <MobileQuestionCta
-    label="Need campaigns, content, and growth systems?"
-    icon={<Megaphone className="h-5 w-5" />}
-    href="#contact"
-    primary
-    delay={0.68}
-    innerClassName="border-beam-mobile"
-    innerStyle={{ "--beam-color": "#a855f7" } as React.CSSProperties}
-  >
-    Marketing <ArrowUpRight className="h-4 w-4" />
-  </MobileQuestionCta>
+      <MobileQuestionCta
+        label="Need campaigns, content, and growth systems?"
+        icon={<Megaphone className="h-5 w-5" />}
+        href="#contact"
+        primary
+        delay={0.68}
+        innerClassName="border-beam-mobile"
+        innerStyle={{ "--beam-color": "#a855f7" } as React.CSSProperties}
+      >
+        Marketing <ArrowUpRight className="h-4 w-4" />
+      </MobileQuestionCta>
 
-  <MobileQuestionCta
-    label="Need websites, apps, and automation built?"
-    icon={<Rocket className="h-5 w-5" />}
-    href="#contact"
-    delay={0.78}
-    innerClassName="border-beam-mobile"
-    innerStyle={{ "--beam-color": "#06b6d4" } as React.CSSProperties}
-  >
-    Development
-  </MobileQuestionCta>
-</div>
+      <MobileQuestionCta
+        label="Need websites, apps, and automation built?"
+        icon={<Rocket className="h-5 w-5" />}
+        href="#contact"
+        delay={0.78}
+        innerClassName="border-beam-mobile"
+        innerStyle={{ "--beam-color": "#06b6d4" } as React.CSSProperties}
+      >
+        Development
+      </MobileQuestionCta>
+    </div>
 
     <div className="relative hidden min-h-[310px] w-full grid-rows-[1fr_auto] pt-2 md:grid">
       <QuestionCallout
@@ -2657,19 +2657,13 @@ function PortfolioVideoEditing({
 
 //   const scrollLeft = () => {
 //     if (scrollRef.current) {
-//       scrollRef.current.scrollBy({
-//         left: -350,
-//         behavior: "smooth",
-//       });
+//       scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
 //     }
 //   };
 
 //   const scrollRight = () => {
 //     if (scrollRef.current) {
-//       scrollRef.current.scrollBy({
-//         left: 350,
-//         behavior: "smooth",
-//       });
+//       scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
 //     }
 //   };
 
@@ -2678,7 +2672,7 @@ function PortfolioVideoEditing({
 
 //   return (
 //     <div className="overflow-x-clip py-6">
-//       <div className="mx-auto max-w-6xl  text-center md:text-start px-5 mb-6 md:mb-8 flex flex-col md:flex-row  md:items-end  md:justify-between gap-4">
+//       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
 //         <div>
 //           <span className="script text-3xl text-purple-600 dark:text-purple-400">
 //             {content.eyebrow}
@@ -2690,26 +2684,69 @@ function PortfolioVideoEditing({
 //             {content.description}
 //           </p>
 //         </div>
-//         <div className="flex gap-2">
+//         <div className="hidden md:flex gap-2">
 //           <button
 //             onClick={scrollLeft}
 //             aria-label="Scroll graphic design left"
-//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
 //           >
-//             <ChevronLeft className="h-5 w-5" />
+//             <ChevronLeft className="h-4 w-4" />
 //           </button>
 //           <button
 //             onClick={scrollRight}
 //             aria-label="Scroll graphic design right"
-//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer shadow-md"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
 //           >
-//             <ChevronRight className="h-5 w-5" />
+//             <ChevronRight className="h-4 w-4" />
 //           </button>
 //         </div>
 //       </div>
 
+//       {/* ===== GRAPHIC DESIGN FILTER BAR ===== */}
+//       <div className="mx-auto max-w-6xl px-5 mb-6">
+//         <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
+//           <div className="min-w-0 overflow-hidden">
+//             <div
+//               className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+//               style={{ scrollbarWidth: "none" }}
+//             >
+//               {graphicCategories.map((category) => {
+//                 const selected = activeGraphicCategory === category;
+//                 return (
+//                   <button
+//                     key={category}
+//                     type="button"
+//                     onClick={() => setActiveGraphicCategory(category)}
+//                     aria-pressed={selected}
+//                     className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+//                       selected
+//                         ? "border-purple-500 bg-purple-500 text-white shadow-[3px_3px_0_0_var(--accent)] dark:border-purple-400 dark:bg-purple-400 dark:text-background"
+//                         : "border-ink/15 bg-background/80 text-foreground/70 hover:border-purple-500/50 hover:bg-purple-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
+//                     }`}
+//                   >
+//                     {category}
+//                   </button>
+//                 );
+//               })}
+//             </div>
+//           </div>
+
+//           <label className="relative block">
+//             <span className="sr-only">Search graphic design</span>
+//             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
+//             <Input
+//               value={graphicSearch}
+//               onChange={(event) => setGraphicSearch(event.target.value)}
+//               placeholder="Search designs"
+//               className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
+//             />
+//           </label>
+//         </div>
+//       </div>
+//       {/* ===== END GRAPHIC DESIGN FILTER BAR ===== */}
+
 //       <div
-//         // ref={scrollRef}
+//         ref={scrollRef}
 //         onWheel={(event) => {
 //           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
 //           event.preventDefault();
@@ -2718,44 +2755,74 @@ function PortfolioVideoEditing({
 //         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
 //         style={{ scrollbarWidth: "none" }}
 //       >
-//         {items.map((slide, idx) => (
-//           <motion.a
-//             key={idx}
-//             href={slide.detailUrl || slide.image}
-//             target="_blank"
-//             rel="noreferrer"
-//             whileHover={{ y: -8, scale: 1.02 }}
-//             className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
-//           >
+//         {isGraphicFiltering ? (
+//           Array.from({ length: 4 }).map((_, i) => (
 //             <div
-//               className="absolute inset-0 bg-cover bg-center"
-//               style={{ backgroundImage: `url(${slide.image})` }}
-//               aria-hidden="true"
-//             />
-//             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-//             <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
-//               {slide.categoryLabel}
-//             </span>
-//             {slide.subcategory && (
-//               <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+//               key={`graphic-skeleton-${i}`}
+//               className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+//             >
+//               <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
+//             </div>
+//           ))
+//         ) : filteredGraphicItems.length > 0 ? (
+//           filteredGraphicItems.map((slide, idx) => (
+//             <motion.a
+//               key={idx}
+//               href={slide.detailUrl || slide.image}
+//               target="_blank"
+//               rel="noreferrer"
+//               whileHover={{ y: -8, scale: 1.02 }}
+//               className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+//             >
+//               <img
+//                 src={slide.image}
+//                 alt={slide.title}
+//                 loading="lazy"
+//                 className="absolute inset-0 h-full w-full object-cover"
+//               />
+//               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+//               <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
 //                 {slide.subcategory}
 //               </span>
-//             )}
-//             <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-//               <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
-//                 {slide.title}
-//               </h4>
-//               <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
-//                 {slide.description}
-//               </p>
-//             </div>
-//           </motion.a>
-//         ))}
+//               {slide.subcategory && (
+//                 <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+//                   {slide.subcategory}
+//                 </span>
+//               )}
+//               <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+//                 <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+//                   {slide.title}
+//                 </h4>
+//                 <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+//                   {slide.description}
+//                 </p>
+//               </div>
+//             </motion.a>
+//           ))
+//         ) : (
+//           <div className="w-full py-12 text-center">
+//             <p className="font-display text-xl font-bold text-foreground/60">
+//               No designs found
+//             </p>
+//             <p className="mt-2 text-sm text-foreground/40">
+//               Try another category or clear the search
+//             </p>
+//             <button
+//               type="button"
+//               onClick={() => {
+//                 setActiveGraphicCategory("All");
+//                 setGraphicSearch("");
+//               }}
+//               className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
+//             >
+//               Reset filters
+//             </button>
+//           </div>
+//         )}
 //       </div>
 //     </div>
 //   );
 // }
-
 function PortfolioGraphicDesign({
   content = DEFAULT_SITE.portfolio.sections.visualAssets,
   items = fallbackGraphicDesignSlides,
@@ -2764,25 +2831,29 @@ function PortfolioGraphicDesign({
   items?: VisualAssetSlide[];
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const bannerScrollRef = useRef<HTMLDivElement>(null);
 
   // ====== GRAPHIC DESIGN FILTER STATE ======
   const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
   const [graphicSearch, setGraphicSearch] = useState("");
   const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
 
+  // Split banners from portrait cards
+  const portraitItems = useMemo(() => items.filter((s) => s.type !== "banner"), [items]);
+  const bannerItems = useMemo(() => items.filter((s) => s.type === "banner"), [items]);
+
   const graphicCategories = useMemo(() => {
     const unique = new Set<string>();
-    items.forEach((slide) => {
+    portraitItems.forEach((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       unique.add(category);
     });
     return ["All", ...Array.from(unique)];
-  }, [items]);
+  }, [portraitItems]);
 
   const filteredGraphicItems = useMemo(() => {
     const query = graphicSearch.trim().toLowerCase();
-    
-    return items.filter((slide) => {
+    return portraitItems.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
       const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
@@ -2791,32 +2862,25 @@ function PortfolioGraphicDesign({
         .toLowerCase();
       return matchesCategory && (!query || searchable.includes(query));
     });
-  }, [activeGraphicCategory, items, graphicSearch]);
+  }, [activeGraphicCategory, portraitItems, graphicSearch]);
 
   useEffect(() => {
     setIsGraphicFiltering(true);
     const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
     return () => window.clearTimeout(timeout);
   }, [activeGraphicCategory, graphicSearch]);
-  // ====== END GRAPHIC DESIGN FILTER STATE ======
+  // ====== END FILTER STATE ======
 
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
-    }
-  };
-
-  const badgeStyle =
-    "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
+  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
+  const scrollRight = () => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
+  const scrollBannerLeft = () =>
+    bannerScrollRef.current?.scrollBy({ left: -500, behavior: "smooth" });
+  const scrollBannerRight = () =>
+    bannerScrollRef.current?.scrollBy({ left: 500, behavior: "smooth" });
 
   return (
     <div className="overflow-x-clip py-6">
+      {/* ─────────── HEADER ─────────── */}
       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
@@ -2847,7 +2911,7 @@ function PortfolioGraphicDesign({
         </div>
       </div>
 
-      {/* ===== GRAPHIC DESIGN FILTER BAR ===== */}
+      {/* ─────────── FILTER BAR ─────────── */}
       <div className="mx-auto max-w-6xl px-5 mb-6">
         <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
           <div className="min-w-0 overflow-hidden">
@@ -2875,7 +2939,6 @@ function PortfolioGraphicDesign({
               })}
             </div>
           </div>
-
           <label className="relative block">
             <span className="sr-only">Search graphic design</span>
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
@@ -2888,8 +2951,8 @@ function PortfolioGraphicDesign({
           </label>
         </div>
       </div>
-      {/* ===== END GRAPHIC DESIGN FILTER BAR ===== */}
 
+      {/* ─────────── PORTRAIT CARD RAIL ─────────── */}
       <div
         ref={scrollRef}
         onWheel={(event) => {
@@ -2904,7 +2967,7 @@ function PortfolioGraphicDesign({
           Array.from({ length: 4 }).map((_, i) => (
             <div
               key={`graphic-skeleton-${i}`}
-              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+              className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
             >
               <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
             </div>
@@ -2917,13 +2980,14 @@ function PortfolioGraphicDesign({
               target="_blank"
               rel="noreferrer"
               whileHover={{ y: -8, scale: 1.02 }}
-              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+              // ↓ Fixed: uniform size + object-contain so nothing crops
+              className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
             >
               <img
                 src={slide.image}
                 alt={slide.title}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
               <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
@@ -2946,9 +3010,7 @@ function PortfolioGraphicDesign({
           ))
         ) : (
           <div className="w-full py-12 text-center">
-            <p className="font-display text-xl font-bold text-foreground/60">
-              No designs found
-            </p>
+            <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
             <p className="mt-2 text-sm text-foreground/40">
               Try another category or clear the search
             </p>
@@ -2965,6 +3027,85 @@ function PortfolioGraphicDesign({
           </div>
         )}
       </div>
+
+      {/* ─────────── BANNER SECTION ─────────── */}
+      {bannerItems.length > 0 && (
+        <div className="mt-10">
+          {/* Banner section header */}
+          <div className="mx-auto max-w-6xl px-5 mb-5 flex items-center justify-between">
+            <div>
+              <span className="script text-2xl text-purple-600 dark:text-purple-400">Featured</span>
+              <h3 className="mt-1 font-display text-2xl font-bold md:text-3xl tracking-tight text-foreground dark:text-white">
+                Banners & Covers
+              </h3>
+            </div>
+            <div className="hidden md:flex gap-2">
+              <button
+                onClick={scrollBannerLeft}
+                aria-label="Scroll banners left"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={scrollBannerRight}
+                aria-label="Scroll banners right"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Banner rail */}
+          <div
+            ref={bannerScrollRef}
+            onWheel={(event) => {
+              if (!bannerScrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY))
+                return;
+              event.preventDefault();
+              bannerScrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+            }}
+            className="flex gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {bannerItems.map((slide, idx) => (
+              <motion.a
+                key={idx}
+                href={slide.detailUrl || slide.image}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ y: -6, scale: 1.015 }}
+                // ↓ Banner card: wide aspect ratio, fixed height, no cropping
+                className="relative shrink-0 w-[min(85vw,520px)] aspect-[16/7] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.55)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-contain"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+
+                {/* Banner badge */}
+                <span className="absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/20 border-purple-500/40 text-purple-300 backdrop-blur-md">
+                  {slide.subcategory ?? "Banner"}
+                </span>
+
+                {/* Banner text */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-left">
+                  <h4 className="font-display text-lg md:text-xl font-bold leading-tight text-white line-clamp-1">
+                    {slide.title}
+                  </h4>
+                  <p className="mt-1 text-sm leading-5 text-white/75 line-clamp-1">
+                    {slide.description}
+                  </p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -3079,7 +3220,12 @@ function PortfolioSEOAnalytics({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
@@ -3462,7 +3608,6 @@ function Index() {
                 r: "3deg",
                 d: "0.5s",
               },
-              
             ].map((p, i) => (
               <motion.div
                 key={`left-pill-${i}`}
@@ -3836,8 +3981,9 @@ function Index() {
           color="bg-green-400"
           className="animate-float"
           onClick={() => {
-            const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/+917067068673";
-window.open(whatsappLink, "_blank");
+            const whatsappLink =
+              process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/+917067068673";
+            window.open(whatsappLink, "_blank");
           }}
         />
 
