@@ -47,7 +47,7 @@ export function PortfolioSectionsTab() {
         <CollectionTab
           collection="visualAssets"
           label="Visual Assets"
-          maxItems={5}
+          maxItems={10}
           fields={[
             { key: "image", label: "Image URL / path", type: "image" },
             { key: "detailUrl", label: "Inspect/open URL", type: "text" },
