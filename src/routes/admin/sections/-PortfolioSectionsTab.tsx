@@ -11,7 +11,7 @@ export function PortfolioSectionsTab() {
         <CollectionTab
           collection="heroShowcase"
           label="Hero Showcase"
-          maxItems={5}
+          maxItems={10}
           fields={[
             { key: "categoryLabel", label: "Category label", type: "text" },
             { key: "title", label: "Title", type: "text" },

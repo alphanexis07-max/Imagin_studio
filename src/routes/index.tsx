@@ -2294,7 +2294,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
 /* -- Case Studies -- */
 function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   return (
-    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20">
+    <section id="case-studies" className="relative mx-auto px-auto max-w-6xl px-5 py-10 md:py-20">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="script text-3xl text-accent">In The Wild</span>
@@ -2311,17 +2311,18 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
         </a>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6  item-placed-center md:grid-cols-2">
         {items.map((c, i) => (
           <motion.a
             key={c.name}
-            href="#"
+            href="https://alphanexis-my.sharepoint.com/:p:/p/garv_chhabra/IQAg8Gou22IpQI4ZGfr5AK6ZAaD6nkeakJdzgd4EEbLpNeY?rtime=7WqSvk7U3kg"
+            target="_blank"
             initial={{ opacity: 0, y: 40, rotate: c.rot * 1.5 }}
             whileInView={{ opacity: 1, y: 0, rotate: c.rot }}
             whileHover={{ rotate: 0, y: -6, scale: 1.01 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, type: "spring", stiffness: 90 }}
-            className={`group relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
+            className={`group mx-auto relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
           >
             <div className="flex items-center justify-between border-b-2 border-ink/40 bg-background/50 px-5 py-2 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm dark:border-ink/35 dark:bg-cream/45">
               <span className="inline-flex items-center gap-1.5">
@@ -2332,8 +2333,8 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
             </div>
             <div className="relative flex items-center justify-center overflow-hidden px-6 py-10">
               <motion.span
-                whileHover={{ scale: 1.06, rotate: -1 }}
-                className="font-display text-[clamp(3rem,9vw,6.5rem)] font-black tracking-tighter text-ink/85"
+                whileHover={{ scale: 0.8, rotate: -1 }}
+                className="font-display text-[clamp(2rem,6vw,6rem)] font-black tracking-tighter text-ink/85"
               >
                 {c.word}
               </motion.span>
