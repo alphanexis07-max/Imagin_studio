@@ -2543,7 +2543,7 @@ const partners = [
 
 function TrustSection() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-6 md:py-16">
+    <section className="relative mx-auto max-w-6xl px-5 py-2 ">
       <p className="mb-8 text-center text-sm font-bold uppercase tracking-widest text-foreground/40">
         Certified & recognised by
       </p>
@@ -3210,7 +3210,7 @@ function Index() {
                     <Megaphone className="h-4 w-4 text-accent" /> Social Media
                   </>
                 ),
-                pos: "-right-6 bottom-[15%] md:right-8",
+                pos: "-right-6 bottom-[10%] md:right-8",
                 r: "6deg",
                 d: "1.2s",
               },
@@ -3235,8 +3235,8 @@ function Index() {
                     <Code className="h-4 w-4 text-accent" /> Web Development
                   </>
                 ),
-                pos: "-left-6 top-[8%] md:-left-4",
-                r: "-5deg",
+                pos: "-right-6 top-[55%] md:-right-4",
+                r: "5deg",
                 d: "0.1s",
               },
               {

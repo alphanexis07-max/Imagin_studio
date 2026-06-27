@@ -53,7 +53,7 @@ export function Navbar() {
           <span className="truncate font-display text-lg font-bold sm:text-xl">AlphaNexis</span>
         </a>
         <div className="hidden items-center gap-8 text-sm md:flex">
-          {["About", "Portfolio", "Work", "Services", "Contact"].map((l) => (
+          {["About", "Portfolio", "Work", "", "Contact"].map((l) => (
             <a
               key={l}
               href={`#${l.toLowerCase()}`}
