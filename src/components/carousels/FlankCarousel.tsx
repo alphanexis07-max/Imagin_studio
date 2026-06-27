@@ -135,7 +135,7 @@ function CarouselVideo({
       ref={videoRef}
       src={src}
       poster={poster}
-      className="h-full w-full object-cover"
+      className="h-full w-full object-contain"
       muted
       loop
       playsInline
@@ -237,7 +237,7 @@ export function FlankCarousel({
                   duration: 0.2,
                   ease: "easeOut",
                 }}
-                className={`absolute left-1/2 top-1/2 w-[min(30rem,90vw)] sm:w-[min(34rem,88vw)] md:w-[min(38rem,85vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-ink/10 bg-card/95 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl ${slide.glow || "shadow-black/50"}`}
+                className={`absolute left-1/2 top-1/2   -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-ink/10 bg-card/95 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl ${slide.glow || "shadow-black/50"}`}
                 style={{
                   zIndex,
                   transformStyle: "preserve-3d",
@@ -249,7 +249,7 @@ export function FlankCarousel({
                   MODIFICATION 1: Increased media height from 30vh to 45vh 
                   to make the video/image much more prominent.
                 */}
-                <div className="relative h-[min(45vh,26rem)] bg-muted dark:bg-[#0b0f14]">
+                <div className="relative h-[min(25vh,26rem)] md:h-[min(45vh,26rem)] bg-muted dark:bg-[#0b0f14]">
                   {slide.video ? (
                     <CarouselVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
@@ -257,7 +257,7 @@ export function FlankCarousel({
                       <img
                         src={slide.poster}
                         alt={slide.title}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-contain"
                       />
                     )
                   )}

@@ -3194,7 +3194,7 @@ function PortfolioGraphicDesign({
   const scrollBannerRight = () => bannerScrollRef.current?.scrollBy({ left: 520, behavior: "smooth" });
 
   return (
-    <div className="overflow-x-clip  py-6">
+    <div className="overflow-x-clip my-8 py-10">
 
       {/* ─────────── HEADER ─────────── */}
       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col  items-end justify-center gap-4">
