@@ -2137,8 +2137,8 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
       ref={sectionRef}
       className="relative isolate overflow-hidden bg-transparent text-foreground"
     >
-      <div className="relative mx-auto max-w-6xl px-5 py-8">
-        <div className="mb-8 grid items-end gap-6 md:grid-cols-[1fr_auto]">
+      <div className="relative mx-auto max-w-6xl px-5 py-2">
+        <div className="mb-8 flex flex-col justify-center  items-end text-center gap-1 ">
           <div>
             <span className="script text-3xl text-accent">The Reel Room</span>
             <h2 className="font-display text-3xl font-bold leading-[1.04] md:text-6xl">
@@ -2294,7 +2294,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
 /* -- Case Studies -- */
 function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   return (
-    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20">
+    <section id="case-studies" className="relative mx-auto px-auto max-w-6xl px-5 py-10 md:py-20">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="script text-3xl text-accent">In The Wild</span>
@@ -2311,17 +2311,18 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
         </a>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6  item-placed-center md:grid-cols-2">
         {items.map((c, i) => (
           <motion.a
             key={c.name}
-            href="#"
+            href="https://alphanexis-my.sharepoint.com/:p:/p/garv_chhabra/IQAg8Gou22IpQI4ZGfr5AK6ZAaD6nkeakJdzgd4EEbLpNeY?rtime=7WqSvk7U3kg"
+            target="_blank"
             initial={{ opacity: 0, y: 40, rotate: c.rot * 1.5 }}
             whileInView={{ opacity: 1, y: 0, rotate: c.rot }}
             whileHover={{ rotate: 0, y: -6, scale: 1.01 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, type: "spring", stiffness: 90 }}
-            className={`group relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
+            className={`group mx-auto relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
           >
             <div className="flex items-center justify-between border-b-2 border-ink/40 bg-background/50 px-5 py-2 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm dark:border-ink/35 dark:bg-cream/45">
               <span className="inline-flex items-center gap-1.5">
@@ -2332,8 +2333,8 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
             </div>
             <div className="relative flex items-center justify-center overflow-hidden px-6 py-10">
               <motion.span
-                whileHover={{ scale: 1.06, rotate: -1 }}
-                className="font-display text-[clamp(3rem,9vw,6.5rem)] font-black tracking-tighter text-ink/85"
+                whileHover={{ scale: 0.8, rotate: -1 }}
+                className="font-display text-[clamp(2rem,6vw,6rem)] font-black tracking-tighter text-ink/85"
               >
                 {c.word}
               </motion.span>
@@ -3140,11 +3141,11 @@ function PortfolioGraphicDesign({
   // Split based on detected aspect ratio (default to portrait until loaded)
   const portraitItems = useMemo(
     () => items.filter((s) => bannerMap[s.image] !== true),
-    [items, bannerMap]
+    [items, bannerMap],
   );
   const bannerItems = useMemo(
     () => items.filter((s) => bannerMap[s.image] === true),
-    [items, bannerMap]
+    [items, bannerMap],
   );
   // ====== END ASPECT RATIO DETECTION ======
 
@@ -3166,14 +3167,8 @@ function PortfolioGraphicDesign({
     const query = graphicSearch.trim().toLowerCase();
     return portraitItems.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
-      const matchesCategory =
-        activeGraphicCategory === "All" || category === activeGraphicCategory;
-      const searchable = [
-        slide.title,
-        slide.description,
-        slide.subcategory,
-        slide.categoryLabel,
-      ]
+      const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+      const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
         .filter(Boolean)
         .join(" ")
         .toLowerCase();
@@ -3190,22 +3185,23 @@ function PortfolioGraphicDesign({
 
   const scrollLeft = () => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
   const scrollRight = () => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
-  const scrollBannerLeft = () => bannerScrollRef.current?.scrollBy({ left: -520, behavior: "smooth" });
-  const scrollBannerRight = () => bannerScrollRef.current?.scrollBy({ left: 520, behavior: "smooth" });
+  const scrollBannerLeft = () =>
+    bannerScrollRef.current?.scrollBy({ left: -520, behavior: "smooth" });
+  const scrollBannerRight = () =>
+    bannerScrollRef.current?.scrollBy({ left: 520, behavior: "smooth" });
 
   return (
-    <div className="overflow-x-clip py-6">
-
+    <div className="overflow-x-clip my-8 py-10">
       {/* ─────────── HEADER ─────────── */}
-      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-        <div>
+      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col  items-end justify-center gap-4">
+        <div className="w-full flex flex-col justify-center items-center text-center">
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
             {content.eyebrow}
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
             {content.title}
           </h2>
-          <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
+          <p className="mt-4 max-w-2xl text-center text-foreground/65 dark:text-gray-400">
             {content.description}
           </p>
         </div>
@@ -3326,10 +3322,15 @@ function PortfolioGraphicDesign({
         ) : (
           <div className="w-full py-12 text-center">
             <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
-            <p className="mt-2 text-sm text-foreground/40">Try another category or clear the search</p>
+            <p className="mt-2 text-sm text-foreground/40">
+              Try another category or clear the search
+            </p>
             <button
               type="button"
-              onClick={() => { setActiveGraphicCategory("All"); setGraphicSearch(""); }}
+              onClick={() => {
+                setActiveGraphicCategory("All");
+                setGraphicSearch("");
+              }}
               className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
             >
               Reset filters
@@ -3341,7 +3342,6 @@ function PortfolioGraphicDesign({
       {/* ─────────── BANNER SECTION (auto-detected, hidden if none) ─────────── */}
       {bannerItems.length > 0 && (
         <div className="mt-12 border-t border-ink/8 pt-2 dark:border-white/8">
-
           {/* Banner header */}
           <div className="mx-auto max-w-6xl px-5 mb-6 flex items-end justify-end">
             {/* <div>
@@ -3376,22 +3376,39 @@ function PortfolioGraphicDesign({
           {/* Banner rail */}
           <div
             ref={bannerScrollRef}
+            onScroll={() => {
+              const container = bannerScrollRef.current;
+              if (!container || bannerItems.length === 0) return;
+
+              const cardElement = container.children[0] as HTMLElement;
+              if (!cardElement) return;
+
+              const totalItemWidth = cardElement.offsetWidth + 20; // 20px is gap-5
+              const boundaryWidth = totalItemWidth * bannerItems.length;
+
+              // Instant boundary snapping for infinite loop effect
+              if (container.scrollLeft <= 0) {
+                container.scrollLeft = boundaryWidth;
+              } else if (container.scrollLeft >= boundaryWidth * 2) {
+                container.scrollLeft = boundaryWidth;
+              }
+            }}
             onWheel={(e) => {
               if (!bannerScrollRef.current || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
               e.preventDefault();
-              bannerScrollRef.current.scrollBy({ left: e.deltaY, behavior: "auto" });
+              bannerScrollRef.current.scrollLeft += e.deltaY;
             }}
             className="flex gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
             style={{ scrollbarWidth: "none" }}
           >
-            {bannerItems.map((slide, idx) => (
+            {/* Triple the items right inside the map to create the infinite scroll clones seamlessly */}
+            {[...bannerItems, ...bannerItems, ...bannerItems].map((slide, idx) => (
               <motion.a
                 key={idx}
                 href={slide.detailUrl || slide.image}
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ y: -6, scale: 1.015 }}
-                // Wide card: landscape aspect ratio, no cropping
                 className="relative shrink-0 w-[min(82vw,560px)] aspect-[4/1] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_20px_55px_-30px_rgba(0,0,0,0.6)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
               >
                 <img
@@ -3429,7 +3446,6 @@ function PortfolioGraphicDesign({
           </div>
         </div>
       )}
-
     </div>
   );
 }
@@ -3457,6 +3473,116 @@ function PortfolioSoftwareSystems({
   );
 }
 
+// function PortfolioSEOAnalytics({
+//   content = DEFAULT_SITE.portfolio.sections.seoAnalytics,
+//   items = seoAnalyticsSlides,
+// }: {
+//   content?: PortfolioSectionCopy;
+//   items?: SeoAnalyticsSlide[];
+// }) {
+//   return (
+//     <div className="py-12 mt-8 md:mt-2 md:py-12">
+//       <div className="mb-10 text-center px-5">
+//         <span className="script text-3xl text-blue-400">{content.eyebrow}</span>
+//         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+//           {content.title}
+//         </h2>
+//         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
+//           {content.description}
+//         </p>
+//       </div>
+
+//       <div className="relative max-w-7xl mx-auto px-4">
+//         <Swiper
+//           slidesPerView={1}
+//           spaceBetween={30}
+//           navigation={{
+//             nextEl: ".custom-next",
+//             prevEl: ".custom-prev",
+//           }}
+//           modules={[Navigation]}
+//           breakpoints={{
+//             768: {
+//               slidesPerView: 2,
+//               spaceBetween: 30,
+//             },
+//           }}
+//           className="pb-12"
+//         >
+//           {items.map((item, index) => (
+//             <SwiperSlide key={index}>
+//               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
+//                 <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
+//                   <img
+//                     src={item.poster}
+//                     alt={item.title}
+//                     className="w-full h-full object-cover"
+//                     loading="lazy"
+//                   />
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+//                   <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
+//                     {item.categoryLabel || "SEO"}
+//                   </div>
+//                 </div>
+
+//                 {/* Content Section - Bottom */}
+//                 <div className="p-4 flex-1 flex flex-col">
+//                   <h3 className="text-xl font-bold text-foreground dark:text-white ">
+//                     {item.title}
+//                   </h3>
+//                   {/* <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
+//                     {item.description}
+//                   </p> */}
+
+//                   <div className="grid grid-cols-2 gap-4  pt-2 border-t border-gray-200 dark:border-gray-700">
+//                     {item.metrics &&
+//                       item.metrics.map((metric, idx) => (
+//                         <div key={idx} className="text-center">
+//                           <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
+//                             {metric.value}
+//                           </div>
+//                           <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+//                             {metric.label}
+//                           </div>
+//                         </div>
+//                       ))}
+//                   </div>
+//                 </div>
+//               </div>
+//             </SwiperSlide>
+//           ))}
+//         </Swiper>
+
+//         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
+//           <svg
+//             className="w-5 h-5 text-gray-800 dark:text-white"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth={2}
+//               d="M15 19l-7-7 7-7"
+//             />
+//           </svg>
+//         </button>
+//         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
+//           <svg
+//             className="w-5 h-5 text-gray-800 dark:text-white"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+//           </svg>
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
+
 function PortfolioSEOAnalytics({
   content = DEFAULT_SITE.portfolio.sections.seoAnalytics,
   items = seoAnalyticsSlides,
@@ -3480,6 +3606,7 @@ function PortfolioSEOAnalytics({
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
+          loop={true}
           navigation={{
             nextEl: ".custom-next",
             prevEl: ".custom-prev",
@@ -3970,17 +4097,23 @@ function Index() {
             </motion.div>
           </div>
 
-          <div className="mt-3 flex justify-center px-4">
-            <div className="ceo-identity-badge" role="note" aria-label="Ankit Sen, founder and CEO">
-              <span className="ceo-identity-badge__name">Ankit Sen</span>
-              <span className="ceo-identity-badge__role">Founder & CEO</span>
+          <a href="https://www.linkedin.com/in/ankit-sen-3a0725165" target="_blank">
+            <div className="mt-3 flex justify-center px-4">
+              <div
+                className="ceo-identity-badge"
+                role="note"
+                aria-label="Ankit Sen, founder and CEO"
+              >
+                <span className="ceo-identity-badge__name">Ankit Sen</span>
+                <span className="ceo-identity-badge__role">Founder & CEO</span>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
         {/* Stats section */}
         <section className="relative w-full mt-4 flex justify-center items-center mx-auto max-w-6xl px-2 py-4 md:py-14">
           {/* ── Desktop grid (md+) — unchanged ── */}
-          <div className="hidden md:grid gap-3 grid-cols-5 place-items-center w-full">
+          <div className="hidden  md:grid gap-3 grid-cols-4  place-items-center ">
             {cmsStats.map((s, i) => (
               <motion.div
                 key={s.v}
@@ -3988,7 +4121,7 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, type: "spring" }}
-                className="w-full rounded-[2rem] border-2 border-ink bg-background p-4 md:p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+                className="w-full mx-auto rounded-[2rem] border-2 border-ink bg-background p-4 md:p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
               >
                 <div className="font-display text-2xl md:text-4xl font-bold text-ink md:text-2xl">
                   {s.k}
