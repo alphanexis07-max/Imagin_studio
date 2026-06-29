@@ -164,9 +164,11 @@ export const DEFAULT_COLLECTIONS: Record<CollectionName, Array<Record<string, un
     { order: 1, name: "Retainer", duration: "Monthly", description: "An embedded growth pod - strategy, creative, ads & AI automation under one roof.", bullets: ["Weekly sprint demos", "Always-on creative", "Live analytics dash"], bg: "bg-accent", rotation: 0, tag: "Most popular", popular: true, icon: "Infinity" },
     { order: 2, name: "Project", duration: "6-12 wks", description: "End-to-end builds: GTM launch, full brand system, funnel + automation stack.", bullets: ["Phased milestones", "Cross-discipline", "Full handoff docs"], bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]", rotation: 1.4, tag: "Most depth", icon: "Flame" },
   ],
-  testimonials: [
-    { order: 0, quote: "AlphaNexis completely transformed our product delivery lifecycle. They shipped ahead of schedule and captured a critical market window.", author: "VP of Product", role: "North American HealthTech Corp", verified: "LinkedIn Verified", stars: 5 },
-    { order: 1, quote: "The operational predictability is what sets AlphaNexis apart. Their AI automation insights added immediate value to our bottom line.", author: "Chief Operating Officer", role: "European Logistics Group", verified: "Clutch 5-Star", stars: 5 },
+   testimonials: [
+    { order: 0, quote: "I hired them for a lead generation campaign for my real estate business. The results were outstanding – we received 50+ genuine leads in just one month! Best ROI I have ever seen from a marketing campaign.", author: "Akhilesh Singh", role: "Real Estate Business", verified: "Google 5-Star", stars: 5 },
+    { order: 1, quote: "Excellent social media management services! The content quality and posting schedule are always on point. Our followers and engagement have grown significantly since we partnered with them. Highly satisfied!", author: "Samarpit Shrivastava", role: "Business Owner", verified: "Google 4-Star", stars: 4 },
+    { order: 2, quote: "Very satisfied with their graphic design services. The team delivered creative and professional designs that aligned perfectly with our brand. They were responsive, understood our requirements well, and always delivered on time. Highly recommend their services for anyone looking for quality graphic design work.", author: "Arshiya Saxena", role: "Brand Manager", verified: "Google 5-Star", stars: 5 },
+    { order: 3, quote: "Social media content professionally and consistently maintained in posts. Organisation is responsive to feedback, and committed to delivering quality work.", author: "Manya Singh", role: "Social Media Manager", verified: "Google 4-Star", stars: 4 },
   ],
   stats: [
     { order: 0, value: "180+", label: "Projects delivered" },
