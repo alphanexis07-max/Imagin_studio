@@ -1910,7 +1910,7 @@ function normalizeTestimonials(items: CmsItem[]) {
       stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
     }));
   }
-  
+
   // Your new testimonial data
   return [
     {
@@ -1940,7 +1940,7 @@ function normalizeTestimonials(items: CmsItem[]) {
       co: "Social Media Manager",
       verified: "Google 4-Star",
       stars: 4,
-    }
+    },
   ];
 }
 
@@ -3631,7 +3631,7 @@ function PortfolioSEOAnalytics({
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
+                  <div className="absolute top-4 right-8 bg-blue-600/40 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
                     {item.categoryLabel || "SEO"}
                   </div>
                 </div>
@@ -3866,8 +3866,228 @@ function PortfolioSection({
           {content.title.split(" ")[0]}{" "}
           <span className="italic text-accent">{content.title.split(" ").slice(1).join(" ")}</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">{content.description}</p>
+        {/* <p className="mx-auto mt-4 max-w-2xl text-foreground/65 text-lg">{content.description}</p> */}
       </div>
+    </section>
+  );
+}
+
+{/* ZIGZAG ABOUT SECTION */}
+function PortfolioSectionAbout({
+  content = DEFAULT_SITE.portfolio.overview,
+}: {
+  content?: PortfolioSectionCopy;
+}) {
+  // Create a ref to track this specific section's scroll progress
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Track scroll position relative to the container
+  // "start center" means the animation starts when the top of the section hits the middle of the screen
+  // "end center" means it stops when the bottom of the section leaves the middle of the screen
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  // Map the 0-1 scroll progress directly to a 0% to 100% top positioning
+  const dotTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  return (
+    <section id="about" ref={containerRef} className="relative mx-auto max-w-5xl px-5 py-20">
+      {/* Spine line container */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border hidden md:block">
+        {/* Animated Tracker Dot */}
+        <motion.div
+          className="absolute left-1/2 w-3 h-3 -translate-x-1/2 rounded-full shadow-[0_0_10px_rgba(43,155,209,0.5)] z-20"
+          style={{
+            top: dotTop,
+            backgroundColor: "#2B9BD1", // Matches your primary branding color
+          }}
+        />
+      </div>
+
+      {[
+        {
+          side: "right",
+          eyebrow: "Who we are",
+          title: "About AlphaNexis",
+          body: "AlphaNexis is a fast-growing digital marketing, branding, and technology company based in Indore. We specialize in creating impactful digital experiences that strengthen online presence and drive real results across industries.",
+          color: "#2B9BD1",
+          icon: (
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-5 w-5"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              <circle cx="12" cy="12" r="7" />
+              <circle cx="12" cy="12" r="2" fill="white" stroke="none" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+            </svg>
+          ),
+        },
+        {
+          side: "left",
+          eyebrow: "What we do",
+          title: "Branding & Creative Content",
+          body: "We create impactful digital experiences that strengthen online presence and drive real results. By bringing creativity, strategy, and technology together in every campaign, we help ambitious brands stay ahead of the curve.",
+          color: "#E05A2B",
+          icon: (
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-5 w-5"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              <rect x="2" y="6" width="20" height="14" rx="2" />
+              <line x1="2" y1="10" x2="22" y2="10" />
+              <rect x="5" y="2" width="5" height="4" rx="1" fill="white" stroke="none" />
+              <rect x="14" y="2" width="5" height="4" rx="1" fill="white" stroke="none" />
+            </svg>
+          ),
+        },
+        {
+          side: "right",
+          eyebrow: "How we grow you",
+          title: "Digital Growth Strategies",
+          body: "From planning to performance, we build scalable strategies that help businesses grow faster and reach their goals with confidence.",
+          color: "#9B5FCF",
+          icon: (
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-5 w-5"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              <path d="M4 20L12 6l8 14H4Z" />
+              <line x1="12" y1="6" x2="12" y2="2" />
+            </svg>
+          ),
+        },
+        {
+          side: "left",
+          eyebrow: "Reach the right people",
+          title: "Paid Advertising",
+          body: "We design data-driven ad campaigns that connect with the right audience, increase visibility, and turn clicks into measurable growth.",
+          color: "#4CAF7A",
+          icon: (
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-5 w-5"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              <rect x="2" y="2" width="8" height="8" rx="1" />
+              <rect x="14" y="2" width="8" height="8" rx="1" />
+              <rect x="2" y="14" width="8" height="8" rx="1" />
+              <rect x="14" y="14" width="8" height="8" rx="1" />
+            </svg>
+          ),
+        },
+        {
+          side: "right",
+          eyebrow: "Our expertise",
+          title: "Core Services",
+          body: "Branding · Paid Ads · Growth Strategy · Website & App Dev · SEO & Analytics · AI Automation — all under one roof.",
+          color: "#CF4E6B",
+          icon: (
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-5 w-5"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              <polyline points="2,18 6,12 10,16 14,8 18,14 22,6" />
+              <circle cx="22" cy="6" r="2" fill="white" stroke="none" />
+            </svg>
+          ),
+        },
+        {
+          side: "left",
+          eyebrow: "Built for results",
+          title: "Why AlphaNexis",
+          body: "8+ years of compounding expertise in performance marketing, brand systems, and custom tech — delivered as one integrated growth pod you can plug straight into your team.",
+          color: "#E8A730",
+          icon: (
+            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+              <path d="M12 2l2.5 7h7l-5.5 4.5 2.5 7.5L12 17l-6.5 4 2.5-7.5L2 9h7z" fill="white" />
+            </svg>
+          ),
+        },
+      ].map((item, i) => {
+        const isRight = item.side === "right";
+
+        const panel = (
+          <motion.div
+            initial={{ opacity: 0, x: isRight ? 30 : -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.08, type: "spring", stiffness: 80 }}
+            className={`flex-1 rounded-[1.5rem] border-2 border-ink bg-background p-6 text-ink shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${
+              isRight ? "ml-6 md:ml-10" : "mr-6 md:mr-10 text-right"
+            }`}
+          >
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-foreground/40 mb-1">
+              {item.eyebrow}
+            </p>
+            <h3 className="font-display text-xl font-bold mb-2 leading-tight">{item.title}</h3>
+            <p className="text-sm leading-relaxed text-foreground/70 dark:text-card-foreground/70">
+              {item.body}
+            </p>
+          </motion.div>
+        );
+
+        const spine = (
+          <div className="flex flex-col items-center shrink-0 z-10 self-stretch">
+            <div className={`w-px flex-1 min-h-[40px] bg-border ${i === 0 ? "opacity-0" : ""}`} />
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 + 0.1, type: "spring", stiffness: 200, damping: 16 }}
+              className="shrink-0 w-14 h-14 flex items-center justify-center"
+              style={{
+                background: item.color,
+                clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+              }}
+            >
+              {item.icon}
+            </motion.div>
+            <div className={`w-px flex-1 min-h-[40px] bg-border ${i === 5 ? "opacity-0" : ""}`} />
+          </div>
+        );
+
+        return (
+          <div key={i} className="flex items-stretch">
+            {isRight ? (
+              <>
+                <div className="hidden md:flex flex-1" />
+                {spine}
+                {panel}
+              </>
+            ) : (
+              <>
+                {panel}
+                {spine}
+                <div className="hidden md:flex flex-1" />
+              </>
+            )}
+          </div>
+        );
+      })}
     </section>
   );
 }
@@ -3896,10 +4116,10 @@ function Index() {
 
   // Carousel functionality for Google Reviews
   useEffect(() => {
-    const track = document.getElementById('reviewsTrack');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('dotsContainer');
+    const track = document.getElementById("reviewsTrack");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const dotsContainer = document.getElementById("dotsContainer");
 
     if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
 
@@ -3926,11 +4146,11 @@ function Index() {
 
     const updateDots = () => {
       const maxIndex = getMaxIndex();
-      dotsContainer.innerHTML = '';
+      dotsContainer.innerHTML = "";
       for (let i = 0; i <= maxIndex; i++) {
-        const dot = document.createElement('button');
-        dot.className = `h-2 w-2 rounded-full transition-all ${i === currentIndex ? 'bg-accent w-6' : 'bg-gray-300 dark:bg-gray-600'}`;
-        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        const dot = document.createElement("button");
+        dot.className = `h-2 w-2 rounded-full transition-all ${i === currentIndex ? "bg-accent w-6" : "bg-gray-300 dark:bg-gray-600"}`;
+        dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
         dot.onclick = () => scrollToIndex(i);
         dotsContainer.appendChild(dot);
       }
@@ -3940,15 +4160,15 @@ function Index() {
       const maxIndex = getMaxIndex();
       currentIndex = Math.max(0, Math.min(index, maxIndex));
       const scrollAmount = currentIndex * cardWidth;
-      track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      track.scrollTo({ left: scrollAmount, behavior: "smooth" });
       updateDots();
       updateButtons();
     };
 
     const updateButtons = () => {
       const maxIndex = getMaxIndex();
-      prevBtn.style.opacity = currentIndex <= 0 ? '0.4' : '1';
-      nextBtn.style.opacity = currentIndex >= maxIndex ? '0.4' : '1';
+      prevBtn.style.opacity = currentIndex <= 0 ? "0.4" : "1";
+      nextBtn.style.opacity = currentIndex >= maxIndex ? "0.4" : "1";
     };
 
     const handleScroll = () => {
@@ -3966,9 +4186,12 @@ function Index() {
     updateDots();
     updateButtons();
 
-    track.addEventListener('scroll', handleScroll);
-    prevBtn.addEventListener('click', () => currentIndex > 0 && scrollToIndex(currentIndex - 1));
-    nextBtn.addEventListener('click', () => currentIndex < getMaxIndex() && scrollToIndex(currentIndex + 1));
+    track.addEventListener("scroll", handleScroll);
+    prevBtn.addEventListener("click", () => currentIndex > 0 && scrollToIndex(currentIndex - 1));
+    nextBtn.addEventListener(
+      "click",
+      () => currentIndex < getMaxIndex() && scrollToIndex(currentIndex + 1),
+    );
 
     // Auto-play
     let autoplayInterval: NodeJS.Timeout;
@@ -3985,9 +4208,9 @@ function Index() {
 
     const stopAutoplay = () => clearInterval(autoplayInterval);
 
-    const container = document.querySelector('.reviews-carousel-container');
-    container?.addEventListener('mouseenter', stopAutoplay);
-    container?.addEventListener('mouseleave', startAutoplay);
+    const container = document.querySelector(".reviews-carousel-container");
+    container?.addEventListener("mouseenter", stopAutoplay);
+    container?.addEventListener("mouseleave", startAutoplay);
 
     startAutoplay();
 
@@ -3997,11 +4220,11 @@ function Index() {
       updateDots();
       updateButtons();
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      track.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
+      track.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
       clearInterval(autoplayInterval);
     };
   }, [cmsTestimonials]);
@@ -4329,6 +4552,7 @@ function Index() {
 
       {/* ABOUT */}
       <PortfolioSection content={portfolioCopy.overview} />
+      <PortfolioSectionAbout content={portfolioCopy.overview} />
       <PortfolioHeroShowcase
         content={portfolioCopy.sections.heroShowcase}
         items={cmsHeroShowcase}
@@ -4447,10 +4671,22 @@ function Index() {
             <div className="inline-flex items-center gap-3 rounded-full border border-ink/20 bg-background px-4 py-2 shadow-sm dark:border-border dark:bg-card">
               <div className="flex items-center gap-2">
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
                 </svg>
                 <span className="text-xl font-bold text-foreground dark:text-white">4.6</span>
               </div>
@@ -4461,7 +4697,9 @@ function Index() {
                 <Star className="h-3 w-3 fill-accent text-accent" />
                 <Star className="h-3 w-3 fill-accent text-accent" />
               </div>
-              <span className="text-xs text-foreground/60 dark:text-gray-400">32 reviews on Google</span>
+              <span className="text-xs text-foreground/60 dark:text-gray-400">
+                32 reviews on Google
+              </span>
             </div>
           </div>
         </div>
@@ -4469,9 +4707,9 @@ function Index() {
         {/* Carousel Container */}
         <div className="relative">
           {/* Reviews Track */}
-          <div 
+          <div
             className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             id="reviewsTrack"
           >
             {cmsTestimonials.map((t, i) => {
@@ -4479,13 +4717,16 @@ function Index() {
                 "https://www.google.com/search?hl=en-IN&gl=in&q=AlphaNexis+Tech+Pvt+Ltd+-+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,";
 
               const colors = [
-                'from-purple-500 to-purple-700',
-                'from-green-500 to-green-700',
-                'from-blue-500 to-blue-700',
-                'from-pink-500 to-pink-700',
+                "from-purple-500 to-purple-700",
+                "from-green-500 to-green-700",
+                "from-blue-500 to-blue-700",
+                "from-pink-500 to-pink-700",
               ];
 
-              const initials = t.name.split(' ').map(n => n[0]).join('');
+              const initials = t.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("");
 
               return (
                 <motion.a
@@ -4502,7 +4743,9 @@ function Index() {
                 >
                   {/* Header with Avatar */}
                   <div className="flex items-center gap-3 mb-2">
-                    <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br ${colors[i % colors.length]} flex items-center justify-center text-white font-semibold text-sm`}>
+                    <div
+                      className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br ${colors[i % colors.length]} flex items-center justify-center text-white font-semibold text-sm`}
+                    >
                       {initials}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -4511,11 +4754,15 @@ function Index() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-foreground/50 dark:text-gray-400">
-                          {i === 0 || i === 1 ? '10 days ago' : '12 days ago'}
+                          {i === 0 || i === 1 ? "10 days ago" : "12 days ago"}
                         </span>
                         <span className="inline-flex items-center gap-1 text-[10px] text-green-600 dark:text-green-400">
                           <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
                           </svg>
                           Verified
                         </span>
@@ -4529,7 +4776,10 @@ function Index() {
                       <Star key={j} className="h-3.5 w-3.5 fill-accent text-accent" />
                     ))}
                     {[...Array(5 - t.stars)].map((_, j) => (
-                      <Star key={`empty-${j}`} className="h-3.5 w-3.5 text-gray-300 dark:text-gray-600" />
+                      <Star
+                        key={`empty-${j}`}
+                        className="h-3.5 w-3.5 text-gray-300 dark:text-gray-600"
+                      />
                     ))}
                   </div>
 
@@ -4542,10 +4792,22 @@ function Index() {
                   <div className="mt-3 pt-3 border-t border-ink/10 dark:border-border flex items-center justify-between">
                     <div className="flex items-center gap-2 text-xs text-foreground/40 dark:text-gray-500">
                       <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        <path
+                          d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                          fill="#4285F4"
+                        />
+                        <path
+                          d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                          fill="#34A853"
+                        />
+                        <path
+                          d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                          fill="#FBBC05"
+                        />
+                        <path
+                          d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                          fill="#EA4335"
+                        />
                       </svg>
                       <span>Google Review</span>
                     </div>
@@ -4560,15 +4822,15 @@ function Index() {
 
           {/* Navigation Buttons */}
           <div className="flex justify-center gap-3 mt-4">
-            <button 
-              id="prevBtn" 
+            <button
+              id="prevBtn"
               className="w-10 h-10 rounded-full border border-ink/20 bg-background flex items-center justify-center hover:bg-accent/10 transition-colors dark:border-border dark:bg-card"
               aria-label="Previous reviews"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
-            <button 
-              id="nextBtn" 
+            <button
+              id="nextBtn"
               className="w-10 h-10 rounded-full border border-ink/20 bg-background flex items-center justify-center hover:bg-accent/10 transition-colors dark:border-border dark:bg-card"
               aria-label="Next reviews"
             >
@@ -4589,10 +4851,22 @@ function Index() {
             className="inline-flex items-center gap-2 rounded-full border-2 border-ink/20 bg-background px-6 py-2.5 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-md dark:border-border dark:bg-card"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              <path
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                fill="#4285F4"
+              />
+              <path
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                fill="#34A853"
+              />
+              <path
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                fill="#FBBC05"
+              />
+              <path
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                fill="#EA4335"
+              />
             </svg>
             View all 32 reviews on Google
             <ArrowUpRight className="h-3 w-3" />
@@ -4601,7 +4875,6 @@ function Index() {
       </section>
 
       {/* ORIGINAL TESTIMONIALS SECTION */}
-      
 
       {/* CTA */}
       <section id="contact" className="relative mx-auto max-w-6xl px-5 py-24">
