@@ -50,29 +50,58 @@ const DeleteMediaInput = z.object({
 export const deleteMedia = createServerFn({ method: "POST" })
   .validator(DeleteMediaInput)
   .handler(async ({ data }) => {
-    requireAdmin(getRequest());
-    configureCloudinary();
+    try {
+      requireAdmin(getRequest());
+      configureCloudinary();
 
-    const prisma = getPrisma();
-    const stored = prisma && data.url
-      ? await prisma.mediaAsset.findFirst({
-          where: { OR: [{ secureUrl: data.url }, { url: data.url }] },
-        })
-      : null;
+      const prisma = getPrisma();
 
-    const publicId = data.publicId ?? stored?.publicId;
-    if (!publicId) return { deleted: false };
+      const stored =
+        prisma && data.url
+          ? await prisma.mediaAsset.findFirst({
+              where: {
+                OR: [
+                  { secureUrl: data.url },
+                  { url: data.url },
+                ],
+              },
+            })
+          : null;
 
-    await cloudinary.uploader.destroy(publicId, {
-      resource_type: stored?.resourceType === "video" ? "video" : "image",
-    });
+      const publicId = data.publicId ?? stored?.publicId;
 
-    if (prisma) {
-      await prisma.mediaAsset.deleteMany({ where: { publicId } });
+      if (!publicId) {
+        return {
+          deleted: false,
+          reason: "No publicId found",
+        };
+      }
+
+      const result = await cloudinary.uploader.destroy(publicId, {
+        resource_type:
+          stored?.resourceType === "video" ? "video" : "image",
+      });
+
+      if (prisma) {
+        await prisma.mediaAsset.deleteMany({
+          where: {
+            publicId,
+          },
+        });
+      }
+
+      return {
+        deleted: result.result === "ok",
+        cloudinary: result,
+      };
+    } catch (error) {
+      return {
+        deleted: false,
+        error: error instanceof Error ? error.message : String(error),
+      };
     }
-
-    return { deleted: true };
   });
+
 function configureCloudinary() {
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;

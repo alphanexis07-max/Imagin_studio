@@ -1,0 +1,54 @@
+[
+  {
+    "order": 0,
+    "image": "/carousel-samples/screenshot-2.jpg",
+    "categoryLabel": "GRAPHIC DESIGN",
+    "subcategory": "Branding",
+    "title": "Lume Skincare Visual Identity",
+    "description": "Color system, custom typography, and premium brand voice."
+  },
+  {
+    "order": 1,
+    "image": "/carousel-samples/screenshot-1.jpg",
+    "categoryLabel": "GRAPHIC DESIGN",
+    "subcategory": "Packaging",
+    "title": "Premium Product Packaging",
+    "description": "Eco-friendly cosmetic bottle labels and box layouts."
+  },
+  {
+    "order": 2,
+    "image": "/carousel-samples/screenshot-3.jpg",
+    "categoryLabel": "GRAPHIC DESIGN",
+    "subcategory": "Social Media",
+    "title": "High-Retention Instagram Creatives",
+    "description": "Curated grids, posters, and stories designed for organic conversion."
+  },
+  {
+    "order": 3,
+    "image": "/carousel-samples/screenshot-4.jpg",
+    "categoryLabel": "GRAPHIC DESIGN",
+    "subcategory": "Advertising",
+    "title": "Out-Of-Home Banner Campaigns",
+    "description": "High-contrast billboards and print advertisements for modern transport hubs."
+  },
+  {
+    "order": 4,
+    "image": "/carousel-samples/screenshot-6.jpg",
+    "categoryLabel": "GRAPHIC DESIGN",
+    "subcategory": "Print Design",
+    "title": "Editorial Brand Catalogs",
+    "description": "Premium booklets showcasing collection launches."
+  },
+  {
+    "image": "/carousel-samples/screenshot-2.jpg",
+    "detailUrl": "",
+    "categoryLabel": "GRAPHIC DESIGN",
+    "subcategory": "Branding",
+    "title": "Lume Skincare Visual Identity",
+    "description": "Color system, custom typography, and premium brand voice.",
+    "id": "a581cb7e-8607-4455-a662-87d3707ded6b",
+    "order": 5,
+    "createdAt": "2026-06-29T06:52:21.756Z",
+    "updatedAt": "2026-06-29T06:52:21.756Z"
+  }
+]

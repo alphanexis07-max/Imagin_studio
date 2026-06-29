@@ -116,24 +116,58 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
     }
   }
 
+  // async function handleDelete(id: string) {
+  //   if (!confirm("Delete this item?")) return;
+  //   setDeletingId(id);
+  //   const current = items.find((item) => item.id === id);
+  //   await deleteItem({ data: { collection, id } });
+  //   if (current) {
+  //     await Promise.all(
+  //       fields
+  //         .filter((field) => field.type === "image" || field.type === "video")
+  //         .map((field) => String(current[field.key] ?? ""))
+  //         .filter(Boolean)
+  //         .map((url) => deleteMedia({ data: { url } }).catch(() => null)),
+  //     );
+  //   }
+  //   setItems((prev) => prev.filter((i) => i.id !== id));
+  //   showToast("Deleted");
+  //   setDeletingId(null);
+  // }
+
   async function handleDelete(id: string) {
-    if (!confirm("Delete this item?")) return;
-    setDeletingId(id);
+  if (!confirm("Delete this item?")) return;
+
+  setDeletingId(id);
+
+  try {
     const current = items.find((item) => item.id === id);
+
+    // Delete database record
     await deleteItem({ data: { collection, id } });
+
+    // Delete media from Cloudinary
     if (current) {
       await Promise.all(
         fields
-          .filter((field) => field.type === "image" || field.type === "video")
+          .filter(
+            (field) => field.type === "image" || field.type === "video"
+          )
           .map((field) => String(current[field.key] ?? ""))
           .filter(Boolean)
-          .map((url) => deleteMedia({ data: { url } }).catch(() => null)),
+          .map((url) => deleteMedia({ data: { url } }))
       );
     }
+
     setItems((prev) => prev.filter((i) => i.id !== id));
     showToast("Deleted");
+  } catch (err) {
+    console.error(err);
+    showToast("Delete failed");
+  } finally {
     setDeletingId(null);
   }
+}
 
   async function move(index: number, dir: -1 | 1) {
     const newItems = [...items];
