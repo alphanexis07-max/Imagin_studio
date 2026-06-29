@@ -53,6 +53,8 @@ import {
   Play,
   ChevronLeft,
   ChevronRight,
+  Code,
+  Smartphone,
 } from "lucide-react";
 import portrait from "@/assets/portrait.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -91,6 +93,19 @@ import story9 from "@/assets/carousel-samples/story-9.jpg";
 import story10 from "@/assets/carousel-samples/story-10.jpg";
 import story11 from "@/assets/carousel-samples/story-11.jpg";
 import story12 from "@/assets/carousel-samples/story-12.jpg";
+
+// ===== THUMBNAIL IMPORTS =====
+import thumbnail1 from "@/assets/thumbanil  - 1_ 2.jpg";
+import thumbnail2 from "@/assets/thumbanil - 2 3.jpg";
+import thumbnail3 from "@/assets/thumbnail - Where every moment_.jpg";
+import thumbnail4 from "@/assets/thumbanil - 2 4.jpg";
+import thumbnail5 from "@/assets/verticle thumbvanil 2 - Step into your cozy hotel room_.jpg";
+import thumbnail6 from "@/assets/thumbanil -1 2.jpg";
+import thumbnail7 from "@/assets/thumbanil -_ 3.jpg";
+import thumbnail8 from "@/assets/sky + line thumbanil_ 1.jpg";
+import thumbnail9 from "@/assets/Thumbanil  copy 2.jpg";
+import thumbnail10 from "@/assets/Thumbanil_ 3.jpg";
+
 import type { SiteData } from "@/lib/admin/site.functions";
 import { CartoonButton } from "@/components/ui/cartoon-button";
 
@@ -466,20 +481,61 @@ const MobileQuestionCta = ({
 const QuestionAnswerCtas = () => (
   <div className="mx-auto mt-8 w-full max-w-5xl px-2 md:px-0">
     <div className="grid gap-4 md:hidden">
+      <style>{`
+    @keyframes border-spin {
+      to { --border-angle: 360deg; }
+    }
+    @property --border-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+    .border-beam-mobile {
+      position: relative;
+      border-radius: 9999px;
+      width: fit-content;
+    }
+    .border-beam-mobile::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        var(--beam-color, #a855f7) 88%,
+        transparent 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: border-spin 2.5s linear infinite;
+      pointer-events: none;
+    }
+  `}</style>
+
       <MobileQuestionCta
         label="Need campaigns, content, and growth systems?"
         icon={<Megaphone className="h-5 w-5" />}
         href="#contact"
         primary
         delay={0.68}
+        innerClassName="border-beam-mobile"
+        innerStyle={{ "--beam-color": "#a855f7" } as React.CSSProperties}
       >
         Marketing <ArrowUpRight className="h-4 w-4" />
       </MobileQuestionCta>
+
       <MobileQuestionCta
         label="Need websites, apps, and automation built?"
         icon={<Rocket className="h-5 w-5" />}
         href="#contact"
         delay={0.78}
+        innerClassName="border-beam-mobile"
+        innerStyle={{ "--beam-color": "#06b6d4" } as React.CSSProperties}
       >
         Development
       </MobileQuestionCta>
@@ -511,18 +567,59 @@ const QuestionAnswerCtas = () => (
       />
 
       <div className="relative z-20 row-start-2 flex w-full items-center justify-center gap-2 md:px-[9%]">
-        <a
-          href="#contact"
-          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
-        >
-          Marketing <ArrowUpRight className="h-4 w-4" />
-        </a>
-        <a
-          href="#contact"
-          className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
-        >
-          Development
-        </a>
+        <style>{`
+    @keyframes border-spin {
+      to { --border-angle: 360deg; }
+    }
+    @property --border-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
+    .border-beam {
+      position: relative;
+      border-radius: 9999px;
+    }
+    .border-beam::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        var(--beam-color, #a855f7) 88%,
+        transparent 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: border-spin 2.5s linear infinite;
+      pointer-events: none;
+    }
+  `}</style>
+
+        <div className="border-beam" style={{ "--beam-color": "#a855f7" } as React.CSSProperties}>
+          {" "}
+          <a
+            href="#contact"
+            className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
+          >
+            Marketing <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+
+        <div className="border-beam" style={{ "--beam-color": "#06b6d4" } as React.CSSProperties}>
+          <a
+            href="#contact"
+            className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
+          >
+            Development
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -568,6 +665,30 @@ const workProjects = [
 ];
 
 const serviceOfferings = [
+  {
+    title: "Brand Strategy",
+    description: "Positioning, voice, and launch systems that make your brand stand out and scale.",
+    icon: Target,
+    accent: "from-orange-500 to-amber-500",
+  },
+  {
+    title: "UI / UX Design",
+    description: "Conversion-first experience design that feels premium and converts consistently.",
+    icon: Layers,
+    accent: "from-sky-500 to-cyan-500",
+  },
+  {
+    title: "Content Creation",
+    description: "Video, social, and editorial systems that keep your brand top of mind.",
+    icon: Sparkles,
+    accent: "from-violet-500 to-fuchsia-500",
+  },
+  {
+    title: "Growth Automation",
+    description: "AI-enabled funnels, workflows, and reporting that reduce manual overhead.",
+    icon: Brain,
+    accent: "from-emerald-500 to-lime-500",
+  },
 ];
 
 /* -- Custom Portfolio Datasets -- */
@@ -801,48 +922,94 @@ type PortfolioSectionCopy = {
 
 type PortfolioContentCopy = SiteData["portfolio"];
 
+// ===== UPDATED GRAPHIC DESIGN SLIDES WITH YOUR THUMBNAILS =====
 const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Campaign Launch",
     title: "Bold Multi-Platform Story Frames",
-    description: "A dynamic hero image set for launch campaigns, blending editorial polish with motion-led impact.",
+    description:
+      "A dynamic hero image set for launch campaigns, blending editorial polish with motion-led impact.",
     image: story7,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Packaging",
     title: "Tactile Brand Packaging Concepts",
-    description: "Premium packaging mockups with layered textures, premium finishes, and retail-ready appeal.",
+    description:
+      "Premium packaging mockups with layered textures, premium finishes, and retail-ready appeal.",
     image: story8,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Social Media",
     title: "Story-Led Social Content",
-    description: "Swipe-ready story assets and modern editorial layouts designed for high engagement.",
+    description:
+      "Swipe-ready story assets and modern editorial layouts designed for high engagement.",
     image: story9,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
     subcategory: "Advertising",
-    title: "High-Impact Out-Of-Home Graphics",
-    description: "Bold typography and expressive composition built to capture attention across billboards and transit ads.",
-    image: story10,
+    title: "Brand Campaign Asset",
+    description: "High-impact campaign creative for digital advertising rollouts.",
+    image: thumbnail2,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Print Design",
-    title: "Editorial Collage Systems",
-    description: "Magazine-quality spreads and visual systems with layered imagery and refined editorial structure.",
-    image: story11,
+    subcategory: "Hospitality",
+    title: "Pure Earth Stay - Where Every Moment Feels Just Right",
+    description: "Premium hospitality branding for Treebo's Pure Earth Stay experience.",
+    image: thumbnail3,
   },
   {
     categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Visual Storytelling",
-    title: "Narrative Visual Campaigns",
-    description: "Story-driven creative frames that turn brand messaging into immersive visual journeys.",
-    image: story12,
+    subcategory: "Advertising",
+    title: "Clarity First - Construction Follows",
+    description: "Strategic construction branding with clear visual messaging and impact.",
+    image: thumbnail4,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Step Into Your Cozy Hotel Room",
+    description: "Warm and inviting hotel room visual design for memorable guest experiences.",
+    image: thumbnail5,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Modern Systems in Motion",
+    description: "A high-contrast graphic system rooted in modern tech and service design.",
+    image: thumbnail1,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Corporate Branding System",
+    description: "Corporate identity assets optimized for product launches and team wear.",
+    image: thumbnail7,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Sky-Line Visual Identity",
+    description: "A refined design system for architecture, real estate and urban innovation.",
+    image: thumbnail9,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Advertising",
+    title: "Built on Vision",
+    description: "Vision-driven campaign creative for modern architecture clients.",
+    image: thumbnail10,
+  },
+  {
+    categoryLabel: "GRAPHIC DESIGN",
+    subcategory: "Modernization",
+    title: "Cozy Hotel Room Branding",
+    description: "Hospitality branding with a modern, welcoming visual language.",
+    image: thumbnail6,
   },
 ];
 
@@ -1012,7 +1179,7 @@ const editorialContent = [
 ];
 
 function DiscoveryCallDialog() {
-  const hostEmail = "hello@alphanexius.com";
+  const hostEmail = "info@alphanexius.com";
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
@@ -1208,12 +1375,8 @@ function ServicesSection() {
     <section id="services" className="relative mx-auto max-w-6xl px-5 py-6">
       <div className="mb-10 text-center">
         <span className="script text-3xl text-accent"></span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-          
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-          .
-        </p>
+        <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl"></h2>
+        <p className="mx-auto mt-4 max-w-2xl text-foreground/70">.</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">
@@ -1735,31 +1898,50 @@ function normalizeReels(items: CmsItem[]) {
 
   return reels.length ? reels : filmReels;
 }
+// ===== REPLACE YOUR EXISTING normalizeTestimonials FUNCTION WITH THIS =====
 function normalizeTestimonials(items: CmsItem[]) {
-  return items.length
-    ? items.map((item) => ({
-        q: asString(item.quote),
-        name: asString(item.author),
-        co: asString(item.role),
-        verified: asString(item.verified, "Verified"),
-        stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
-      }))
-    : [
-        {
-          q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
-          name: "VP of Product",
-          co: "North American HealthTech Corp",
-          verified: "LinkedIn Verified",
-          stars: 5,
-        },
-        {
-          q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
-          name: "Chief Operating Officer",
-          co: "European Logistics Group",
-          verified: "Clutch 5-Star",
-          stars: 5,
-        },
-      ];
+  // If CMS items exist, use them
+  if (items.length) {
+    return items.map((item) => ({
+      q: asString(item.quote),
+      name: asString(item.author),
+      co: asString(item.role),
+      verified: asString(item.verified, "Verified"),
+      stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
+    }));
+  }
+  
+  // Your new testimonial data
+  return [
+    {
+      q: "I hired them for a lead generation campaign for my real estate business. The results were outstanding – we received 50+ genuine leads in just one month! Best ROI I have ever seen from a marketing campaign.",
+      name: "Akhilesh Singh",
+      co: "Real Estate Business",
+      verified: "Google 5-Star",
+      stars: 5,
+    },
+    {
+      q: "Excellent social media management services! The content quality and posting schedule are always on point. Our followers and engagement have grown significantly since we partnered with them. Highly satisfied!",
+      name: "Samarpit Shrivastava",
+      co: "Business Owner",
+      verified: "Google 4-Star",
+      stars: 4,
+    },
+    {
+      q: "Very satisfied with their graphic design services. The team delivered creative and professional designs that aligned perfectly with our brand. They were responsive, understood our requirements well, and always delivered on time. Highly recommend their services for anyone looking for quality graphic design work.",
+      name: "Arshiya Saxena",
+      co: "Brand Manager",
+      verified: "Google 5-Star",
+      stars: 5,
+    },
+    {
+      q: "Social media content professionally and consistently maintained in posts. Organisation is responsive to feedback, and committed to delivering quality work.",
+      name: "Manya Singh",
+      co: "Social Media Manager",
+      verified: "Google 4-Star",
+      stars: 4,
+    }
+  ];
 }
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
@@ -1955,8 +2137,8 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
       ref={sectionRef}
       className="relative isolate overflow-hidden bg-transparent text-foreground"
     >
-      <div className="relative mx-auto max-w-6xl px-5 py-8">
-        <div className="mb-8 grid items-end gap-6 md:grid-cols-[1fr_auto]">
+      <div className="relative mx-auto max-w-6xl px-5 py-2">
+        <div className="mb-8 flex flex-col justify-center  items-end text-center gap-1 ">
           <div>
             <span className="script text-3xl text-accent">The Reel Room</span>
             <h2 className="font-display text-3xl font-bold leading-[1.04] md:text-6xl">
@@ -2112,7 +2294,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
 /* -- Case Studies -- */
 function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   return (
-    <section id="case-studies" className="relative mx-auto max-w-6xl px-5 py-10 md:py-20">
+    <section id="case-studies" className="relative mx-auto px-auto max-w-6xl px-5 py-10 md:py-20">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
           <span className="script text-3xl text-accent">In The Wild</span>
@@ -2129,17 +2311,18 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
         </a>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6  item-placed-center md:grid-cols-2">
         {items.map((c, i) => (
           <motion.a
             key={c.name}
-            href="#"
+            href="https://alphanexis-my.sharepoint.com/:p:/p/garv_chhabra/IQAg8Gou22IpQI4ZGfr5AK6ZAaD6nkeakJdzgd4EEbLpNeY?rtime=7WqSvk7U3kg"
+            target="_blank"
             initial={{ opacity: 0, y: 40, rotate: c.rot * 1.5 }}
             whileInView={{ opacity: 1, y: 0, rotate: c.rot }}
             whileHover={{ rotate: 0, y: -6, scale: 1.01 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, type: "spring", stiffness: 90 }}
-            className={`group relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
+            className={`group mx-auto relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
           >
             <div className="flex items-center justify-between border-b-2 border-ink/40 bg-background/50 px-5 py-2 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm dark:border-ink/35 dark:bg-cream/45">
               <span className="inline-flex items-center gap-1.5">
@@ -2150,8 +2333,8 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
             </div>
             <div className="relative flex items-center justify-center overflow-hidden px-6 py-10">
               <motion.span
-                whileHover={{ scale: 1.06, rotate: -1 }}
-                className="font-display text-[clamp(3rem,9vw,6.5rem)] font-black tracking-tighter text-ink/85"
+                whileHover={{ scale: 0.8, rotate: -1 }}
+                className="font-display text-[clamp(2rem,6vw,6rem)] font-black tracking-tighter text-ink/85"
               >
                 {c.word}
               </motion.span>
@@ -2200,13 +2383,13 @@ function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
   );
 }
 
-/* -- Engagement Models --*/
+/* -- Engagement Models -- */
 function FlexibleSection({ items = engagements }: { items?: typeof engagements }) {
   return (
     <section id="engage" className="relative mx-auto max-w-6xl px-5 py-10 md:py-24">
       <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div>
-          {/*<span className="script text-3xl text-accent">how we work</span>*/}
+          <span className="script text-3xl text-accent">how we work</span>
           <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Flexible by <span className="italic">Design</span>
             <span className="text-accent">.</span>
@@ -2361,7 +2544,7 @@ const partners = [
 
 function TrustSection() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-6 md:py-16">
+    <section className="relative mx-auto max-w-6xl px-5 py-2 ">
       <p className="mb-8 text-center text-sm font-bold uppercase tracking-widest text-foreground/40">
         Certified & recognised by
       </p>
@@ -2392,8 +2575,8 @@ function PortfolioHeroShowcase({
   items?: HeroShowcaseSlide[];
 }) {
   return (
-    <div className="py-6 overflow-x-hidden" id="work">
-      <div className="mb-10 text-center px-5">
+    <div className="py-2 overflow-x-hidden" id="work">
+      <div className="mb-2 text-center px-5">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
           {content.title}
@@ -2402,12 +2585,7 @@ function PortfolioHeroShowcase({
           {content.description}
         </p>
       </div>
-      <FlankCarousel
-        slides={items}
-        /*title=""
-        subtitle=""
-        /*description="Swipe or use arrow keys to navigate. Videos autoplay on active cards only."*/
-      />
+      <FlankCarousel slides={items} />
     </div>
   );
 }
@@ -2434,6 +2612,505 @@ function PortfolioVideoEditing({
   );
 }
 
+// function PortfolioGraphicDesign({
+//   content = DEFAULT_SITE.portfolio.sections.visualAssets,
+//   items = fallbackGraphicDesignSlides,
+// }: {
+//   content?: PortfolioSectionCopy;
+//   items?: VisualAssetSlide[];
+// }) {
+//   const scrollRef = useRef<HTMLDivElement>(null);
+
+//   // ====== GRAPHIC DESIGN FILTER STATE ======
+//   const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
+//   const [graphicSearch, setGraphicSearch] = useState("");
+//   const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
+
+//   const graphicCategories = useMemo(() => {
+//     const unique = new Set<string>();
+//     items.forEach((slide) => {
+//       const category = slide.subcategory || slide.categoryLabel || "Design";
+//       unique.add(category);
+//     });
+//     return ["All", ...Array.from(unique)];
+//   }, [items]);
+
+//   const filteredGraphicItems = useMemo(() => {
+//     const query = graphicSearch.trim().toLowerCase();
+
+//     return items.filter((slide) => {
+//       const category = slide.subcategory || slide.categoryLabel || "Design";
+//       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+//       const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
+//         .filter(Boolean)
+//         .join(" ")
+//         .toLowerCase();
+//       return matchesCategory && (!query || searchable.includes(query));
+//     });
+//   }, [activeGraphicCategory, items, graphicSearch]);
+
+//   useEffect(() => {
+//     setIsGraphicFiltering(true);
+//     const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
+//     return () => window.clearTimeout(timeout);
+//   }, [activeGraphicCategory, graphicSearch]);
+//   // ====== END GRAPHIC DESIGN FILTER STATE ======
+
+//   const scrollLeft = () => {
+//     if (scrollRef.current) {
+//       scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
+//     }
+//   };
+
+//   const scrollRight = () => {
+//     if (scrollRef.current) {
+//       scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
+//     }
+//   };
+
+//   const badgeStyle =
+//     "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
+
+//   return (
+//     <div className="overflow-x-clip py-6">
+//       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+//         <div>
+//           <span className="script text-3xl text-purple-600 dark:text-purple-400">
+//             {content.eyebrow}
+//           </span>
+//           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+//             {content.title}
+//           </h2>
+//           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
+//             {content.description}
+//           </p>
+//         </div>
+//         <div className="hidden md:flex gap-2">
+//           <button
+//             onClick={scrollLeft}
+//             aria-label="Scroll graphic design left"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//           >
+//             <ChevronLeft className="h-4 w-4" />
+//           </button>
+//           <button
+//             onClick={scrollRight}
+//             aria-label="Scroll graphic design right"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//           >
+//             <ChevronRight className="h-4 w-4" />
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* ===== GRAPHIC DESIGN FILTER BAR ===== */}
+//       <div className="mx-auto max-w-6xl px-5 mb-6">
+//         <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
+//           <div className="min-w-0 overflow-hidden">
+//             <div
+//               className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+//               style={{ scrollbarWidth: "none" }}
+//             >
+//               {graphicCategories.map((category) => {
+//                 const selected = activeGraphicCategory === category;
+//                 return (
+//                   <button
+//                     key={category}
+//                     type="button"
+//                     onClick={() => setActiveGraphicCategory(category)}
+//                     aria-pressed={selected}
+//                     className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+//                       selected
+//                         ? "border-purple-500 bg-purple-500 text-white shadow-[3px_3px_0_0_var(--accent)] dark:border-purple-400 dark:bg-purple-400 dark:text-background"
+//                         : "border-ink/15 bg-background/80 text-foreground/70 hover:border-purple-500/50 hover:bg-purple-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
+//                     }`}
+//                   >
+//                     {category}
+//                   </button>
+//                 );
+//               })}
+//             </div>
+//           </div>
+
+//           <label className="relative block">
+//             <span className="sr-only">Search graphic design</span>
+//             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
+//             <Input
+//               value={graphicSearch}
+//               onChange={(event) => setGraphicSearch(event.target.value)}
+//               placeholder="Search designs"
+//               className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
+//             />
+//           </label>
+//         </div>
+//       </div>
+//       {/* ===== END GRAPHIC DESIGN FILTER BAR ===== */}
+
+//       <div
+//         ref={scrollRef}
+//         onWheel={(event) => {
+//           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+//           event.preventDefault();
+//           scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+//         }}
+//         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
+//         style={{ scrollbarWidth: "none" }}
+//       >
+//         {isGraphicFiltering ? (
+//           Array.from({ length: 4 }).map((_, i) => (
+//             <div
+//               key={`graphic-skeleton-${i}`}
+//               className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+//             >
+//               <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
+//             </div>
+//           ))
+//         ) : filteredGraphicItems.length > 0 ? (
+//           filteredGraphicItems.map((slide, idx) => (
+//             <motion.a
+//               key={idx}
+//               href={slide.detailUrl || slide.image}
+//               target="_blank"
+//               rel="noreferrer"
+//               whileHover={{ y: -8, scale: 1.02 }}
+//               className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+//             >
+//               <img
+//                 src={slide.image}
+//                 alt={slide.title}
+//                 loading="lazy"
+//                 className="absolute inset-0 h-full w-full object-cover"
+//               />
+//               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+//               <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
+//                 {slide.subcategory}
+//               </span>
+//               {slide.subcategory && (
+//                 <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+//                   {slide.subcategory}
+//                 </span>
+//               )}
+//               <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+//                 <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+//                   {slide.title}
+//                 </h4>
+//                 <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+//                   {slide.description}
+//                 </p>
+//               </div>
+//             </motion.a>
+//           ))
+//         ) : (
+//           <div className="w-full py-12 text-center">
+//             <p className="font-display text-xl font-bold text-foreground/60">
+//               No designs found
+//             </p>
+//             <p className="mt-2 text-sm text-foreground/40">
+//               Try another category or clear the search
+//             </p>
+//             <button
+//               type="button"
+//               onClick={() => {
+//                 setActiveGraphicCategory("All");
+//                 setGraphicSearch("");
+//               }}
+//               className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
+//             >
+//               Reset filters
+//             </button>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+// function PortfolioGraphicDesign({
+//   content = DEFAULT_SITE.portfolio.sections.visualAssets,
+//   items = fallbackGraphicDesignSlides,
+// }: {
+//   content?: PortfolioSectionCopy;
+//   items?: VisualAssetSlide[];
+// }) {
+//   const scrollRef = useRef<HTMLDivElement>(null);
+//   const bannerScrollRef = useRef<HTMLDivElement>(null);
+
+//   // ====== GRAPHIC DESIGN FILTER STATE ======
+//   const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
+//   const [graphicSearch, setGraphicSearch] = useState("");
+//   const [isGraphicFiltering, setIsGraphicFiltering] = useState(false);
+
+//   // Split banners from portrait cards
+//   const portraitItems = useMemo(() => items.filter((s) => s.type !== "banner"), [items]);
+//   const bannerItems = useMemo(() => items.filter((s) => s.type === "banner"), [items]);
+
+//   const graphicCategories = useMemo(() => {
+//     const unique = new Set<string>();
+//     portraitItems.forEach((slide) => {
+//       const category = slide.subcategory || slide.categoryLabel || "Design";
+//       unique.add(category);
+//     });
+//     return ["All", ...Array.from(unique)];
+//   }, [portraitItems]);
+
+//   const filteredGraphicItems = useMemo(() => {
+//     const query = graphicSearch.trim().toLowerCase();
+//     return portraitItems.filter((slide) => {
+//       const category = slide.subcategory || slide.categoryLabel || "Design";
+//       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
+//       const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
+//         .filter(Boolean)
+//         .join(" ")
+//         .toLowerCase();
+//       return matchesCategory && (!query || searchable.includes(query));
+//     });
+//   }, [activeGraphicCategory, portraitItems, graphicSearch]);
+
+//   useEffect(() => {
+//     setIsGraphicFiltering(true);
+//     const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
+//     return () => window.clearTimeout(timeout);
+//   }, [activeGraphicCategory, graphicSearch]);
+//   // ====== END FILTER STATE ======
+
+//   const scrollLeft = () => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
+//   const scrollRight = () => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
+//   const scrollBannerLeft = () =>
+//     bannerScrollRef.current?.scrollBy({ left: -500, behavior: "smooth" });
+//   const scrollBannerRight = () =>
+//     bannerScrollRef.current?.scrollBy({ left: 500, behavior: "smooth" });
+
+//   return (
+//     <div className="overflow-x-clip py-6">
+//       {/* ─────────── HEADER ─────────── */}
+//       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+//         <div>
+//           <span className="script text-3xl text-purple-600 dark:text-purple-400">
+//             {content.eyebrow}
+//           </span>
+//           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+//             {content.title}
+//           </h2>
+//           <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
+//             {content.description}
+//           </p>
+//         </div>
+//         <div className="hidden md:flex gap-2">
+//           <button
+//             onClick={scrollLeft}
+//             aria-label="Scroll graphic design left"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//           >
+//             <ChevronLeft className="h-4 w-4" />
+//           </button>
+//           <button
+//             onClick={scrollRight}
+//             aria-label="Scroll graphic design right"
+//             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//           >
+//             <ChevronRight className="h-4 w-4" />
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* ─────────── FILTER BAR ─────────── */}
+//       <div className="mx-auto max-w-6xl px-5 mb-6">
+//         <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
+//           <div className="min-w-0 overflow-hidden">
+//             <div
+//               className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
+//               style={{ scrollbarWidth: "none" }}
+//             >
+//               {graphicCategories.map((category) => {
+//                 const selected = activeGraphicCategory === category;
+//                 return (
+//                   <button
+//                     key={category}
+//                     type="button"
+//                     onClick={() => setActiveGraphicCategory(category)}
+//                     aria-pressed={selected}
+//                     className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+//                       selected
+//                         ? "border-purple-500 bg-purple-500 text-white shadow-[3px_3px_0_0_var(--accent)] dark:border-purple-400 dark:bg-purple-400 dark:text-background"
+//                         : "border-ink/15 bg-background/80 text-foreground/70 hover:border-purple-500/50 hover:bg-purple-500/10 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10"
+//                     }`}
+//                   >
+//                     {category}
+//                   </button>
+//                 );
+//               })}
+//             </div>
+//           </div>
+//           <label className="relative block">
+//             <span className="sr-only">Search graphic design</span>
+//             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
+//             <Input
+//               value={graphicSearch}
+//               onChange={(event) => setGraphicSearch(event.target.value)}
+//               placeholder="Search designs"
+//               className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
+//             />
+//           </label>
+//         </div>
+//       </div>
+
+//       {/* ─────────── PORTRAIT CARD RAIL ─────────── */}
+//       <div
+//         ref={scrollRef}
+//         onWheel={(event) => {
+//           if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+//           event.preventDefault();
+//           scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+//         }}
+//         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
+//         style={{ scrollbarWidth: "none" }}
+//       >
+//         {isGraphicFiltering ? (
+//           Array.from({ length: 4 }).map((_, i) => (
+//             <div
+//               key={`graphic-skeleton-${i}`}
+//               className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+//             >
+//               <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
+//             </div>
+//           ))
+//         ) : filteredGraphicItems.length > 0 ? (
+//           filteredGraphicItems.map((slide, idx) => (
+//             <motion.a
+//               key={idx}
+//               href={slide.detailUrl || slide.image}
+//               target="_blank"
+//               rel="noreferrer"
+//               whileHover={{ y: -8, scale: 1.02 }}
+//               // ↓ Fixed: uniform size + object-contain so nothing crops
+//               className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+//             >
+//               <img
+//                 src={slide.image}
+//                 alt={slide.title}
+//                 loading="lazy"
+//                 className="absolute inset-0 h-full w-full object-contain"
+//               />
+//               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+//               <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
+//                 {slide.subcategory}
+//               </span>
+//               {slide.subcategory && (
+//                 <span className="md:hidden absolute right-3 top-3 max-w-[45%] truncate rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-mono text-white/85 backdrop-blur">
+//                   {slide.subcategory}
+//                 </span>
+//               )}
+//               <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+//                 <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+//                   {slide.title}
+//                 </h4>
+//                 <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
+//                   {slide.description}
+//                 </p>
+//               </div>
+//             </motion.a>
+//           ))
+//         ) : (
+//           <div className="w-full py-12 text-center">
+//             <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
+//             <p className="mt-2 text-sm text-foreground/40">
+//               Try another category or clear the search
+//             </p>
+//             <button
+//               type="button"
+//               onClick={() => {
+//                 setActiveGraphicCategory("All");
+//                 setGraphicSearch("");
+//               }}
+//               className="mt-4 inline-flex items-center justify-center rounded-full border border-ink/15 bg-background px-5 py-2 text-sm font-semibold hover:bg-purple-500 hover:text-white dark:border-white/10 dark:bg-white/5"
+//             >
+//               Reset filters
+//             </button>
+//           </div>
+//         )}
+//       </div>
+
+//       {/* ─────────── BANNER SECTION ─────────── */}
+//       {bannerItems.length > 0 && (
+//         <div className="mt-10">
+//           {/* Banner section header */}
+//           <div className="mx-auto max-w-6xl px-5 mb-5 flex items-center justify-between">
+//             <div>
+//               <span className="script text-2xl text-purple-600 dark:text-purple-400">Featured</span>
+//               <h3 className="mt-1 font-display text-2xl font-bold md:text-3xl tracking-tight text-foreground dark:text-white">
+//                 Banners & Covers
+//               </h3>
+//             </div>
+//             <div className="hidden md:flex gap-2">
+//               <button
+//                 onClick={scrollBannerLeft}
+//                 aria-label="Scroll banners left"
+//                 className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//               >
+//                 <ChevronLeft className="h-4 w-4" />
+//               </button>
+//               <button
+//                 onClick={scrollBannerRight}
+//                 aria-label="Scroll banners right"
+//                 className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+//               >
+//                 <ChevronRight className="h-4 w-4" />
+//               </button>
+//             </div>
+//           </div>
+
+//           {/* Banner rail */}
+//           <div
+//             ref={bannerScrollRef}
+//             onWheel={(event) => {
+//               if (!bannerScrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY))
+//                 return;
+//               event.preventDefault();
+//               bannerScrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+//             }}
+//             className="flex gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
+//             style={{ scrollbarWidth: "none" }}
+//           >
+//             {bannerItems.map((slide, idx) => (
+//               <motion.a
+//                 key={idx}
+//                 href={slide.detailUrl || slide.image}
+//                 target="_blank"
+//                 rel="noreferrer"
+//                 whileHover={{ y: -6, scale: 1.015 }}
+//                 // ↓ Banner card: wide aspect ratio, fixed height, no cropping
+//                 className="relative shrink-0 w-[min(85vw,520px)] aspect-[16/7] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.55)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+//               >
+//                 <img
+//                   src={slide.image}
+//                   alt={slide.title}
+//                   loading="lazy"
+//                   className="absolute inset-0 h-full w-full object-contain"
+//                 />
+//                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+
+//                 {/* Banner badge */}
+//                 <span className="absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/20 border-purple-500/40 text-purple-300 backdrop-blur-md">
+//                   {slide.subcategory ?? "Banner"}
+//                 </span>
+
+//                 {/* Banner text */}
+//                 <div className="absolute bottom-0 left-0 right-0 p-5 text-left">
+//                   <h4 className="font-display text-lg md:text-xl font-bold leading-tight text-white line-clamp-1">
+//                     {slide.title}
+//                   </h4>
+//                   <p className="mt-1 text-sm leading-5 text-white/75 line-clamp-1">
+//                     {slide.description}
+//                   </p>
+//                 </div>
+//               </motion.a>
+//             ))}
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
 function PortfolioGraphicDesign({
   content = DEFAULT_SITE.portfolio.sections.visualAssets,
   items = fallbackGraphicDesignSlides,
@@ -2442,6 +3119,35 @@ function PortfolioGraphicDesign({
   items?: VisualAssetSlide[];
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const bannerScrollRef = useRef<HTMLDivElement>(null);
+
+  // ====== ASPECT RATIO DETECTION STATE ======
+  // Maps image URL → true (banner/landscape) | false (portrait)
+  const [bannerMap, setBannerMap] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    items.forEach((slide) => {
+      if (!slide.image || slide.image in bannerMap) return;
+      const img = new Image();
+      img.onload = () => {
+        const isBanner = img.naturalWidth > img.naturalHeight;
+        setBannerMap((prev) => ({ ...prev, [slide.image]: isBanner }));
+      };
+      img.src = slide.image;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
+
+  // Split based on detected aspect ratio (default to portrait until loaded)
+  const portraitItems = useMemo(
+    () => items.filter((s) => bannerMap[s.image] !== true),
+    [items, bannerMap],
+  );
+  const bannerItems = useMemo(
+    () => items.filter((s) => bannerMap[s.image] === true),
+    [items, bannerMap],
+  );
+  // ====== END ASPECT RATIO DETECTION ======
 
   // ====== GRAPHIC DESIGN FILTER STATE ======
   const [activeGraphicCategory, setActiveGraphicCategory] = useState("All");
@@ -2450,17 +3156,16 @@ function PortfolioGraphicDesign({
 
   const graphicCategories = useMemo(() => {
     const unique = new Set<string>();
-    items.forEach((slide) => {
+    portraitItems.forEach((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       unique.add(category);
     });
     return ["All", ...Array.from(unique)];
-  }, [items]);
+  }, [portraitItems]);
 
   const filteredGraphicItems = useMemo(() => {
     const query = graphicSearch.trim().toLowerCase();
-    
-    return items.filter((slide) => {
+    return portraitItems.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
       const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
@@ -2469,55 +3174,48 @@ function PortfolioGraphicDesign({
         .toLowerCase();
       return matchesCategory && (!query || searchable.includes(query));
     });
-  }, [activeGraphicCategory, items, graphicSearch]);
+  }, [activeGraphicCategory, portraitItems, graphicSearch]);
 
   useEffect(() => {
     setIsGraphicFiltering(true);
     const timeout = window.setTimeout(() => setIsGraphicFiltering(false), 360);
     return () => window.clearTimeout(timeout);
   }, [activeGraphicCategory, graphicSearch]);
-  // ====== END GRAPHIC DESIGN FILTER STATE ======
+  // ====== END FILTER STATE ======
 
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
-    }
-  };
-
-  const badgeStyle =
-    "bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400";
+  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
+  const scrollRight = () => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
+  const scrollBannerLeft = () =>
+    bannerScrollRef.current?.scrollBy({ left: -520, behavior: "smooth" });
+  const scrollBannerRight = () =>
+    bannerScrollRef.current?.scrollBy({ left: 520, behavior: "smooth" });
 
   return (
-    <div className="overflow-x-clip py-6">
-      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-        <div>
+    <div className="overflow-x-clip my-8 py-10">
+      {/* ─────────── HEADER ─────────── */}
+      <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col  items-end justify-center gap-4">
+        <div className="w-full flex flex-col justify-center items-center text-center">
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
             {content.eyebrow}
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
             {content.title}
           </h2>
-          <p className="mt-4 max-w-xl text-foreground/65 dark:text-gray-400">
+          <p className="mt-4 max-w-2xl text-center text-foreground/65 dark:text-gray-400">
             {content.description}
           </p>
         </div>
         <div className="hidden md:flex gap-2">
           <button
             onClick={scrollLeft}
-            aria-label="Scroll graphic design left"
+            aria-label="Scroll left"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
           <button
             onClick={scrollRight}
-            aria-label="Scroll graphic design right"
+            aria-label="Scroll right"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
           >
             <ChevronRight className="h-4 w-4" />
@@ -2525,7 +3223,7 @@ function PortfolioGraphicDesign({
         </div>
       </div>
 
-      {/* ===== GRAPHIC DESIGN FILTER BAR ===== */}
+      {/* ─────────── FILTER BAR ─────────── */}
       <div className="mx-auto max-w-6xl px-5 mb-6">
         <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
           <div className="min-w-0 overflow-hidden">
@@ -2553,27 +3251,26 @@ function PortfolioGraphicDesign({
               })}
             </div>
           </div>
-
           <label className="relative block">
             <span className="sr-only">Search graphic design</span>
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
             <Input
               value={graphicSearch}
-              onChange={(event) => setGraphicSearch(event.target.value)}
+              onChange={(e) => setGraphicSearch(e.target.value)}
               placeholder="Search designs"
               className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
             />
           </label>
         </div>
       </div>
-      {/* ===== END GRAPHIC DESIGN FILTER BAR ===== */}
 
+      {/* ─────────── PORTRAIT CARD RAIL ─────────── */}
       <div
         ref={scrollRef}
-        onWheel={(event) => {
-          if (!scrollRef.current || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-          event.preventDefault();
-          scrollRef.current.scrollBy({ left: event.deltaY, behavior: "auto" });
+        onWheel={(e) => {
+          if (!scrollRef.current || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+          e.preventDefault();
+          scrollRef.current.scrollBy({ left: e.deltaY, behavior: "auto" });
         }}
         className="mx-auto flex max-w-full gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
         style={{ scrollbarWidth: "none" }}
@@ -2581,8 +3278,8 @@ function PortfolioGraphicDesign({
         {isGraphicFiltering ? (
           Array.from({ length: 4 }).map((_, i) => (
             <div
-              key={`graphic-skeleton-${i}`}
-              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-white/5 animate-pulse"
+              key={`skeleton-${i}`}
+              className="relative shrink-0 w-[200px] aspect-[3/5] rounded-[1.25rem] border border-ink/10 bg-card/80 dark:border-white/10 dark:bg-white/5 animate-pulse"
             >
               <div className="absolute inset-0 rounded-[1.25rem] bg-gradient-to-b from-purple-500/10 via-purple-500/5 to-purple-500/15" />
             </div>
@@ -2595,13 +3292,13 @@ function PortfolioGraphicDesign({
               target="_blank"
               rel="noreferrer"
               whileHover={{ y: -8, scale: 1.02 }}
-              className="relative w-[min(72vw,10rem)] min-w-[12rem] sm:w-[10rem] sm:min-w-[8rem] md:w-[12rem] md:min-w-[10rem] lg:w-[16rem] lg:min-w-[14rem] aspect-[3/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-card snap-start shrink-0 shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+              className="relative shrink-0 w-[200px] aspect-[4/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
             >
               <img
                 src={slide.image}
                 alt={slide.title}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
               <span className="hidden md:block absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/15 border-purple-500/30 text-purple-700 dark:bg-purple-500/25 dark:border-purple-500/40 dark:text-purple-400 backdrop-blur-md">
@@ -2613,7 +3310,7 @@ function PortfolioGraphicDesign({
                 </span>
               )}
               <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-                <h4 className="font-display md:text-base sm:text-sm font-bold leading-tight text-white line-clamp-2">
+                <h4 className="font-display text-sm md:text-base font-bold leading-tight text-white line-clamp-2">
                   {slide.title}
                 </h4>
                 <p className="mt-1 text-xs leading-5 text-white/80 line-clamp-2">
@@ -2624,9 +3321,7 @@ function PortfolioGraphicDesign({
           ))
         ) : (
           <div className="w-full py-12 text-center">
-            <p className="font-display text-xl font-bold text-foreground/60">
-              No designs found
-            </p>
+            <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
             <p className="mt-2 text-sm text-foreground/40">
               Try another category or clear the search
             </p>
@@ -2643,6 +3338,114 @@ function PortfolioGraphicDesign({
           </div>
         )}
       </div>
+
+      {/* ─────────── BANNER SECTION (auto-detected, hidden if none) ─────────── */}
+      {bannerItems.length > 0 && (
+        <div className="mt-12 border-t border-ink/8 pt-2 dark:border-white/8">
+          {/* Banner header */}
+          <div className="mx-auto max-w-6xl px-5 mb-6 flex items-end justify-end">
+            {/* <div>
+              <span className="script text-2xl text-purple-600 dark:text-purple-400">
+                Wide Format
+              </span>
+              <h3 className="mt-2 font-display text-3xl font-bold md:text-4xl tracking-tight text-foreground dark:text-white">
+                Banners &amp; Covers
+              </h3>
+              <p className="mt-2 text-sm text-foreground/55 dark:text-gray-400">
+                Landscape artwork, social covers, and promotional banners
+              </p>
+            </div> */}
+            <div className="hidden md:flex gap-2 shrink-0 ml-6">
+              <button
+                onClick={scrollBannerLeft}
+                aria-label="Scroll banners left"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={scrollBannerRight}
+                aria-label="Scroll banners right"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-background/80 text-foreground hover:bg-accent/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition cursor-pointer"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Banner rail */}
+          <div
+            ref={bannerScrollRef}
+            onScroll={() => {
+              const container = bannerScrollRef.current;
+              if (!container || bannerItems.length === 0) return;
+
+              const cardElement = container.children[0] as HTMLElement;
+              if (!cardElement) return;
+
+              const totalItemWidth = cardElement.offsetWidth + 20; // 20px is gap-5
+              const boundaryWidth = totalItemWidth * bannerItems.length;
+
+              // Instant boundary snapping for infinite loop effect
+              if (container.scrollLeft <= 0) {
+                container.scrollLeft = boundaryWidth;
+              } else if (container.scrollLeft >= boundaryWidth * 2) {
+                container.scrollLeft = boundaryWidth;
+              }
+            }}
+            onWheel={(e) => {
+              if (!bannerScrollRef.current || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+              e.preventDefault();
+              bannerScrollRef.current.scrollLeft += e.deltaY;
+            }}
+            className="flex gap-5 overflow-x-auto px-5 py-4 md:gap-6 md:px-20 scrollbar-none snap-x snap-mandatory"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {/* Triple the items right inside the map to create the infinite scroll clones seamlessly */}
+            {[...bannerItems, ...bannerItems, ...bannerItems].map((slide, idx) => (
+              <motion.a
+                key={idx}
+                href={slide.detailUrl || slide.image}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ y: -6, scale: 1.015 }}
+                className="relative shrink-0 w-[min(82vw,560px)] aspect-[4/1] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_20px_55px_-30px_rgba(0,0,0,0.6)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-contain"
+                />
+                {/* subtle vignette only at bottom for text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent" />
+
+                {/* Category badge */}
+                {slide.subcategory && (
+                  <span className="absolute left-4 top-4 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-purple-500/20 border-purple-500/40 text-purple-300 backdrop-blur-md">
+                    {slide.subcategory}
+                  </span>
+                )}
+
+                {/* "Banner" pill — top right */}
+                <span className="absolute right-4 top-4 rounded-full border border-white/15 bg-black/40 px-2.5 py-1 text-[9px] font-mono text-white/70 backdrop-blur">
+                  Banner
+                </span>
+
+                {/* Text overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h4 className="font-display text-base md:text-lg font-bold leading-tight text-white line-clamp-1">
+                    {slide.title}
+                  </h4>
+                  <p className="mt-1 text-xs leading-5 text-white/70 line-clamp-1">
+                    {slide.description}
+                  </p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -2665,15 +3468,120 @@ function PortfolioSoftwareSystems({
           {content.description}
         </p>
       </div>
-      <RingCarousel
-        slides={items}
-        title=""
-        subtitle=""
-        description=""
-      />
+      <RingCarousel slides={items} title="" subtitle="" description="" />
     </div>
   );
 }
+
+// function PortfolioSEOAnalytics({
+//   content = DEFAULT_SITE.portfolio.sections.seoAnalytics,
+//   items = seoAnalyticsSlides,
+// }: {
+//   content?: PortfolioSectionCopy;
+//   items?: SeoAnalyticsSlide[];
+// }) {
+//   return (
+//     <div className="py-12 mt-8 md:mt-2 md:py-12">
+//       <div className="mb-10 text-center px-5">
+//         <span className="script text-3xl text-blue-400">{content.eyebrow}</span>
+//         <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
+//           {content.title}
+//         </h2>
+//         <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
+//           {content.description}
+//         </p>
+//       </div>
+
+//       <div className="relative max-w-7xl mx-auto px-4">
+//         <Swiper
+//           slidesPerView={1}
+//           spaceBetween={30}
+//           navigation={{
+//             nextEl: ".custom-next",
+//             prevEl: ".custom-prev",
+//           }}
+//           modules={[Navigation]}
+//           breakpoints={{
+//             768: {
+//               slidesPerView: 2,
+//               spaceBetween: 30,
+//             },
+//           }}
+//           className="pb-12"
+//         >
+//           {items.map((item, index) => (
+//             <SwiperSlide key={index}>
+//               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
+//                 <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
+//                   <img
+//                     src={item.poster}
+//                     alt={item.title}
+//                     className="w-full h-full object-cover"
+//                     loading="lazy"
+//                   />
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+//                   <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
+//                     {item.categoryLabel || "SEO"}
+//                   </div>
+//                 </div>
+
+//                 {/* Content Section - Bottom */}
+//                 <div className="p-4 flex-1 flex flex-col">
+//                   <h3 className="text-xl font-bold text-foreground dark:text-white ">
+//                     {item.title}
+//                   </h3>
+//                   {/* <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
+//                     {item.description}
+//                   </p> */}
+
+//                   <div className="grid grid-cols-2 gap-4  pt-2 border-t border-gray-200 dark:border-gray-700">
+//                     {item.metrics &&
+//                       item.metrics.map((metric, idx) => (
+//                         <div key={idx} className="text-center">
+//                           <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
+//                             {metric.value}
+//                           </div>
+//                           <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+//                             {metric.label}
+//                           </div>
+//                         </div>
+//                       ))}
+//                   </div>
+//                 </div>
+//               </div>
+//             </SwiperSlide>
+//           ))}
+//         </Swiper>
+
+//         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
+//           <svg
+//             className="w-5 h-5 text-gray-800 dark:text-white"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth={2}
+//               d="M15 19l-7-7 7-7"
+//             />
+//           </svg>
+//         </button>
+//         <button className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -mr-4 border border-gray-200 dark:border-gray-700">
+//           <svg
+//             className="w-5 h-5 text-gray-800 dark:text-white"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+//           </svg>
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
 
 function PortfolioSEOAnalytics({
   content = DEFAULT_SITE.portfolio.sections.seoAnalytics,
@@ -2698,6 +3606,7 @@ function PortfolioSEOAnalytics({
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
+          loop={true}
           navigation={{
             nextEl: ".custom-next",
             prevEl: ".custom-prev",
@@ -2714,7 +3623,6 @@ function PortfolioSEOAnalytics({
           {items.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl h-full flex flex-col">
-                {/* Image Section - Top */}
                 <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
                   <img
                     src={item.poster}
@@ -2729,19 +3637,19 @@ function PortfolioSEOAnalytics({
                 </div>
 
                 {/* Content Section - Bottom */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">
+                <div className="p-4 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-foreground dark:text-white ">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                  {/* <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
                     {item.description}
-                  </p>
+                  </p> */}
 
-                  <div className="grid grid-cols-2 gap-4 mt-2 pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <div className="grid grid-cols-2 gap-4  pt-2 border-t border-gray-200 dark:border-gray-700">
                     {item.metrics &&
                       item.metrics.map((metric, idx) => (
                         <div key={idx} className="text-center">
-                          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                          <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
                             {metric.value}
                           </div>
                           <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -2756,7 +3664,6 @@ function PortfolioSEOAnalytics({
           ))}
         </Swiper>
 
-        {/* Navigation Arrows */}
         <button className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all -ml-4 border border-gray-200 dark:border-gray-700">
           <svg
             className="w-5 h-5 text-gray-800 dark:text-white"
@@ -2953,7 +3860,7 @@ function PortfolioSection({
       className="relative isolate overflow-hidden bg-transparent py-12 md:py-20  text-foreground"
     >
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
-      <div className="mx-auto max-w-6xl px-5 text-center mb-16">
+      <div className="mx-auto max-w-6xl px-5 text-center mb-1">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-xl font-bold md:text-6xl tracking-tight text-foreground">
           {content.title.split(" ")[0]}{" "}
@@ -2987,6 +3894,118 @@ function Index() {
   );
   const cmsContentWriting = normalizeContentWriting(portfolio.collections.contentWriting);
 
+  // Carousel functionality for Google Reviews
+  useEffect(() => {
+    const track = document.getElementById('reviewsTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+
+    if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+    let cardWidth = 320;
+    let visibleCards = 3;
+    let currentIndex = 0;
+    const totalCards = track.children.length;
+
+    const updateCardWidth = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 640) {
+        cardWidth = 292;
+        visibleCards = 1;
+      } else if (screenWidth < 1024) {
+        cardWidth = 312;
+        visibleCards = 2;
+      } else {
+        cardWidth = 340;
+        visibleCards = 3;
+      }
+    };
+
+    const getMaxIndex = () => Math.max(0, totalCards - visibleCards);
+
+    const updateDots = () => {
+      const maxIndex = getMaxIndex();
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('button');
+        dot.className = `h-2 w-2 rounded-full transition-all ${i === currentIndex ? 'bg-accent w-6' : 'bg-gray-300 dark:bg-gray-600'}`;
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.onclick = () => scrollToIndex(i);
+        dotsContainer.appendChild(dot);
+      }
+    };
+
+    const scrollToIndex = (index: number) => {
+      const maxIndex = getMaxIndex();
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      const scrollAmount = currentIndex * cardWidth;
+      track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      updateDots();
+      updateButtons();
+    };
+
+    const updateButtons = () => {
+      const maxIndex = getMaxIndex();
+      prevBtn.style.opacity = currentIndex <= 0 ? '0.4' : '1';
+      nextBtn.style.opacity = currentIndex >= maxIndex ? '0.4' : '1';
+    };
+
+    const handleScroll = () => {
+      const scrollLeft = track.scrollLeft;
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      if (newIndex !== currentIndex) {
+        currentIndex = Math.min(newIndex, getMaxIndex());
+        updateDots();
+        updateButtons();
+      }
+    };
+
+    // Initialize
+    updateCardWidth();
+    updateDots();
+    updateButtons();
+
+    track.addEventListener('scroll', handleScroll);
+    prevBtn.addEventListener('click', () => currentIndex > 0 && scrollToIndex(currentIndex - 1));
+    nextBtn.addEventListener('click', () => currentIndex < getMaxIndex() && scrollToIndex(currentIndex + 1));
+
+    // Auto-play
+    let autoplayInterval: NodeJS.Timeout;
+    const startAutoplay = () => {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        if (currentIndex < getMaxIndex()) {
+          nextBtn.click();
+        } else {
+          scrollToIndex(0);
+        }
+      }, 5000);
+    };
+
+    const stopAutoplay = () => clearInterval(autoplayInterval);
+
+    const container = document.querySelector('.reviews-carousel-container');
+    container?.addEventListener('mouseenter', stopAutoplay);
+    container?.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+
+    // Resize handler
+    const handleResize = () => {
+      updateCardWidth();
+      updateDots();
+      updateButtons();
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      track.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      clearInterval(autoplayInterval);
+    };
+  }, [cmsTestimonials]);
+
   return (
     <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
       {/* ambient blobs */}
@@ -3009,7 +4028,6 @@ function Index() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-            // className="mx-auto mb-6 w-fit rounded-full border-2 border-ink bg-background px-6 py-1.5 text-lg"
           ></motion.div>
 
           <div className="text-center">
@@ -3031,11 +4049,10 @@ function Index() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mx-auto text-accent/80 max-w-2xl text-base md:text-lg "
+              className=" mx-auto text-xs md:text-lg bg-foreground/80 dark:bg-[#C8C1B6] px-1.5 mt-4 rounded-full text-white py-1 w-full dark:text-[#060000] max-w-3xl  "
             >
-            Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed  
-        
-               </motion.p>
+              Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
+            </motion.p>
           </div>
         </div>
 
@@ -3115,7 +4132,7 @@ function Index() {
                     <Megaphone className="h-4 w-4 text-accent" /> Social Media
                   </>
                 ),
-                pos: "-right-6 bottom-[15%] md:right-8",
+                pos: "-right-6 bottom-[10%] md:right-8",
                 r: "6deg",
                 d: "1.2s",
               },
@@ -3126,7 +4143,42 @@ function Index() {
                 animate={{ opacity: 0.8, scale: 1 }}
                 transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
                 style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
+                className={`pill-tag absolute z-10 animate-bob  scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
+              >
+                {p.txt}
+              </motion.div>
+            ))}
+
+            {/* NEW LEFT-SIDE PILLS: Web / App / UI/UX */}
+            {[
+              {
+                txt: (
+                  <>
+                    <Code className="h-4 w-4 text-accent" /> Web Development
+                  </>
+                ),
+                pos: "-right-6 top-[55%] md:-right-4",
+                r: "5deg",
+                d: "0.1s",
+              },
+              {
+                txt: (
+                  <>
+                    <Smartphone className="h-4 w-4 text-accent" /> App Development
+                  </>
+                ),
+                pos: "-left-6 top-[30%] md:-left-4",
+                r: "3deg",
+                d: "0.5s",
+              },
+            ].map((p, i) => (
+              <motion.div
+                key={`left-pill-${i}`}
+                initial={{ opacity: 0, scale: 0.5, x: -20 }}
+                animate={{ opacity: 0.8, scale: 1, x: 0 }}
+                transition={{ delay: 0.8 + i * 0.12, type: "spring" }}
+                style={{ ["--r" as never]: p.r, animationDelay: p.d }}
+                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}  border border-ink/10`}
               >
                 {p.txt}
               </motion.div>
@@ -3142,7 +4194,7 @@ function Index() {
               <div className="font-display text-4xl font-bold leading-none">
                 {site.hero.sidebarStat.value}
               </div>
-              <div className="text-sm text-foreground/60">{site.hero.sidebarStat.label}</div>
+              <div className="text-sm ">{site.hero.sidebarStat.label}</div>
             </motion.div>
 
             {/* Mini testimonial snippet — top left, same as original */}
@@ -3157,28 +4209,63 @@ function Index() {
             </motion.div>
           </div>
 
-          <div className="mt-3 flex justify-center px-4">
-            <div className="ceo-identity-badge" role="note" aria-label="Ankit Sen, founder and CEO">
-              <span className="ceo-identity-badge__name">Ankit Sen</span>
-              <span className="ceo-identity-badge__role">Founder & CEO</span>
+          <a href="https://www.linkedin.com/in/ankit-sen-3a0725165" target="_blank">
+            <div className="mt-3 flex justify-center px-4">
+              <div
+                className="ceo-identity-badge"
+                role="note"
+                aria-label="Ankit Sen, founder and CEO"
+              >
+                <span className="ceo-identity-badge__name">Ankit Sen</span>
+                <span className="ceo-identity-badge__role">Founder & CEO</span>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
-        <section className="relative w-full flex justify-center items-cennter  mx-auto max-w-6xl px-5 py-4 md:py-14">
-          <div className="grid gap-2 sm:grid-cols-3  place-items-center lg:grid-cols-5 grid-cols-[repeat(auto-fit,minmax(180px,1fr))] ">
+        {/* Stats section */}
+        <section className="relative w-full mt-4 flex justify-center items-center mx-auto max-w-6xl px-2 py-4 md:py-14">
+          {/* ── Desktop grid (md+) — unchanged ── */}
+          <div className="hidden  md:grid gap-3 grid-cols-4  place-items-center ">
             {cmsStats.map((s, i) => (
               <motion.div
                 key={s.v}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08, type: "spring" }}
-                className="rounded-[2rem] border-2 border-ink bg-background p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+                transition={{ delay: i * 0.1, type: "spring" }}
+                className="w-full mx-auto rounded-[2rem] border-2 border-ink bg-background p-4 md:p-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
               >
-                <div className="font-display text-4xl font-bold text-ink md:text-2xl">{s.k}</div>
-                <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
+                <div className="font-display text-2xl md:text-4xl font-bold text-ink md:text-2xl">
+                  {s.k}
+                </div>
+                <div className="mt-1 text-sm text-foreground/70">{s.v}</div>
               </motion.div>
             ))}
+          </div>
+
+          {/* ── Mobile marquee (below md) ── */}
+          <div className="md:hidden w-full overflow-hidden">
+            <motion.div
+              className="flex gap-3"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                duration: cmsStats.length * 2.2, // tune speed here
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              style={{ width: "max-content" }}
+            >
+              {/* Duplicate items so the loop is seamless */}
+              {[...cmsStats, ...cmsStats].map((s, i) => (
+                <div
+                  key={i}
+                  className="w-[42vw] shrink-0 rounded-[2rem] border-2 border-ink bg-background px-4 py-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+                >
+                  <div className="font-display text-2xl font-bold text-ink">{s.k}</div>
+                  <div className="mt-1 text-sm text-foreground/70">{s.v}</div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
         <div className="w-full mt-0 mb-12 text-center flex flex-col justify-center items-center">
@@ -3186,7 +4273,7 @@ function Index() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto  mt-12 max-w-5xl text-base md:text-lg text-accent"
+            className="mx-auto  mt-2 max-w-5xl text-foreground md:text-lg text-accent"
           >
             We bridge the gap between creative imagination and functional engineering. From
             aggressive growth marketing to powerful custom tech, we build the exact systems you need
@@ -3250,10 +4337,6 @@ function Index() {
       {/* FILM REELS */}
       <FilmReelsSection items={cmsReels} />
 
-      {/* <PortfolioVideoEditing
-        content={portfolioCopy.sections.videoEditing}
-        items={cmsVideoEditing}
-      /> */}
       <PortfolioGraphicDesign
         content={portfolioCopy.sections.visualAssets}
         items={cmsVisualAssets}
@@ -3275,7 +4358,7 @@ function Index() {
         items={cmsContentWriting}
       />
 
-      <ServicesSection />
+      {/* <ServicesSection /> */}
 
       {/* ABOUT */}
       <section id="about" className="relative mx-auto max-w-6xl px-5 py-24">
@@ -3328,7 +4411,9 @@ function Index() {
                   whileInView={{ opacity: 1, scale: 1, rotate: i % 2 === 0 ? -2 : 2 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className={`rounded-2xl border-2 border-ink p-5 lift ${i % 2 === 0 ? "bg-accent" : "bg-background"}`}
+                  className={`rounded-2xl border-2 border-ink p-5 lift ${
+                    i % 2 === 0 ? "bg-accent" : "bg-background"
+                  }`}
                 >
                   <Icon className="mb-3 h-5 w-5" />
                   <div className="font-display text-xl font-semibold">{t}</div>
@@ -3348,47 +4433,175 @@ function Index() {
       {/* PARTNERS */}
       <TrustSection />
 
-      
-
-      {/* TESTIMONIALS */}
-      <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
-        <div className="mb-12 text-center">
-          <span className="script text-3xl text-accent">What Clients Say</span>
+      {/* GOOGLE REVIEWS CAROUSEL - ABOVE TESTIMONIALS */}
+      <section className="relative mx-auto max-w-6xl px-5 py-10 reviews-carousel-container">
+        <div className="mb-8 text-center">
+          <span className="script text-3xl text-accent">Real Reviews</span>
           <h2 className="font-display text-4xl font-bold md:text-6xl">
-            Straight from <span className="italic">the source</span>
+            What our <span className="italic">clients</span> say
             <span className="text-accent">.</span>
           </h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {cmsTestimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30, rotate: i === 0 ? -1 : 1 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, type: "spring" }}
-              className="rounded-[1.5rem] border-2 border-ink bg-background p-8 px-4 shadow-[5px_5px_0_0_var(--ink)] lift dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-            >
-              <div className="mb-4 flex gap-1">
-                {[...Array(t.stars)].map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-accent text-accent" />
-                ))}
-              </div>
-              <p className="font-display text-xl font-medium leading-snug">"{t.q}"</p>
-              <div className="mt-6 flex items-center justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-sm">— {t.name}</div>
-                  <div className="text-sm text-foreground/60 ">{t.co}</div>
-                </div>
 
-                <span className="shrink-0 rounded-full border border-ink/30 bg-accent/20 px-1 py-1 text-[9px] md:text-[11px] font-bold uppercase">
-                  {t.verified}
-                </span>
+          {/* Google Rating Badge */}
+          <div className="mt-4 flex justify-center">
+            <div className="inline-flex items-center gap-3 rounded-full border border-ink/20 bg-background px-4 py-2 shadow-sm dark:border-border dark:bg-card">
+              <div className="flex items-center gap-2">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                <span className="text-xl font-bold text-foreground dark:text-white">4.6</span>
               </div>
-            </motion.div>
-          ))}
+              <div className="flex items-center gap-0.5">
+                <Star className="h-3 w-3 fill-accent text-accent" />
+                <Star className="h-3 w-3 fill-accent text-accent" />
+                <Star className="h-3 w-3 fill-accent text-accent" />
+                <Star className="h-3 w-3 fill-accent text-accent" />
+                <Star className="h-3 w-3 fill-accent text-accent" />
+              </div>
+              <span className="text-xs text-foreground/60 dark:text-gray-400">32 reviews on Google</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Reviews Track */}
+          <div 
+            className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            id="reviewsTrack"
+          >
+            {cmsTestimonials.map((t, i) => {
+              const googleLink =
+                "https://www.google.com/search?hl=en-IN&gl=in&q=AlphaNexis+Tech+Pvt+Ltd+-+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,";
+
+              const colors = [
+                'from-purple-500 to-purple-700',
+                'from-green-500 to-green-700',
+                'from-blue-500 to-blue-700',
+                'from-pink-500 to-pink-700',
+              ];
+
+              const initials = t.name.split(' ').map(n => n[0]).join('');
+
+              return (
+                <motion.a
+                  key={i}
+                  href={googleLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  whileHover={{ y: -4 }}
+                  className="flex-shrink-0 w-[280px] sm:w-[300px] md:w-[320px] snap-start rounded-xl border border-ink/10 bg-background p-5 shadow-sm transition-all hover:shadow-md dark:border-border dark:bg-card cursor-pointer"
+                >
+                  {/* Header with Avatar */}
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br ${colors[i % colors.length]} flex items-center justify-center text-white font-semibold text-sm`}>
+                      {initials}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm text-foreground dark:text-white">
+                        {t.name}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-foreground/50 dark:text-gray-400">
+                          {i === 0 || i === 1 ? '10 days ago' : '12 days ago'}
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-[10px] text-green-600 dark:text-green-400">
+                          <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          Verified
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Stars */}
+                  <div className="flex gap-0.5 mb-2">
+                    {[...Array(t.stars)].map((_, j) => (
+                      <Star key={j} className="h-3.5 w-3.5 fill-accent text-accent" />
+                    ))}
+                    {[...Array(5 - t.stars)].map((_, j) => (
+                      <Star key={`empty-${j}`} className="h-3.5 w-3.5 text-gray-300 dark:text-gray-600" />
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-sm text-foreground/80 dark:text-gray-300 leading-relaxed line-clamp-3">
+                    "{t.q}"
+                  </p>
+
+                  {/* Source */}
+                  <div className="mt-3 pt-3 border-t border-ink/10 dark:border-border flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs text-foreground/40 dark:text-gray-500">
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                      </svg>
+                      <span>Google Review</span>
+                    </div>
+                    <span className="text-xs font-medium text-accent hover:underline">
+                      Read more →
+                    </span>
+                  </div>
+                </motion.a>
+              );
+            })}
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-center gap-3 mt-4">
+            <button 
+              id="prevBtn" 
+              className="w-10 h-10 rounded-full border border-ink/20 bg-background flex items-center justify-center hover:bg-accent/10 transition-colors dark:border-border dark:bg-card"
+              aria-label="Previous reviews"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button 
+              id="nextBtn" 
+              className="w-10 h-10 rounded-full border border-ink/20 bg-background flex items-center justify-center hover:bg-accent/10 transition-colors dark:border-border dark:bg-card"
+              aria-label="Next reviews"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-3" id="dotsContainer"></div>
+        </div>
+
+        {/* View All Button */}
+        <div className="mt-6 text-center">
+          <a
+            href="https://www.google.com/search?hl=en-IN&gl=in&q=AlphaNexis+Tech+Pvt+Ltd+-+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-ink/20 bg-background px-6 py-2.5 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-md dark:border-border dark:bg-card"
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            View all 32 reviews on Google
+            <ArrowUpRight className="h-3 w-3" />
+          </a>
         </div>
       </section>
+
+      {/* ORIGINAL TESTIMONIALS SECTION */}
+      
 
       {/* CTA */}
       <section id="contact" className="relative mx-auto max-w-6xl px-5 py-24">
@@ -3416,35 +4629,6 @@ function Index() {
           </div>
         </motion.div>
       </section>
-      {/* STATS strip */}
-      {/* <section className="relative mx-auto max-w-6xl px-5 py-4 md:py-14">
-        <div className="mb-10 text-center">
-          <span className="script text-3xl text-accent">Achievements</span>
-          <h2 className="mt-3 font-display text-3xl font-bold md:text-7xl">
-            Milestones that prove our work delivers impact.
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-foreground/70">
-            From enterprise launches to repeated growth loops, these metrics show the outcomes we
-            create.
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {cmsStats.map((s, i) => (
-            <motion.div
-              key={s.v}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, type: "spring" }}
-              className="rounded-[2rem] border-2 border-ink bg-background p-8 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-            >
-              <div className="font-display text-4xl font-bold text-ink md:text-6xl">{s.k}</div>
-              <div className="mt-3 text-sm text-foreground/70">{s.v}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section> */}
 
       {/* FOOTER */}
       <footer className="border-t border-border bg-background">
@@ -3480,8 +4664,6 @@ function Index() {
       </footer>
 
       {/* FLOATING ACTION BUTTONS - BOTTOM RIGHT */}
-      {/* ============================================ */}
-
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
         <CartoonButton
           label="WhatsApp"
@@ -3499,7 +4681,7 @@ function Index() {
           className="animate-float"
           onClick={() => {
             const whatsappLink =
-              process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/1234567890";
+              process.env.NEXT_PUBLIC_WHATSAPP_LINK || "https://wa.me/+917067068673";
             window.open(whatsappLink, "_blank");
           }}
         />

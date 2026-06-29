@@ -111,7 +111,7 @@ export function TriangleMask({
         onWheel={carousel.onWheel}
         onKeyDown={carousel.onKeyDown}
         onClick={(e) => e.stopPropagation()}
-        className="relative h-[60vh] sm:h-[68vh] md:h-[72vh] overflow-visible"
+        className="relative h-[60dvh] sm:h-[68dvh] md:h-[72dvh] overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center">
           <AnimatePresence mode="wait">

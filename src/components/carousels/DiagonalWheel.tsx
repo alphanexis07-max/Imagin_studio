@@ -90,7 +90,7 @@ export function DiagonalWheel({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         style={{ touchAction: "none" }}
-        className="relative h-[60vh] sm:h-[74vh] md:h-[86vh] overflow-visible"
+        className="relative h-[60dvh] sm:h-[74dvh] md:h-[86dvh] overflow-visible"
       >
         <div className="absolute inset-0 flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {

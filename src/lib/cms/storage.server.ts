@@ -129,9 +129,9 @@ function mergeWithDefaultReels(reels: Reel[]) {
 }
 
 const MAX_COLLECTION_ITEMS: Partial<Record<CollectionName, number>> = {
-  heroShowcase: 5,
+  heroShowcase: 10,
   videoEditing: 4,
-  visualAssets: 5,
+  visualAssets: 15,
   softwareSystems: 4,
   seoAnalytics: 4,
   strategicConsulting: 2,
