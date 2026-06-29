@@ -4601,44 +4601,7 @@ function Index() {
       </section>
 
       {/* ORIGINAL TESTIMONIALS SECTION */}
-      <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
-        <div className="mb-12 text-center">
-          <span className="script text-3xl text-accent">What Clients Say</span>
-          <h2 className="font-display text-4xl font-bold md:text-6xl">
-            Straight from <span className="italic">the source</span>
-            <span className="text-accent">.</span>
-          </h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {cmsTestimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30, rotate: i === 0 ? -1 : 1 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, type: "spring" }}
-              className="rounded-[1.5rem] border-2 border-ink bg-background p-8 px-4 shadow-[5px_5px_0_0_var(--ink)] lift dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
-            >
-              <div className="mb-4 flex gap-1">
-                {[...Array(t.stars)].map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-accent text-accent" />
-                ))}
-              </div>
-              <p className="font-display text-xl font-medium leading-snug">"{t.q}"</p>
-              <div className="mt-6 flex items-center justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-sm">— {t.name}</div>
-                  <div className="text-sm text-foreground/60 ">{t.co}</div>
-                </div>
-
-                <span className="shrink-0 rounded-full border border-ink/30 bg-accent/20 px-1 py-1 text-[9px] md:text-[11px] font-bold uppercase">
-                  {t.verified}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      
 
       {/* CTA */}
       <section id="contact" className="relative mx-auto max-w-6xl px-5 py-24">
