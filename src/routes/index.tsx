@@ -4259,7 +4259,7 @@ function Index() {
               {[...cmsStats, ...cmsStats].map((s, i) => (
                 <div
                   key={i}
-                  className="w-[42vw] shrink-0 rounded-[2rem] border-2 border-ink bg-background px-4 py-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
+                  className="w-[42dvw] shrink-0 rounded-[2rem] border-2 border-ink bg-background px-4 py-5 text-center shadow-[5px_5px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[5px_5px_0_0_rgba(255,255,255,0.16)]"
                 >
                   <div className="font-display text-2xl font-bold text-ink">{s.k}</div>
                   <div className="mt-1 text-sm text-foreground/70">{s.v}</div>
