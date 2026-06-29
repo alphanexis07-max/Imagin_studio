@@ -66,7 +66,7 @@ export function TricksMenu() {
         </p>
       </div>
 
-      <div className="relative h-[74vh] overflow-visible py-4">
+      <div className="relative h-[74dvh] overflow-visible py-4">
         <div className="mb-8 text-center">
           <span className="block text-xs font-semibold uppercase tracking-[0.28em] text-foreground/55 dark:text-gray-400">
             Current channel

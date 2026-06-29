@@ -160,7 +160,7 @@ export function RingCarousel({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         style={{ perspective: 1200, touchAction: "none" }}
-        className="relative h-[60vh]  sm:h-[72vh] md:h-[80vh] select-none overflow-visible"
+        className="relative h-[60dvh]  sm:h-[72dvh] md:h-[80dvh] select-none overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {
