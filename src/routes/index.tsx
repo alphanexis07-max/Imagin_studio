@@ -3631,7 +3631,7 @@ function PortfolioSEOAnalytics({
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
+                  <div className="absolute top-4 right-8 bg-blue-600/40 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
                     {item.categoryLabel || "SEO"}
                   </div>
                 </div>
