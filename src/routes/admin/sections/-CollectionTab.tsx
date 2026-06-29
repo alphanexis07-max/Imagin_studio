@@ -116,24 +116,24 @@ export function CollectionTab({ collection, label, fields, maxItems }: Props) {
     }
   }
 
-  // async function handleDelete(id: string) {
-  //   if (!confirm("Delete this item?")) return;
-  //   setDeletingId(id);
-  //   const current = items.find((item) => item.id === id);
-  //   await deleteItem({ data: { collection, id } });
-  //   if (current) {
-  //     await Promise.all(
-  //       fields
-  //         .filter((field) => field.type === "image" || field.type === "video")
-  //         .map((field) => String(current[field.key] ?? ""))
-  //         .filter(Boolean)
-  //         .map((url) => deleteMedia({ data: { url } }).catch(() => null)),
-  //     );
-  //   }
-  //   setItems((prev) => prev.filter((i) => i.id !== id));
-  //   showToast("Deleted");
-  //   setDeletingId(null);
-  // }
+  async function handleDelete(id: string) {
+    if (!confirm("Delete this item?")) return;
+    setDeletingId(id);
+    const current = items.find((item) => item.id === id);
+    await deleteItem({ data: { collection, id } });
+    if (current) {
+      await Promise.all(
+        fields
+          .filter((field) => field.type === "image" || field.type === "video")
+          .map((field) => String(current[field.key] ?? ""))
+          .filter(Boolean)
+          .map((url) => deleteMedia({ data: { url } }).catch(() => null)),
+      );
+    }
+    setItems((prev) => prev.filter((i) => i.id !== id));
+    showToast("Deleted");
+    setDeletingId(null);
+  }
 
   async function handleDelete(id: string) {
   if (!confirm("Delete this item?")) return;

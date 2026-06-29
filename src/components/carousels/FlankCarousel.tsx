@@ -181,7 +181,7 @@ export function FlankCarousel({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         style={{ perspective: 1400, touchAction: "none" }}
-        className="relative h-[45vh] sm:h-[48vh] mt-6 md:mt-2 md:h-[52vh] overflow-visible"
+        className="relative h-[45dvh] sm:h-[48dvh] mt-6 md:mt-2 md:h-[52dvh] overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {
@@ -249,7 +249,7 @@ export function FlankCarousel({
                 }}
               >
                 {/* MEDIA REGION */}
-                <div className="relative h-[24vh] sm:h-[26vh] md:h-[32vh] bg-muted dark:bg-[#0b0f14]">
+                <div className="relative h-[24dvh] sm:h-[26dvh] md:h-[32dvh] bg-muted dark:bg-[#0b0f14]">
                   {slide.video ? (
                     <CarouselVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (

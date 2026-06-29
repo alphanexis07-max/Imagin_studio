@@ -139,7 +139,7 @@ export function JumboStack({
         dragElastic={0.1}
         onDragEnd={carousel.onDragEnd}
         whileTap={{ scale: 0.99 }}
-        className="relative h-[60vh] sm:h-[72vh] md:h-[82vh] mt-12 md:mt-2 overflow-visible"
+        className="relative h-[60dvh] sm:h-[72dvh] md:h-[82dvh] mt-12 md:mt-2 overflow-visible"
       >
         <div className="h-full w-full flex items-center justify-center overflow-visible">
           {slides.map((slide, index) => {
