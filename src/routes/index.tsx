@@ -480,25 +480,6 @@ const MobileQuestionCta = ({
 
 const QuestionAnswerCtas = () => (
   <div className="mx-auto mt-8 w-full max-w-5xl px-2 md:px-0">
-    {/* <div className="grid gap-4 md:hidden">
-      <MobileQuestionCta
-        label="Need campaigns, content, and growth systems?"
-        icon={<Megaphone className="h-5 w-5" />}
-        href="#contact"
-        primary
-        delay={0.68}
-      >
-        Marketing <ArrowUpRight className="h-4 w-4" />
-      </MobileQuestionCta>
-      <MobileQuestionCta
-        label="Need websites, apps, and automation built?"
-        icon={<Rocket className="h-5 w-5" />}
-        href="#contact"
-        delay={0.78}
-      >
-        Development
-      </MobileQuestionCta>
-    </div> */}
     <div className="grid gap-4 md:hidden">
       <style>{`
     @keyframes border-spin {
@@ -1917,31 +1898,50 @@ function normalizeReels(items: CmsItem[]) {
 
   return reels.length ? reels : filmReels;
 }
+// ===== REPLACE YOUR EXISTING normalizeTestimonials FUNCTION WITH THIS =====
 function normalizeTestimonials(items: CmsItem[]) {
-  return items.length
-    ? items.map((item) => ({
-        q: asString(item.quote),
-        name: asString(item.author),
-        co: asString(item.role),
-        verified: asString(item.verified, "Verified"),
-        stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
-      }))
-    : [
-        {
-          q: "AlphaNexis completely transformed our product delivery lifecycle. We replaced a fragmented three-vendor setup with their single integrated growth pod. They shipped ahead of schedule and captured a critical market window.",
-          name: "VP of Product",
-          co: "North American HealthTech Corp",
-          verified: "LinkedIn Verified",
-          stars: 5,
-        },
-        {
-          q: "The operational predictability is what sets AlphaNexis apart. Their sprint demos are rigorous, code transparency is absolute, and their AI automation insights added immediate value to our bottom line.",
-          name: "Chief Operating Officer",
-          co: "European Logistics Group",
-          verified: "Clutch 5-Star",
-          stars: 5,
-        },
-      ];
+  // If CMS items exist, use them
+  if (items.length) {
+    return items.map((item) => ({
+      q: asString(item.quote),
+      name: asString(item.author),
+      co: asString(item.role),
+      verified: asString(item.verified, "Verified"),
+      stars: Math.max(1, Math.min(5, Number(item.stars) || 5)),
+    }));
+  }
+  
+  // Your new testimonial data
+  return [
+    {
+      q: "I hired them for a lead generation campaign for my real estate business. The results were outstanding – we received 50+ genuine leads in just one month! Best ROI I have ever seen from a marketing campaign.",
+      name: "Akhilesh Singh",
+      co: "Real Estate Business",
+      verified: "Google 5-Star",
+      stars: 5,
+    },
+    {
+      q: "Excellent social media management services! The content quality and posting schedule are always on point. Our followers and engagement have grown significantly since we partnered with them. Highly satisfied!",
+      name: "Samarpit Shrivastava",
+      co: "Business Owner",
+      verified: "Google 4-Star",
+      stars: 4,
+    },
+    {
+      q: "Very satisfied with their graphic design services. The team delivered creative and professional designs that aligned perfectly with our brand. They were responsive, understood our requirements well, and always delivered on time. Highly recommend their services for anyone looking for quality graphic design work.",
+      name: "Arshiya Saxena",
+      co: "Brand Manager",
+      verified: "Google 5-Star",
+      stars: 5,
+    },
+    {
+      q: "Social media content professionally and consistently maintained in posts. Organisation is responsive to feedback, and committed to delivering quality work.",
+      name: "Manya Singh",
+      co: "Social Media Manager",
+      verified: "Google 4-Star",
+      stars: 4,
+    }
+  ];
 }
 
 function CoreCapabilitiesSection({ items = capabilities }: { items?: typeof capabilities }) {
@@ -3894,6 +3894,118 @@ function Index() {
   );
   const cmsContentWriting = normalizeContentWriting(portfolio.collections.contentWriting);
 
+  // Carousel functionality for Google Reviews
+  useEffect(() => {
+    const track = document.getElementById('reviewsTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+
+    if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+    let cardWidth = 320;
+    let visibleCards = 3;
+    let currentIndex = 0;
+    const totalCards = track.children.length;
+
+    const updateCardWidth = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 640) {
+        cardWidth = 292;
+        visibleCards = 1;
+      } else if (screenWidth < 1024) {
+        cardWidth = 312;
+        visibleCards = 2;
+      } else {
+        cardWidth = 340;
+        visibleCards = 3;
+      }
+    };
+
+    const getMaxIndex = () => Math.max(0, totalCards - visibleCards);
+
+    const updateDots = () => {
+      const maxIndex = getMaxIndex();
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('button');
+        dot.className = `h-2 w-2 rounded-full transition-all ${i === currentIndex ? 'bg-accent w-6' : 'bg-gray-300 dark:bg-gray-600'}`;
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.onclick = () => scrollToIndex(i);
+        dotsContainer.appendChild(dot);
+      }
+    };
+
+    const scrollToIndex = (index: number) => {
+      const maxIndex = getMaxIndex();
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      const scrollAmount = currentIndex * cardWidth;
+      track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      updateDots();
+      updateButtons();
+    };
+
+    const updateButtons = () => {
+      const maxIndex = getMaxIndex();
+      prevBtn.style.opacity = currentIndex <= 0 ? '0.4' : '1';
+      nextBtn.style.opacity = currentIndex >= maxIndex ? '0.4' : '1';
+    };
+
+    const handleScroll = () => {
+      const scrollLeft = track.scrollLeft;
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      if (newIndex !== currentIndex) {
+        currentIndex = Math.min(newIndex, getMaxIndex());
+        updateDots();
+        updateButtons();
+      }
+    };
+
+    // Initialize
+    updateCardWidth();
+    updateDots();
+    updateButtons();
+
+    track.addEventListener('scroll', handleScroll);
+    prevBtn.addEventListener('click', () => currentIndex > 0 && scrollToIndex(currentIndex - 1));
+    nextBtn.addEventListener('click', () => currentIndex < getMaxIndex() && scrollToIndex(currentIndex + 1));
+
+    // Auto-play
+    let autoplayInterval: NodeJS.Timeout;
+    const startAutoplay = () => {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        if (currentIndex < getMaxIndex()) {
+          nextBtn.click();
+        } else {
+          scrollToIndex(0);
+        }
+      }, 5000);
+    };
+
+    const stopAutoplay = () => clearInterval(autoplayInterval);
+
+    const container = document.querySelector('.reviews-carousel-container');
+    container?.addEventListener('mouseenter', stopAutoplay);
+    container?.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+
+    // Resize handler
+    const handleResize = () => {
+      updateCardWidth();
+      updateDots();
+      updateButtons();
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      track.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      clearInterval(autoplayInterval);
+    };
+  }, [cmsTestimonials]);
+
   return (
     <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
       {/* ambient blobs */}
@@ -4321,7 +4433,174 @@ function Index() {
       {/* PARTNERS */}
       <TrustSection />
 
-      {/* TESTIMONIALS */}
+      {/* GOOGLE REVIEWS CAROUSEL - ABOVE TESTIMONIALS */}
+      <section className="relative mx-auto max-w-6xl px-5 py-10 reviews-carousel-container">
+        <div className="mb-8 text-center">
+          <span className="script text-3xl text-accent">Real Reviews</span>
+          <h2 className="font-display text-4xl font-bold md:text-6xl">
+            What our <span className="italic">clients</span> say
+            <span className="text-accent">.</span>
+          </h2>
+
+          {/* Google Rating Badge */}
+          <div className="mt-4 flex justify-center">
+            <div className="inline-flex items-center gap-3 rounded-full border border-ink/20 bg-background px-4 py-2 shadow-sm dark:border-border dark:bg-card">
+              <div className="flex items-center gap-2">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                <span className="text-xl font-bold text-foreground dark:text-white">4.6</span>
+              </div>
+              <div className="flex items-center gap-0.5">
+                <Star className="h-3 w-3 fill-accent text-accent" />
+                <Star className="h-3 w-3 fill-accent text-accent" />
+                <Star className="h-3 w-3 fill-accent text-accent" />
+                <Star className="h-3 w-3 fill-accent text-accent" />
+                <Star className="h-3 w-3 fill-accent text-accent" />
+              </div>
+              <span className="text-xs text-foreground/60 dark:text-gray-400">32 reviews on Google</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Reviews Track */}
+          <div 
+            className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            id="reviewsTrack"
+          >
+            {cmsTestimonials.map((t, i) => {
+              const googleLink =
+                "https://www.google.com/search?hl=en-IN&gl=in&q=AlphaNexis+Tech+Pvt+Ltd+-+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,";
+
+              const colors = [
+                'from-purple-500 to-purple-700',
+                'from-green-500 to-green-700',
+                'from-blue-500 to-blue-700',
+                'from-pink-500 to-pink-700',
+              ];
+
+              const initials = t.name.split(' ').map(n => n[0]).join('');
+
+              return (
+                <motion.a
+                  key={i}
+                  href={googleLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  whileHover={{ y: -4 }}
+                  className="flex-shrink-0 w-[280px] sm:w-[300px] md:w-[320px] snap-start rounded-xl border border-ink/10 bg-background p-5 shadow-sm transition-all hover:shadow-md dark:border-border dark:bg-card cursor-pointer"
+                >
+                  {/* Header with Avatar */}
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br ${colors[i % colors.length]} flex items-center justify-center text-white font-semibold text-sm`}>
+                      {initials}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm text-foreground dark:text-white">
+                        {t.name}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-foreground/50 dark:text-gray-400">
+                          {i === 0 || i === 1 ? '10 days ago' : '12 days ago'}
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-[10px] text-green-600 dark:text-green-400">
+                          <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          Verified
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Stars */}
+                  <div className="flex gap-0.5 mb-2">
+                    {[...Array(t.stars)].map((_, j) => (
+                      <Star key={j} className="h-3.5 w-3.5 fill-accent text-accent" />
+                    ))}
+                    {[...Array(5 - t.stars)].map((_, j) => (
+                      <Star key={`empty-${j}`} className="h-3.5 w-3.5 text-gray-300 dark:text-gray-600" />
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-sm text-foreground/80 dark:text-gray-300 leading-relaxed line-clamp-3">
+                    "{t.q}"
+                  </p>
+
+                  {/* Source */}
+                  <div className="mt-3 pt-3 border-t border-ink/10 dark:border-border flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs text-foreground/40 dark:text-gray-500">
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                      </svg>
+                      <span>Google Review</span>
+                    </div>
+                    <span className="text-xs font-medium text-accent hover:underline">
+                      Read more →
+                    </span>
+                  </div>
+                </motion.a>
+              );
+            })}
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-center gap-3 mt-4">
+            <button 
+              id="prevBtn" 
+              className="w-10 h-10 rounded-full border border-ink/20 bg-background flex items-center justify-center hover:bg-accent/10 transition-colors dark:border-border dark:bg-card"
+              aria-label="Previous reviews"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button 
+              id="nextBtn" 
+              className="w-10 h-10 rounded-full border border-ink/20 bg-background flex items-center justify-center hover:bg-accent/10 transition-colors dark:border-border dark:bg-card"
+              aria-label="Next reviews"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-3" id="dotsContainer"></div>
+        </div>
+
+        {/* View All Button */}
+        <div className="mt-6 text-center">
+          <a
+            href="https://www.google.com/search?hl=en-IN&gl=in&q=AlphaNexis+Tech+Pvt+Ltd+-+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-ink/20 bg-background px-6 py-2.5 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-md dark:border-border dark:bg-card"
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            View all 32 reviews on Google
+            <ArrowUpRight className="h-3 w-3" />
+          </a>
+        </div>
+      </section>
+
+      {/* ORIGINAL TESTIMONIALS SECTION */}
       <section className="relative mx-auto max-w-6xl px-5 py-10 md:py-18">
         <div className="mb-12 text-center">
           <span className="script text-3xl text-accent">What Clients Say</span>
