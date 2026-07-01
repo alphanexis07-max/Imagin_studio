@@ -3024,217 +3024,213 @@ function PortfolioSection({
   );
 }
 
-{/* ZIGZAG ABOUT SECTION */}
+{/* ZIGZAG ABOUT SECTION - OPTIMIZED FOR ALL DEVICES */}
 function PortfolioSectionAbout({
   content = DEFAULT_SITE.portfolio.overview,
 }: {
   content?: PortfolioSectionCopy;
 }) {
-  // Create a ref to track this specific section's scroll progress
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Track scroll position relative to the container
-  // "start center" means the animation starts when the top of the section hits the middle of the screen
-  // "end center" means it stops when the bottom of the section leaves the middle of the screen
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"],
   });
 
-  // Map the 0-1 scroll progress directly to a 0% to 100% top positioning
   const dotTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  const items = [
+    {
+      side: "right",
+      eyebrow: "Who we are",
+      title: "About AlphaNexis",
+      body: "AlphaNexis is a fast-growing digital marketing, branding, and technology company based in Indore. We specialize in creating impactful digital experiences that strengthen online presence and drive real results across industries.",
+      color: "#2B9BD1",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
+          <circle cx="12" cy="12" r="7" />
+          <circle cx="12" cy="12" r="2" fill="white" stroke="none" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+        </svg>
+      ),
+    },
+    {
+      side: "left",
+      eyebrow: "What we do",
+      title: "Branding & Creative Content",
+      body: "We create impactful digital experiences that strengthen online presence and drive real results. By bringing creativity, strategy, and technology together in every campaign, we help ambitious brands stay ahead of the curve.",
+      color: "#E05A2B",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
+          <rect x="2" y="6" width="20" height="14" rx="2" />
+          <line x1="2" y1="10" x2="22" y2="10" />
+          <rect x="5" y="2" width="5" height="4" rx="1" fill="white" stroke="none" />
+          <rect x="14" y="2" width="5" height="4" rx="1" fill="white" stroke="none" />
+        </svg>
+      ),
+    },
+    {
+      side: "right",
+      eyebrow: "How we grow you",
+      title: "Digital Growth Strategies",
+      body: "From planning to performance, we build scalable strategies that help businesses grow faster and reach their goals with confidence.",
+      color: "#9B5FCF",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
+          <path d="M4 20L12 6l8 14H4Z" />
+          <line x1="12" y1="6" x2="12" y2="2" />
+        </svg>
+      ),
+    },
+    {
+      side: "left",
+      eyebrow: "Reach the right people",
+      title: "Paid Advertising",
+      body: "We design data-driven ad campaigns that connect with the right audience, increase visibility, and turn clicks into measurable growth.",
+      color: "#4CAF7A",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
+          <rect x="2" y="2" width="8" height="8" rx="1" />
+          <rect x="14" y="2" width="8" height="8" rx="1" />
+          <rect x="2" y="14" width="8" height="8" rx="1" />
+          <rect x="14" y="14" width="8" height="8" rx="1" />
+        </svg>
+      ),
+    },
+    {
+      side: "right",
+      eyebrow: "Our expertise",
+      title: "Core Services",
+      body: "Branding · Paid Ads · Growth Strategy · Website & App Dev · SEO & Analytics · AI Automation — all under one roof.",
+      color: "#CF4E6B",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
+          <polyline points="2,18 6,12 10,16 14,8 18,14 22,6" />
+          <circle cx="22" cy="6" r="2" fill="white" stroke="none" />
+        </svg>
+      ),
+    },
+    {
+      side: "left",
+      eyebrow: "Built for results",
+      title: "Why AlphaNexis",
+      body: "8+ years of compounding expertise in performance marketing, brand systems, and custom tech — delivered as one integrated growth pod you can plug straight into your team.",
+      color: "#E8A730",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5">
+          <path d="M12 2l2.5 7h7l-5.5 4.5 2.5 7.5L12 17l-6.5 4 2.5-7.5L2 9h7z" fill="white" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
-    <section id="about" ref={containerRef} className="relative mx-auto max-w-5xl px-5 py-20">
-      {/* Spine line container */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border hidden md:block">
-        {/* Animated Tracker Dot */}
+    <section id="about" ref={containerRef} className="relative mx-auto max-w-5xl px-2 sm:px-5 py-6 sm:py-20">
+      {/* Center spine line - visible on all devices */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border">
         <motion.div
-          className="absolute left-1/2 w-3 h-3 -translate-x-1/2 rounded-full shadow-[0_0_10px_rgba(43,155,209,0.5)] z-20"
+          className="absolute left-1/2 w-1.5 h-1.5 sm:w-3 sm:h-3 -translate-x-1/2 rounded-full shadow-[0_0_10px_rgba(43,155,209,0.5)] z-20"
           style={{
             top: dotTop,
-            backgroundColor: "#2B9BD1", // Matches your primary branding color
+            backgroundColor: "#2B9BD1",
           }}
         />
       </div>
 
-      {[
-        {
-          side: "right",
-          eyebrow: "Who we are",
-          title: "About AlphaNexis",
-          body: "AlphaNexis is a fast-growing digital marketing, branding, and technology company based in Indore. We specialize in creating impactful digital experiences that strengthen online presence and drive real results across industries.",
-          color: "#2B9BD1",
-          icon: (
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-5 w-5"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            >
-              <circle cx="12" cy="12" r="7" />
-              <circle cx="12" cy="12" r="2" fill="white" stroke="none" />
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-            </svg>
-          ),
-        },
-        {
-          side: "left",
-          eyebrow: "What we do",
-          title: "Branding & Creative Content",
-          body: "We create impactful digital experiences that strengthen online presence and drive real results. By bringing creativity, strategy, and technology together in every campaign, we help ambitious brands stay ahead of the curve.",
-          color: "#E05A2B",
-          icon: (
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-5 w-5"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            >
-              <rect x="2" y="6" width="20" height="14" rx="2" />
-              <line x1="2" y1="10" x2="22" y2="10" />
-              <rect x="5" y="2" width="5" height="4" rx="1" fill="white" stroke="none" />
-              <rect x="14" y="2" width="5" height="4" rx="1" fill="white" stroke="none" />
-            </svg>
-          ),
-        },
-        {
-          side: "right",
-          eyebrow: "How we grow you",
-          title: "Digital Growth Strategies",
-          body: "From planning to performance, we build scalable strategies that help businesses grow faster and reach their goals with confidence.",
-          color: "#9B5FCF",
-          icon: (
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-5 w-5"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            >
-              <path d="M4 20L12 6l8 14H4Z" />
-              <line x1="12" y1="6" x2="12" y2="2" />
-            </svg>
-          ),
-        },
-        {
-          side: "left",
-          eyebrow: "Reach the right people",
-          title: "Paid Advertising",
-          body: "We design data-driven ad campaigns that connect with the right audience, increase visibility, and turn clicks into measurable growth.",
-          color: "#4CAF7A",
-          icon: (
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-5 w-5"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            >
-              <rect x="2" y="2" width="8" height="8" rx="1" />
-              <rect x="14" y="2" width="8" height="8" rx="1" />
-              <rect x="2" y="14" width="8" height="8" rx="1" />
-              <rect x="14" y="14" width="8" height="8" rx="1" />
-            </svg>
-          ),
-        },
-        {
-          side: "right",
-          eyebrow: "Our expertise",
-          title: "Core Services",
-          body: "Branding · Paid Ads · Growth Strategy · Website & App Dev · SEO & Analytics · AI Automation — all under one roof.",
-          color: "#CF4E6B",
-          icon: (
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-5 w-5"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            >
-              <polyline points="2,18 6,12 10,16 14,8 18,14 22,6" />
-              <circle cx="22" cy="6" r="2" fill="white" stroke="none" />
-            </svg>
-          ),
-        },
-        {
-          side: "left",
-          eyebrow: "Built for results",
-          title: "Why AlphaNexis",
-          body: "8+ years of compounding expertise in performance marketing, brand systems, and custom tech — delivered as one integrated growth pod you can plug straight into your team.",
-          color: "#E8A730",
-          icon: (
-            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-              <path d="M12 2l2.5 7h7l-5.5 4.5 2.5 7.5L12 17l-6.5 4 2.5-7.5L2 9h7z" fill="white" />
-            </svg>
-          ),
-        },
-      ].map((item, i) => {
+      {items.map((item, i) => {
         const isRight = item.side === "right";
 
-        const panel = (
-          <motion.div
-            initial={{ opacity: 0, x: isRight ? 30 : -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08, type: "spring", stiffness: 80 }}
-            className={`flex-1 rounded-[1.5rem] border-2 border-ink bg-background p-6 text-ink shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${
-              isRight ? "ml-6 md:ml-10" : "mr-6 md:mr-10 text-right"
-            }`}
-          >
-            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-foreground/40 mb-1">
-              {item.eyebrow}
-            </p>
-            <h3 className="font-display text-xl font-bold mb-2 leading-tight">{item.title}</h3>
-            <p className="text-sm leading-relaxed text-foreground/70 dark:text-card-foreground/70">
-              {item.body}
-            </p>
-          </motion.div>
-        );
-
-        const spine = (
-          <div className="flex flex-col items-center shrink-0 z-10 self-stretch">
-            <div className={`w-px flex-1 min-h-[40px] bg-border ${i === 0 ? "opacity-0" : ""}`} />
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 + 0.1, type: "spring", stiffness: 200, damping: 16 }}
-              className="shrink-0 w-14 h-14 flex items-center justify-center"
-              style={{
-                background: item.color,
-                clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-              }}
-            >
-              {item.icon}
-            </motion.div>
-            <div className={`w-px flex-1 min-h-[40px] bg-border ${i === 5 ? "opacity-0" : ""}`} />
-          </div>
-        );
-
         return (
-          <div key={i} className="flex items-stretch">
+          <div 
+            key={i} 
+            className="flex items-stretch mb-4 sm:mb-12 last:mb-0"
+          >
             {isRight ? (
+              // RIGHT SIDE CONTENT
               <>
-                <div className="hidden md:flex flex-1" />
-                {spine}
-                {panel}
+                {/* Empty spacer */}
+                <div className="flex-1" />
+                
+                {/* Spine connector */}
+                <div className="flex flex-col items-center shrink-0 z-10 self-stretch px-1 sm:px-4">
+                  <div className={`w-px flex-1 min-h-[20px] sm:min-h-[40px] bg-border ${i === 0 ? "opacity-0" : ""}`} />
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 + 0.1, type: "spring", stiffness: 200, damping: 16 }}
+                    className="shrink-0 w-6 h-6 sm:w-14 sm:h-14 flex items-center justify-center"
+                    style={{
+                      background: item.color,
+                      clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                    }}
+                  >
+                    {item.icon}
+                  </motion.div>
+                  <div className={`w-px flex-1 min-h-[20px] sm:min-h-[40px] bg-border ${i === 5 ? "opacity-0" : ""}`} />
+                </div>
+
+                {/* Content - Smaller on mobile */}
+                <motion.div
+                  initial={{ opacity: 0, x: 15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, type: "spring", stiffness: 80 }}
+                  className="flex-[3] sm:flex-1 ml-2 sm:ml-6 rounded-lg sm:rounded-[1.5rem] border border-ink sm:border-2 bg-background p-2.5 sm:p-6 text-ink shadow-[2px_2px_0_0_var(--ink)] sm:shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[2px_2px_0_0_rgba(255,255,255,0.16)] sm:dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)]"
+                >
+                  <p className="text-[7px] sm:text-[10px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.22em] text-foreground/40 mb-0.5 sm:mb-1">
+                    {item.eyebrow}
+                  </p>
+                  <h3 className="font-display text-[13px] sm:text-xl font-bold mb-0.5 sm:mb-2 leading-tight">{item.title}</h3>
+                  <p className="text-[11px] sm:text-sm leading-snug sm:leading-relaxed text-foreground/70 dark:text-card-foreground/70 line-clamp-3 sm:line-clamp-none">
+                    {item.body}
+                  </p>
+                </motion.div>
               </>
             ) : (
+              // LEFT SIDE CONTENT
               <>
-                {panel}
-                {spine}
-                <div className="hidden md:flex flex-1" />
+                {/* Content - Smaller on mobile */}
+                <motion.div
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, type: "spring", stiffness: 80 }}
+                  className="flex-[3] sm:flex-1 mr-2 sm:mr-6 rounded-lg sm:rounded-[1.5rem] border border-ink sm:border-2 bg-background p-2.5 sm:p-6 text-ink shadow-[2px_2px_0_0_var(--ink)] sm:shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:text-card-foreground dark:shadow-[2px_2px_0_0_rgba(255,255,255,0.16)] sm:dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] text-right"
+                >
+                  <p className="text-[7px] sm:text-[10px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.22em] text-foreground/40 mb-0.5 sm:mb-1">
+                    {item.eyebrow}
+                  </p>
+                  <h3 className="font-display text-[13px] sm:text-xl font-bold mb-0.5 sm:mb-2 leading-tight">{item.title}</h3>
+                  <p className="text-[11px] sm:text-sm leading-snug sm:leading-relaxed text-foreground/70 dark:text-card-foreground/70 line-clamp-3 sm:line-clamp-none">
+                    {item.body}
+                  </p>
+                </motion.div>
+
+                {/* Spine connector */}
+                <div className="flex flex-col items-center shrink-0 z-10 self-stretch px-1 sm:px-4">
+                  <div className={`w-px flex-1 min-h-[20px] sm:min-h-[40px] bg-border ${i === 0 ? "opacity-0" : ""}`} />
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 + 0.1, type: "spring", stiffness: 200, damping: 16 }}
+                    className="shrink-0 w-6 h-6 sm:w-14 sm:h-14 flex items-center justify-center"
+                    style={{
+                      background: item.color,
+                      clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                    }}
+                  >
+                    {item.icon}
+                  </motion.div>
+                  <div className={`w-px flex-1 min-h-[20px] sm:min-h-[40px] bg-border ${i === 5 ? "opacity-0" : ""}`} />
+                </div>
+
+                {/* Empty spacer */}
+                <div className="flex-1" />
               </>
             )}
           </div>
@@ -3243,7 +3239,6 @@ function PortfolioSectionAbout({
     </section>
   );
 }
-
 /* -- Main Page -- */
 function Index() {
   const portfolio = Route.useLoaderData();
