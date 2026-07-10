@@ -1,7 +1,6 @@
 import { getPrisma } from "@/lib/db.server";
 import { readJson, writeJson } from "@/lib/admin/storage.server";
 import { detectEmbed } from "@/lib/admin/embed";
-import { instagramPosts } from "@/data/instagramFeed";
 import { DEFAULT_COLLECTIONS, DEFAULT_REELS, DEFAULT_SITE } from "./defaults";
 import type { CollectionName } from "@/lib/admin/collections.functions";
 import type { Reel } from "@/lib/admin/reels.functions";
@@ -72,60 +71,6 @@ function normalizeRawReel(record: RawReelRecord, index: number): Reel | null {
     createdAt: rawDate(record.createdAt),
     updatedAt: rawDate(record.updatedAt),
   };
-}
-
-function reelKey(url: string) {
-  const instagramMatch = url.match(/instagram\.com\/reel\/([A-Za-z0-9_-]+)/);
-  if (instagramMatch) return `instagram:${instagramMatch[1]}`;
-
-  try {
-    const parsed = new URL(url);
-    parsed.search = "";
-    parsed.hash = "";
-    return parsed.toString().replace(/\/$/, "");
-  } catch {
-    return url;
-  }
-}
-
-function defaultInstagramReels(): Reel[] {
-  const now = new Date().toISOString();
-
-  return instagramPosts
-    .map((post, index) => {
-      const url = post.url.replace(/\s+/g, "");
-      const embed = detectEmbed(url);
-      if (embed.kind === "unknown") return null;
-
-      return {
-        id: post.id,
-        tag: "Instagram",
-        title: `Instagram Reel ${index + 1}`,
-        description: "",
-        url,
-        kind: embed.kind,
-        embedUrl: embed.embedUrl,
-        poster: embed.thumb || "",
-        order: index,
-        createdAt: now,
-        updatedAt: now,
-      } satisfies Reel;
-    })
-    .filter(Boolean) as Reel[];
-}
-
-function mergeWithDefaultReels(reels: Reel[]) {
-  const seen = new Set<string>();
-  const merged: Reel[] = [];
-
-  for (const reel of [...sortByOrder(reels), ...defaultInstagramReels()]) {
-    const key = reelKey(reel.url);
-    if (seen.has(key)) continue;
-    seen.add(key);
-    merged.push({ ...reel, order: merged.length });
-  }
-
-  return merged;
 }
 
 const MAX_COLLECTION_ITEMS: Partial<Record<CollectionName, number>> = {
@@ -358,40 +303,15 @@ export async function reorderCollectionData(collection: CollectionName, orderedI
 
 export async function listReelData(): Promise<Reel[]> {
   const prisma = getPrisma();
-  if (!prisma) return mergeWithDefaultReels(localReelFallback());
+  if (!prisma) return localReelFallback();
 
   try {
-    let reels = ((await prisma.reel.findRaw({ options: { sort: { order: 1 } } })) as unknown[])
+    return ((await prisma.reel.findRaw({ options: { sort: { order: 1 } } })) as unknown as unknown[])
       .map((reel, order) => normalizeRawReel(reel as RawReelRecord, order))
       .filter(Boolean) as Reel[];
-
-    const fallbackReels = mergeWithDefaultReels(localReelFallback());
-    const existingKeys = new Set(reels.map((reel) => reelKey(reel.url)));
-    const missingReels = fallbackReels.filter((reel) => !existingKeys.has(reelKey(reel.url)));
-
-    if (missingReels.length > 0) {
-      await prisma.reel.createMany({
-        data: missingReels.map((reel, index) => ({
-          tag: reel.tag,
-          title: reel.title,
-          description: reel.description,
-          url: reel.url,
-          kind: reel.kind,
-          embedUrl: reel.embedUrl,
-          poster: reel.poster,
-          order: reels.length + index,
-        })),
-      });
-
-      reels = ((await prisma.reel.findRaw({ options: { sort: { order: 1 } } })) as unknown[])
-        .map((reel, order) => normalizeRawReel(reel as RawReelRecord, order))
-        .filter(Boolean) as Reel[];
-    }
-
-    return mergeWithDefaultReels(reels);
   } catch (error) {
-    warnDbFallback("listReelData", error);
-    return mergeWithDefaultReels(localReelFallback());
+    console.error("[cms] Failed to load reels from MongoDB.", error);
+    throw new Error("Unable to load reels from MongoDB.");
   }
 }
 

@@ -1530,6 +1530,15 @@ const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
 /* -- Core Capabilities Section -- */
 
 type CmsItem = Record<string, unknown>;
+type ReelItem = Partial<{
+  tag: string;
+  category: string;
+  categoryLabel: string;
+  title: string;
+  description: string;
+  url: string;
+  poster: string;
+}>;
 
 const cmsIconMap = {
   Target,
@@ -1795,7 +1804,7 @@ function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
       }))
     : editorialContent;
 }
-function normalizeReels(items: CmsItem[]) {
+function normalizeReels(items: ReelItem[]) {
   const reels = items
     .map((item) => ({
       tag: asString(item.tag, "Reel"),
@@ -1807,7 +1816,7 @@ function normalizeReels(items: CmsItem[]) {
     }))
     .filter((item) => item.src);
 
-  return reels.length ? reels : filmReels;
+  return reels;
 }
 // ===== REPLACE YOUR EXISTING normalizeTestimonials FUNCTION WITH THIS =====
 function normalizeTestimonials(items: CmsItem[]) {
