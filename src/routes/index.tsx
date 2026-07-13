@@ -3139,7 +3139,7 @@ function PortfolioSectionAbout({
   return (
     <section id="about" ref={containerRef} className="relative mx-auto max-w-5xl px-2 sm:px-5 py-6 sm:py-20">
       {/* Center spine line - visible on all devices */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border">
+      <div className="absolute hidden md:block left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border">
         <motion.div
           className="absolute hidden md:block left-1/2 w-1.5 h-1.5 sm:w-3 sm:h-3 -translate-x-1/2 rounded-full shadow-[0_0_10px_rgba(43,155,209,0.5)] z-20"
           style={{
