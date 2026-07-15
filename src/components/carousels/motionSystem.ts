@@ -1,4 +1,4 @@
-export const smooth = {
+﻿export const smooth = {
   type: "spring" as const,
   // tuned for smooth, less-stutter motion across carousels
   stiffness: 90,
@@ -25,3 +25,5 @@ export const moduleHeaderKickerClass =
   "text-xs font-semibold uppercase tracking-[0.28em] text-foreground/55 dark:text-gray-400";
 
 export const moduleDescriptionClass = "max-w-xl text-sm leading-6 text-foreground/65 dark:text-gray-400 md:text-base";
+
+

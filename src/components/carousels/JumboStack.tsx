@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRef, useEffect } from "react";
 
@@ -31,37 +31,37 @@ export interface JumboSlide {
 
 const defaultSlides = [
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Stacked priority cards",
-    description: "Maintain a layered order while the active card stays front and center.",
-    outcome: "Generated 2.4M views",
+    categoryLabel: "RESIDENTIAL",
+    title: "Layered Courtyard Study",
+    description: "Maintain a layered sequence while the primary room study stays front and center.",
+    outcome: "Passive cooling strategy",
     poster: screenshot5,
     video: videoSources[4],
     accentColor: "from-emerald-950/90",
   },
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Smooth spring swaps",
-    description: "The stack rebalances with breathing motion and consistent visual weight.",
-    outcome: "Improved engagement by 140%",
+    categoryLabel: "INTERIORS",
+    title: "Material Palette Sequence",
+    description: "The stack rebalances with measured motion and consistent visual weight.",
+    outcome: "Custom joinery package",
     poster: screenshot6,
     video: videoSources[1],
     accentColor: "from-sky-950/90",
   },
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Depth-aware transitions",
-    description: "Scale, offset, and opacity highlight the top card without changing the system language.",
-    outcome: "Brand campaign launch",
+    categoryLabel: "URBAN DESIGN",
+    title: "Depth-Aware Streetscape",
+    description: "Scale, offset, and opacity highlight the active public-realm study.",
+    outcome: "Pedestrian-first framework",
     poster: screenshot1,
     video: videoSources[2],
     accentColor: "from-amber-950/90",
   },
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Tactile UI extension",
-    description: "A vertical stack with larger media, clean contrast, and generous spacing.",
-    outcome: "150% CTR increase",
+    categoryLabel: "HOSPITALITY",
+    title: "Retreat Pavilion Study",
+    description: "A vertical stack with larger media, clean contrast, and generous breathing room.",
+    outcome: "Landscape-led arrival sequence",
     poster: screenshot2,
     video: videoSources[3],
     accentColor: "from-rose-950/90",
@@ -109,9 +109,9 @@ interface JumboStackProps {
 
 export function JumboStack({
   slides = defaultSlides,
-  title = "Jumbo stacked cards",
-  subtitle = "Stack system",
-  description = "A natural stack extension using rounded panels, high contrast, and full-scale video.",
+  title = "Layered project studies",
+  subtitle = "Spatial stack",
+  description = "A calm stack of project films using generous media, clear hierarchy, and full-scale video.",
 }: JumboStackProps) {
   const carousel = useCarousel({ count: slides.length, initialIndex: 0 });
 
@@ -161,10 +161,10 @@ export function JumboStack({
                 initial={false}
                 animate={{ y, scale, opacity }}
                 transition={smooth}
-                className="absolute left-1/2 top-1/2 w-[min(42rem,95vw)] sm:w-[min(52rem,92vw)] md:w-[min(58rem,90vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] border border-ink/10 bg-card/95 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#0f172a]/95 dark:shadow-[0_34px_100px_-50px_rgba(0,0,0,0.95)]"
+                className="absolute left-1/2 top-1/2 w-[min(42rem,95vw)] sm:w-[min(52rem,92vw)] md:w-[min(58rem,90vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] border border-ink/10 bg-card/95 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#2E3135]/95 dark:shadow-[0_34px_100px_-50px_rgba(0,0,0,0.95)]"
                 style={{ zIndex }}
               >
-                <div className="relative h-[min(48vh,30rem)] bg-muted dark:bg-[#0b0f14]">
+                <div className="relative h-[min(48vh,30rem)] bg-muted dark:bg-[#1F1F1F]">
                   {slide.video ? (
                     <StackVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
@@ -206,7 +206,7 @@ export function JumboStack({
                       href={inspectUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-4 inline-flex rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#0f172a]"
+                      className="mt-4 inline-flex rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#2E3135]"
                     >
                       Inspect work
                     </a>
@@ -229,4 +229,6 @@ export function JumboStack({
     </section>
   );
 }
+
+
 

@@ -49,8 +49,8 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3.5 sm:px-5 sm:py-4">
         <a href="#" className="flex min-w-0 items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
-          <img src={logo} alt="AlphaNexis" className="h-8 w-8 shrink-0 object-contain" />
-          <span className="truncate font-display text-lg font-bold sm:text-xl">AlphaNexis</span>
+          <img src={logo} alt="Imagine Design Studio" className="h-8 w-8 shrink-0 object-contain" />
+          <span className="truncate font-display text-lg font-bold sm:text-xl">Imagine Design Studio</span>
         </a>
         <div className="hidden items-center gap-8 text-sm md:flex">
           {["About", "Portfolio", "Work", "", "Contact"].map((l) => (
@@ -82,4 +82,3 @@ export function Navbar() {
 }
 
 export default Navbar;
-

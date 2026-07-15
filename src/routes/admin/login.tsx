@@ -42,7 +42,7 @@ function AdminLogin() {
               A
             </div>
             <h1 className="font-display text-2xl font-bold">Admin Access</h1>
-            <p className="mt-1 text-sm text-muted-foreground">Alphanexis Studio portfolio dashboard</p>
+            <p className="mt-1 text-sm text-muted-foreground">Imagine Design Studio portfolio dashboard</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,4 +84,3 @@ function AdminLogin() {
     </div>
   );
 }
-

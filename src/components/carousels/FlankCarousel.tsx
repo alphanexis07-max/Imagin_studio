@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+﻿import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRef, useEffect } from "react";
 
@@ -19,29 +19,29 @@ import screenshot4 from "@/assets/carousel-samples/screenshot-4.jpg";
 
 const slides = [
   {
-    title: "Perspective focus",
-    caption: "Three-panel arrangement with a bold center video card.",
+    title: "Perspective Study",
+    caption: "Three-panel arrangement with a calm center project film.",
     poster: screenshot1,
     video: videoSources[5],
     glow: "shadow-cyan-950/40",
   },
   {
-    title: "Card geometry",
-    caption: "Side cards angle slightly to keep the focus system clear.",
+    title: "Facade Geometry",
+    caption: "Side cards angle slightly to keep the spatial focus clear.",
     poster: screenshot2,
     video: videoSources[0],
     glow: "shadow-orange-950/40",
   },
   {
-    title: "Visual hierarchy",
-    caption: "Active state is crisp while neighbors remain contextual.",
+    title: "Spatial Hierarchy",
+    caption: "Active studies remain crisp while neighboring frames provide context.",
     poster: screenshot3,
     video: videoSources[1],
     glow: "shadow-emerald-950/40",
   },
   {
-    title: "Motion-friendly UI",
-    caption: "Spring transitions, not sudden jumps, for every swap.",
+    title: "Measured Motion",
+    caption: "Spring transitions create a composed rhythm for every study.",
     poster: screenshot4,
     video: videoSources[2],
     glow: "shadow-violet-950/40",
@@ -67,9 +67,9 @@ export interface FlankSlide {
 
 const defaultSlides = [
   {
-    categoryLabel: "Perspective focus",
-    title: "Perspective focus",
-    description: "Three-panel arrangement with a bold center video card.",
+    categoryLabel: "RESIDENTIAL",
+    title: "Perspective Study",
+    description: "Three-panel arrangement with a calm center project film.",
     poster: screenshot1,
     video: videoSources[5],
     glow: "shadow-cyan-950/40",
@@ -77,9 +77,9 @@ const defaultSlides = [
     ctaLink: "#",
   },
   {
-    categoryLabel: "Card geometry",
-    title: "Card geometry",
-    description: "Side cards angle slightly to keep the focus system clear.",
+    categoryLabel: "ARCHITECTURE",
+    title: "Facade Geometry",
+    description: "Side cards angle slightly to keep the spatial focus clear.",
     poster: screenshot2,
     video: videoSources[0],
     glow: "shadow-orange-950/40",
@@ -87,9 +87,9 @@ const defaultSlides = [
     ctaLink: "#",
   },
   {
-    categoryLabel: "Visual hierarchy",
-    title: "Visual hierarchy",
-    description: "Active state is crisp while neighbors remain contextual.",
+    categoryLabel: "INTERIORS",
+    title: "Spatial Hierarchy",
+    description: "Active studies remain crisp while neighboring frames provide context.",
     poster: screenshot3,
     video: videoSources[1],
     glow: "shadow-emerald-950/40",
@@ -97,9 +97,9 @@ const defaultSlides = [
     ctaLink: "#",
   },
   {
-    categoryLabel: "Motion-friendly UI",
-    title: "Motion-friendly UI",
-    description: "Spring transitions, not sudden jumps, for every swap.",
+    categoryLabel: "URBAN DESIGN",
+    title: "Measured Motion",
+    description: "Spring transitions create a composed rhythm for every study.",
     poster: screenshot4,
     video: videoSources[2],
     glow: "shadow-violet-950/40",
@@ -240,7 +240,7 @@ export function FlankCarousel({
                   ease: "easeOut",
                 }}
                 // Added distinct structural dimensions ('w-[280px] sm:w-[340px] md:w-[400px]') to fix structural compression on mobile view
-                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[340px] md:w-[400px] overflow-hidden rounded-2xl border border-ink/10 bg-card/95 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl ${slide.glow || "shadow-black/50"}`}
+                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[340px] md:w-[400px] overflow-hidden rounded-2xl border border-ink/10 bg-card/95 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#2E3135]/95 dark:shadow-2xl ${slide.glow || "shadow-black/50"}`}
                 style={{
                   zIndex,
                   transformStyle: "preserve-3d",
@@ -249,7 +249,7 @@ export function FlankCarousel({
                 }}
               >
                 {/* MEDIA REGION */}
-                <div className="relative h-[24dvh] sm:h-[26dvh] md:h-[32dvh] bg-muted dark:bg-[#0b0f14]">
+                <div className="relative h-[24dvh] sm:h-[26dvh] md:h-[32dvh] bg-muted dark:bg-[#1F1F1F]">
                   {slide.video ? (
                     <CarouselVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
@@ -282,7 +282,7 @@ export function FlankCarousel({
                 </div>
 
                 {/* TEXT CONTENT INNER CONTAINERS */}
-                <div className="p-4 flex flex-col gap-2.5 justify-between bg-[#111827] dark:bg-[#111827]">
+                <div className="p-4 flex flex-col gap-2.5 justify-between bg-[#2E3135] dark:bg-[#2E3135]">
                   <div>
                     <h4 className="font-display text-base sm:text-lg md:text-xl font-bold text-white">
                       {slide.title}
@@ -308,7 +308,7 @@ export function FlankCarousel({
                           href={slide.ctaLink || openUrl || "#"}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-[10px] font-bold text-[#111827] transition duration-200 hover:bg-white/95 active:scale-95 z-20"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-[10px] font-bold text-[#2E3135] transition duration-200 hover:bg-white/95 active:scale-95 z-20"
                         >
                           {slide.ctaText || "View Project"}
                         </a>
@@ -346,3 +346,5 @@ export function FlankCarousel({
     </section>
   );
 }
+
+

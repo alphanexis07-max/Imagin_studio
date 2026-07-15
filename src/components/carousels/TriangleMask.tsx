@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+﻿import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -17,23 +17,23 @@ import screenshot1 from "@/assets/carousel-samples/screenshot-1.jpg";
 
 const slides = [
   {
-    title: "Clipped hero frames",
-    description: "A soft triangular mask introduces drama while preserving video clarity.",
+    title: "Clipped Site Frames",
+    description: "A soft triangular mask introduces depth while preserving spatial clarity.",
     poster: screenshot5,
     video: videoSources[3],
     accent: "from-orange-600/35",
   },
   {
-    title: "Crossfade content",
+    title: "Crossfade Material Studies",
     description:
-      "Smooth fade and mask transitions keep the carousel grounded in the design system.",
+      "Smooth fade and mask transitions keep each material study calm and legible.",
     poster: screenshot6,
     video: videoSources[4],
     accent: "from-cyan-500/30",
   },
   {
-    title: "Image-safe motion",
-    description: "Fallback opacity transitions preserve visual clarity on every breakpoint.",
+    title: "Image-Safe Project Motion",
+    description: "Fallback opacity transitions preserve architectural clarity on every breakpoint.",
     poster: screenshot1,
     video: videoSources[5],
     accent: "from-emerald-500/30",
@@ -53,25 +53,25 @@ export interface TriangleSlide {
 
 const defaultSlides = [
   {
-    categoryLabel: "SEO",
-    title: "Clipped hero frames",
-    description: "A soft triangular mask introduces drama while preserving video clarity.",
+    categoryLabel: "SUSTAINABILITY",
+    title: "Clipped Site Frames",
+    description: "A soft triangular mask introduces depth while preserving spatial clarity.",
     metrics: [
-      { label: "Traffic Growth", value: "+180%" },
-      { label: "Keywords Ranked", value: "12K+" },
+      { label: "Cooling Load", value: "-28%" },
+      { label: "Daylit Areas", value: "82%" },
     ],
     poster: screenshot5,
     video: videoSources[3],
     accent: "from-orange-600/35",
   },
   {
-    categoryLabel: "ACCOUNT AUDIT",
-    title: "Crossfade content",
+    categoryLabel: "SITE ANALYSIS",
+    title: "Crossfade Material Studies",
     description:
-      "Smooth fade and mask transitions keep the carousel grounded in the design system.",
+      "Smooth fade and mask transitions keep each material study calm and legible.",
     metrics: [
-      { label: "Audit Rating", value: "98/100" },
-      { label: "Errors Fixed", value: "1,200+" },
+      { label: "Access Points", value: "14" },
+      { label: "Public Realm", value: "+38%" },
     ],
     poster: screenshot6,
     video: videoSources[4],
@@ -88,9 +88,9 @@ interface TriangleMaskProps {
 
 export function TriangleMask({
   slides = defaultSlides,
-  title = "Triangle hero slider",
-  subtitle = "Masked hero",
-  description = "Advanced clip-path transitions with isolated copy, clear video playback, and generous stage height.",
+  title = "Masked project studies",
+  subtitle = "Site and material",
+  description = "Clip-path transitions with concise project copy, clear video playback, and generous stage height.",
 }: TriangleMaskProps) {
   const carousel = useCarousel({ count: slides.length, initialIndex: 0 });
 
@@ -121,7 +121,7 @@ export function TriangleMask({
               // Category badge colors
               const getBadgeStyles = (label: string) => {
                 const cleaned = label.toUpperCase();
-                if (cleaned.includes("SEO"))
+                if (cleaned.includes("SUSTAINABILITY"))
                   return "bg-green-500/25 border-green-500/40 text-green-400";
                 if (cleaned.includes("AUDIT") || cleaned.includes("REPORT"))
                   return "bg-cyan-500/25 border-cyan-500/40 text-cyan-400";
@@ -145,10 +145,10 @@ export function TriangleMask({
                     duration: 0.4,
                     ease: "easeOut",
                   }}
-                  className="grid h-full w-full items-stretch overflow-hidden rounded-[1.75rem] border border-ink/10 bg-card shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] grid-cols-1 sm:grid-cols-1 md:grid-cols-[1.35fr_0.65fr] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-[0_34px_100px_-50px_rgba(0,0,0,0.95)]"
+                  className="grid h-full w-full items-stretch overflow-hidden rounded-[1.75rem] border border-ink/10 bg-card shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] grid-cols-1 sm:grid-cols-1 md:grid-cols-[1.35fr_0.65fr] dark:border-white/10 dark:bg-[#2E3135]/95 dark:shadow-[0_34px_100px_-50px_rgba(0,0,0,0.95)]"
                 >
                   <div
-                    className="relative min-h-[20rem] sm:min-h-[24rem] md:min-h-[24rem] overflow-hidden bg-muted order-1 md:order-1 dark:bg-[#0b0f14]"
+                    className="relative min-h-[20rem] sm:min-h-[24rem] md:min-h-[24rem] overflow-hidden bg-muted order-1 md:order-1 dark:bg-[#1F1F1F]"
                     style={{ clipPath: "polygon(0 0, 100% 0, 88% 100%, 0 100%)" }}
                   >
                     {slide.video ? (
@@ -218,7 +218,7 @@ export function TriangleMask({
                         href={inspectUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-6 inline-flex w-fit rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#111827]"
+                        className="mt-6 inline-flex w-fit rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#2E3135]"
                       >
                         Inspect report
                       </a>
@@ -255,4 +255,6 @@ export function TriangleMask({
     </section>
   );
 }
+
+
 

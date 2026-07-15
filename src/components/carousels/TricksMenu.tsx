@@ -1,4 +1,4 @@
-import { motion, useTransform } from "framer-motion";
+﻿import { motion, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -18,29 +18,29 @@ import screenshot4 from "@/assets/carousel-samples/screenshot-4.jpg";
 
 const slides = [
   {
-    title: "Flow systems",
-    subtitle: "A seamless horizontal track that responds to physics-based drag.",
+    title: "Site Flow Studies",
+    subtitle: "A seamless horizontal track for moving through site and circulation studies.",
     poster: screenshot1,
     video: videoSources[0],
     accent: "bg-cyan-500",
   },
   {
-    title: "Live menu motion",
-    subtitle: "Large active title updates with each snap-driven slide change.",
+    title: "Material Review",
+    subtitle: "Large active titles update with each snap-driven project study.",
     poster: screenshot2,
     video: videoSources[1],
     accent: "bg-orange-500",
   },
   {
-    title: "Endless rhythm",
-    subtitle: "A repeatable track feel without creating a new visual system.",
+    title: "Public Realm Rhythm",
+    subtitle: "A repeatable track for comparing public-space moments and landscape edges.",
     poster: screenshot3,
     video: videoSources[2],
     accent: "bg-emerald-500",
   },
   {
-    title: "Content-led pacing",
-    subtitle: "A track structure that supports copy, iconography, and status bars.",
+    title: "Detail-Led Pacing",
+    subtitle: "A track structure that supports drawings, models, and concise project notes.",
     poster: screenshot4,
     video: videoSources[3],
     accent: "bg-fuchsia-500",
@@ -56,20 +56,20 @@ export function TricksMenu() {
     <section aria-label="Tricks menu carousel" className={moduleShellClass}>
       <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className={moduleHeaderKickerClass}>Track system</p>
+          <p className={moduleHeaderKickerClass}>Project track</p>
           <h3 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground dark:text-white md:text-5xl">
-            Full-width flow track
+            Full-width study track
           </h3>
         </div>
         <p className={moduleDescriptionClass}>
-          A responsive horizontal reel track with large previews, clear active state, and smooth snap physics.
+          A responsive horizontal project track with large previews, clear active state, and smooth snap physics.
         </p>
       </div>
 
       <div className="relative h-[74dvh] overflow-visible py-4">
         <div className="mb-8 text-center">
           <span className="block text-xs font-semibold uppercase tracking-[0.28em] text-foreground/55 dark:text-gray-400">
-            Current channel
+            Current study
           </span>
           <h4 className="mt-3 font-display text-4xl font-bold text-foreground dark:text-white md:text-6xl">
             {slides[carousel.activeIndex].title}
@@ -103,11 +103,11 @@ export function TricksMenu() {
                   key={`${slide.title}-${index}`}
                   whileHover={{ scale: 1.02 }}
                   transition={smooth}
-                  className={`flex h-full min-w-[min(25rem,82vw)] flex-col overflow-hidden rounded-[1.5rem] border border-ink/10 bg-card shadow-[0_24px_70px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/90 dark:shadow-[0_28px_80px_-48px_rgba(0,0,0,0.9)] ${
+                  className={`flex h-full min-w-[min(25rem,82vw)] flex-col overflow-hidden rounded-[1.5rem] border border-ink/10 bg-card shadow-[0_24px_70px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#2E3135]/90 dark:shadow-[0_28px_80px_-48px_rgba(0,0,0,0.9)] ${
                     isActive ? "opacity-100 ring-1 ring-ink/15 dark:ring-white/20" : "opacity-60"
                   }`}
                 >
-                  <div className="relative h-[70%] overflow-hidden bg-muted dark:bg-[#0b0f14]">
+                  <div className="relative h-[70%] overflow-hidden bg-muted dark:bg-[#1F1F1F]">
                     <video
                       src={slide.video}
                       poster={slide.poster}
@@ -145,3 +145,5 @@ export function TricksMenu() {
     </section>
   );
 }
+
+

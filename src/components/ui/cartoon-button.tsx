@@ -1,4 +1,4 @@
-interface CartoonButtonProps {
+﻿interface CartoonButtonProps {
   label: string | React.ReactNode;
   icon: React.ReactNode;
   color?: string;
@@ -30,7 +30,7 @@ export function CartoonButton({
         disabled={disabled}
         onClick={handleClick}
         className={`relative h-12 w-12 rounded-full hover:rounded-full md:hover:rounded-2xl px-3 text-xl font-bold text-neutral-800 border-2 border-neutral-800 transition-all duration-500 ease-in-out overflow-hidden group flex items-center justify-center
-        ${color} hover:shadow-[0_4px_0_0_#262626] hover:scale-105 hover:-translate-y-1 active:scale-95 active:translate-y-0 active:shadow-none
+        ${color} hover:shadow-[0_4px_0_0_#2E3135] hover:scale-105 hover:-translate-y-1 active:scale-95 active:translate-y-0 active:shadow-none
         ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
         style={{
           width: '48px',
@@ -72,3 +72,4 @@ export function CartoonButton({
     </div>
   );
 }
+

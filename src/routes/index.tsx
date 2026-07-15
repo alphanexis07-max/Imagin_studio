@@ -53,10 +53,7 @@ import {
   Play,
   ChevronLeft,
   ChevronRight,
-  Code,
-  Smartphone,
 } from "lucide-react";
-import portrait from "@/assets/portrait.png";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
@@ -198,8 +195,8 @@ const FloatingCard = ({
         scale: 1.06,
         y: -8,
         rotate: 0,
-        boxShadow: "0 20px 60px rgba(255, 107, 53, 0.2)",
-        borderColor: "rgba(255, 107, 53, 0.3)",
+        boxShadow: "0 20px 60px rgba(176, 141, 87, 0.2)",
+        borderColor: "rgba(176, 141, 87, 0.3)",
         transition: { duration: 0.3, type: "spring", stiffness: 300 },
       }}
     >
@@ -235,7 +232,7 @@ const Particle = ({ delay, size, type = "dot", xRange = 200, yRange = 200 }: any
         top: "50%",
         x: position.x,
         y: position.y,
-        borderColor: type === "ring" ? "rgba(255,107,53,0.2)" : "transparent",
+        borderColor: type === "ring" ? "rgba(176,141,87,0.2)" : "transparent",
       }}
       animate={{
         opacity: [0.08, 0.2, 0.08],
@@ -285,7 +282,7 @@ const CursorGlow = () => {
       style={{
         width: 300,
         height: 300,
-        background: "radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(176,141,87,0.15) 0%, transparent 70%)",
         filter: "blur(40px)",
       }}
     />
@@ -325,17 +322,6 @@ export const Route = createFileRoute("/")({
 });
 
 /* -- SVG Decorators -- */
-const Scribble = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 100 60" className={className} fill="none">
-    <path
-      d="M5 30 Q 25 5, 50 30 T 95 30"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-    <path d="M10 45 Q 30 35, 50 45" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-  </svg>
-);
 const Underline = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 200 20" className={className} fill="none" preserveAspectRatio="none">
     <path
@@ -504,7 +490,7 @@ const QuestionAnswerCtas = () => (
       background: conic-gradient(
         from var(--border-angle),
         transparent 70%,
-        var(--beam-color, #a855f7) 88%,
+        var(--beam-color, #B08D57) 88%,
         transparent 100%
       );
       -webkit-mask:
@@ -518,37 +504,37 @@ const QuestionAnswerCtas = () => (
   `}</style>
 
       <MobileQuestionCta
-        label="Need campaigns, content, and growth systems?"
+        label="Planning a residence, retreat, or civic space?"
         icon={<Megaphone className="h-5 w-5" />}
         href="#contact"
         primary
         delay={0.68}
         innerClassName="border-beam-mobile"
-        innerStyle={{ "--beam-color": "#a855f7" } as React.CSSProperties}
+        innerStyle={{ "--beam-color": "#B08D57" } as React.CSSProperties}
       >
-        Marketing <ArrowUpRight className="h-4 w-4" />
+        Architecture <ArrowUpRight className="h-4 w-4" />
       </MobileQuestionCta>
 
       <MobileQuestionCta
-        label="Need websites, apps, and automation built?"
+        label="Need interiors, planning, or adaptive reuse?"
         icon={<Rocket className="h-5 w-5" />}
         href="#contact"
         delay={0.78}
         innerClassName="border-beam-mobile"
-        innerStyle={{ "--beam-color": "#06b6d4" } as React.CSSProperties}
+        innerStyle={{ "--beam-color": "#7A8465" } as React.CSSProperties}
       >
-        Development
+        Interiors
       </MobileQuestionCta>
     </div>
 
     <div className="relative hidden min-h-[310px] w-full grid-rows-[1fr_auto] pt-2 md:grid">
       <QuestionCallout
-        label="Need campaigns, content, and growth systems?"
+        label="Planning a residence, retreat, or civic space?"
         icon={<Megaphone className="h-5 w-5" />}
         className="left-0 top-0"
       />
       <QuestionCallout
-        label="Need websites, apps, and automation built?"
+        label="Need interiors, planning, or adaptive reuse?"
         icon={<Rocket className="h-5 w-5" />}
         className="right-0 top-0"
       />
@@ -589,7 +575,7 @@ const QuestionAnswerCtas = () => (
       background: conic-gradient(
         from var(--border-angle),
         transparent 70%,
-        var(--beam-color, #a855f7) 88%,
+        var(--beam-color, #B08D57) 88%,
         transparent 100%
       );
       -webkit-mask:
@@ -602,22 +588,22 @@ const QuestionAnswerCtas = () => (
     }
   `}</style>
 
-        <div className="border-beam" style={{ "--beam-color": "#a855f7" } as React.CSSProperties}>
+        <div className="border-beam" style={{ "--beam-color": "#B08D57" } as React.CSSProperties}>
           {" "}
           <a
             href="#contact"
             className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 font-semibold text-cream lift"
           >
-            Marketing <ArrowUpRight className="h-4 w-4" />
+            Architecture <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>
 
-        <div className="border-beam" style={{ "--beam-color": "#06b6d4" } as React.CSSProperties}>
+        <div className="border-beam" style={{ "--beam-color": "#7A8465" } as React.CSSProperties}>
           <a
             href="#contact"
             className="inline-flex min-w-44 items-center justify-center gap-2 rounded-full border-2 border-ink bg-background px-8 py-3.5 font-semibold text-foreground lift"
           >
-            Development
+            Interiors
           </a>
         </div>
       </div>
@@ -632,60 +618,60 @@ const Star4 = ({ className = "" }: { className?: string }) => (
 
 /* -- Data -- */
 const stats = [
-  { k: "180+", v: "Projects delivered" },
-  { k: "35+", v: "Active clients" },
-  { k: "12+", v: "Countries served" },
-  { k: "$2M+", v: "Revenue impact" },
+  { k: "180+", v: "Spaces delivered" },
+  { k: "35+", v: "Active commissions" },
+  { k: "12+", v: "Cities studied" },
+  { k: "2M+", v: "Sq ft shaped" },
   { k: "96%", v: "Client retention" },
 ];
 
 const workProjects = [
   {
-    name: "Somefolk R&D Digital",
-    role: "Product launch · SaaS",
-    outcome: "A high-conversion website, launch campaign, and growth funnel for a rapid scale-up.",
-    tags: ["Brand", "Web", "Paid Media"],
+    name: "Northline Courtyard House",
+    role: "Residential · Bengaluru",
+    outcome: "A climate-responsive family residence organized around light, privacy, and craft.",
+    tags: ["Architecture", "Interiors", "Landscape"],
     color: "bg-surface-5",
   },
   {
-    name: "Lume Skincare",
-    role: "DTC rebrand · content",
+    name: "Tessera Workclub",
+    role: "Commercial interiors · Mumbai",
     outcome:
-      "Built a premium brand system, hero film, and social motion playbook for product launch.",
-    tags: ["Creative", "Video", "Social"],
+      "A refined workplace concept balancing hospitality, acoustic comfort, and flexible planning.",
+    tags: ["Workplace", "Materiality", "Strategy"],
     color: "bg-accent",
   },
   {
-    name: "Stellar Travel",
-    role: "Experience design · storytelling",
-    outcome: "Designed a travel brand with immersive UX, editorial commerce, and retention loops.",
-    tags: ["UX", "Content", "Growth"],
+    name: "Harbor Edge Masterplan",
+    role: "Urban design · Waterfront",
+    outcome: "A civic waterfront framework connecting public space, mixed-use anchors, and transit.",
+    tags: ["Urban Design", "Public Realm", "Mobility"],
     color: "bg-surface-3",
   },
 ];
 
 const serviceOfferings = [
   {
-    title: "Brand Strategy",
-    description: "Positioning, voice, and launch systems that make your brand stand out and scale.",
+    title: "Architecture",
+    description: "Concept, planning, and detailing for residential, commercial, and cultural buildings.",
     icon: Target,
     accent: "from-orange-500 to-amber-500",
   },
   {
-    title: "UI / UX Design",
-    description: "Conversion-first experience design that feels premium and converts consistently.",
+    title: "Interior Design",
+    description: "Measured interiors shaped through material research, proportion, lighting, and craft.",
     icon: Layers,
     accent: "from-sky-500 to-cyan-500",
   },
   {
-    title: "Content Creation",
-    description: "Video, social, and editorial systems that keep your brand top of mind.",
+    title: "Urban Planning",
+    description: "Public-realm, mobility, and mixed-use strategies for resilient urban environments.",
     icon: Sparkles,
     accent: "from-violet-500 to-fuchsia-500",
   },
   {
-    title: "Growth Automation",
-    description: "AI-enabled funnels, workflows, and reporting that reduce manual overhead.",
+    title: "Sustainable Design",
+    description: "Low-impact design decisions that improve comfort, performance, and long-term value.",
     icon: Brain,
     accent: "from-emerald-500 to-lime-500",
   },
@@ -693,52 +679,52 @@ const serviceOfferings = [
 
 /* -- Custom Portfolio Datasets -- */
 const categoryColors: Record<string, { badge: string; border: string; text: string }> = {
-  "Video Editing": {
+  Residential: {
     badge: "bg-red-500/10 border-red-500/20",
     border: "border-red-500/40",
     text: "text-red-400",
   },
-  "Graphic Design": {
+  "Interior Design": {
     badge: "bg-purple-500/10 border-purple-500/20",
     border: "border-purple-500/40",
     text: "text-purple-400",
   },
-  "Website Development": {
+  Architecture: {
     badge: "bg-blue-500/10 border-blue-500/20",
     border: "border-blue-500/40",
     text: "text-blue-400",
   },
-  SEO: {
+  Sustainability: {
     badge: "bg-green-500/10 border-green-500/20",
     border: "border-green-500/40",
     text: "text-green-400",
   },
-  "Content Writing": {
+  "Design Narrative": {
     badge: "bg-orange-500/10 border-orange-500/20",
     border: "border-orange-500/40",
     text: "text-orange-400",
   },
-  "Strategic Planning": {
+  Masterplanning: {
     badge: "bg-amber-500/10 border-amber-500/20",
     border: "border-amber-500/40",
     text: "text-amber-400",
   },
-  "Account Audit Reports": {
+  "Site Analysis": {
     badge: "bg-cyan-500/10 border-cyan-500/20",
     border: "border-cyan-500/40",
     text: "text-cyan-400",
   },
-  "Project Management Systems": {
+  "Urban Planning": {
     badge: "bg-indigo-500/10 border-indigo-500/20",
     border: "border-indigo-500/40",
     text: "text-indigo-400",
   },
-  "CRM Software": {
+  "Commercial Design": {
     badge: "bg-teal-500/10 border-teal-500/20",
     border: "border-teal-500/40",
     text: "text-teal-400",
   },
-  "Sales Applications": {
+  Hospitality: {
     badge: "bg-pink-500/10 border-pink-500/20",
     border: "border-pink-500/40",
     text: "text-pink-400",
@@ -747,10 +733,10 @@ const categoryColors: Record<string, { badge: string; border: string; text: stri
 
 const heroShowcaseSlides = [
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Brand Campaign Edit",
+    categoryLabel: "RESIDENTIAL",
+    title: "Courtyard Residence",
     description:
-      "Premium editorial video cut capturing the target aesthetic for a luxury wellness brand.",
+      "A warm, inward-looking home shaped around daylight, stone, and quiet thresholds.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     poster: screenshot2,
     glow: "shadow-red-950/40",
@@ -758,10 +744,10 @@ const heroShowcaseSlides = [
     ctaLink: "#portfolio",
   },
   {
-    categoryLabel: "WEBSITE DEVELOPMENT",
-    title: "Stellar Booking Platform",
+    categoryLabel: "COMMERCIAL",
+    title: "Boutique Workplace",
     description:
-      "High-performance marketing site and booking application with interactive client UI.",
+      "A flexible studio workplace with layered acoustics, hospitality cues, and custom joinery.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     poster: screenshot1,
     glow: "shadow-blue-950/40",
@@ -769,10 +755,10 @@ const heroShowcaseSlides = [
     ctaLink: "#portfolio",
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    title: "Lume Skincare Visuals",
+    categoryLabel: "INTERIORS",
+    title: "Gallery Apartment",
     description:
-      "High-end brand assets, social media grid style templates, and premium custom packaging.",
+      "A restrained interior study balancing collected art, natural texture, and precise detailing.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     poster: screenshot2,
     glow: "shadow-purple-950/40",
@@ -780,10 +766,10 @@ const heroShowcaseSlides = [
     ctaLink: "#portfolio",
   },
   {
-    categoryLabel: "CRM SOFTWARE",
-    title: "Nexis Automation CRM",
+    categoryLabel: "URBAN DESIGN",
+    title: "Waterfront Framework",
     description:
-      "Custom enterprise CRM dashboard simplifying client workflows and sales metrics tracking.",
+      "A public-realm proposal connecting mixed-use edges, shaded walks, and civic gathering.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     poster: screenshot3,
     glow: "shadow-teal-950/40",
@@ -791,10 +777,10 @@ const heroShowcaseSlides = [
     ctaLink: "#portfolio",
   },
   {
-    categoryLabel: "SALES APPLICATIONS",
-    title: "Retail Billing App",
+    categoryLabel: "HOSPITALITY",
+    title: "Retreat Pavilion",
     description:
-      "Cloud-native sales app designed with high-conversion checkout flows and real-time ledger.",
+      "A compact hospitality pavilion designed for landscape immersion and low-impact construction.",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     poster: screenshot4,
     glow: "shadow-pink-950/40",
@@ -805,37 +791,37 @@ const heroShowcaseSlides = [
 
 const videoEditingSlides = [
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Off-hours Cinematic Cut",
-    description: "High-energy commercial cut with quick cuts and professional grading.",
-    outcome: "Generated 2.4M views",
+    categoryLabel: "RESIDENTIAL",
+    title: "Dawn House Study",
+    description: "A cinematic walkthrough of a residence tuned for morning light and cross-ventilation.",
+    outcome: "Passive cooling strategy",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     poster: screenshot5,
     accentColor: "from-red-950/90",
   },
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Atlas Origin Brand Story",
-    description: "Documentary-style corporate story reel emphasizing brand authenticity.",
-    outcome: "Improved engagement by 140%",
+    categoryLabel: "COMMERCIAL",
+    title: "Studio Atrium Sequence",
+    description: "A spatial film tracing material transitions through a compact creative workplace.",
+    outcome: "Adaptive workplace plan",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     poster: screenshot6,
     accentColor: "from-rose-950/90",
   },
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Lume Skincare Promo Edit",
-    description: "Before/After skin transformations showcasing visual effects and motion tracking.",
-    outcome: "Brand campaign launch",
+    categoryLabel: "INTERIORS",
+    title: "Quiet Gallery Interior",
+    description: "A measured visual study of built-in storage, art walls, and soft natural finishes.",
+    outcome: "Bespoke joinery package",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     poster: screenshot1,
     accentColor: "from-red-900/90",
   },
   {
-    categoryLabel: "VIDEO EDITING",
-    title: "Social Media Hook Playbook",
-    description: "Short-form video assets styled for high audience retention and CTA clicks.",
-    outcome: "3.2M Blended Views",
+    categoryLabel: "URBAN DESIGN",
+    title: "Public Edge Walkthrough",
+    description: "A concise urban sequence showing shaded crossings, planted edges, and civic nodes.",
+    outcome: "Pedestrian-first framework",
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     poster: screenshot2,
     accentColor: "from-orange-950/90",
@@ -925,138 +911,138 @@ type PortfolioContentCopy = SiteData["portfolio"];
 // ===== UPDATED GRAPHIC DESIGN SLIDES WITH YOUR THUMBNAILS =====
 const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Campaign Launch",
-    title: "Bold Multi-Platform Story Frames",
+    categoryLabel: "INTERIOR DESIGN",
+    subcategory: "Concept Study",
+    title: "Layered Residential Material Study",
     description:
-      "A dynamic hero image set for launch campaigns, blending editorial polish with motion-led impact.",
+      "A warm interior palette study pairing stone, timber, plaster, and measured daylight.",
     image: story7,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Packaging",
-    title: "Tactile Brand Packaging Concepts",
+    categoryLabel: "ARCHITECTURE",
+    subcategory: "Facade",
+    title: "Tactile Facade Prototypes",
     description:
-      "Premium packaging mockups with layered textures, premium finishes, and retail-ready appeal.",
+      "Material mockups exploring depth, shadow, and weathering across a refined street elevation.",
     image: story8,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Social Media",
-    title: "Story-Led Social Content",
+    categoryLabel: "URBAN DESIGN",
+    subcategory: "Public Realm",
+    title: "Civic Streetscape Studies",
     description:
-      "Swipe-ready story assets and modern editorial layouts designed for high engagement.",
+      "Compact public-realm studies for shaded movement, seating, planting, and storefront rhythm.",
     image: story9,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
-    title: "Brand Campaign Asset",
-    description: "High-impact campaign creative for digital advertising rollouts.",
+    categoryLabel: "COMMERCIAL DESIGN",
+    subcategory: "Retail",
+    title: "Flagship Retail Threshold",
+    description: "A precise entry sequence balancing display, circulation, and tactile brand experience.",
     image: thumbnail2,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
+    categoryLabel: "HOSPITALITY",
     subcategory: "Hospitality",
-    title: "Pure Earth Stay - Where Every Moment Feels Just Right",
-    description: "Premium hospitality branding for Treebo's Pure Earth Stay experience.",
+    title: "Pure Earth Stay - Guest Suite Concept",
+    description: "A calm hospitality interior built around natural finishes, filtered light, and comfort.",
     image: thumbnail3,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
+    categoryLabel: "ARCHITECTURE",
+    subcategory: "Construction",
     title: "Clarity First - Construction Follows",
-    description: "Strategic construction branding with clear visual messaging and impact.",
+    description: "A disciplined site communication system for precise sequencing and build quality.",
     image: thumbnail4,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
-    title: "Step Into Your Cozy Hotel Room",
-    description: "Warm and inviting hotel room visual design for memorable guest experiences.",
+    categoryLabel: "HOSPITALITY",
+    subcategory: "Guest Room",
+    title: "Step Into a Quiet Guest Room",
+    description: "A warm hotel room concept centered on proportion, texture, and restful detail.",
     image: thumbnail5,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
+    categoryLabel: "MASTERPLANNING",
     subcategory: "Modernization",
-    title: "Modern Systems in Motion",
-    description: "A high-contrast graphic system rooted in modern tech and service design.",
+    title: "Adaptive Campus Systems",
+    description: "A modernization framework for phased campus growth and connected outdoor rooms.",
     image: thumbnail1,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
-    title: "Corporate Branding System",
-    description: "Corporate identity assets optimized for product launches and team wear.",
+    categoryLabel: "COMMERCIAL DESIGN",
+    subcategory: "Workplace",
+    title: "Corporate Workplace System",
+    description: "A spatial identity system for meeting suites, team hubs, and focused work zones.",
     image: thumbnail7,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
+    categoryLabel: "URBAN DESIGN",
     subcategory: "Modernization",
     title: "Sky-Line Visual Identity",
-    description: "A refined design system for architecture, real estate and urban innovation.",
+    description: "A refined skyline study for architecture, real estate, and urban innovation.",
     image: thumbnail9,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    subcategory: "Advertising",
+    categoryLabel: "ARCHITECTURE",
+    subcategory: "Vision",
     title: "Built on Vision",
-    description: "Vision-driven campaign creative for modern architecture clients.",
+    description: "A concept package for contemporary architecture shaped by craft and restraint.",
     image: thumbnail10,
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
+    categoryLabel: "HOSPITALITY",
     subcategory: "Modernization",
-    title: "Cozy Hotel Room Branding",
-    description: "Hospitality branding with a modern, welcoming visual language.",
+    title: "Cozy Hotel Room Interior",
+    description: "Hospitality design with a modern, welcoming spatial language.",
     image: thumbnail6,
   },
 ];
 
 const softwareSystemsSlides = [
   {
-    categoryLabel: "CRM SOFTWARE",
-    title: "Nexis Enterprise CRM",
+    categoryLabel: "COMMERCIAL DESIGN",
+    title: "Nexis Studio Workplace",
     description:
-      "Custom customer dashboard managing pipelines, emails, and automatic lead triggers.",
-    keyFeatures: ["Automated CRM Sync", "Real-Time User Attribution", "Multi-Channel Messaging"],
-    techStack: ["React", "FastAPI", "PostgreSQL"],
-    businessBenefit: "Reduced client management overhead by 40%",
+      "A compact workplace that brings client rooms, model tables, and production zones into one clear plan.",
+    keyFeatures: ["Flexible Planning", "Acoustic Rooms", "Custom Joinery"],
+    techStack: ["BIM", "Material Library", "Lighting Study"],
+    businessBenefit: "Improved collaboration and client presentation flow",
     poster: screenshot3,
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     accentColor: "from-teal-950/90",
   },
   {
-    categoryLabel: "PROJECT MANAGEMENT",
-    title: "Agile Dev Sprint Console",
+    categoryLabel: "URBAN PLANNING",
+    title: "District Mobility Framework",
     description:
-      "Real-time ticket updates, resource tracking, and automatic deployment pipeline charts.",
-    keyFeatures: ["Custom Sprint Planner", "Interactive Gantt Charts", "Direct Slack Webhooks"],
-    techStack: ["Next.js", "Express", "MongoDB"],
-    businessBenefit: "Boosted team shipping velocity by 30%",
+      "A neighborhood framework aligning shade, pedestrian priority, slow streets, and mixed-use frontage.",
+    keyFeatures: ["Walkable Blocks", "Transit Links", "Public Realm"],
+    techStack: ["GIS", "Mobility Mapping", "Phasing Plan"],
+    businessBenefit: "Created a clear roadmap for resilient district growth",
     poster: screenshot6,
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     accentColor: "from-indigo-950/90",
   },
   {
-    categoryLabel: "SALES APPLICATIONS",
-    title: "Nexis Cloud POS System",
+    categoryLabel: "RESIDENTIAL",
+    title: "Cloud Court Residence",
     description:
-      "Tablet-optimized sales app featuring offline checkouts and automatic ledger sync.",
-    keyFeatures: ["Offline Transactions", "Dynamic Loyalty System", "Inventory Alerts"],
-    techStack: ["React Native", "Go", "SQLite"],
-    businessBenefit: "Increased checkout throughput by 25%",
+      "A courtyard house with deep overhangs, screened edges, and calm interior volumes.",
+    keyFeatures: ["Passive Cooling", "Courtyard Light", "Stone Detailing"],
+    techStack: ["BIM", "Climate Analysis", "Detail Set"],
+    businessBenefit: "Balanced privacy, comfort, and everyday family life",
     poster: screenshot4,
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     accentColor: "from-pink-950/90",
   },
   {
-    categoryLabel: "BUSINESS AUTOMATION",
-    title: "Internal Operations Middleware",
-    description: "Connects ERP tables, logistics logs, and client emails to an LLM agent.",
-    keyFeatures: ["Autonomous Agents", "Semantic Log Parsing", "PDF Invoicing OCR"],
-    techStack: ["Python", "LangChain", "Docker"],
-    businessBenefit: "Automated 85% of manual shipping checks",
+    categoryLabel: "SUSTAINABLE DESIGN",
+    title: "Low-Carbon Retrofit Strategy",
+    description: "A phased retrofit plan for envelope performance, daylight, and material reuse.",
+    keyFeatures: ["Energy Modeling", "Adaptive Reuse", "Material Audit"],
+    techStack: ["Energy Study", "Lifecycle Review", "Phasing"],
+    businessBenefit: "Reduced operating demand while preserving existing structure",
     poster: screenshot1,
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     accentColor: "from-amber-950/90",
@@ -1065,52 +1051,52 @@ const softwareSystemsSlides = [
 
 const seoAnalyticsSlides = [
   {
-    categoryLabel: "SEO",
-    title: "Organic Search Engine Optimization",
+    categoryLabel: "SUSTAINABILITY",
+    title: "Passive Performance Strategy",
     description:
-      "Compound growth funnels capturing high-intent search terms and generating qualified inbound leads.",
+      "Environmental studies shaping daylight, shading, ventilation, and long-term operating comfort.",
     metrics: [
-      { label: "Organic Traffic Growth", value: "+312%" },
-      { label: "Top 3 Keywords Ranked", value: "840+" },
+      { label: "Cooling Load Reduction", value: "-28%" },
+      { label: "Daylit Work Areas", value: "82%" },
     ],
     poster: screenshot5,
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     accent: "from-green-950/40",
   },
   {
-    categoryLabel: "ACCOUNT AUDIT",
-    title: "Technical Site Performance Audit",
+    categoryLabel: "SITE ANALYSIS",
+    title: "Urban Context Audit",
     description:
-      "Exhaustive audits resolving slow load times, poor lighthouse core web vitals, and indexation gaps.",
+      "A rigorous study of movement, edges, views, landscape, and constraints before concept design.",
     metrics: [
-      { label: "Lighthouse Performance Score", value: "98/100" },
-      { label: "Site Speed Improvement", value: "3.2x Faster" },
+      { label: "Access Points Mapped", value: "14" },
+      { label: "Public Realm Gain", value: "+38%" },
     ],
     poster: screenshot6,
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     accent: "from-cyan-950/40",
   },
   {
-    categoryLabel: "ANALYTICS",
-    title: "Conversion Attribution Dashboard",
+    categoryLabel: "MATERIAL RESEARCH",
+    title: "Material Lifecycle Study",
     description:
-      "Multi-touch attribution reporting providing marketing attribution modeling across channels.",
+      "Comparative material research focused on durability, embodied carbon, sourcing, and craft.",
     metrics: [
-      { label: "Attributed ROI Accuracy", value: "95%" },
-      { label: "ROAS Optimization", value: "4.2x Blended" },
+      { label: "Reused Material Share", value: "35%" },
+      { label: "Local Sourcing Radius", value: "120km" },
     ],
     poster: screenshot3,
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     accent: "from-emerald-950/40",
   },
   {
-    categoryLabel: "PERFORMANCE REPORT",
-    title: "Core Web Vitals Optimizations",
+    categoryLabel: "BUILDING PERFORMANCE",
+    title: "Envelope Optimization",
     description:
-      "Technical optimizations resolving Cumulative Layout Shifts and First Contentful Paint delays.",
+      "Facade, glazing, and shading studies tuned for comfort, energy demand, and visual clarity.",
     metrics: [
-      { label: "Bounce Rate Reduction", value: "-22%" },
-      { label: "Conversion Rate Uplift", value: "+45%" },
+      { label: "Solar Gain Reduction", value: "-31%" },
+      { label: "Thermal Comfort Hours", value: "+46%" },
     ],
     poster: screenshot4,
     video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
@@ -1120,66 +1106,66 @@ const seoAnalyticsSlides = [
 
 const consultingCases = [
   {
-    categoryLabel: "STRATEGIC PLANNING",
-    title: "B2B SaaS Market Entry",
+    categoryLabel: "MASTERPLANNING",
+    title: "Mixed-Use District Framework",
     challenge:
-      "Enterprise tech company struggling to enter APAC due to localized pricing, regulatory hurdles, and unknown brand authority.",
+      "A dense urban site needed a coherent framework for housing, retail, mobility, and civic space.",
     solution:
-      "Conducted a deep local competitor audit, structured local-first packaging tiers, and launched a multi-touch digital campaign directed at C-Suite stakeholders.",
+      "Developed a phased masterplan with active edges, shaded pedestrian routes, and flexible development parcels.",
     execution:
-      "Constructed targeted growth strategy, localized brand messaging, and implemented serverless landing hubs built for low-bandwidth environments.",
+      "Built urban massing studies, public-realm sections, mobility diagrams, and implementation guidelines.",
     results: [
-      { label: "ARR Growth in 8mo", value: "$1.8M" },
-      { label: "Customer Acq. Cost (CAC)", value: "-35%" },
-      { label: "Client Inbound Pipeline", value: "+300%" },
+      { label: "Public Realm Increase", value: "+42%" },
+      { label: "Walkable Frontage", value: "1.8km" },
+      { label: "Phasing Packages", value: "4" },
     ],
   },
   {
-    categoryLabel: "STRATEGIC PLANNING",
-    title: "Retail Supply Chain Digitization",
+    categoryLabel: "ADAPTIVE REUSE",
+    title: "Warehouse-to-Studio Conversion",
     challenge:
-      "Legacy retail chain with paper-heavy logistics, causing shipping bottlenecks and severe stock mismatches.",
+      "An industrial shell needed to become a refined creative workplace without erasing its existing character.",
     solution:
-      "Designed a digital transformation blueprint. Programmed cloud PM middleware linking inventory logs to real-time sales APIs.",
+      "Preserved the structural rhythm while inserting warm workspaces, shared studios, and daylight-led gathering zones.",
     execution:
-      "Phased integration plan, custom ERP dashboards, and automated Slack alert channels warning warehouse staff about inventory drops.",
+      "Produced reuse audits, service coordination, material samples, and construction-ready detail packages.",
     results: [
-      { label: "Bottlenecks Resolved", value: "99%" },
-      { label: "Staff Time Saved", value: "85%" },
-      { label: "Fulfillment Errors", value: "<0.1%" },
+      { label: "Structure Retained", value: "88%" },
+      { label: "Embodied Carbon Saved", value: "31%" },
+      { label: "New Studio Capacity", value: "120" },
     ],
   },
 ];
 
 const editorialContent = [
   {
-    categoryLabel: "Content Writing",
-    type: "Sales Landing Page Copy",
-    headline: "Unchain Your Operations: The AI Middleware Built for Scale",
-    metrics: "4.8% Conv. Rate (+60% vs benchmark)",
+    categoryLabel: "Design Narrative",
+    type: "Residential Concept Statement",
+    headline: "A House Organized by Light, Air, and Quiet Thresholds",
+    metrics: "Concept package approved in 3 reviews",
     excerpt:
-      "Enterprise systems are notoriously rigid. We don't believe in rewriting your stack from scratch. Our middleware sits quietly on top, using intelligent semantic parsing to turn unstructured email requests into structured database inserts...",
+      "The residence is composed as a sequence of shaded rooms and planted courts, allowing the family to move between privacy, gathering, and landscape with ease...",
   },
   {
-    categoryLabel: "Content Writing",
-    type: "Tech Blog & Thought Leadership",
-    headline: "The Churn Tax: Why Legacy Architectures Threaten Series-A Runways",
-    metrics: "15K Views · 18% CTA Click-Through",
+    categoryLabel: "Research Note",
+    type: "Urban Design Essay",
+    headline: "The Value of Slower Streets in High-Density Neighborhoods",
+    metrics: "Published in studio journal",
     excerpt:
-      "Losing 3% of your customer base each month is a leaky bucket. When your CAC exceeds your LTV payback window, growth stops compounding. Read our deep-dive analysis on building growth loops directly into your product experience...",
+      "A successful street does more than move vehicles. It frames everyday civic life through shade, frontage, seating, planting, and the measured pace of pedestrians...",
   },
   {
-    categoryLabel: "Content Writing",
-    type: "B2B Email Campaign Sequence",
-    headline: "The 3 Bottlenecks C-Suite Teams Ignore (And How to Automate Them)",
-    metrics: "46% Open Rate · 12% Reply Rate",
+    categoryLabel: "Client Brief",
+    type: "Hospitality Design Memo",
+    headline: "Designing a Retreat Where Landscape Becomes the Primary Room",
+    metrics: "Feasibility brief completed",
     excerpt:
-      "Hi {First Name}, most logistics companies waste 20 hours a week on manual inventory audits. It isn't a staff issue; it's a data synchronization issue. Here is how one retail client freed 85% of their operational backlog without hiring...",
+      "The guest experience begins before arrival. Approach, threshold, scent, texture, and framed landscape views are coordinated into a calm sequence of discovery...",
   },
 ];
 
 function DiscoveryCallDialog() {
-  const hostEmail = "info@alphanexius.com";
+  const hostEmail = "info@imaginedesignstudio.com";
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
@@ -1207,7 +1193,7 @@ function DiscoveryCallDialog() {
     ].join("\n");
 
     window.location.href = `mailto:${hostEmail}?subject=${encodeURIComponent(
-      "Discovery call request from AlphaNexis website",
+      "Studio consultation request from Imagine Design Studio website",
     )}&body=${encodeURIComponent(body)}`;
     setSent(true);
   };
@@ -1219,7 +1205,7 @@ function DiscoveryCallDialog() {
           type="button"
           className="inline-flex h-auto items-center gap-2 rounded-full border-2 border-ink bg-background px-6 py-3 font-semibold text-foreground shadow-[4px_4px_0_0_var(--ink)] transition-transform hover:-translate-y-0.5 hover:bg-card"
         >
-          <Phone className="h-4 w-4" /> Book a discovery call
+          <Phone className="h-4 w-4" /> Book a studio consultation
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[min(94vw,34rem)] overflow-hidden rounded-[1.5rem] border-2 border-ink bg-card p-0 shadow-[10px_10px_0_0_var(--ink)]">
@@ -1230,10 +1216,10 @@ function DiscoveryCallDialog() {
               <CalendarCheck className="h-6 w-6" />
             </div>
             <DialogTitle className="font-display text-3xl font-bold text-card-foreground">
-              Discovery call
+              Studio consultation
             </DialogTitle>
             <DialogDescription className="text-muted-foreground">
-              Share contact details. Mail app opens with message ready for host.
+              Share a few details about your project. Your mail app opens with the brief ready.
             </DialogDescription>
           </DialogHeader>
 
@@ -1288,7 +1274,7 @@ function DiscoveryCallDialog() {
 
             <div className="space-y-2">
               <Label htmlFor="lead-description">
-                Description <span className="text-muted-foreground">(optional)</span>
+                Project brief <span className="text-muted-foreground">(optional)</span>
               </Label>
               <div className="relative">
                 <MessageSquareText className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
@@ -1307,7 +1293,7 @@ function DiscoveryCallDialog() {
                 type="submit"
                 className="h-12 flex-1 rounded-full bg-ink px-6 font-semibold text-cream shadow-[4px_4px_0_0_var(--accent)] transition-transform hover:-translate-y-0.5"
               >
-                <Send className="h-4 w-4" /> Send request
+                <Send className="h-4 w-4" /> Send brief
               </Button>
               {sent && (
                 <p className="text-sm font-medium text-foreground/70" role="status">
@@ -1325,47 +1311,47 @@ function DiscoveryCallDialog() {
 const capabilities = [
   {
     icon: Target,
-    t: "Performance Marketing",
+    t: "Architecture",
     k: "01",
-    d: "High-intent SEO funnels, algorithmic ad systems & growth loops that compound — not one-off campaigns.",
-    chips: ["SEO & SEM", "Paid Social", "Funnel Architecture"],
+    d: "Ground-up residential, commercial, and cultural buildings shaped through context, proportion, and detail.",
+    chips: ["Concept Design", "Planning", "Detailing"],
     metric: "3x",
-    metricLabel: "pipeline velocity",
+    metricLabel: "design options",
     bg: "bg-accent",
     span: "md:col-span-2 md:row-span-2",
     big: true,
   },
   {
     icon: PenTool,
-    t: "Brand Identity",
+    t: "Interior Design",
     k: "02",
-    d: "GTM strategy, positioning, verbal identity & creative systems with a point of view that converts.",
-    chips: ["Positioning", "Creative Direction", "Brand Voice"],
-    metric: "–35%",
-    metricLabel: "customer acq. cost",
-    bg: "bg-surface-1 dark:bg-[oklch(0.88_0.1_75)]",
+    d: "Calm, tactile interiors resolved through material palettes, lighting, furniture, and custom joinery.",
+    chips: ["Materiality", "Lighting", "Furniture"],
+    metric: "35%",
+    metricLabel: "local sourcing",
+    bg: "bg-surface-1 dark:bg-[#ECE8E1]",
     span: "",
   },
   {
     icon: Sparkles,
-    t: "Social & Content",
+    t: "Urban Planning",
     k: "03",
-    d: "Content engines built on short-form video, editorial calendars & community ops that ship every week.",
-    chips: ["Short-form Video", "Editorial Calendar", "Community"],
+    d: "District, campus, and public-realm strategies that connect movement, landscape, density, and civic life.",
+    chips: ["Masterplans", "Mobility", "Public Realm"],
     metric: "+312%",
-    metricLabel: "organic reach",
-    bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]",
+    metricLabel: "public realm",
+    bg: "bg-surface-2 dark:bg-[#D6D2CB]",
     span: "",
   },
   {
     icon: Brain,
-    t: "AI-Powered Automation",
+    t: "Sustainable Design",
     k: "04",
-    d: "Autonomous AI agents & intelligent middleware that compress manual workflows from hours to minutes.",
-    chips: ["AI Agents", "CRM Automation", "Analytics Dash"],
+    d: "Performance-led design that reduces demand, extends building life, and improves daily comfort.",
+    chips: ["Energy Study", "Adaptive Reuse", "Material Audit"],
     metric: "85%",
-    metricLabel: "task automation",
-    bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
+    metricLabel: "daylit areas",
+    bg: "bg-surface-3 dark:bg-[#F7F5F2]",
     span: "md:col-span-2",
   },
 ];
@@ -1373,43 +1359,43 @@ const capabilities = [
 const steps = [
   {
     n: "01",
-    t: "Discover",
-    d: "Deep-dive audit, stakeholder interviews & audience mapping.",
+    t: "Listen",
+    d: "Client ambitions, site conditions, constraints, and opportunities are mapped with care.",
     icon: Search,
     color: "bg-accent",
   },
   {
     n: "02",
-    t: "Strategize",
-    d: "Positioning, KPIs, channel mix & north-star growth metric.",
+    t: "Frame",
+    d: "Program, budget, approvals, sustainability goals, and design priorities are aligned.",
     icon: Lightbulb,
-    color: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
+    color: "bg-surface-3 dark:bg-[#F7F5F2]",
   },
   {
     n: "03",
-    t: "Create",
-    d: "Brand identity, creative assets & content system built.",
+    t: "Concept",
+    d: "Spatial ideas, massing, material direction, and atmosphere are developed together.",
     icon: Layers,
-    color: "bg-surface-4 dark:bg-[oklch(0.82_0.14_25)]",
+    color: "bg-surface-4 dark:bg-[#B08D57]",
   },
   {
     n: "04",
-    t: "Deploy",
-    d: "Launch ads, funnels, content & automation pipelines live.",
+    t: "Resolve",
+    d: "Plans, sections, details, specifications, and consultants are coordinated for buildability.",
     icon: Rocket,
-    color: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]",
+    color: "bg-surface-2 dark:bg-[#D6D2CB]",
   },
   {
     n: "05",
-    t: "Decode",
-    d: "Full analytics, attribution modelling & insight extraction.",
+    t: "Deliver",
+    d: "Tender, site review, procurement, and handover are guided with consistent studio attention.",
     icon: LineChart,
-    color: "bg-surface-6 dark:bg-[oklch(0.78_0.14_280)]",
+    color: "bg-surface-6 dark:bg-[#6F7377]",
   },
   {
     n: "06",
-    t: "Optimise",
-    d: "Scale winners, cut losers, repeat the compounding loop.",
+    t: "Refine",
+    d: "Post-occupancy feedback informs improvements and future phases.",
     icon: Repeat,
     color: "bg-accent",
   },
@@ -1417,63 +1403,63 @@ const steps = [
 
 const cases = [
   {
-    name: "B2B SaaS Scale-Up",
-    sector: "FinTech · US",
+    name: "Courtyard Residence",
+    sector: "Residential · India",
     year: "2025",
-    word: "FINTECH",
+    word: "COURT",
     color: "bg-accent",
-    problem: "18% churn, legacy backend, CAC threatening Series-A runway.",
+    problem: "A compact urban plot required privacy, daylight, and passive cooling.",
     metrics: [
-      { k: "+140%", v: "ARR growth" },
-      { k: "99.9%", v: "Uptime" },
-      { k: "11mo", v: "To $5.2M" },
+      { k: "42%", v: "Open space" },
+      { k: "3", v: "Courtyards" },
+      { k: "-28%", v: "Cooling load" },
     ],
-    tags: ["Growth", "Funnels", "Ads"],
+    tags: ["Residence", "Courtyard", "Passive"],
     rot: -1.4,
   },
   {
-    name: "HealthTech Platform",
+    name: "Wellness Clinic",
     sector: "Healthcare · APAC",
     year: "2025",
-    word: "HEALTH",
-    color: "bg-surface-4 dark:bg-[oklch(0.82_0.14_25)]",
-    problem: "Zero digital presence entering 3 new markets simultaneously.",
+    word: "CLINIC",
+    color: "bg-surface-4 dark:bg-[#B08D57]",
+    problem: "A clinical program needed warmth, privacy, and operational clarity.",
     metrics: [
-      { k: "4.2x", v: "ROAS" },
-      { k: "65%", v: "CAC reduction" },
-      { k: "8wk", v: "Go-live" },
+      { k: "18", v: "Rooms" },
+      { k: "65%", v: "Daylit zones" },
+      { k: "8wk", v: "Concept stage" },
     ],
-    tags: ["Brand", "Launch", "Paid"],
+    tags: ["Healthcare", "Interiors", "Wayfinding"],
     rot: 1.6,
   },
   {
-    name: "Logistics Brand",
-    sector: "Supply Chain · EU",
+    name: "Adaptive Warehouse",
+    sector: "Workplace · EU",
     year: "2024",
-    word: "SUPPLY",
-    color: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
-    problem: "Outdated identity attracting wrong-fit enterprise clients.",
+    word: "REUSE",
+    color: "bg-surface-3 dark:bg-[#F7F5F2]",
+    problem: "A former warehouse needed to become a refined creative workplace.",
     metrics: [
-      { k: "3x", v: "Avg. deal size" },
-      { k: "100%", v: "Inbound" },
-      { k: "+540%", v: "Reach" },
+      { k: "88%", v: "Structure kept" },
+      { k: "100%", v: "New services" },
+      { k: "+540sqm", v: "Shared studios" },
     ],
-    tags: ["Rebrand", "Social", "Strategy"],
+    tags: ["Reuse", "Workplace", "Low Carbon"],
     rot: -1.8,
   },
   {
-    name: "Real Estate SaaS",
-    sector: "PropTech · AU",
+    name: "Harbor Edge Plan",
+    sector: "Urban Design · AU",
     year: "2024",
-    word: "PROPTECH",
-    color: "bg-surface-5 dark:bg-[oklch(0.78_0.13_140)]",
-    problem: "Stagnant pipeline with $0 content ROI across all channels.",
+    word: "HARBOR",
+    color: "bg-surface-5 dark:bg-[#7A8465]",
+    problem: "A waterfront district needed civic space, shade, and mixed-use activation.",
     metrics: [
-      { k: "1.2M", v: "Impressions" },
-      { k: "9", v: "Viral posts" },
-      { k: "–40%", v: "CPL" },
+      { k: "1.2km", v: "Waterfront" },
+      { k: "9", v: "Civic nodes" },
+      { k: "40%", v: "Public edge" },
     ],
-    tags: ["Content", "SEO", "Community"],
+    tags: ["Masterplan", "Mobility", "Public Realm"],
     rot: 1.2,
   },
 ];
@@ -1481,47 +1467,47 @@ const cases = [
 const engagements = [
   {
     icon: Zap,
-    t: "Sprint",
+    t: "Study",
     k: "2–4 wks",
-    d: "Tight scope, one outcome. Brand audit, paid kick-off or content system build.",
-    bullets: ["Daily standups", "Single deliverable", "Fixed price"],
-    bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]",
+    d: "A focused design study for feasibility, site potential, or material direction.",
+    bullets: ["Site review", "Concept options", "Clear scope"],
+    bg: "bg-surface-3 dark:bg-[#F7F5F2]",
     rot: -1.2,
-    tag: "Fastest",
+    tag: "Focused",
   },
   {
     icon: InfinityIcon,
-    t: "Retainer",
+    t: "Commission",
     k: "Monthly",
-    d: "An embedded growth pod — strategy, creative, ads & AI automation under one roof.",
-    bullets: ["Weekly sprint demos", "Always-on creative", "Live analytics dash"],
+    d: "A complete architecture or interior commission from concept through handover.",
+    bullets: ["Design reviews", "Consultant coordination", "Site support"],
     bg: "bg-accent",
     rot: 0,
-    tag: "Most popular",
+    tag: "Most complete",
     popular: true,
   },
   {
     icon: Flame,
-    t: "Project",
+    t: "Masterplan",
     k: "6–12 wks",
-    d: "End-to-end builds: GTM launch, full brand system, funnel + automation stack.",
-    bullets: ["Phased milestones", "Cross-discipline", "Full handoff docs"],
-    bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]",
+    d: "Strategic planning for campuses, districts, hospitality precincts, and mixed-use sites.",
+    bullets: ["Phased milestones", "Cross-discipline", "Guideline package"],
+    bg: "bg-surface-2 dark:bg-[#D6D2CB]",
     rot: 1.4,
-    tag: "Most depth",
+    tag: "Most strategic",
   },
 ];
 
 const filmReels = instagramPosts.slice(0, 4).map((post, i) => ({
-  tag: ["Brand / Reel", "After Work", "Studio Talk", "Street B-roll"][i] || "Reel",
-  category: ["Brand", "Culture", "Studio", "B-roll"][i] || "Reel",
-  title: ["Atlas - Origin", "Off-hours", "20:00 Live", "Walk & Talk"][i] || "Reel",
+  tag: ["Residence / Reel", "Studio Process", "Model Study", "Site Walk"][i] || "Reel",
+  category: ["Residential", "Process", "Studio", "Site"][i] || "Reel",
+  title: ["Courtyard Light", "Material Review", "Model Table", "Street Section"][i] || "Reel",
   description:
     [
-      "Brand-story cut with polished launch pacing.",
-      "After-hours culture reel with quick editorial beats.",
-      "Talking-head studio clip for thought leadership.",
-      "Street-level b-roll with motion and atmosphere.",
+      "A short study of daylight, threshold, and movement through a home.",
+      "A quiet look at material samples, drawings, and studio critique.",
+      "A close view of massing models, site grain, and proportion.",
+      "Street-level observations of shade, edge, and public life.",
     ][i] || "Reel",
   src: post.url,
   poster: "",
@@ -1644,7 +1630,7 @@ function normalizeEngagements(items: CmsItem[]) {
 function normalizeHeroShowcase(items: CmsItem[]): HeroShowcaseSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
+        categoryLabel: asString(item.categoryLabel, "RESIDENTIAL"),
         title: asString(item.title, `Project ${index + 1}`),
         description: asString(item.description),
         video: asString(
@@ -1686,8 +1672,8 @@ function parseLabelValuePairs(items: unknown[]): Array<{ label: string; value: s
 function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "VIDEO EDITING"),
-        title: asString(item.title, `Edit ${index + 1}`),
+        categoryLabel: asString(item.categoryLabel, "RESIDENTIAL"),
+        title: asString(item.title, `Study ${index + 1}`),
         description: asString(item.description),
         outcome: asString(item.outcome),
         video: asString(
@@ -1709,9 +1695,9 @@ function normalizeVideoEditing(items: CmsItem[]): VideoEditingSlide[] {
 function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "GRAPHIC DESIGN"),
+        categoryLabel: asString(item.categoryLabel, "INTERIOR DESIGN"),
         subcategory: asString(item.subcategory),
-        title: asString(item.title, `Asset ${index + 1}`),
+        title: asString(item.title, `Study ${index + 1}`),
         description: asString(item.description),
         image: asString(
           item.image,
@@ -1732,8 +1718,8 @@ function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
 function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "CRM SOFTWARE"),
-        title: asString(item.title, `System ${index + 1}`),
+        categoryLabel: asString(item.categoryLabel, "COMMERCIAL DESIGN"),
+        title: asString(item.title, `Project ${index + 1}`),
         description: asString(item.description),
         keyFeatures: asStringArray(item.keyFeatures),
         techStack: asStringArray(item.techStack),
@@ -1761,8 +1747,8 @@ function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
 function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "SEO"),
-        title: asString(item.title, `Analytics ${index + 1}`),
+        categoryLabel: asString(item.categoryLabel, "SUSTAINABILITY"),
+        title: asString(item.title, `Study ${index + 1}`),
         description: asString(item.description),
         metrics: Array.isArray(item.metrics) ? parseLabelValuePairs(item.metrics) : [],
         poster: resolveMediaUrl(
@@ -1784,7 +1770,7 @@ function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
 function normalizeStrategicConsulting(items: CmsItem[]): StrategicConsultingCase[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "STRATEGIC PLANNING"),
+        categoryLabel: asString(item.categoryLabel, "MASTERPLANNING"),
         title: asString(item.title, `Case ${index + 1}`),
         challenge: asString(item.challenge),
         solution: asString(item.solution),
@@ -1796,7 +1782,7 @@ function normalizeStrategicConsulting(items: CmsItem[]): StrategicConsultingCase
 function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
   return items.length
     ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "Content Writing"),
+        categoryLabel: asString(item.categoryLabel, "Design Narrative"),
         type: asString(item.type, `Item ${index + 1}`),
         headline: asString(item.headline),
         metrics: asString(item.metrics),
@@ -1831,33 +1817,33 @@ function normalizeTestimonials(items: CmsItem[]) {
     }));
   }
 
-  // Your new testimonial data
+  // Static fallback testimonial data
   return [
     {
-      q: "I hired them for a lead generation campaign for my real estate business. The results were outstanding – we received 50+ genuine leads in just one month! Best ROI I have ever seen from a marketing campaign.",
-      name: "Akhilesh Singh",
-      co: "Real Estate Business",
+      q: "The studio translated a complex brief into a residence that feels calm, precise, and deeply personal. Every material decision was considered.",
+      name: "Aarav Mehta",
+      co: "Residential Client",
       verified: "Google 5-Star",
       stars: 5,
     },
     {
-      q: "Excellent social media management services! The content quality and posting schedule are always on point. Our followers and engagement have grown significantly since we partnered with them. Highly satisfied!",
-      name: "Samarpit Shrivastava",
-      co: "Business Owner",
+      q: "Their process gave us clarity from concept to site. The interior package balanced restraint, comfort, and practical detailing beautifully.",
+      name: "Nisha Rao",
+      co: "Hospitality Founder",
       verified: "Google 4-Star",
       stars: 4,
     },
     {
-      q: "Very satisfied with their graphic design services. The team delivered creative and professional designs that aligned perfectly with our brand. They were responsive, understood our requirements well, and always delivered on time. Highly recommend their services for anyone looking for quality graphic design work.",
-      name: "Arshiya Saxena",
-      co: "Brand Manager",
+      q: "Imagine Design Studio brought discipline to a difficult adaptive reuse project. The final workspace keeps the character of the old structure while feeling entirely contemporary.",
+      name: "Rhea Kapoor",
+      co: "Commercial Client",
       verified: "Google 5-Star",
       stars: 5,
     },
     {
-      q: "Social media content professionally and consistently maintained in posts. Organisation is responsive to feedback, and committed to delivering quality work.",
-      name: "Manya Singh",
-      co: "Social Media Manager",
+      q: "The urban design recommendations were concise, buildable, and sensitive to public life. Their team made every stakeholder review productive.",
+      name: "Kabir Sen",
+      co: "Urban Development Lead",
       verified: "Google 4-Star",
       stars: 4,
     },
@@ -1910,11 +1896,11 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
       <div className="relative mx-auto max-w-6xl px-5 py-2">
         <div className="mb-8 flex flex-col justify-center  items-end text-center gap-1 ">
           <div>
-            <span className="script text-3xl text-accent">The Reel Room</span>
+            <span className="script text-3xl text-accent">Studio Films</span>
             <h2 className="font-display text-3xl font-bold leading-[1.04] md:text-6xl">
-              Expert <em className="text-accent">editing</em> that brings
+              Quiet <em className="text-accent">films</em> that bring
               <br />
-              <em>visuals</em>, sound & pacing into one cohesive film.
+              <em>space</em>, material & light into one clear story.
             </h2>
           </div>
           <div className="flex flex-col gap-4 md:items-end">
@@ -1932,7 +1918,7 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
                 </>
               ) : (
                 <>
-                  View All Reels <ArrowUpRight className="h-4 w-4" />
+                  View All Films <ArrowUpRight className="h-4 w-4" />
                 </>
               )}
             </Link>
@@ -1967,12 +1953,12 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
           </div>
 
           <label className="relative block">
-            <span className="sr-only">Search reels</span>
+            <span className="sr-only">Search films</span>
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
             <Input
               value={reelSearch}
               onChange={(event) => setReelSearch(event.target.value)}
-              placeholder="Search reels"
+              placeholder="Search films"
               className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-accent/30 dark:border-white/10 dark:bg-white/5"
             />
           </label>
@@ -2039,9 +2025,9 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
 
           {!isFiltering && filteredReels.length === 0 && (
             <div className="rounded-[1.5rem] border border-dashed border-ink/20 bg-card/70 px-6 py-10 text-center dark:border-white/10 dark:bg-white/5">
-              <p className="font-display text-2xl font-bold">No reels found</p>
+              <p className="font-display text-2xl font-bold">No films found</p>
               <p className="mx-auto mt-2 max-w-md text-sm text-foreground/60">
-                Try another category or clear the search to bring the full reel room back.
+                Try another category or clear the search to return to the full studio film archive.
               </p>
               <button
                 type="button"
@@ -2061,113 +2047,22 @@ function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
   );
 }
 
-/* -- Case Studies -- */
-function CaseStudiesSection({ items = cases }: { items?: typeof cases }) {
-  return (
-    <section id="case-studies" className="relative mx-auto px-auto max-w-6xl px-5 py-10 md:py-20">
-      <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <span className="script text-3xl text-accent">In The Wild</span>
-          <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
-            Selected <span className="italic">Case Studies</span>
-            <span className="text-accent">.</span>
-          </h2>
-        </div>
-        <a
-          href="#contact"
-          className="inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-background px-4 py-2 text-sm font-semibold lift dark:border-border dark:bg-secondary dark:text-secondary-foreground"
-        >
-          Request the deck <ArrowUpRight className="h-4 w-4" />
-        </a>
-      </div>
-
-      <div className="grid gap-6  item-placed-center md:grid-cols-2">
-        {items.map((c, i) => (
-          <motion.a
-            key={c.name}
-            href="https://alphanexis-my.sharepoint.com/:p:/p/garv_chhabra/IQAg8Gou22IpQI4ZGfr5AK6ZAaD6nkeakJdzgd4EEbLpNeY?rtime=7WqSvk7U3kg"
-            target="_blank"
-            initial={{ opacity: 0, y: 40, rotate: c.rot * 1.5 }}
-            whileInView={{ opacity: 1, y: 0, rotate: c.rot }}
-            whileHover={{ rotate: 0, y: -6, scale: 1.01 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ delay: i * 0.08, type: "spring", stiffness: 90 }}
-            className={`group mx-auto relative block overflow-hidden rounded-[1.75rem] border-2 border-ink text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${c.color}`}
-          >
-            <div className="flex items-center justify-between border-b-2 border-ink/40 bg-background/50 px-5 py-2 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm dark:border-ink/35 dark:bg-cream/45">
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-ink animate-pulse" />
-                Case · {c.year}
-              </span>
-              <span>{c.sector}</span>
-            </div>
-            <div className="relative flex items-center justify-center overflow-hidden px-6 py-10">
-              <motion.span
-                whileHover={{ scale: 0.8, rotate: -1 }}
-                className="font-display text-[clamp(2rem,6vw,6rem)] font-black tracking-tighter text-ink/85"
-              >
-                {c.word}
-              </motion.span>
-              <Star4 className="absolute right-5 top-5 h-6 w-6 text-ink/70 animate-spin-slow" />
-            </div>
-            <div className="bg-background/70 p-6 backdrop-blur-sm dark:bg-cream/55">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="font-display text-2xl font-bold leading-tight">{c.name}</h3>
-                  <p className="mt-1 max-w-md text-sm text-ink/70">
-                    <span className="font-semibold text-ink">Brief — </span>
-                    {c.problem}
-                  </p>
-                </div>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-background/85 transition-transform group-hover:rotate-45 dark:border-ink/60 dark:bg-cream/85">
-                  <ArrowUpRight className="h-4 w-4" />
-                </div>
-              </div>
-              <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl border-2 border-ink bg-background/85 p-3 dark:border-ink/50 dark:bg-cream/85">
-                {c.metrics.map((m) => (
-                  <div key={m.v} className="text-center">
-                    <div className="font-display text-xl font-black leading-none md:text-2xl">
-                      {m.k}
-                    </div>
-                    <div className="mt-1 text-[10px] uppercase tracking-wider text-ink/60">
-                      {m.v}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {c.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-ink/40 bg-background/85 px-2.5 py-0.5 text-[11px] font-semibold dark:border-ink/40 dark:bg-cream/75"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.a>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 /* -- Engagement Models -- */
 function FlexibleSection({ items = engagements }: { items?: typeof engagements }) {
   return (
-    <section id="engage" className="relative mx-auto max-w-6xl px-5 py-10 md:py-24">
-      <div className="mb-12 grid items-end gap-6 md:grid-cols-[1fr_auto]">
+    <section id="engage" className="relative mx-auto max-w-7xl px-5 py-10 md:py-24">
+      <div className="mb-12 grid items-end gap-6 border-b border-border pb-8 md:grid-cols-[1fr_auto]">
         <div>
-          <span className="script text-3xl text-accent">how we work</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-highlight">
+            how we work
+          </span>
           <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
             Flexible by <span className="italic">Design</span>
             <span className="text-accent">.</span>
           </h2>
         </div>
         <p className="max-w-sm text-base text-foreground/70 md:text-right">
-          Plug us in for a sprint or a year. Same expertise, different gear — pick the engagement
-          that fits.
+          Engage the studio for a focused study, a full commission, or a strategic masterplan.
         </p>
       </div>
 
@@ -2175,31 +2070,32 @@ function FlexibleSection({ items = engagements }: { items?: typeof engagements }
         {items.map((e, i) => (
           <motion.div
             key={e.t}
-            initial={{ opacity: 0, y: 30, rotate: e.rot * 1.5 }}
-            whileInView={{ opacity: 1, y: 0, rotate: e.rot }}
-            whileHover={{ rotate: 0, y: -8 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -6 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.1, type: "spring", stiffness: 90 }}
-            className={`relative flex flex-col overflow-hidden rounded-[1.75rem] border-2 border-ink p-7 text-ink shadow-[6px_6px_0_0_var(--ink)] dark:[--cream:oklch(0.93_0.018_78)] dark:[--ink:oklch(0.25_0.018_60)] dark:border-cream/35 dark:text-ink dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)] ${e.bg} ${e.popular ? "md:-mt-4 md:scale-[1.04]" : ""}`}
+            className={`relative flex min-h-full flex-col border border-border bg-card p-7 text-card-foreground shadow-[0_22px_70px_-55px_rgba(0,0,0,0.55)] dark:border-white/10 dark:bg-[#2E3135]/95 ${e.popular ? "md:-mt-4" : ""}`}
           >
-            <div className="absolute -right-10 top-5 rotate-45 border-y-2 border-ink bg-ink px-12 py-0.5 text-[10px] font-bold uppercase tracking-widest text-cream dark:bg-[oklch(0.25_0.018_60)] dark:text-[oklch(0.93_0.018_78)]">
-              {e.tag}
-            </div>
+            <div className="absolute inset-x-0 top-0 h-1 bg-highlight/70" />
             <motion.div
-              whileHover={{ rotate: -10, scale: 1.08 }}
-              className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85"
+              whileHover={{ scale: 1.05 }}
+              className="mb-8 flex h-12 w-12 items-center justify-center border border-border bg-background text-highlight dark:border-white/10 dark:bg-white/5"
             >
               <e.icon className="h-7 w-7" />
             </motion.div>
-            <div className="flex items-baseline gap-2">
-              <h3 className="font-display text-4xl font-bold leading-none">{e.t}</h3>
-              <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-background/85 px-2 py-0.5 text-xs font-semibold dark:border-ink/60 dark:bg-cream/85">
+            <div className="flex items-start justify-between gap-4">
+              <h3 className="font-display text-3xl font-bold leading-none">{e.t}</h3>
+              <span className="inline-flex items-center gap-1 border border-border bg-background px-2 py-1 text-xs font-semibold text-muted-foreground dark:border-white/10 dark:bg-white/5">
                 <Clock className="h-3 w-3" />
                 {e.k}
               </span>
             </div>
-            <p className="mt-3 text-ink/80">{e.d}</p>
-            <ul className="mt-5 space-y-2">
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{e.d}</p>
+            <div className="mt-5 w-fit border border-highlight/35 bg-highlight/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-highlight">
+              {e.tag}
+            </div>
+            <ul className="mt-7 space-y-3 border-t border-border pt-5 dark:border-white/10">
               {e.bullets.map((b, j) => (
                 <motion.li
                   key={b}
@@ -2207,9 +2103,9 @@ function FlexibleSection({ items = engagements }: { items?: typeof engagements }
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + j * 0.06 }}
-                  className="flex items-center gap-2 text-sm font-medium"
+                  className="flex items-center gap-3 text-sm font-medium text-foreground/80 dark:text-gray-200"
                 >
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-background/85 dark:border-ink/60 dark:bg-cream/85">
+                  <span className="flex h-7 w-7 items-center justify-center border border-border bg-background text-highlight dark:border-white/10 dark:bg-white/5">
                     <TrendingUp className="h-3 w-3" />
                   </span>
                   {b}
@@ -2218,9 +2114,9 @@ function FlexibleSection({ items = engagements }: { items?: typeof engagements }
             </ul>
             <a
               href="#contact"
-              className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream lift"
+              className="mt-auto inline-flex items-center justify-center gap-2 border border-ink bg-ink px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-highlight hover:text-ink dark:border-white/10"
             >
-              Start {e.t.toLowerCase()} <ArrowUpRight className="h-4 w-4" />
+              Discuss {e.t.toLowerCase()} <ArrowUpRight className="h-4 w-4" />
             </a>
           </motion.div>
         ))}
@@ -2232,55 +2128,59 @@ function FlexibleSection({ items = engagements }: { items?: typeof engagements }
 /* -- ROI Table Section -- */
 const roiRows = [
   {
-    lever: "Revenue Growth",
-    solution: "Performance funnels & API ecosystems",
-    outcome: "+45% avg. ARR within 12 months",
+    lever: "Spatial Value",
+    solution: "Program clarity, efficient planning, and durable material strategy",
+    outcome: "Higher usable area and stronger long-term asset quality",
   },
   {
-    lever: "Cost Reduction",
-    solution: "Serverless infra & automated cloud scaling",
-    outcome: "30–50% lower infrastructure overhead",
+    lever: "Lifecycle Cost",
+    solution: "Envelope performance, service coordination, and material durability",
+    outcome: "Lower maintenance and operating demand",
   },
   {
-    lever: "Process Automation",
-    solution: "AI agent integration & middleware",
-    outcome: "85% reduction in manual operational tasks",
+    lever: "Design Certainty",
+    solution: "Clear drawings, consultant alignment, and staged approvals",
+    outcome: "Fewer site conflicts and cleaner execution",
   },
   {
-    lever: "Lead Generation",
-    solution: "High-intent SEO & intent-data funnels",
-    outcome: "3× pipeline velocity, zero ad spend increase",
+    lever: "Environmental Comfort",
+    solution: "Daylight, shade, ventilation, and passive performance studies",
+    outcome: "Improved comfort with reduced energy demand",
   },
   {
-    lever: "Customer Acquisition",
-    solution: "Frictionless UX & conversion loops",
-    outcome: "–35% customer acquisition cost",
+    lever: "Client Collaboration",
+    solution: "Structured reviews, visual options, and transparent decision logs",
+    outcome: "Faster decisions with stronger design alignment",
   },
   {
-    lever: "Operational Velocity",
-    solution: "CRM/ERP interop & real-time dashboards",
-    outcome: "65% surge in cross-dept data synchronisation",
+    lever: "Delivery Quality",
+    solution: "Tender support, site review, mockups, and detail resolution",
+    outcome: "Better craftsmanship from concept to handover",
   },
 ];
 
 function ROISection() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-24">
-      <div className="mb-12">
-        <span className="script text-3xl text-accent">The Numbers</span>
+    <section className="relative mx-auto max-w-7xl px-5 py-24">
+      <div className="mb-12 grid gap-5 md:grid-cols-[0.95fr_1fr] md:items-end">
+        <div>
+        <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-highlight">
+          The Value
+        </span>
         <h2 className="font-display text-4xl font-bold leading-[1.02] md:text-7xl">
-          ROI & Value <span className="italic">Realisation</span>
+          Design & Value <span className="italic">Realisation</span>
           <span className="text-accent">.</span>
         </h2>
-        <p className="mt-4 max-w-xl text-foreground/70">
-          Executive-level outcomes from every engagement we run.
+        </div>
+        <p className="max-w-xl text-foreground/70 md:justify-self-end">
+          Practical outcomes from a disciplined design process.
         </p>
       </div>
 
-      <div className="overflow-hidden rounded-[1.5rem] border-2 border-ink shadow-[6px_6px_0_0_var(--ink)]">
-        <div className="grid grid-cols-3 border-b-2 border-ink bg-ink px-6 py-3 font-display text-xs font-bold uppercase tracking-widest text-cream">
-          <span>Operational Lever</span>
-          <span>Solution</span>
+      <div className="overflow-hidden border border-border bg-card shadow-[0_24px_80px_-60px_rgba(0,0,0,0.55)] dark:border-white/10 dark:bg-[#2E3135]/95">
+        <div className="hidden grid-cols-3 border-b border-border bg-ink px-6 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-cream dark:border-white/10 md:grid">
+          <span>Design Lever</span>
+          <span>Studio Response</span>
           <span>Documented Outcome</span>
         </div>
         {roiRows.map((r, i) => (
@@ -2290,11 +2190,13 @@ function ROISection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.06 }}
-            className={`grid grid-cols-3 gap-4 px-6 py-4 border-b border-ink/20 ${i % 2 === 0 ? "bg-background" : "bg-surface-7"}`}
+            className={`grid gap-4 border-b border-border px-6 py-5 last:border-b-0 dark:border-white/10 md:grid-cols-3 ${i % 2 === 0 ? "bg-background" : "bg-surface"}`}
           >
-            <span className="font-display font-semibold text-sm">{r.lever}</span>
-            <span className="text-sm text-foreground/70">{r.solution}</span>
-            <span className="font-semibold text-sm text-accent">{r.outcome}</span>
+            <span className="font-display text-lg font-semibold md:text-sm">{r.lever}</span>
+            <span className="text-sm leading-relaxed text-foreground/70">{r.solution}</span>
+            <span className="border-l-2 border-highlight pl-4 text-sm font-semibold leading-relaxed text-foreground md:border-l md:border-border md:pl-5 dark:md:border-white/10">
+              {r.outcome}
+            </span>
           </motion.div>
         ))}
       </div>
@@ -2304,29 +2206,29 @@ function ROISection() {
 
 /* -- Trust / Partners strip -- */
 const partners = [
-  "AWS Partner",
-  "Google Cloud",
-  "Microsoft Azure",
-  "DPIT",
-  "Startup India",
-  "MSME",
+  "Architecture",
+  "Interiors",
+  "Urban Design",
+  "Sustainability",
+  "Craft",
+  "Research",
 ];
 
 function TrustSection() {
   return (
-    <section className="relative mx-auto max-w-6xl px-5 py-2 ">
-      <p className="mb-8 text-center text-sm font-bold uppercase tracking-widest text-foreground/40">
-        Certified & recognised by
+    <section className="relative mx-auto max-w-7xl px-5 py-8">
+      <p className="mb-5 text-xs font-bold uppercase tracking-[0.32em] text-foreground/45">
+        Disciplines integrated by the studio
       </p>
-      <div className="flex flex-wrap items-center justify-center gap-3">
+      <div className="grid border-y border-border dark:border-white/10 sm:grid-cols-2 lg:grid-cols-6">
         {partners.map((p, i) => (
           <motion.span
             key={p}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.07 }}
-            className="rounded-full border-2 border-ink bg-background px-5 py-2 font-display text-sm font-semibold lift"
+            className="border-b border-border px-4 py-5 font-display text-sm font-semibold uppercase tracking-[0.14em] text-foreground/75 last:border-b-0 dark:border-white/10 sm:border-r sm:last:border-r-0 lg:border-b-0"
           >
             {p}
           </motion.span>
@@ -2393,7 +2295,7 @@ function PortfolioGraphicDesign({
   const bannerScrollRef = useRef<HTMLDivElement>(null);
 
   // ====== ASPECT RATIO DETECTION STATE ======
-  // Maps image URL → true (banner/landscape) | false (portrait)
+  // Maps image URL ? true (banner/landscape) | false (portrait)
   const [bannerMap, setBannerMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -2463,7 +2365,7 @@ function PortfolioGraphicDesign({
 
   return (
     <div className="overflow-x-clip my-8 py-10">
-      {/* ─────────── HEADER ─────────── */}
+      {/* ----------- HEADER ----------- */}
       <div className="mx-auto max-w-6xl px-5 mb-6 md:mb-8 flex flex-col  items-end justify-center gap-4">
         <div className="w-full flex flex-col justify-center items-center text-center">
           <span className="script text-3xl text-purple-600 dark:text-purple-400">
@@ -2494,7 +2396,7 @@ function PortfolioGraphicDesign({
         </div>
       </div>
 
-      {/* ─────────── FILTER BAR ─────────── */}
+      {/* ----------- FILTER BAR ----------- */}
       <div className="mx-auto max-w-6xl px-5 mb-6">
         <div className="grid gap-4 rounded-[1.5rem] border border-ink/10 bg-card/70 p-3 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-[1fr_280px] dark:border-white/10 dark:bg-card/70">
           <div className="min-w-0 overflow-hidden">
@@ -2523,19 +2425,19 @@ function PortfolioGraphicDesign({
             </div>
           </div>
           <label className="relative block">
-            <span className="sr-only">Search graphic design</span>
+            <span className="sr-only">Search project studies</span>
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-foreground/45" />
             <Input
               value={graphicSearch}
               onChange={(e) => setGraphicSearch(e.target.value)}
-              placeholder="Search designs"
+              placeholder="Search studies"
               className="h-10 rounded-full border-ink/15 bg-background/85 pl-9 text-sm shadow-none focus-visible:ring-purple-500/30 dark:border-white/10 dark:bg-white/5"
             />
           </label>
         </div>
       </div>
 
-      {/* ─────────── PORTRAIT CARD RAIL ─────────── */}
+      {/* ----------- PORTRAIT CARD RAIL ----------- */}
       <div
         ref={scrollRef}
         onWheel={(e) => {
@@ -2563,7 +2465,7 @@ function PortfolioGraphicDesign({
               target="_blank"
               rel="noreferrer"
               whileHover={{ y: -8, scale: 1.02 }}
-              className="relative shrink-0 w-[200px] aspect-[4/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+              className="relative shrink-0 w-[200px] aspect-[4/5] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#2E3135] snap-start shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#2E3135] cursor-pointer"
             >
               <img
                 src={slide.image}
@@ -2592,7 +2494,7 @@ function PortfolioGraphicDesign({
           ))
         ) : (
           <div className="w-full py-12 text-center">
-            <p className="font-display text-xl font-bold text-foreground/60">No designs found</p>
+            <p className="font-display text-xl font-bold text-foreground/60">No studies found</p>
             <p className="mt-2 text-sm text-foreground/40">
               Try another category or clear the search
             </p>
@@ -2610,7 +2512,7 @@ function PortfolioGraphicDesign({
         )}
       </div>
 
-      {/* ─────────── BANNER SECTION (auto-detected, hidden if none) ─────────── */}
+      {/* ----------- BANNER SECTION (auto-detected, hidden if none) ----------- */}
       {bannerItems.length > 0 && (
         <div className="mt-12 border-t border-ink/8 pt-2 dark:border-white/8">
           {/* Banner header */}
@@ -2680,7 +2582,7 @@ function PortfolioGraphicDesign({
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ y: -6, scale: 1.015 }}
-                className="relative shrink-0 w-[min(82vw,560px)] aspect-[4/1] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#0d0d14] snap-start shadow-[0_20px_55px_-30px_rgba(0,0,0,0.6)] dark:border-white/10 dark:bg-[#111827] cursor-pointer"
+                className="relative shrink-0 w-[min(82vw,560px)] aspect-[4/1] rounded-[1.25rem] border border-ink/10 overflow-hidden bg-[#2E3135] snap-start shadow-[0_20px_55px_-30px_rgba(0,0,0,0.6)] dark:border-white/10 dark:bg-[#2E3135] cursor-pointer"
               >
                 <img
                   src={slide.image}
@@ -2793,7 +2695,7 @@ function PortfolioSEOAnalytics({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   <div className="absolute top-4 right-8 bg-blue-600/40 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
-                    {item.categoryLabel || "SEO"}
+                    {item.categoryLabel || "SUSTAINABILITY"}
                   </div>
                 </div>
 
@@ -2862,86 +2764,98 @@ function PortfolioStrategicConsulting({
   content?: PortfolioSectionCopy;
   items?: StrategicConsultingCase[];
 }) {
-  const badgeStyle = "bg-amber-500/25 border-amber-500/40 text-amber-400";
   return (
-    <div className="overflow-x-clip py-6">
-      <div className="mx-auto max-w-6xl px-5 mb-14 text-center">
-        <span className="script text-3xl text-amber-400">{content.eyebrow}</span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          {content.title}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
+    <div className="relative overflow-x-clip py-10 md:py-20">
+      <div className="pointer-events-none absolute inset-x-0 top-24 h-px bg-border dark:bg-white/10" />
+      <div className="mx-auto mb-12 grid max-w-6xl gap-6 px-5 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+        <div>
+          <span className="inline-flex border border-highlight/40 bg-highlight/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.28em] text-highlight">
+            {content.eyebrow}
+          </span>
+          <h2 className="mt-5 font-display text-3xl font-bold tracking-tight text-foreground dark:text-white md:text-6xl">
+            {content.title}
+          </h2>
+        </div>
+        <p className="max-w-2xl text-sm leading-relaxed text-foreground/65 dark:text-gray-400 md:justify-self-end md:text-base">
           {content.description}
         </p>
       </div>
 
-      <div className="mx-auto max-w-6xl px-5 grid gap-8 md:grid-cols-2">
+      <div className="mx-auto max-w-7xl px-5">
+        <div className="space-y-6">
         {items.map((cs, idx) => (
-          <motion.div
+          <motion.article
             key={idx}
-            whileHover={{ y: -6 }}
-            className="rounded-[2rem] border border-ink/10 bg-card p-6 shadow-[0_24px_70px_-45px_rgba(0,0,0,0.45)] md:p-8 flex flex-col justify-between relative dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl"
+            whileHover={{ y: -4 }}
+            className={`grid overflow-hidden border border-ink/10 shadow-[0_24px_70px_-50px_rgba(0,0,0,0.5)] dark:border-white/10 md:grid-cols-[minmax(10rem,0.32fr)_1fr] ${
+              idx % 2 === 0 ? "bg-card" : "bg-background"
+            } dark:bg-[#2E3135]/95`}
           >
-            <div className="absolute right-6 top-6">
-              <span
-                className={`rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${badgeStyle} backdrop-blur-md`}
-              >
+            <div className="flex min-h-48 flex-col justify-between bg-ink p-6 text-cream dark:bg-white dark:text-ink md:p-7">
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.35em] opacity-70">
+                  Case {String(idx + 1).padStart(2, "0")}
+                </div>
+                <div className="mt-6 font-display text-5xl font-black leading-none">
+                  {String(idx + 1).padStart(2, "0")}
+                </div>
+              </div>
+              <span className="mt-8 inline-flex w-fit border border-cream/30 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider dark:border-ink/25">
                 {cs.categoryLabel}
               </span>
             </div>
 
-            <div>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-card-foreground dark:text-white mb-6 pr-32">
-                {cs.title}
-              </h3>
+            <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
+              <div className="p-6 md:p-8">
+                <h3 className="max-w-2xl font-display text-2xl font-bold leading-tight text-card-foreground dark:text-white md:text-4xl">
+                  {cs.title}
+                </h3>
 
-              <div className="space-y-4 text-left">
-                <div>
-                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">
-                    Challenge
-                  </h4>
-                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">
-                    {cs.challenge}
-                  </p>
+                <div className="mt-8 space-y-5 text-left">
+                  {[
+                    ["Challenge", cs.challenge],
+                    ["Solution", cs.solution],
+                    ["Execution", cs.execution],
+                  ].map(([label, copy]) => (
+                    <div
+                      key={label}
+                      className="grid gap-3 border-l-2 border-border pl-4 sm:grid-cols-[7.5rem_1fr] sm:border-l-0 sm:pl-0"
+                    >
+                      <h4 className="text-[10px] font-bold uppercase tracking-[0.22em] text-highlight">
+                        {label}
+                      </h4>
+                      <p className="text-sm leading-relaxed text-muted-foreground dark:text-gray-300">
+                        {copy}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-                <div>
-                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">
-                    Solution
-                  </h4>
-                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">
-                    {cs.solution}
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-xs uppercase tracking-wider text-amber-400 font-bold">
-                    Execution
-                  </h4>
-                  <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1 leading-relaxed">
-                    {cs.execution}
-                  </p>
+              </div>
+
+              <div className="border-t border-ink/10 bg-ink/[0.035] p-6 dark:border-white/10 dark:bg-white/[0.04] md:p-8 lg:border-l lg:border-t-0">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.28em] text-muted-foreground dark:text-gray-400">
+                  Key Results
+                </h4>
+                <div className="mt-6 grid gap-3">
+                  {cs.results.map((res, ri) => (
+                    <div
+                      key={ri}
+                      className="grid grid-cols-[0.9fr_1.1fr] items-center gap-4 border-b border-ink/10 pb-4 last:border-b-0 last:pb-0 dark:border-white/10"
+                    >
+                      <div className="font-display text-3xl font-black leading-none text-highlight md:text-4xl">
+                        {res.value}
+                      </div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground dark:text-gray-400">
+                        {res.label}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-
-            <div className="mt-8 border-t border-ink/10 pt-6 dark:border-white/10">
-              <h4 className="text-xs uppercase tracking-wider text-muted-foreground dark:text-gray-500 font-bold text-left mb-3">
-                Key Results
-              </h4>
-              <div className="grid grid-cols-3 gap-2 bg-background/70 border border-ink/10 rounded-2xl p-4 dark:bg-white/5 dark:border-white/10">
-                {cs.results.map((res, ri) => (
-                  <div key={ri} className="text-center">
-                    <div className="text-lg md:text-xl font-black text-amber-400 leading-none">
-                      {res.value}
-                    </div>
-                    <div className="text-[9px] uppercase tracking-wider text-muted-foreground dark:text-gray-400 mt-1.5 leading-tight">
-                      {res.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+          </motion.article>
         ))}
+        </div>
       </div>
     </div>
   );
@@ -2972,7 +2886,7 @@ function PortfolioContentWriting({
           <motion.div
             key={idx}
             whileHover={{ y: -6 }}
-            className="rounded-[2rem] border border-ink/10 bg-card p-6 shadow-[0_24px_70px_-45px_rgba(0,0,0,0.45)] md:p-4 flex flex-col justify-between relative dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-2xl"
+            className="rounded-[2rem] border border-ink/10 bg-card p-6 shadow-[0_24px_70px_-45px_rgba(0,0,0,0.45)] md:p-4 flex flex-col justify-between relative dark:border-white/10 dark:bg-[#2E3135]/95 dark:shadow-2xl"
           >
             <div>
               <div className="flex items-center justify-between gap-1 mb-4">
@@ -3020,7 +2934,7 @@ function PortfolioSection({
       id="portfolio"
       className="relative isolate overflow-hidden bg-transparent py-12 md:py-20  text-foreground"
     >
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,oklch(0.68_0.17_62/0.07)_12%,oklch(0.68_0.17_62/0.11)_48%,oklch(0.68_0.17_62/0.07)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,oklch(0.6_0.14_62/0.08)_12%,oklch(0.6_0.14_62/0.12)_48%,oklch(0.6_0.14_62/0.08)_82%,transparent_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,transparent_0%,color-mix(in_oklab,var(--accent)_7%,transparent)_12%,color-mix(in_oklab,var(--accent)_11%,transparent)_48%,color-mix(in_oklab,var(--accent)_7%,transparent)_82%,transparent_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,color-mix(in_oklab,var(--accent)_8%,transparent)_12%,color-mix(in_oklab,var(--accent)_12%,transparent)_48%,color-mix(in_oklab,var(--accent)_8%,transparent)_82%,transparent_100%)]" />
       <div className="mx-auto max-w-6xl px-5 text-center mb-1">
         <span className="script text-3xl text-accent">{content.eyebrow}</span>
         <h2 className="mt-3 font-display text-xl font-bold md:text-6xl tracking-tight text-foreground">
@@ -3052,9 +2966,9 @@ function PortfolioSectionAbout({
     {
       side: "right",
       eyebrow: "Who we are",
-      title: "About AlphaNexis",
-      body: "AlphaNexis is a fast-growing digital marketing, branding, and technology company based in Indore. We specialize in creating impactful digital experiences that strengthen online presence and drive real results across industries.",
-      color: "#2B9BD1",
+      title: "About Imagine Design Studio",
+      body: "Imagine Design Studio is a contemporary architecture and interior design studio working across homes, workplaces, hospitality, and urban environments.",
+      color: "#6F7377",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
           <circle cx="12" cy="12" r="7" />
@@ -3069,9 +2983,9 @@ function PortfolioSectionAbout({
     {
       side: "left",
       eyebrow: "What we do",
-      title: "Branding & Creative Content",
-      body: "We create impactful digital experiences that strengthen online presence and drive real results. By bringing creativity, strategy, and technology together in every campaign, we help ambitious brands stay ahead of the curve.",
-      color: "#E05A2B",
+      title: "Architecture & Interiors",
+      body: "We shape spaces through proportion, material intelligence, daylight, and precise detailing, from early concept through site execution.",
+      color: "#B08D57",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
           <rect x="2" y="6" width="20" height="14" rx="2" />
@@ -3083,10 +2997,10 @@ function PortfolioSectionAbout({
     },
     {
       side: "right",
-      eyebrow: "How we grow you",
-      title: "Digital Growth Strategies",
-      body: "From planning to performance, we build scalable strategies that help businesses grow faster and reach their goals with confidence.",
-      color: "#9B5FCF",
+      eyebrow: "How we work",
+      title: "Context-Led Design",
+      body: "From site reading to construction detail, every decision is grounded in climate, program, budget, and the daily life of the people who will use the space.",
+      color: "#7A8465",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
           <path d="M4 20L12 6l8 14H4Z" />
@@ -3096,10 +3010,10 @@ function PortfolioSectionAbout({
     },
     {
       side: "left",
-      eyebrow: "Reach the right people",
-      title: "Paid Advertising",
-      body: "We design data-driven ad campaigns that connect with the right audience, increase visibility, and turn clicks into measurable growth.",
-      color: "#4CAF7A",
+      eyebrow: "Planning with purpose",
+      title: "Urban & Commercial Strategy",
+      body: "We develop clear spatial strategies for mixed-use sites, workplaces, hospitality environments, and public-facing destinations.",
+      color: "#7A8465",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
           <rect x="2" y="2" width="8" height="8" rx="1" />
@@ -3113,8 +3027,8 @@ function PortfolioSectionAbout({
       side: "right",
       eyebrow: "Our expertise",
       title: "Core Services",
-      body: "Branding · Paid Ads · Growth Strategy · Website & App Dev · SEO & Analytics · AI Automation — all under one roof.",
-      color: "#CF4E6B",
+      body: "Architecture · Interior Design · Urban Planning · Hospitality · Adaptive Reuse · Sustainable Design - all under one roof.",
+      color: "#B08D57",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5" stroke="white" strokeWidth="2" strokeLinecap="round">
           <polyline points="2,18 6,12 10,16 14,8 18,14 22,6" />
@@ -3124,10 +3038,10 @@ function PortfolioSectionAbout({
     },
     {
       side: "left",
-      eyebrow: "Built for results",
-      title: "Why AlphaNexis",
-      body: "8+ years of compounding expertise in performance marketing, brand systems, and custom tech — delivered as one integrated growth pod you can plug straight into your team.",
-      color: "#E8A730",
+      eyebrow: "Built for craft",
+      title: "Why Imagine Design Studio",
+      body: "8+ years of thoughtful practice across planning, interiors, construction coordination, and client collaboration.",
+      color: "#B08D57",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" className="h-3 w-3 sm:h-5 sm:w-5">
           <path d="M12 2l2.5 7h7l-5.5 4.5 2.5 7.5L12 17l-6.5 4 2.5-7.5L2 9h7z" fill="white" />
@@ -3144,7 +3058,7 @@ function PortfolioSectionAbout({
           className="absolute hidden md:block left-1/2 w-1.5 h-1.5 sm:w-3 sm:h-3 -translate-x-1/2 rounded-full shadow-[0_0_10px_rgba(43,155,209,0.5)] z-20"
           style={{
             top: dotTop,
-            backgroundColor: "#2B9BD1",
+            backgroundColor: "#6F7377",
           }}
         />
       </div>
@@ -3256,7 +3170,6 @@ function Index() {
   const cmsStats = normalizeStats(portfolio.collections.stats);
   const cmsCapabilities = normalizeCapabilities(portfolio.collections.capabilities);
   const cmsProcess = normalizeProcess(portfolio.collections.process);
-  const cmsCases = normalizeCases(portfolio.collections.cases);
   const cmsEngagements = normalizeEngagements(portfolio.collections.engagements);
   const cmsTestimonials = normalizeTestimonials(portfolio.collections.testimonials);
   const cmsHeroShowcase = normalizeHeroShowcase(portfolio.collections.heroShowcase);
@@ -3418,9 +3331,9 @@ function Index() {
             >
               {site.hero.headline || (
                 <>
-                  We craft digital experiences that
+                  We design enduring spaces that
                   <br />
-                  drive growth and leave a lasting <span className="text-accent">impact</span>
+                  balance craft, context, and <span className="text-accent">clarity</span>
                 </>
               )}
             </motion.h1>
@@ -3428,182 +3341,80 @@ function Index() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className=" mx-auto text-xs md:text-lg bg-foreground/80 dark:bg-[#C8C1B6] px-1.5 mt-4 rounded-full text-white py-1 w-full dark:text-[#060000] max-w-3xl  "
+              className=" mx-auto text-xs md:text-lg bg-foreground/80 dark:bg-[#D6D2CB] px-1.5 mt-4 rounded-full text-white py-1 w-full dark:text-[#1F1F1F] max-w-3xl  "
             >
-              Accelerate Brand Momentum || Drive Measurable Growth || Execute at Speed
+              Architecture || Interiors || Urban Planning || Sustainable Design
             </motion.p>
           </div>
         </div>
 
-        <div>
-          {/* Portrait hero — matches uploaded design */}
-          <div className="relative mx-auto  max-w-3xl">
-            {/* Orange semicircle backdrop */}
-            <motion.div
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              transition={{ delay: 0.6, duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
-              style={{ transformOrigin: "bottom" }}
-              className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 h-[55%] w-[70%] rounded-t-full bg-accent"
-            />
-
-            {/* Portrait image */}
-            <a
-              href={resolveMediaUrl(site.hero.portraitUrl, portrait)}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Open hero portrait in a new tab"
-              className="relative z-10 block w-fit mx-auto"
-            >
-              <motion.img
-                src={resolveMediaUrl(site.hero.portraitUrl, portrait)}
-                alt="AlphaNexis — Digital Marketing & AI Agency"
-                width={1024}
-                height={1024}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
-                className="relative z-10 mx-auto h-auto w-[min(520px,80vw)] md:w-[min(670px,90%)] drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] animate-float-y cursor-pointer"
-              />
-            </a>
-
-            {/* SVG scribble decorators */}
-            <Scribble className="pointer-events-none absolute left-4 top-2 h-8 w-14 text-ink animate-draw md:left-8" />
-            <Scribble className="pointer-events-none absolute right-6 top-8 h-8 w-14 text-accent rotate-12 animate-draw md:right-16" />
-            <Star4 className="pointer-events-none absolute left-2 top-1/3 h-5 w-5 text-accent animate-spin-slow md:left-10" />
-            <Star4 className="pointer-events-none absolute right-8 bottom-1/3 h-6 w-6 text-ink animate-spin-slow" />
-
-            {/* Floating pill tags — same positions as original Helmi design */}
-            {[
-              {
-                txt: (
-                  <>
-                    <Megaphone className="h-4 w-4 text-accent" /> Marketing
-                  </>
-                ),
-                pos: "-left-4 top-[50%] md:left-0",
-                r: "-6deg",
-                d: "0s",
-              },
-              {
-                txt: (
-                  <>
-                    <Rocket className="h-4 w-4 text-accent" /> Ads
-                  </>
-                ),
-                pos: "-right-4 top-[36%] md:right-0",
-                r: "8deg",
-                d: "0.4s",
-              },
-              {
-                txt: (
-                  <>
-                    <Sparkles className="h-4 w-4 text-accent" /> Brand
-                  </>
-                ),
-                pos: "-left-6 top-[87%] md:left-12",
-                r: "-4deg",
-                d: "0.8s",
-              },
-              {
-                txt: (
-                  <>
-                    <Megaphone className="h-4 w-4 text-accent" /> Social Media
-                  </>
-                ),
-                pos: "-right-6 bottom-[10%] md:right-8",
-                r: "6deg",
-                d: "1.2s",
-              },
-            ].map((p, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 0.8, scale: 1 }}
-                transition={{ delay: 0.9 + i * 0.1, type: "spring" }}
-                style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-                className={`pill-tag absolute z-10 animate-bob  scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}`}
-              >
-                {p.txt}
-              </motion.div>
-            ))}
-
-            {/* NEW LEFT-SIDE PILLS: Web / App / UI/UX */}
-            {[
-              {
-                txt: (
-                  <>
-                    <Code className="h-4 w-4 text-accent" /> Web Development
-                  </>
-                ),
-                pos: "-right-6 top-[55%] md:-right-4",
-                r: "5deg",
-                d: "0.1s",
-              },
-              {
-                txt: (
-                  <>
-                    <Smartphone className="h-4 w-4 text-accent" /> App Development
-                  </>
-                ),
-                pos: "-left-6 top-[30%] md:-left-4",
-                r: "3deg",
-                d: "0.5s",
-              },
-            ].map((p, i) => (
-              <motion.div
-                key={`left-pill-${i}`}
-                initial={{ opacity: 0, scale: 0.5, x: -20 }}
-                animate={{ opacity: 0.8, scale: 1, x: 0 }}
-                transition={{ delay: 0.8 + i * 0.12, type: "spring" }}
-                style={{ ["--r" as never]: p.r, animationDelay: p.d }}
-                className={`pill-tag absolute z-10 animate-bob scale-75 md:scale-100 text-xs md:text-sm shadow-[0_12px_30px_-20px_rgba(0,0,0,0.55)] backdrop-blur-sm ${p.pos}  border border-ink/10`}
-              >
-                {p.txt}
-              </motion.div>
-            ))}
-
-            {/* "8+ Years" stat — top right, same as original */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.4 }}
-              className="absolute -right-2 top-[18%] z-20 hidden text-right md:block"
-            >
-              <div className="font-display text-4xl font-bold leading-none">
-                {site.hero.sidebarStat.value}
-              </div>
-              <div className="text-sm ">{site.hero.sidebarStat.label}</div>
-            </motion.div>
-
-            {/* Mini testimonial snippet — top left, same as original */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              className="absolute -left-15 top-[60%] z-20 hidden max-w-[200px] md:block"
-            >
-              <div className="font-display text-4xl text-foreground/40">"</div>
-              <p className="text-xs leading-snug text-foreground/70">{site.hero.sidebarQuote}</p>
-            </motion.div>
-          </div>
-
-          <a href="https://www.linkedin.com/in/ankit-sen-3a0725165" target="_blank">
-            <div className="mt-3 flex justify-center px-4">
-              <div
-                className="ceo-identity-badge"
-                role="note"
-                aria-label="Ankit Sen, founder and CEO"
-              >
-                <span className="ceo-identity-badge__name">Ankit Sen</span>
-                <span className="ceo-identity-badge__role">Founder & CEO</span>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.65 }}
+          className="mx-auto mt-10 w-full max-w-5xl overflow-hidden rounded-[2rem] border-2 border-ink bg-card shadow-[6px_6px_0_0_var(--ink)] dark:border-border dark:bg-card dark:shadow-[6px_6px_0_0_rgba(255,255,255,0.16)]"
+        >
+          <div className="grid gap-0 md:grid-cols-[1.15fr_0.85fr]">
+            <div className="relative min-h-[18rem] overflow-hidden border-b-2 border-ink bg-background p-6 dark:border-border md:border-b-0 md:border-r-2 md:p-8">
+              <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] [background-size:24px_24px]" />
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-card/80 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-foreground/70 dark:border-white/10">
+                    <Layers className="h-3.5 w-3.5 text-accent" />
+                    Architecture + Construction
+                  </div>
+                  <h2 className="mt-5 max-w-xl font-display text-3xl font-bold leading-tight md:text-5xl">
+                    Built environments with clarity, craft, and measurable performance.
+                  </h2>
+                </div>
+                <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                  {[
+                    { label: "Sustainable design", icon: Shield },
+                    { label: "BIM-led delivery", icon: PenTool },
+                    { label: "Turnkey execution", icon: LineChart },
+                  ].map(({ label, icon: Icon }) => (
+                    <div
+                      key={label}
+                      className="rounded-2xl border border-ink/15 bg-card/85 p-3 text-left shadow-sm backdrop-blur dark:border-white/10"
+                    >
+                      <Icon className="mb-2 h-4 w-4 text-accent" />
+                      <p className="text-xs font-semibold uppercase tracking-wider text-foreground/70">
+                        {label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </a>
-        </div>
+
+            <div className="bg-ink p-6 text-cream md:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-cream/60">
+                {site.hero.name || "Architect Farm"}
+              </p>
+              <div className="mt-8 space-y-5">
+                {[
+                  ["01", "Site intelligence", "Climate, access, context, and constraints mapped before concept."],
+                  ["02", "Integrated design", "Architecture, interiors, structure, and services coordinated early."],
+                  ["03", "Construction certainty", "Detailed documentation and delivery oversight from studio to site."],
+                ].map(([number, title, copy]) => (
+                  <div key={number} className="border-t border-cream/15 pt-4">
+                    <div className="flex items-start gap-4">
+                      <span className="font-display text-2xl font-bold text-accent">{number}</span>
+                      <div>
+                        <h3 className="font-display text-xl font-semibold">{title}</h3>
+                        <p className="mt-1 text-sm leading-6 text-cream/70">{copy}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Stats section */}
         <section className="relative w-full mt-4 flex justify-center items-center mx-auto max-w-6xl px-2 py-4 md:py-14">
-          {/* ── Desktop grid (md+) — unchanged ── */}
+          {/* -- Desktop grid (md+) — unchanged -- */}
           <div className="hidden  md:grid gap-3 grid-cols-4  place-items-center ">
             {cmsStats.map((s, i) => (
               <motion.div
@@ -3622,7 +3433,7 @@ function Index() {
             ))}
           </div>
 
-          {/* ── Mobile marquee (below md) ── */}
+          {/* -- Mobile marquee (below md) -- */}
           <div className="md:hidden w-full overflow-hidden">
             <motion.div
               className="flex gap-3"
@@ -3654,9 +3465,8 @@ function Index() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mx-auto  mt-2 max-w-5xl text-foreground md:text-lg text-accent"
           >
-            We bridge the gap between creative imagination and functional engineering. From
-            aggressive growth marketing to powerful custom tech, we build the exact systems you need
-            to scale.
+            We bridge imagination and construction through rigorous planning, refined interiors,
+            sustainable thinking, and a collaborative design process from first sketch to handover.
           </motion.p>
 
           <motion.div
@@ -3750,24 +3560,24 @@ function Index() {
           >
             <span className="script text-3xl text-accent">{site.about.eyebrow}</span>
             <h2 className="mt-2 font-display text-4xl font-bold leading-tight md:text-6xl">
-              We build brands
+              We shape spaces
               <br />
               <span className="relative inline-block">
-                that actually scale
+                that endure
                 <Underline className="absolute -bottom-2 left-0 h-3 w-full text-accent" />
               </span>
               .
             </h2>
             <p className="mt-6 max-w-md text-lg text-foreground/70">{site.about.body}</p>
             <p className="mt-4 max-w-md text-base text-foreground/60">
-              8+ years blending performance marketing, brand systems, and AI-powered automation into
-              one integrated growth pod your team can plug straight into.
+              8+ years blending architecture, interiors, planning, and sustainable detailing into
+              one thoughtful studio process.
             </p>
             <a
               href="#contact"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-medium text-cream lift"
             >
-              Let's talk <ArrowUpRight className="h-4 w-4" />
+              Start a conversation <ArrowUpRight className="h-4 w-4" />
             </a>
           </motion.div>
 
@@ -3779,10 +3589,10 @@ function Index() {
           >
             <div className="grid grid-cols-2 gap-4">
               {[
-                { t: "Growth-first", icon: TrendingUp },
-                { t: "AI-native", icon: Brain },
-                { t: "Data-driven", icon: BarChart3 },
-                { t: "Global reach", icon: Globe },
+                { t: "Context-led", icon: TrendingUp },
+                { t: "Material-wise", icon: Brain },
+                { t: "Detail-driven", icon: BarChart3 },
+                { t: "Urban-minded", icon: Globe },
               ].map(({ t, icon: Icon }, i) => (
                 <motion.div
                   key={t}
@@ -3804,9 +3614,6 @@ function Index() {
         </div>
       </section>
 
-      {/* CASE STUDIES */}
-      <CaseStudiesSection items={cmsCases} />
-
       {/* ROI TABLE */}
       <ROISection />
 
@@ -3816,7 +3623,7 @@ function Index() {
       {/* GOOGLE REVIEWS CAROUSEL - ABOVE TESTIMONIALS */}
       <section className="relative mx-auto max-w-6xl px-5 py-10 reviews-carousel-container">
         <div className="mb-8 text-center">
-          <span className="script text-3xl text-accent">Real Reviews</span>
+          <span className="script text-3xl text-accent">Client Notes</span>
           <h2 className="font-display text-4xl font-bold md:text-6xl">
             What our <span className="italic">clients</span> say
             <span className="text-accent">.</span>
@@ -3829,19 +3636,19 @@ function Index() {
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-                    fill="#4285F4"
+                    fill="#6F7377"
                   />
                   <path
                     d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    fill="#34A853"
+                    fill="#7A8465"
                   />
                   <path
                     d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    fill="#FBBC05"
+                    fill="#B08D57"
                   />
                   <path
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    fill="#EA4335"
+                    fill="#B08D57"
                   />
                 </svg>
                 <span className="text-xl font-bold text-foreground dark:text-white">4.6</span>
@@ -3870,7 +3677,7 @@ function Index() {
           >
             {cmsTestimonials.map((t, i) => {
               const googleLink =
-                "https://www.google.com/search?hl=en-IN&gl=in&q=AlphaNexis+Tech+Pvt+Ltd+-+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,";
+                "https://www.google.com/search?hl=en-IN&gl=in&q=Imagine+Design+Studio+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,";
 
               const colors = [
                 "from-purple-500 to-purple-700",
@@ -3950,25 +3757,25 @@ function Index() {
                       <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
                         <path
                           d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-                          fill="#4285F4"
+                          fill="#6F7377"
                         />
                         <path
                           d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                          fill="#34A853"
+                          fill="#7A8465"
                         />
                         <path
                           d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                          fill="#FBBC05"
+                          fill="#B08D57"
                         />
                         <path
                           d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                          fill="#EA4335"
+                          fill="#B08D57"
                         />
                       </svg>
                       <span>Google Review</span>
                     </div>
                     <span className="text-xs font-medium text-accent hover:underline">
-                      Read more →
+                      Read more
                     </span>
                   </div>
                 </motion.a>
@@ -4001,7 +3808,7 @@ function Index() {
         {/* View All Button */}
         <div className="mt-6 text-center">
           <a
-            href="https://www.google.com/search?hl=en-IN&gl=in&q=AlphaNexis+Tech+Pvt+Ltd+-+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,"
+            href="https://www.google.com/search?hl=en-IN&gl=in&q=Imagine+Design+Studio+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border-2 border-ink/20 bg-background px-6 py-2.5 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-md dark:border-border dark:bg-card"
@@ -4009,19 +3816,19 @@ function Index() {
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
               <path
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-                fill="#4285F4"
+                fill="#6F7377"
               />
               <path
                 d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                fill="#34A853"
+                fill="#7A8465"
               />
               <path
                 d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                fill="#FBBC05"
+                fill="#B08D57"
               />
               <path
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                fill="#EA4335"
+                fill="#B08D57"
               />
             </svg>
             View all 32 reviews on Google
@@ -4065,7 +3872,7 @@ function Index() {
           <div className="text-sm text-foreground/60">{site.footer.copyright}</div>
           <div className="flex items-center gap-5 text-sm">
             <a
-              href="https://www.instagram.com/alphanexis/"
+              href="https://www.instagram.com/imaginedesignstudio/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-accent"
@@ -4073,7 +3880,7 @@ function Index() {
               <Instagram className="h-4 w-4" /> Instagram
             </a>
             <a
-              href="https://www.linkedin.com/company/alphanexis/posts/?feedView=all"
+              href="https://www.linkedin.com/company/imaginedesignstudio/posts/?feedView=all"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-accent"
@@ -4081,7 +3888,7 @@ function Index() {
               <Linkedin className="h-4 w-4" /> LinkedIn
             </a>
             <a
-              href="https://www.alphanexis.com/"
+              href="https://www.imaginedesignstudio.com/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-accent"
@@ -4116,7 +3923,7 @@ function Index() {
         />
 
         <CartoonButton
-          label="View Our Work"
+          label="View Projects"
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"

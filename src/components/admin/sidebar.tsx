@@ -72,13 +72,13 @@ const CONTENT_ITEMS: SidebarItemProps[] = [
   {
     id: "reels",
     label: "Film Reels",
-    description: "Manage the video reel library and playback showcase.",
+    description: "Manage the studio film library and playback showcase.",
     icon: Film,
   },
   {
     id: "site",
     label: "Hero & Site",
-    description: "Update landing hero, about, and brand content.",
+    description: "Update landing hero, about, and studio content.",
     icon: Settings,
   },
   {
@@ -93,13 +93,13 @@ const COLLECTION_ITEMS: SidebarItemProps[] = [
   {
     id: "capabilities",
     label: "Capabilities",
-    description: "Edit feature cards, metrics, and positioning.",
+    description: "Edit service cards, metrics, and studio positioning.",
     icon: LayoutGrid,
   },
   {
     id: "process",
     label: "Process",
-    description: "Shape the service workflow and delivery milestones.",
+    description: "Shape the design workflow and delivery milestones.",
     icon: GitBranch,
   },
   {
@@ -123,12 +123,12 @@ const COLLECTION_ITEMS: SidebarItemProps[] = [
   {
     id: "stats",
     label: "Stats",
-    description: "Maintain brand performance counters and KPIs.",
+    description: "Maintain project, practice, and performance counters.",
     icon: BarChart2,
   },
   {
     id: "visualAssets",
-    label: "Visual Assets",
+    label: "Project Assets",
     description: "Edit portfolio image cards and gallery captions.",
     icon: LayoutGrid,
   },
@@ -223,10 +223,10 @@ function UserPanel({ onLogout }: { onLogout: () => void }) {
     <div className="overflow-hidden rounded-2xl border border-sidebar-border bg-card p-3 text-card-foreground group-data-[collapsible=icon]:rounded-lg group-data-[collapsible=icon]:border-transparent group-data-[collapsible=icon]:bg-transparent group-data-[collapsible=icon]:p-0">
       <div className="flex items-center gap-3 group-data-[collapsible=icon]:justify-center">
         <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-sidebar-border bg-background p-1 group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:rounded-lg">
-          <img src={logo} alt="AlphaNexis" className="h-full w-full object-contain" />
+          <img src={logo} alt="Imagine Design Studio" className="h-full w-full object-contain" />
         </div>
         <div className="min-w-0 group-data-[collapsible=icon]:hidden">
-          <p className="text-sm font-semibold">Alphanexis Admin</p>
+          <p className="text-sm font-semibold">Imagine Design Studio Admin</p>
           <p className="text-xs text-muted-foreground">Portfolio control</p>
         </div>
       </div>
@@ -355,11 +355,11 @@ function AdminSidebarLayout({ activeTab, onSelect, onLogout, children }: AdminSi
         <SidebarHeader className="flex min-h-16 items-center justify-between gap-3 overflow-hidden border-b border-sidebar-border px-4 py-4 group-data-[collapsible=icon]:min-h-16 group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:py-3">
           <div className="flex min-w-0 items-center gap-3 group-data-[collapsible=icon]:hidden">
             <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-lg border border-sidebar-border bg-background p-1">
-              <img src={logo} alt="AlphaNexis" className="h-full w-full object-contain" />
+              <img src={logo} alt="Imagine Design Studio" className="h-full w-full object-contain" />
             </span>
             <span className="min-w-0 space-y-1">
               <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">CMS Console</p>
-              <p className="truncate font-display text-base font-semibold">Alphanexis Studio</p>
+              <p className="truncate font-display text-base font-semibold">Imagine Design Studio</p>
             </span>
           </div>
           <AdminSidebarToggle />
@@ -423,5 +423,3 @@ export function AdminSidebar(props: AdminSidebarProps) {
     </SidebarProvider>
   );
 }
-
-

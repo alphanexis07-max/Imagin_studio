@@ -1,4 +1,4 @@
-import { motion, useTransform } from "framer-motion";
+﻿import { motion, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -27,25 +27,25 @@ export interface DiagonalSlide {
 
 const defaultSlides: DiagonalSlide[] = [
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    title: "Diagonal cadence",
-    description: "Tilted grid with dynamic overlap and large media surfaces.",
+    categoryLabel: "INTERIOR DESIGN",
+    title: "Diagonal Material Cadence",
+    description: "Tilted grid with dynamic overlap and large spatial media surfaces.",
     poster: screenshot2,
     video: videoSources[2],
     accent: "from-indigo-500",
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    title: "Tilted composition",
-    description: "Cards shift diagonally with subtle parallax and hover emphasis.",
+    categoryLabel: "ARCHITECTURE",
+    title: "Tilted Composition",
+    description: "Cards shift diagonally through facade, massing, and threshold studies.",
     poster: screenshot3,
     video: videoSources[3],
     accent: "from-violet-500",
   },
   {
-    categoryLabel: "GRAPHIC DESIGN",
-    title: "Rhythmic motion",
-    description: "A diagonal wheel that feels like a kinetic gallery for video cuts.",
+    categoryLabel: "URBAN DESIGN",
+    title: "Rhythmic Public Realm",
+    description: "A diagonal wheel that feels like a kinetic gallery for project films.",
     poster: screenshot4,
     video: videoSources[1],
     accent: "from-sky-500",
@@ -61,9 +61,9 @@ interface DiagonalWheelProps {
 
 export function DiagonalWheel({
   slides = defaultSlides,
-  title = "Diagonal wheel gallery",
-  subtitle = "Diagonal wheel",
-  description = "Tilted cards with strong media focus — optimized for autoplaying video previews.",
+  title = "Diagonal project gallery",
+  subtitle = "Diagonal studies",
+  description = "Tilted cards with strong media focus, optimized for autoplaying project previews.",
 }: DiagonalWheelProps) {
   const carousel = useCarousel({ count: slides.length, initialIndex: 0 });
 
@@ -151,3 +151,5 @@ export function DiagonalWheel({
     </section>
   );
 }
+
+

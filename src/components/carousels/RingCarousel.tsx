@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -20,32 +20,32 @@ const slides: (MediaSlideProps & { title: string; description: string })[] = [
     type: "video",
     src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     poster: screenshot1,
-    title: "Circular Brand Motion",
-    description: "Rotate narrative cards with cinematic depth and intuitive index snapping.",
+    title: "Courtyard Spatial Sequence",
+    description: "Rotate through project frames with depth, rhythm, and clear spatial hierarchy.",
     accentColor: "from-orange-950/90",
   },
   {
     type: "video",
     src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     poster: screenshot1,
-    title: "3D Content Rhythm",
-    description: "A polished cylinder effect that keeps every card visible on its own axis.",
+    title: "Material Study Rotation",
+    description: "A polished carousel for comparing stone, timber, plaster, and light conditions.",
     accentColor: "from-cyan-950/90",
   },
   {
     type: "video",
     src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     poster: screenshot1,
-    title: "Momentum Navigation",
-    description: "Drag, wheel, and keyboard control with spring-led snap behavior.",
+    title: "Masterplan Navigation",
+    description: "Drag, wheel, and keyboard control through a sequence of urban design studies.",
     accentColor: "from-emerald-950/90",
   },
   {
     type: "video",
     src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     poster: screenshot1,
-    title: "Focused Storytelling",
-    description: "Scale and opacity separate the active slide from the supporting stack.",
+    title: "Focused Project Story",
+    description: "Scale and opacity separate the active project from the supporting studies.",
     accentColor: "from-violet-950/90",
   },
 ];
@@ -74,23 +74,23 @@ export interface RingSlide {
 
 const defaultSlides = [
   {
-    categoryLabel: "CRM SOFTWARE",
-    title: "Circular Brand Motion",
-    description: "Rotate narrative cards with cinematic depth and intuitive index snapping.",
-    keyFeatures: ["Automated CRM Sync", "Real-Time User Attribution", "Multi-Channel Messaging"],
-    techStack: ["React", "FastAPI", "PostgreSQL"],
-    businessBenefit: "Reduced client management overhead by 40%",
+    categoryLabel: "COMMERCIAL DESIGN",
+    title: "Studio Workplace Sequence",
+    description: "Rotate through workplace rooms with cinematic depth and clear circulation.",
+    keyFeatures: ["Flexible Planning", "Acoustic Rooms", "Custom Joinery"],
+    techStack: ["BIM", "Lighting Study", "Material Library"],
+    businessBenefit: "Improved collaboration and client presentation flow",
     poster: screenshot1,
     video: videoSources[0],
     accentColor: "from-orange-950/90",
   },
   {
-    categoryLabel: "PROJECT MANAGEMENT",
-    title: "3D Content Rhythm",
-    description: "A polished cylinder effect that keeps every card visible on its own axis.",
-    keyFeatures: ["Custom Sprint Planner", "Interactive Gantt Charts", "Direct Slack Webhooks"],
-    techStack: ["Next.js", "Express", "MongoDB"],
-    businessBenefit: "Boosted team shipping velocity by 30%",
+    categoryLabel: "URBAN PLANNING",
+    title: "District Massing Rhythm",
+    description: "A polished cylinder effect that keeps each urban study visible on its own axis.",
+    keyFeatures: ["Walkable Blocks", "Transit Links", "Public Realm"],
+    techStack: ["GIS", "Massing Study", "Phasing Plan"],
+    businessBenefit: "Created a clear framework for resilient district growth",
     poster: screenshot1,
     video: videoSources[1],
     accentColor: "from-cyan-950/90",
@@ -176,12 +176,12 @@ export function RingCarousel({
             // Category badge colors
             const getBadgeStyles = (label: string) => {
               const cleaned = label.toUpperCase();
-              if (cleaned.includes("CRM")) return "bg-teal-500/25 border-teal-500/40 text-teal-400";
+              if (cleaned.includes("COMMERCIAL")) return "bg-teal-500/25 border-teal-500/40 text-teal-400";
               if (cleaned.includes("PROJECT") || cleaned.includes("MANAGEMENT"))
                 return "bg-indigo-500/25 border-indigo-500/40 text-indigo-400";
-              if (cleaned.includes("SALES") || cleaned.includes("APP"))
+              if (cleaned.includes("RESIDENTIAL") || cleaned.includes("INTERIOR"))
                 return "bg-pink-500/25 border-pink-500/40 text-pink-400";
-              if (cleaned.includes("BUSINESS") || cleaned.includes("AUTOMATION"))
+              if (cleaned.includes("SUSTAINABLE") || cleaned.includes("ADAPTIVE"))
                 return "bg-amber-500/25 border-amber-500/40 text-amber-400";
               return "bg-white/10 border-white/20 text-white";
             };
@@ -196,7 +196,7 @@ export function RingCarousel({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ rotateY: angle, scale, opacity, y: 0 }}
                 className={cn(
-                  "absolute left-1/2 mt-4 top-1/2 w-[min(42rem,95vw)] sm:w-[min(48rem,92vw)] md:w-[min(52rem,88vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] border border-ink/10 bg-card/95 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#111827]/95 dark:shadow-[0_30px_90px_-45px_rgba(0,0,0,0.95)]",
+                  "absolute left-1/2 mt-4 top-1/2 w-[min(42rem,95vw)] sm:w-[min(48rem,92vw)] md:w-[min(52rem,88vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] border border-ink/10 bg-card/95 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.45)] dark:border-white/10 dark:bg-[#2E3135]/95 dark:shadow-[0_30px_90px_-45px_rgba(0,0,0,0.95)]",
                   zIndex > 0 ? "" : "pointer-events-none",
                 )}
                 style={{
@@ -207,7 +207,7 @@ export function RingCarousel({
                 }}
                 transition={smooth}
               >
-                <div className="relative h-[min(60vh,24rem)] bg-muted dark:bg-[#0b0f14]">
+                <div className="relative h-[min(60vh,24rem)] bg-muted dark:bg-[#1F1F1F]">
                   {slide.video ? (
                     <RingVideo src={slide.video} poster={slide.poster} isActive={isCenter} />
                   ) : (
@@ -292,9 +292,9 @@ export function RingCarousel({
                       href={openUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-5 mr-auto md:mr-2 inline-flex rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#111827]"
+                      className="mt-5 mr-auto md:mr-2 inline-flex rounded-full border border-ink/10 bg-foreground px-4 py-2 text-xs font-bold text-background transition hover:opacity-90 dark:border-white/10 dark:bg-white dark:text-[#2E3135]"
                     >
-                      Open application
+                      Open project
                     </a>
                   )}
                 </div>
@@ -327,3 +327,5 @@ export function RingCarousel({
     </section>
   );
 }
+
+

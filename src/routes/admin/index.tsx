@@ -41,9 +41,9 @@ function AdminDashboard() {
                 <div className="flex min-w-0 items-center gap-2 sm:gap-3">
                   {mobileMenuButton}
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-background p-1">
-                    <img src={logo} alt="AlphaNexis" className="h-full w-full object-contain" />
+                    <img src={logo} alt="Imagine Design Studio" className="h-full w-full object-contain" />
                   </div>
-                  <span className="min-w-0 truncate font-display text-sm font-semibold sm:text-base">Alphanexis Studio</span>
+                  <span className="min-w-0 truncate font-display text-sm font-semibold sm:text-base">Imagine Design Studio</span>
                   <span className="shrink-0 rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] text-foreground sm:text-xs">Logged in</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -285,7 +285,6 @@ function ContactTab() {
     </div>
   );
 }
-
 
 
 

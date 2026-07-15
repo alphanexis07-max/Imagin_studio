@@ -1,8 +1,8 @@
 {
   "hero": {
     "eyebrow": "",
-    "name": "",
-    "headline": "A Brand & Marketing Specialist",
+    "name": "Imagine Design Studio",
+    "headline": "Architecture That Shapes Tomorrow",
     "portraitUrl": "/portrait.png",
     "sidebarStat": {
       "value": "6+ Years",
@@ -29,11 +29,23 @@
     "bookCallUrl": "tel:917067068673"
   },
   "footer": {
-    "copyright": "© 2026 Helmi Studio · Crafted with care",
+    "copyright": "© 2026 Imagine Design Studio - Crafted with care",
     "socials": [
-      { "label": "Instagram", "url": "https://www.instagram.com/alphanexis/", "icon": "Instagram" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/company/alphanexis/posts/?feedView=all", "icon": "LinkedIn" },
-      { "label": "Website", "url": "https://www.alphanexis.com/", "icon": null }
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/alphanexis/",
+        "icon": "Instagram"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/company/alphanexis/posts/?feedView=all",
+        "icon": "LinkedIn"
+      },
+      {
+        "label": "Website",
+        "url": "https://www.alphanexis.com/",
+        "icon": null
+      }
     ]
   },
   "marquee": {

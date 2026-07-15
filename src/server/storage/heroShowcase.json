@@ -1,0 +1,71 @@
+[
+  {
+    "order": 0,
+    "categoryLabel": "ARCHITECTURAL",
+    "title": "Horizon Corporate Tower",
+    "description": "A 40-story sustainable commercial landmark featuring double-skin facade technology and AI-optimized energy systems.",
+    "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "poster": "/carousel-samples/screenshot-2.jpg",
+    "glow": "shadow-blue-950/40",
+    "ctaText": "View Project",
+    "ctaLink": "#portfolio"
+  },
+  {
+    "order": 1,
+    "categoryLabel": "CONSTRUCTION",
+    "title": "Urban Green Residences",
+    "description": "Net-zero residential complex with integrated green walls, solar infrastructure, and community rooftop gardens.",
+    "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    "poster": "/carousel-samples/screenshot-1.jpg",
+    "glow": "shadow-green-950/40",
+    "ctaText": "View Project",
+    "ctaLink": "#portfolio"
+  },
+  {
+    "order": 2,
+    "categoryLabel": "ARCHITECTURAL",
+    "title": "Waterfront Cultural Centre",
+    "description": "Iconic arts venue designed with parametric geometry, sustainable materials, and 270-degree harbor views.",
+    "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    "poster": "/carousel-samples/screenshot-2.jpg",
+    "glow": "shadow-purple-950/40",
+    "ctaText": "View Project",
+    "ctaLink": "#portfolio"
+  },
+  {
+    "order": 3,
+    "categoryLabel": "CONSTRUCTION",
+    "title": "MedTech Innovation Campus",
+    "description": "State-of-the-art medical research facility with smart infrastructure, specialized cleanrooms, and sustainable operations.",
+    "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    "poster": "/carousel-samples/screenshot-3.jpg",
+    "glow": "shadow-teal-950/40",
+    "ctaText": "View Project",
+    "ctaLink": "#portfolio"
+  },
+  {
+    "order": 4,
+    "categoryLabel": "INTERIOR DESIGN",
+    "title": "Minimalist Luxury Penthouse",
+    "description": "Premium residential interior featuring clean lines, natural materials, and panoramic views of the city skyline.",
+    "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    "poster": "/carousel-samples/screenshot-4.jpg",
+    "glow": "shadow-amber-950/40",
+    "ctaText": "View Project",
+    "ctaLink": "#portfolio"
+  },
+  {
+    "categoryLabel": "INTERIOR DESIGN",
+    "title": "Minimalist Luxury Penthouse",
+    "description": "Premium residential interior featuring clean lines, natural materials, and panoramic views of the city skyline.",
+    "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    "poster": "/carousel-samples/screenshot-4.jpg",
+    "glow": "shadow-amber-950/40",
+    "ctaText": "View Project",
+    "ctaLink": "#portfolio",
+    "id": "914549f9-5e3c-4198-91f5-e1e9e4fd0b66",
+    "order": 5,
+    "createdAt": "2026-07-13T13:18:27.300Z",
+    "updatedAt": "2026-07-13T13:18:27.300Z"
+  }
+]

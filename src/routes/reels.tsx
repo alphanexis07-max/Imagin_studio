@@ -53,7 +53,7 @@ function Reels() {
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-accent/35 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-foreground shadow-sm backdrop-blur-sm"
             >
-              <Film className="h-4 w-4 text-accent" /> The Reel Room
+              <Film className="h-4 w-4 text-accent" /> Studio Films
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
@@ -61,7 +61,7 @@ function Reels() {
               transition={{ delay: 0.08 }}
               className="mt-5 font-display text-4xl font-bold leading-tight text-foreground sm:text-5xl md:text-7xl"
             >
-              Client <span className="italic text-accent">Cuts</span> & Edits
+              Project <span className="italic text-accent">Films</span> & Walkthroughs
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 18 }}
@@ -69,7 +69,7 @@ function Reels() {
               transition={{ delay: 0.16 }}
               className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg"
             >
-              A cohesive collection of visual storytelling, campaign edits, and social-first motion work.
+              A curated archive of spatial films, site studies, material reviews, and project walkthroughs.
             </motion.p>
           </div>
 
@@ -80,7 +80,7 @@ function Reels() {
               </div>
               <div>
                 <p className="font-display text-2xl font-bold leading-none">{reels.length}</p>
-                <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">Published reels</p>
+                <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">Published films</p>
               </div>
             </div>
           </div>
@@ -89,9 +89,9 @@ function Reels() {
         {reels.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-border bg-card/70 px-5 py-16 text-center text-card-foreground shadow-sm">
             <Film className="mx-auto mb-3 h-10 w-10 text-muted-foreground" />
-            <h2 className="font-display text-2xl font-bold">No reels published yet</h2>
+            <h2 className="font-display text-2xl font-bold">No films published yet</h2>
             <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-              Published reel embeds will appear here once they are added from the admin dashboard.
+              Published studio films will appear here once they are added from the admin dashboard.
             </p>
           </div>
         ) : (
