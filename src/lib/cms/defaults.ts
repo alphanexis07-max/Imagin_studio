@@ -84,13 +84,9 @@ export const DEFAULT_SITE: SiteData = {
   footer: {
     copyright: "© 2026 Architect Farm - Building Tomorrow, Today",
     socials: [
-      { label: "Instagram", url: "https://www.instagram.com/architectfarm/", icon: "Instagram" },
-      {
-        label: "LinkedIn",
-        url: "https://www.linkedin.com/company/architectfarm/",
-        icon: "LinkedIn",
-      },
-      { label: "Website", url: "https://www.architectfarm.com/", icon: "Globe" },
+      { label: "Instagram", url: "https://www.instagram.com/imagine_design_studios/", icon: "Instagram" },
+      { label: "Facebook", url: "https://www.facebook.com/imagine.consultants/", icon: "Facebook" },
+      { label: "Website", url: "https://www.imaginedesignstudios.com/", icon: "Globe" },
     ],
   },
   marquee: {
@@ -165,10 +161,12 @@ export const DEFAULT_COLLECTIONS: Record<CollectionName, Array<Record<string, un
     { order: 2, name: "Turnkey Build", duration: "6-24 mo", description: "Complete project delivery from concept to construction handover and beyond.", bullets: ["Project management", "Construction delivery", "Post-build warranty"], bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]", rotation: 1.4, tag: "Full service", icon: "Flame" },
   ],
   testimonials: [
-    { order: 0, quote: "Architect Farm delivered our corporate headquarters with exceptional quality and professionalism. The design perfectly captures our brand identity and the construction was completed ahead of schedule.", author: "Priya Verma", role: "CEO, Horizon Group", verified: "5-Star Client", stars: 5 },
-    { order: 1, quote: "Their sustainable design expertise transformed our vision for an eco-resort into reality. The team's commitment to environmental responsibility matched our values perfectly.", author: "David Chen", role: "Hospitality Developer", verified: "4-Star Client", stars: 4 },
-    { order: 2, quote: "The attention to detail in both design and execution was outstanding. Architect Farm's team handled complex planning approvals and delivered a truly iconic building.", author: "Rahul Sharma", role: "Urban Development Director", verified: "5-Star Client", stars: 5 },
-    { order: 3, quote: "Professional, innovative, and reliable. They managed every aspect of our project from feasibility studies to final handover. Highly recommend their services.", author: "Maria Fernandez", role: "Property Developer", verified: "4-Star Client", stars: 4 },
+    { order: 0, quote: "Imagine Design Studio transformed our home with exceptional architecture and interior design. Their professionalism, attention to detail, and ability to bring our vision to life made the entire experience outstanding.", author: "Mohit Patel", role: "2 months ago", verified: "Verified", stars: 5 },
+    { order: 1, quote: "The team perfectly brought my jewellery store vision to life. Their creativity, professionalism, and commitment to quality exceeded my expectations from start to finish.", author: "Nayan Bhargava", role: "3 months ago", verified: "Verified", stars: 5 },
+    { order: 2, quote: "Their attention to detail and uncompromising quality made all the difference. The project was managed flawlessly, and the final result exceeded every expectation.", author: "Neelam Chawla", role: "2 months ago", verified: "Verified", stars: 5 },
+    { order: 3, quote: "Their expertise, technical knowledge, and project management were worth every penny. They delivered a stunning modern home exactly as envisioned.", author: "Harish Jog", role: "3 months ago", verified: "Verified", stars: 5 },
+    { order: 4, quote: "A highly creative and professional team delivering premium-quality architecture and interior design. I would confidently recommend them to anyone looking for exceptional design services.", author: "Darshan Kharniwal", role: "3 months ago", verified: "Verified", stars: 5 },
+    { order: 5, quote: "Their creativity transformed my house into a beautifully designed home. Every detail reflects thoughtful planning, craftsmanship, and genuine dedication.", author: "Saddam Singh", role: "3 months ago", verified: "Verified", stars: 5 },
   ],
   stats: [
     { order: 0, value: "120+", label: "Projects completed" },

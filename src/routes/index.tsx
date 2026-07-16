@@ -23,7 +23,6 @@ import {
   Star,
   Sparkles,
   Instagram,
-  Linkedin,
   Mail,
   Phone,
   Send,
@@ -859,19 +858,6 @@ type VideoEditingSlide = {
   detailUrl?: string;
 };
 
-type SoftwareSystemSlide = {
-  categoryLabel: string;
-  title: string;
-  description: string;
-  keyFeatures: string[];
-  techStack: string[];
-  businessBenefit: string;
-  poster: string;
-  video: string;
-  accentColor: string;
-  projectUrl?: string;
-};
-
 type SeoAnalyticsSlide = {
   categoryLabel: string;
   title: string;
@@ -996,56 +982,6 @@ const fallbackGraphicDesignSlides: VisualAssetSlide[] = [
     title: "Cozy Hotel Room Interior",
     description: "Hospitality design with a modern, welcoming spatial language.",
     image: thumbnail6,
-  },
-];
-
-const softwareSystemsSlides = [
-  {
-    categoryLabel: "COMMERCIAL DESIGN",
-    title: "Nexis Studio Workplace",
-    description:
-      "A compact workplace that brings client rooms, model tables, and production zones into one clear plan.",
-    keyFeatures: ["Flexible Planning", "Acoustic Rooms", "Custom Joinery"],
-    techStack: ["BIM", "Material Library", "Lighting Study"],
-    businessBenefit: "Improved collaboration and client presentation flow",
-    poster: screenshot3,
-    video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    accentColor: "from-teal-950/90",
-  },
-  {
-    categoryLabel: "URBAN PLANNING",
-    title: "District Mobility Framework",
-    description:
-      "A neighborhood framework aligning shade, pedestrian priority, slow streets, and mixed-use frontage.",
-    keyFeatures: ["Walkable Blocks", "Transit Links", "Public Realm"],
-    techStack: ["GIS", "Mobility Mapping", "Phasing Plan"],
-    businessBenefit: "Created a clear roadmap for resilient district growth",
-    poster: screenshot6,
-    video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    accentColor: "from-indigo-950/90",
-  },
-  {
-    categoryLabel: "RESIDENTIAL",
-    title: "Cloud Court Residence",
-    description:
-      "A courtyard house with deep overhangs, screened edges, and calm interior volumes.",
-    keyFeatures: ["Passive Cooling", "Courtyard Light", "Stone Detailing"],
-    techStack: ["BIM", "Climate Analysis", "Detail Set"],
-    businessBenefit: "Balanced privacy, comfort, and everyday family life",
-    poster: screenshot4,
-    video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    accentColor: "from-pink-950/90",
-  },
-  {
-    categoryLabel: "SUSTAINABLE DESIGN",
-    title: "Low-Carbon Retrofit Strategy",
-    description: "A phased retrofit plan for envelope performance, daylight, and material reuse.",
-    keyFeatures: ["Energy Modeling", "Adaptive Reuse", "Material Audit"],
-    techStack: ["Energy Study", "Lifecycle Review", "Phasing"],
-    businessBenefit: "Reduced operating demand while preserving existing structure",
-    poster: screenshot1,
-    video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    accentColor: "from-amber-950/90",
   },
 ];
 
@@ -1715,35 +1651,6 @@ function normalizeVisualAssets(items: CmsItem[]): VisualAssetSlide[] {
       }))
     : fallbackGraphicDesignSlides;
 }
-function normalizeSoftwareSystems(items: CmsItem[]): SoftwareSystemSlide[] {
-  return items.length
-    ? items.map((item, index) => ({
-        categoryLabel: asString(item.categoryLabel, "COMMERCIAL DESIGN"),
-        title: asString(item.title, `Project ${index + 1}`),
-        description: asString(item.description),
-        keyFeatures: asStringArray(item.keyFeatures),
-        techStack: asStringArray(item.techStack),
-        businessBenefit: asString(item.businessBenefit),
-        poster: resolveMediaUrl(
-          item.poster,
-          softwareSystemsSlides[index % softwareSystemsSlides.length]?.poster ?? screenshot1,
-        ),
-        video: asString(
-          item.video,
-          softwareSystemsSlides[index % softwareSystemsSlides.length]?.video ?? "",
-        ),
-        accentColor: asString(
-          item.accentColor,
-          softwareSystemsSlides[index % softwareSystemsSlides.length]?.accentColor ??
-            "from-teal-950/90",
-        ),
-        projectUrl: asString(
-          item.projectUrl,
-          asString(item.ctaLink, asString(item.video, asString(item.poster))),
-        ),
-      }))
-    : softwareSystemsSlides;
-}
 function normalizeSeoAnalytics(items: CmsItem[]): SeoAnalyticsSlide[] {
   return items.length
     ? items.map((item, index) => ({
@@ -1820,35 +1727,52 @@ function normalizeTestimonials(items: CmsItem[]) {
   // Static fallback testimonial data
   return [
     {
-      q: "The studio translated a complex brief into a residence that feels calm, precise, and deeply personal. Every material decision was considered.",
-      name: "Aarav Mehta",
-      co: "Residential Client",
-      verified: "Google 5-Star",
+      q: "Imagine Design Studio transformed our home with exceptional architecture and interior design. Their professionalism, attention to detail, and ability to bring our vision to life made the entire experience outstanding.",
+      name: "Mohit Patel",
+      co: "2 months ago",
+      verified: "Verified",
       stars: 5,
     },
     {
-      q: "Their process gave us clarity from concept to site. The interior package balanced restraint, comfort, and practical detailing beautifully.",
-      name: "Nisha Rao",
-      co: "Hospitality Founder",
-      verified: "Google 4-Star",
-      stars: 4,
-    },
-    {
-      q: "Imagine Design Studio brought discipline to a difficult adaptive reuse project. The final workspace keeps the character of the old structure while feeling entirely contemporary.",
-      name: "Rhea Kapoor",
-      co: "Commercial Client",
-      verified: "Google 5-Star",
+      q: "The team perfectly brought my jewellery store vision to life. Their creativity, professionalism, and commitment to quality exceeded my expectations from start to finish.",
+      name: "Nayan Bhargava",
+      co: "3 months ago",
+      verified: "Verified",
       stars: 5,
     },
     {
-      q: "The urban design recommendations were concise, buildable, and sensitive to public life. Their team made every stakeholder review productive.",
-      name: "Kabir Sen",
-      co: "Urban Development Lead",
-      verified: "Google 4-Star",
-      stars: 4,
+      q: "Their attention to detail and uncompromising quality made all the difference. The project was managed flawlessly, and the final result exceeded every expectation.",
+      name: "Neelam Chawla",
+      co: "2 months ago",
+      verified: "Verified",
+      stars: 5,
+    },
+    {
+      q: "Their expertise, technical knowledge, and project management were worth every penny. They delivered a stunning modern home exactly as envisioned.",
+      name: "Harish Jog",
+      co: "3 months ago",
+      verified: "Verified",
+      stars: 5,
+    },
+    {
+      q: "A highly creative and professional team delivering premium-quality architecture and interior design. I would confidently recommend them to anyone looking for exceptional design services.",
+      name: "Darshan Kharniwal",
+      co: "3 months ago",
+      verified: "Verified",
+      stars: 5,
+    },
+    {
+      q: "Their creativity transformed my house into a beautifully designed home. Every detail reflects thoughtful planning, craftsmanship, and genuine dedication.",
+      name: "Saddam Singh",
+      co: "3 months ago",
+      verified: "Verified",
+      stars: 5,
     },
   ];
 }
+
+const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/search?sca_esv=8841194606cfa8ed&sxsrf=APpeQnu2sgESES25OOUqIwho-CU5VUwfJw:1784180256581&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_-qspt8b1PX-uffAIi_5gCEA5e7btdNKAXGfGqeGcO6UJlZY8NE5K2CmeaGdovjyZrlTWc025BJDonxxq0kW7BlUhVIBLFMnYaBuWw3XaQWUGQqWIMGXT-NVjfmMK5gdVsQXXQjE7NBCZ9GOI3Dx99ibl5p4pAY386ZRNPOujiTEBesRhfc9ogXnlZmfsjZkmY1NtBhZxcvw2wsAWAdjt2mAbp1MivWicJDTosLhNxh0XDF-XeysKRPgh_3QLEQvrvuFkCUsKBBMUCrvL91QmX9rPy0O&q=%E0%A4%87%E0%A4%AE%E0%A5%88%E0%A4%9C%E0%A4%BF%E0%A4%A8+%E0%A4%A1%E0%A4%BF%E0%A4%9C%E0%A4%BE%E0%A4%87%E0%A4%A8+%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%82%E0%A4%A1%E0%A4%BF%E0%A4%AF%E0%A5%8B+-+%E0%A4%AC%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F+%E0%A4%86%E0%A4%B0%E0%A5%8D%E0%A4%95%E0%A4%BF%E0%A4%9F%E0%A5%87%E0%A4%95%E0%A5%8D%E0%A4%9F+%E0%A4%87%E0%A4%A8+%E0%A4%87%E0%A4%82%E0%A4%A6%E0%A5%8C%E0%A4%B0+%E0%A4%B8%E0%A4%AE%E0%A5%80%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%E0%A4%8F%E0%A4%82&sa=X&ved=2ahUKEwjwkqKzvdaVAxUBVmwGHSS2DtsQ0bkNegQILhAI&biw=1920&bih=869&dpr=1";
 
 /* -- Film Reels -- */
 function FilmReelsSection({ items = filmReels }: { items?: typeof filmReels }) {
@@ -2623,29 +2547,6 @@ function PortfolioGraphicDesign({
   );
 }
 
-function PortfolioSoftwareSystems({
-  content = DEFAULT_SITE.portfolio.sections.softwareSystems,
-  items = softwareSystemsSlides,
-}: {
-  content?: PortfolioSectionCopy;
-  items?: SoftwareSystemSlide[];
-}) {
-  return (
-    <div className="py-6 mb-4">
-      <div className="mb-10 text-center px-5">
-        <span className="script text-3xl text-orange-400">{content.eyebrow}</span>
-        <h2 className="mt-3 font-display text-3xl font-bold md:text-6xl tracking-tight text-foreground dark:text-white">
-          {content.title}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-foreground/65 dark:text-gray-400">
-          {content.description}
-        </p>
-      </div>
-      <RingCarousel slides={items} title="" subtitle="" description="" />
-    </div>
-  );
-}
-
 function PortfolioSEOAnalytics({
   content = DEFAULT_SITE.portfolio.sections.seoAnalytics,
   items = seoAnalyticsSlides,
@@ -3176,7 +3077,6 @@ function Index() {
   const cmsVideoEditing = normalizeVideoEditing(portfolio.collections.videoEditing);
   const cmsReels = normalizeReels(portfolio.reels);
   const cmsVisualAssets = normalizeVisualAssets(portfolio.collections.visualAssets);
-  const cmsSoftwareSystems = normalizeSoftwareSystems(portfolio.collections.softwareSystems);
   const cmsSeoAnalytics = normalizeSeoAnalytics(portfolio.collections.seoAnalytics);
   const cmsStrategicConsulting = normalizeStrategicConsulting(
     portfolio.collections.strategicConsulting,
@@ -3531,10 +3431,6 @@ function Index() {
         content={portfolioCopy.sections.visualAssets}
         items={cmsVisualAssets}
       />
-      <PortfolioSoftwareSystems
-        content={portfolioCopy.sections.softwareSystems}
-        items={cmsSoftwareSystems}
-      />
       <PortfolioSEOAnalytics
         content={portfolioCopy.sections.seoAnalytics}
         items={cmsSeoAnalytics}
@@ -3676,9 +3572,6 @@ function Index() {
             id="reviewsTrack"
           >
             {cmsTestimonials.map((t, i) => {
-              const googleLink =
-                "https://www.google.com/search?hl=en-IN&gl=in&q=Imagine+Design+Studio+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,";
-
               const colors = [
                 "from-purple-500 to-purple-700",
                 "from-green-500 to-green-700",
@@ -3694,7 +3587,7 @@ function Index() {
               return (
                 <motion.a
                   key={i}
-                  href={googleLink}
+                  href={GOOGLE_REVIEWS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
@@ -3717,7 +3610,7 @@ function Index() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-foreground/50 dark:text-gray-400">
-                          {i === 0 || i === 1 ? "10 days ago" : "12 days ago"}
+                          {t.co}
                         </span>
                         <span className="inline-flex items-center gap-1 text-[10px] text-green-600 dark:text-green-400">
                           <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
@@ -3727,7 +3620,7 @@ function Index() {
                               clipRule="evenodd"
                             />
                           </svg>
-                          Verified
+                          {t.verified}
                         </span>
                       </div>
                     </div>
@@ -3808,7 +3701,7 @@ function Index() {
         {/* View All Button */}
         <div className="mt-6 text-center">
           <a
-            href="https://www.google.com/search?hl=en-IN&gl=in&q=Imagine+Design+Studio+Software+Development+Company+in+Indore,+Khalsa+Square,+Madhu%27s+Hive,+1859,+Part+I,+Scheme+No+114,+Indore,+Madhya+Pradesh+452010&ludocid=6004303953686124985&lsig=AB86z5WF8ks3XhH_BEc6eLMC-6LE#lrd=0x3962fd2e99f43beb:0x535392a23aef59b9,1,,,,"
+            href={GOOGLE_REVIEWS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border-2 border-ink/20 bg-background px-6 py-2.5 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-md dark:border-border dark:bg-card"
@@ -3872,7 +3765,7 @@ function Index() {
           <div className="text-sm text-foreground/60">{site.footer.copyright}</div>
           <div className="flex items-center gap-5 text-sm">
             <a
-              href="https://www.instagram.com/imaginedesignstudio/"
+              href="https://www.instagram.com/imagine_design_studios/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-accent"
@@ -3880,15 +3773,18 @@ function Index() {
               <Instagram className="h-4 w-4" /> Instagram
             </a>
             <a
-              href="https://www.linkedin.com/company/imaginedesignstudio/posts/?feedView=all"
+              href="https://www.facebook.com/imagine.consultants/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-accent"
             >
-              <Linkedin className="h-4 w-4" /> LinkedIn
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.77l-.44 2.91h-2.33V22C18.34 21.24 22 17.08 22 12.06z" />
+              </svg>
+              Facebook
             </a>
             <a
-              href="https://www.imaginedesignstudio.com/"
+              href="https://www.imaginedesignstudios.com/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-accent"

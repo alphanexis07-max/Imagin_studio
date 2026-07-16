@@ -33,18 +33,18 @@
     "socials": [
       {
         "label": "Instagram",
-        "url": "https://www.instagram.com/alphanexis/",
+        "url": "https://www.instagram.com/imagine_design_studios/",
         "icon": "Instagram"
       },
       {
-        "label": "LinkedIn",
-        "url": "https://www.linkedin.com/company/alphanexis/posts/?feedView=all",
-        "icon": "LinkedIn"
+        "label": "Facebook",
+        "url": "https://www.facebook.com/imagine.consultants/",
+        "icon": "Facebook"
       },
       {
         "label": "Website",
-        "url": "https://www.alphanexis.com/",
-        "icon": null
+        "url": "https://www.imaginedesignstudios.com/",
+        "icon": "Globe"
       }
     ]
   },
