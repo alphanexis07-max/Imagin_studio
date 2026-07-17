@@ -1075,28 +1075,36 @@ const consultingCases = [
 
 const editorialContent = [
   {
-    categoryLabel: "Design Narrative",
-    type: "Residential Concept Statement",
-    headline: "A House Organized by Light, Air, and Quiet Thresholds",
-    metrics: "Concept package approved in 3 reviews",
+    categoryLabel: "Technical Writing",
+    type: "Architectural Specifications",
+    headline: "High-Performance Building Envelope Specification Guide",
+    metrics: "Specification Standards",
     excerpt:
-      "The residence is composed as a sequence of shaded rooms and planted courts, allowing the family to move between privacy, gathering, and landscape with ease...",
+      "Comprehensive technical specifications for high-performance building facades including thermal break systems, curtain wall detailing, air barrier installation, and condensation analysis for mixed-humidity climate zones...",
   },
   {
-    categoryLabel: "Research Note",
-    type: "Urban Design Essay",
-    headline: "The Value of Slower Streets in High-Density Neighborhoods",
-    metrics: "Published in studio journal",
+    categoryLabel: "Feasibility Study",
+    type: "Site Development Report",
+    headline: "Mixed-Use Development Feasibility and Massing Report",
+    metrics: "Planning Review",
     excerpt:
-      "A successful street does more than move vehicles. It frames everyday civic life through shade, frontage, seating, planting, and the measured pace of pedestrians...",
+      "A structured assessment of site capacity, access, zoning controls, parking demand, phasing, and development yield to guide early investment and planning decisions...",
   },
   {
-    categoryLabel: "Client Brief",
-    type: "Hospitality Design Memo",
-    headline: "Designing a Retreat Where Landscape Becomes the Primary Room",
-    metrics: "Feasibility brief completed",
+    categoryLabel: "Environmental",
+    type: "Impact Assessment",
+    headline: "Daylight, Ventilation, and Environmental Performance Report",
+    metrics: "Sustainability Review",
     excerpt:
-      "The guest experience begins before arrival. Approach, threshold, scent, texture, and framed landscape views are coordinated into a calm sequence of discovery...",
+      "Performance-led reporting covering solar exposure, daylight autonomy, natural ventilation paths, shading strategy, material impact, and recommendations for reduced operational demand...",
+  },
+  {
+    categoryLabel: "Construction",
+    type: "Tender Documentation",
+    headline: "Detailed Construction Notes and Vendor Scope Package",
+    metrics: "Tender Ready",
+    excerpt:
+      "Clear technical notes, schedules, execution standards, and vendor scope definitions prepared to reduce ambiguity during pricing, procurement, and site coordination...",
   },
 ];
 
@@ -1687,15 +1695,17 @@ function normalizeStrategicConsulting(items: CmsItem[]): StrategicConsultingCase
     : consultingCases;
 }
 function normalizeContentWriting(items: CmsItem[]): EditorialSlide[] {
-  return items.length
-    ? items.map((item, index) => ({
+  if (!items.length) return editorialContent;
+
+  const normalized = items.map((item, index) => ({
         categoryLabel: asString(item.categoryLabel, "Design Narrative"),
         type: asString(item.type, `Item ${index + 1}`),
         headline: asString(item.headline),
         metrics: asString(item.metrics),
         excerpt: asString(item.excerpt),
-      }))
-    : editorialContent;
+      }));
+
+  return [...normalized, ...editorialContent.slice(normalized.length)];
 }
 function normalizeReels(items: ReelItem[]) {
   const reels = items
@@ -2664,7 +2674,7 @@ function PortfolioStrategicConsulting({
   return (
     <div className="relative overflow-x-clip py-10 md:py-20">
       <div className="pointer-events-none absolute inset-x-0 top-24 h-px bg-border dark:bg-white/10" />
-      <div className="mx-auto mb-12 grid max-w-6xl gap-6 px-5 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+      <div className="mx-auto mb-12 grid max-w-6xl gap-6 px-5 text-center md:grid-cols-[0.9fr_1.1fr] md:items-end md:text-left">
         <div>
           <span className="inline-flex border border-highlight/40 bg-highlight/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.28em] text-highlight">
             {content.eyebrow}
@@ -2673,7 +2683,7 @@ function PortfolioStrategicConsulting({
             {content.title}
           </h2>
         </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-foreground/65 dark:text-gray-400 md:justify-self-end md:text-base">
+        <p className="mx-auto max-w-2xl text-sm leading-relaxed text-foreground/65 dark:text-gray-400 md:mx-0 md:justify-self-end md:text-base">
           {content.description}
         </p>
       </div>
@@ -2688,7 +2698,7 @@ function PortfolioStrategicConsulting({
               idx % 2 === 0 ? "bg-card" : "bg-background"
             } dark:bg-[#2E3135]/95`}
           >
-            <div className="flex min-h-48 flex-col justify-between bg-ink p-6 text-cream dark:bg-white dark:text-ink md:p-7">
+            <div className="flex min-h-48 flex-col items-center justify-between bg-ink p-6 text-center text-cream dark:bg-white dark:text-ink md:items-start md:p-7 md:text-left">
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-[0.35em] opacity-70">
                   Case {String(idx + 1).padStart(2, "0")}
@@ -2703,12 +2713,12 @@ function PortfolioStrategicConsulting({
             </div>
 
             <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
-              <div className="p-6 md:p-8">
-                <h3 className="max-w-2xl font-display text-2xl font-bold leading-tight text-card-foreground dark:text-white md:text-4xl">
+              <div className="p-6 text-center md:p-8 md:text-left">
+                <h3 className="mx-auto max-w-2xl font-display text-2xl font-bold leading-tight text-card-foreground dark:text-white md:mx-0 md:text-4xl">
                   {cs.title}
                 </h3>
 
-                <div className="mt-8 space-y-5 text-left">
+                <div className="mt-8 space-y-5 text-center md:text-left">
                   {[
                     ["Challenge", cs.challenge],
                     ["Solution", cs.solution],
@@ -2716,7 +2726,7 @@ function PortfolioStrategicConsulting({
                   ].map(([label, copy]) => (
                     <div
                       key={label}
-                      className="grid gap-3 border-l-2 border-border pl-4 sm:grid-cols-[7.5rem_1fr] sm:border-l-0 sm:pl-0"
+                      className="grid gap-3 border-border sm:grid-cols-[7.5rem_1fr] sm:text-left"
                     >
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.22em] text-highlight">
                         {label}
@@ -2729,7 +2739,7 @@ function PortfolioStrategicConsulting({
                 </div>
               </div>
 
-              <div className="border-t border-ink/10 bg-ink/[0.035] p-6 dark:border-white/10 dark:bg-white/[0.04] md:p-8 lg:border-l lg:border-t-0">
+              <div className="border-t border-ink/10 bg-ink/[0.035] p-6 text-center dark:border-white/10 dark:bg-white/[0.04] md:p-8 md:text-left lg:border-l lg:border-t-0">
                 <h4 className="text-[10px] font-bold uppercase tracking-[0.28em] text-muted-foreground dark:text-gray-400">
                   Key Results
                 </h4>
@@ -2737,7 +2747,7 @@ function PortfolioStrategicConsulting({
                   {cs.results.map((res, ri) => (
                     <div
                       key={ri}
-                      className="grid grid-cols-[0.9fr_1.1fr] items-center gap-4 border-b border-ink/10 pb-4 last:border-b-0 last:pb-0 dark:border-white/10"
+                      className="grid items-center gap-2 border-b border-ink/10 pb-4 last:border-b-0 last:pb-0 dark:border-white/10 sm:grid-cols-[0.9fr_1.1fr] sm:gap-4 sm:text-left"
                     >
                       <div className="font-display text-3xl font-black leading-none text-highlight md:text-4xl">
                         {res.value}

@@ -80,7 +80,7 @@ const MAX_COLLECTION_ITEMS: Partial<Record<CollectionName, number>> = {
   softwareSystems: 4,
   seoAnalytics: 4,
   strategicConsulting: 2,
-  contentWriting: 3,
+  contentWriting: 4,
 };
 
 export async function getSiteData(): Promise<SiteData> {
