@@ -1101,7 +1101,7 @@ const editorialContent = [
 ];
 
 function DiscoveryCallDialog() {
-  const hostEmail = "info@imaginedesignstudio.com";
+  const hostEmail = "Architects@imaginedesignstudios.com";
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
@@ -2236,10 +2236,6 @@ function PortfolioGraphicDesign({
   }, [items]);
 
   // Split based on detected aspect ratio (default to portrait until loaded)
-  const portraitItems = useMemo(
-    () => items.filter((s) => bannerMap[s.image] !== true),
-    [items, bannerMap],
-  );
   const bannerItems = useMemo(
     () => items.filter((s) => bannerMap[s.image] === true),
     [items, bannerMap],
@@ -2253,16 +2249,16 @@ function PortfolioGraphicDesign({
 
   const graphicCategories = useMemo(() => {
     const unique = new Set<string>();
-    portraitItems.forEach((slide) => {
+    items.forEach((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       unique.add(category);
     });
     return ["All", ...Array.from(unique)];
-  }, [portraitItems]);
+  }, [items]);
 
   const filteredGraphicItems = useMemo(() => {
     const query = graphicSearch.trim().toLowerCase();
-    return portraitItems.filter((slide) => {
+    return items.filter((slide) => {
       const category = slide.subcategory || slide.categoryLabel || "Design";
       const matchesCategory = activeGraphicCategory === "All" || category === activeGraphicCategory;
       const searchable = [slide.title, slide.description, slide.subcategory, slide.categoryLabel]
@@ -2271,7 +2267,7 @@ function PortfolioGraphicDesign({
         .toLowerCase();
       return matchesCategory && (!query || searchable.includes(query));
     });
-  }, [activeGraphicCategory, portraitItems, graphicSearch]);
+  }, [activeGraphicCategory, items, graphicSearch]);
 
   useEffect(() => {
     setIsGraphicFiltering(true);

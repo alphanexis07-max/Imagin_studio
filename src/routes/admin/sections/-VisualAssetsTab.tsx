@@ -8,9 +8,9 @@ const SLOT_COUNT = 5;
 const defaultSlots: VisualAssetItem[] = Array.from({ length: SLOT_COUNT }, (_, index) => ({
   order: index,
   image: "",
-  categoryLabel: "GRAPHIC DESIGN",
+  categoryLabel: "ARCHITECTURE",
   subcategory: "",
-  title: `Visual Asset ${index + 1}`,
+  title: `Architectural Rendering ${index + 1}`,
   description: "",
 }));
 
@@ -64,9 +64,9 @@ export function VisualAssetsTab() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="font-display text-2xl font-bold">Visual Assets</h2>
+          <h2 className="font-display text-2xl font-bold">Architectural Renderings</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Edit all 5 portfolio image sections here. Each slot maps directly to one card on the public site.
+            Edit all 5 Architectural Renderings posts here. Each slot maps directly to one card on the public site.
           </p>
         </div>
         {status ? (
@@ -84,7 +84,7 @@ export function VisualAssetsTab() {
                 <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   Slot {index + 1}
                 </div>
-                <h3 className="font-display text-lg font-bold">{String(item.title || `Visual Asset ${index + 1}`)}</h3>
+                <h3 className="font-display text-lg font-bold">{String(item.title || `Architectural Rendering ${index + 1}`)}</h3>
               </div>
               <button
                 type="button"

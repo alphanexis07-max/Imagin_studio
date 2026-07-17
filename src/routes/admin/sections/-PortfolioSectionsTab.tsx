@@ -25,10 +25,10 @@ export function PortfolioSectionsTab() {
         />
       </SectionShell>
 
-      <SectionShell title="Video Editing" description="Four reel cards with poster, outcome, and accent styling.">
+      <SectionShell title="Spatial Walkthroughs" description="Four project film cards with poster, outcome, and accent styling.">
         <CollectionTab
           collection="videoEditing"
-          label="Video Editing"
+          label="Spatial Walkthroughs"
           maxItems={4}
           fields={[
             { key: "categoryLabel", label: "Category label", type: "text" },
@@ -43,10 +43,10 @@ export function PortfolioSectionsTab() {
         />
       </SectionShell>
 
-      <SectionShell title="Graphic Design" description="Five visual asset cards used in the scrollable gallery.">
+      <SectionShell title="Architectural Renderings" description="Posts for the public Architectural Renderings section.">
         <CollectionTab
           collection="visualAssets"
-          label="Visual Assets"
+          label="Architectural Renderings"
           maxItems={15}
           fields={[
             { key: "image", label: "Image URL / path", type: "image" },
@@ -59,30 +59,30 @@ export function PortfolioSectionsTab() {
         />
       </SectionShell>
 
-      <SectionShell title="Software & Systems" description="Four system cards with stack, features, and poster.">
+      <SectionShell title="Design Coordination" description="Four documentation or delivery cards with features, tools, and poster.">
         <CollectionTab
           collection="softwareSystems"
-          label="Software Systems"
+          label="Design Coordination"
           maxItems={4}
           fields={[
             { key: "categoryLabel", label: "Category label", type: "text" },
             { key: "title", label: "Title", type: "text" },
             { key: "description", label: "Description", type: "textarea" },
             { key: "keyFeatures", label: "Key features (comma-separated)", type: "chips" },
-            { key: "techStack", label: "Tech stack (comma-separated)", type: "chips" },
-            { key: "businessBenefit", label: "Business benefit", type: "text" },
+            { key: "techStack", label: "Tools / deliverables (comma-separated)", type: "chips" },
+            { key: "businessBenefit", label: "Project benefit", type: "text" },
             { key: "poster", label: "Poster image URL", type: "image" },
             { key: "video", label: "Video URL", type: "video" },
-            { key: "projectUrl", label: "Live application URL", type: "text" },
+            { key: "projectUrl", label: "Project / reference URL", type: "text" },
             { key: "accentColor", label: "Accent class", type: "text" },
           ]}
         />
       </SectionShell>
 
-      <SectionShell title="SEO & Analytics" description="Four cards for metrics, audits, and technical improvements.">
+      <SectionShell title="Project Management & Analytics" description="Posts for the public Project Management & Analytics section.">
         <CollectionTab
           collection="seoAnalytics"
-          label="SEO Analytics"
+          label="Project Management & Analytics"
           maxItems={4}
           fields={[
             { key: "categoryLabel", label: "Category label", type: "text" },
@@ -113,10 +113,10 @@ export function PortfolioSectionsTab() {
         />
       </SectionShell>
 
-      <SectionShell title="Content Writing" description="Three editorial cards with headline and excerpt content.">
+      <SectionShell title="Design Narrative" description="Three concept, brief, or specification cards with headline and excerpt content.">
         <CollectionTab
           collection="contentWriting"
-          label="Content Writing"
+          label="Design Narrative"
           maxItems={3}
           fields={[
             { key: "categoryLabel", label: "Category label", type: "text" },
@@ -142,5 +142,3 @@ function SectionShell({ title, description, children }: { title: string; descrip
     </section>
   );
 }
-
-

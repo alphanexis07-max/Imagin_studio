@@ -131,19 +131,19 @@ export function SiteTab() {
         />
 
         <Field
-          label="Video editing eyebrow"
+          label="Walkthroughs eyebrow"
           value={portfolio.sections.videoEditing.eyebrow}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, videoEditing: { ...p.sections.videoEditing, eyebrow: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="Video editing title"
+          label="Walkthroughs title"
           value={portfolio.sections.videoEditing.title}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, videoEditing: { ...p.sections.videoEditing, title: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="Video editing description"
+          label="Walkthroughs description"
           value={portfolio.sections.videoEditing.description}
           textarea
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, videoEditing: { ...p.sections.videoEditing, description: v } } }))}
@@ -151,19 +151,19 @@ export function SiteTab() {
         />
 
         <Field
-          label="Visual assets eyebrow"
+          label="Architectural Renderings eyebrow"
           value={portfolio.sections.visualAssets.eyebrow}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, visualAssets: { ...p.sections.visualAssets, eyebrow: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="Visual assets title"
+          label="Architectural Renderings title"
           value={portfolio.sections.visualAssets.title}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, visualAssets: { ...p.sections.visualAssets, title: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="Visual assets description"
+          label="Architectural Renderings description"
           value={portfolio.sections.visualAssets.description}
           textarea
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, visualAssets: { ...p.sections.visualAssets, description: v } } }))}
@@ -171,19 +171,19 @@ export function SiteTab() {
         />
 
         <Field
-          label="Software systems eyebrow"
+          label="Design coordination eyebrow"
           value={portfolio.sections.softwareSystems.eyebrow}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, softwareSystems: { ...p.sections.softwareSystems, eyebrow: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="Software systems title"
+          label="Design coordination title"
           value={portfolio.sections.softwareSystems.title}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, softwareSystems: { ...p.sections.softwareSystems, title: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="Software systems description"
+          label="Design coordination description"
           value={portfolio.sections.softwareSystems.description}
           textarea
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, softwareSystems: { ...p.sections.softwareSystems, description: v } } }))}
@@ -191,19 +191,19 @@ export function SiteTab() {
         />
 
         <Field
-          label="SEO eyebrow"
+          label="Project Management & Analytics eyebrow"
           value={portfolio.sections.seoAnalytics.eyebrow}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, seoAnalytics: { ...p.sections.seoAnalytics, eyebrow: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="SEO title"
+          label="Project Management & Analytics title"
           value={portfolio.sections.seoAnalytics.title}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, seoAnalytics: { ...p.sections.seoAnalytics, title: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="SEO description"
+          label="Project Management & Analytics description"
           value={portfolio.sections.seoAnalytics.description}
           textarea
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, seoAnalytics: { ...p.sections.seoAnalytics, description: v } } }))}
@@ -231,19 +231,19 @@ export function SiteTab() {
         />
 
         <Field
-          label="Content writing eyebrow"
+          label="Design narrative eyebrow"
           value={portfolio.sections.contentWriting.eyebrow}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, contentWriting: { ...p.sections.contentWriting, eyebrow: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="Content writing title"
+          label="Design narrative title"
           value={portfolio.sections.contentWriting.title}
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, contentWriting: { ...p.sections.contentWriting, title: v } } }))}
           onBlur={() => save({ portfolio })}
         />
         <Field
-          label="Content writing description"
+          label="Design narrative description"
           value={portfolio.sections.contentWriting.description}
           textarea
           onChange={(v) => updatePortfolio((p) => ({ ...p, sections: { ...p.sections, contentWriting: { ...p.sections.contentWriting, description: v } } }))}

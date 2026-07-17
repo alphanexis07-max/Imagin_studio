@@ -1,31 +1,84 @@
 {
   "hero": {
-    "eyebrow": "",
+    "eyebrow": "Architecture & Interior Design Studio",
     "name": "Imagine Design Studio",
     "headline": "Architecture That Shapes Tomorrow",
     "portraitUrl": "/portrait.png",
     "sidebarStat": {
-      "value": "6+ Years",
-      "label": "in Brand & Marketing"
+      "value": "15+ Years",
+      "label": "in Architecture & Interior Design"
     },
-    "sidebarQuote": "Working with Helmi, I can confidently say he's an exceptional marketer and brand strategist."
+    "sidebarQuote": "Imagine Design Studio transforms ideas into refined homes, workplaces, hospitality spaces, and urban environments."
   },
   "about": {
-    "eyebrow": "a little about",
-    "title": "I help brands actually grow",
-    "body": "Marketing isn't magic — it's a system. I blend brand strategy, sharp creative, and performance data into campaigns that don't just look good, they move numbers.",
+    "eyebrow": "About Imagine Design Studio",
+    "title": "We design spaces with clarity, craft, and purpose.",
+    "body": "Imagine Design Studio is a contemporary architecture and interior design studio working across homes, workplaces, hospitality, and urban environments. We connect concept, material, detail, and delivery into spaces that feel resolved and enduring.",
     "tiles": [
-      "Strategist",
-      "Creative Director",
-      "Copy & Content",
-      "Data-driven"
+      "Architecture",
+      "Interior Design",
+      "Urban Design",
+      "Project Delivery"
     ]
   },
+  "portfolio": {
+    "overview": {
+      "eyebrow": "Selected Work",
+      "title": "Architecture, interiors, and spatial stories.",
+      "description": "A curated showcase of residential, commercial, hospitality, and urban design work shaped by proportion, material intelligence, and careful execution."
+    },
+    "sections": {
+      "heroShowcase": {
+        "eyebrow": "Featured Projects",
+        "title": "SPATIAL SHOWCASE",
+        "description": "Signature architecture, interior, hospitality, and urban design concepts from the studio."
+      },
+      "videoEditing": {
+        "eyebrow": "Walkthroughs",
+        "title": "SPATIAL FILMS & DESIGN SEQUENCES",
+        "description": "Cinematic walkthroughs and project narratives that explain light, material, movement, and experience."
+      },
+      "visualAssets": {
+        "eyebrow": "Design Aesthetics",
+        "title": "ARCHITECTURAL RENDERINGS",
+        "description": "Visualizing spaces through photorealistic design."
+      },
+      "softwareSystems": {
+        "eyebrow": "Design Coordination",
+        "title": "DRAWINGS, MODELS & DELIVERY SYSTEMS",
+        "description": "Coordinated drawing sets, material schedules, documentation, and build-ready design packages."
+      },
+      "seoAnalytics": {
+        "eyebrow": "Development Insights",
+        "title": "PROJECT MANAGEMENT & ANALYTICS",
+        "description": "Data-driven construction delivery and resource optimization."
+      },
+      "strategicConsulting": {
+        "eyebrow": "Master Planning",
+        "title": "URBAN DESIGN & STRATEGIC CONSULTING",
+        "description": "Frameworks for districts, adaptive reuse, mixed-use environments, and long-term spatial value."
+      },
+      "contentWriting": {
+        "eyebrow": "Design Narrative",
+        "title": "CONCEPT NOTES, BRIEFS & SPECIFICATIONS",
+        "description": "Clear design writing for client briefs, concept statements, project stories, and technical specifications."
+      }
+    },
+    "achievements": {
+      "eyebrow": "Achievements",
+      "title": "Milestones shaped through design discipline.",
+      "description": "From homes and workplaces to hospitality and public-realm studies, our work is measured by clarity, craft, and client trust."
+    },
+    "testimonials": {
+      "eyebrow": "Client Voices",
+      "title": "What clients say about our design work."
+    }
+  },
   "contact": {
-    "eyebrow": "let's make something",
-    "headline": "Got a brand to grow? Let's talk.",
-    "blurb": "Reply within 24 hours · Open for projects Q3 2026",
-    "email": "info@alphanexius.com",
+    "eyebrow": "let's build your vision",
+    "headline": "Ready to shape your space? Let's talk.",
+    "blurb": "Reply within 24 hours - Open for architecture and interior design projects",
+    "email": "Architects@imaginedesignstudios.com",
     "bookCallUrl": "tel:917067068673"
   },
   "footer": {
@@ -50,22 +103,18 @@
   },
   "marquee": {
     "top": [
-      "Branding",
-      "Marketing",
-      "Social Media",
-      "Performance Ads",
-      "Strategy",
-      "Content"
+      "ARCHITECTURE",
+      "INTERIORS",
+      "HOSPITALITY",
+      "URBAN DESIGN",
+      "SUSTAINABILITY"
     ],
     "bottom": [
-      "growth.",
-      "stories.",
-      "systems.",
-      "design.",
-      "engines.",
-      "loops.",
-      "ideas.",
-      "results."
+      "HOMES",
+      "WORKPLACES",
+      "MATERIALS",
+      "DETAILS",
+      "CRAFT"
     ]
   }
 }

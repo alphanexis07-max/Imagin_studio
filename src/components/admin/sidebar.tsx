@@ -128,8 +128,8 @@ const COLLECTION_ITEMS: SidebarItemProps[] = [
   },
   {
     id: "visualAssets",
-    label: "Project Assets",
-    description: "Edit portfolio image cards and gallery captions.",
+    label: "Architectural Renderings",
+    description: "Edit rendering posts and gallery captions.",
     icon: LayoutGrid,
   },
 ];

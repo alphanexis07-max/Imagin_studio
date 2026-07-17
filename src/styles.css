@@ -563,14 +563,14 @@
 .initial-loader-panel {
   display: grid;
   justify-items: center;
-  gap: 1.25rem;
+  gap: 1.45rem;
   padding: 2rem;
   animation: loader-panel-in 420ms cubic-bezier(.2,.8,.2,1) both;
 }
 
 .initial-loader-logo {
-  width: clamp(4.25rem, 12vw, 6.5rem);
-  height: clamp(4.25rem, 12vw, 6.5rem);
+  width: clamp(8rem, 18vw, 13rem);
+  height: clamp(5rem, 11vw, 8rem);
   object-fit: contain;
   filter: drop-shadow(0 18px 24px color-mix(in oklab, var(--primary) 18%, transparent));
 }
@@ -750,6 +750,5 @@
 /* Sticky service card stack */
 .svc-stack { perspective: 1200px; }
 .svc-card { will-change: transform; }
-
 
 

@@ -4,33 +4,33 @@ import type { SiteData } from "@/lib/admin/site.functions";
 
 export const DEFAULT_SITE: SiteData = {
   hero: {
-    eyebrow: "Architect Farm - Building Tomorrow's Landmarks",
-    name: "Architect Farm",
-    headline: "Architecture & Construction Specialists",
+    eyebrow: "Architecture & Interior Design Studio",
+    name: "Imagine Design Studio",
+    headline: "Architecture That Shapes Tomorrow",
     portraitUrl: "/portrait.png",
-    sidebarStat: { value: "15+ Years", label: "in Architectural Design & Construction" },
+    sidebarStat: { value: "15+ Years", label: "in Architecture & Interior Design" },
     sidebarQuote:
-      "Architect Farm transformed our vision into reality, delivering a sustainable landmark that redefines modern urban living.",
+      "Imagine Design Studio transforms ideas into refined homes, workplaces, hospitality spaces, and urban environments.",
   },
   about: {
-    eyebrow: "Who We Are",
-    title: "We build spaces that inspire and endure.",
+    eyebrow: "About Imagine Design Studio",
+    title: "We design spaces with clarity, craft, and purpose.",
     body:
-      "Architect Farm is a cross-disciplinary architecture and construction firm. We specialize in sustainable design, project management, and turnkey construction delivery across commercial, residential, and institutional projects.",
-    tiles: ["Sustainable", "Innovative", "Precision-built", "Turnkey delivery"],
+      "Imagine Design Studio is a contemporary architecture and interior design studio working across homes, workplaces, hospitality, and urban environments. We connect concept, material, detail, and delivery into spaces that feel resolved and enduring.",
+    tiles: ["Architecture", "Interior Design", "Urban Design", "Project Delivery"],
   },
   portfolio: {
     overview: {
-      eyebrow: "Our Built Environment",
-      title: "Architectural Portfolio",
+      eyebrow: "Selected Work",
+      title: "Architecture, interiors, and spatial stories.",
       description:
-        "A curated showcase of landmark buildings, sustainable spaces, and construction excellence across multiple sectors.",
+        "A curated showcase of residential, commercial, hospitality, and urban design work shaped by proportion, material intelligence, and careful execution.",
     },
     sections: {
       heroShowcase: {
         eyebrow: "Featured Projects",
-        title: "ARCHITECTURAL SHOWCASE",
-        description: "Our most iconic buildings and development projects.",
+        title: "SPATIAL SHOWCASE",
+        description: "Signature architecture, interior, hospitality, and urban design concepts from the studio.",
       },
       videoEditing: {
         eyebrow: "",
@@ -43,9 +43,9 @@ export const DEFAULT_SITE: SiteData = {
         description: "Visualizing spaces through photorealistic design.",
       },
       softwareSystems: {
-        eyebrow: "Digital Construction",
-        title: "BIM & TECHNICAL SYSTEMS",
-        description: "Building Information Modeling and precision engineering.",
+        eyebrow: "Design Coordination",
+        title: "DRAWINGS, MODELS & DELIVERY SYSTEMS",
+        description: "Coordinated drawing sets, material schedules, documentation, and build-ready design packages.",
       },
       seoAnalytics: {
         eyebrow: "Development Insights",
@@ -54,13 +54,13 @@ export const DEFAULT_SITE: SiteData = {
       },
       strategicConsulting: {
         eyebrow: "Master Planning",
-        title: "URBAN DESIGN & CONSULTING",
-        description: "Strategic development and city planning solutions.",
+        title: "URBAN DESIGN & STRATEGIC CONSULTING",
+        description: "Frameworks for districts, adaptive reuse, mixed-use environments, and long-term spatial value.",
       },
       contentWriting: {
-        eyebrow: "Technical Documentation",
-        title: "SPECIFICATIONS & REPORTS",
-        description: "Detailed architectural specifications, feasibility studies, and environmental impact assessments.",
+        eyebrow: "Design Narrative",
+        title: "CONCEPT NOTES, BRIEFS & SPECIFICATIONS",
+        description: "Clear design writing for client briefs, concept statements, project stories, and technical specifications.",
       },
     },
     achievements: {
@@ -78,11 +78,11 @@ export const DEFAULT_SITE: SiteData = {
     eyebrow: "let's build your vision",
     headline: "Ready to build? Let's talk.",
     blurb: "Reply within 24 hours - Open for collaborations",
-    email: "info@architectfarm.com",
+    email: "Architects@imaginedesignstudios.com",
     bookCallUrl: "tel:917067068673",
   },
   footer: {
-    copyright: "© 2026 Architect Farm - Building Tomorrow, Today",
+    copyright: "© 2026 Imagine Design Studio - Crafted with care",
     socials: [
       { label: "Instagram", url: "https://www.instagram.com/imagine_design_studios/", icon: "Instagram" },
       { label: "Facebook", url: "https://www.facebook.com/imagine.consultants/", icon: "Facebook" },
@@ -90,18 +90,18 @@ export const DEFAULT_SITE: SiteData = {
     ],
   },
   marquee: {
-    top: ["ARCHITECTURE", "CONSTRUCTION", "DESIGN", "SUSTAINABILITY", "INNOVATION"],
-    bottom: ["ARCHITECTURE", "CONSTRUCTION", "DESIGN", "SUSTAINABILITY", "INNOVATION"],
+    top: ["ARCHITECTURE", "INTERIORS", "HOSPITALITY", "URBAN DESIGN", "SUSTAINABILITY"],
+    bottom: ["HOMES", "WORKPLACES", "MATERIALS", "DETAILS", "CRAFT"],
   },
 };
 
 export const DEFAULT_COLLECTIONS: Record<CollectionName, Array<Record<string, unknown>>> = {
   heroShowcase: [
-    { order: 0, categoryLabel: "ARCHITECTURAL", title: "Horizon Corporate Tower", description: "A 40-story sustainable commercial landmark featuring double-skin facade technology and AI-optimized energy systems.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", poster: "/carousel-samples/screenshot-2.jpg", glow: "shadow-blue-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
-    { order: 1, categoryLabel: "CONSTRUCTION", title: "Urban Green Residences", description: "Net-zero residential complex with integrated green walls, solar infrastructure, and community rooftop gardens.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "/carousel-samples/screenshot-1.jpg", glow: "shadow-green-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
-    { order: 2, categoryLabel: "ARCHITECTURAL", title: "Waterfront Cultural Centre", description: "Iconic arts venue designed with parametric geometry, sustainable materials, and 270-degree harbor views.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4", poster: "/carousel-samples/screenshot-2.jpg", glow: "shadow-purple-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
-    { order: 3, categoryLabel: "CONSTRUCTION", title: "MedTech Innovation Campus", description: "State-of-the-art medical research facility with smart infrastructure, specialized cleanrooms, and sustainable operations.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4", poster: "/carousel-samples/screenshot-3.jpg", glow: "shadow-teal-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
-    { order: 4, categoryLabel: "INTERIOR DESIGN", title: "Minimalist Luxury Penthouse", description: "Premium residential interior featuring clean lines, natural materials, and panoramic views of the city skyline.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", poster: "/carousel-samples/screenshot-4.jpg", glow: "shadow-amber-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
+    { order: 0, categoryLabel: "RESIDENTIAL", title: "Courtyard Residence", description: "A warm, inward-looking home shaped around daylight, stone, and quiet thresholds.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", poster: "/carousel-samples/screenshot-2.jpg", glow: "shadow-red-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
+    { order: 1, categoryLabel: "COMMERCIAL", title: "Boutique Workplace", description: "A flexible studio workplace with layered acoustics, hospitality cues, and custom joinery.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "/carousel-samples/screenshot-1.jpg", glow: "shadow-blue-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
+    { order: 2, categoryLabel: "INTERIORS", title: "Gallery Apartment", description: "A restrained interior study balancing collected art, natural texture, and precise detailing.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4", poster: "/carousel-samples/screenshot-2.jpg", glow: "shadow-purple-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
+    { order: 3, categoryLabel: "URBAN DESIGN", title: "Waterfront Framework", description: "A public-realm proposal connecting mixed-use edges, shaded walks, and civic gathering.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4", poster: "/carousel-samples/screenshot-3.jpg", glow: "shadow-teal-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
+    { order: 4, categoryLabel: "HOSPITALITY", title: "Retreat Pavilion", description: "A compact hospitality pavilion designed for landscape immersion and low-impact construction.", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", poster: "/carousel-samples/screenshot-4.jpg", glow: "shadow-pink-950/40", ctaText: "View Project", ctaLink: "#portfolio" },
   ],
   videoEditing: [
     { order: 0, categoryLabel: "ARCHITECTURAL", title: "Harbor Skyline Visualisation", description: "Cinematic architectural flythrough showcasing the integrated urban waterfront development.", outcome: "Won International Design Award", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", poster: "/carousel-samples/screenshot-5.jpg", accentColor: "from-blue-950/90" },
@@ -110,11 +110,11 @@ export const DEFAULT_COLLECTIONS: Record<CollectionName, Array<Record<string, un
     { order: 3, categoryLabel: "INTERIOR", title: "Residential Showcase", description: "Immersive photorealistic presentation of luxury apartment interiors with custom furniture and finishes.", outcome: "Interior Design Award Nominee", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4", poster: "/carousel-samples/screenshot-2.jpg", accentColor: "from-orange-950/90" },
   ],
   visualAssets: [
-    { order: 0, image: "/carousel-samples/screenshot-2.jpg", categoryLabel: "ARCHITECTURAL", subcategory: "Facades", title: "Curtain Wall Detailing", description: "Precision engineered glass and metal facade systems with thermal performance optimization." },
-    { order: 1, image: "/carousel-samples/screenshot-1.jpg", categoryLabel: "INTERIOR", subcategory: "Residential", title: "Contemporary Living Spaces", description: "Open plan interiors with natural light optimization and minimalist furniture design." },
-    { order: 2, image: "/carousel-samples/screenshot-3.jpg", categoryLabel: "ARCHITECTURAL", subcategory: "Renderings", title: "Photorealistic Visualizations", description: "High-fidelity 3D renderings showcasing materiality and spatial experience." },
-    { order: 3, image: "/carousel-samples/screenshot-4.jpg", categoryLabel: "CONSTRUCTION", subcategory: "Structural", title: "Steel Frame Architecture", description: "Structural engineering solutions for high-rise construction and seismic resistance." },
-    { order: 4, image: "/carousel-samples/screenshot-6.jpg", categoryLabel: "URBAN", subcategory: "Landscape", title: "Public Space Design", description: "Integrated landscape architecture and urban design for city regeneration projects." },
+    { order: 0, image: "/carousel-samples/screenshot-2.jpg", categoryLabel: "INTERIOR DESIGN", subcategory: "Concept Study", title: "Layered Residential Material Study", description: "A warm interior palette study pairing stone, timber, plaster, and measured daylight." },
+    { order: 1, image: "/carousel-samples/screenshot-1.jpg", categoryLabel: "ARCHITECTURE", subcategory: "Facade", title: "Tactile Facade Prototypes", description: "Material mockups exploring depth, shadow, and weathering across a refined street elevation." },
+    { order: 2, image: "/carousel-samples/screenshot-3.jpg", categoryLabel: "URBAN DESIGN", subcategory: "Public Realm", title: "Civic Streetscape Studies", description: "Compact public-realm studies for shaded movement, seating, planting, and storefront rhythm." },
+    { order: 3, image: "/carousel-samples/screenshot-4.jpg", categoryLabel: "COMMERCIAL DESIGN", subcategory: "Retail", title: "Flagship Retail Threshold", description: "A precise entry sequence balancing display, circulation, and tactile brand experience." },
+    { order: 4, image: "/carousel-samples/screenshot-6.jpg", categoryLabel: "HOSPITALITY", subcategory: "Guest Suite", title: "Pure Earth Stay - Guest Suite Concept", description: "A calm hospitality interior built around natural finishes, filtered light, and comfort." },
   ],
   softwareSystems: [
     { order: 0, categoryLabel: "BIM", title: "Building Information Modeling System", description: "Complete digital twin integration connecting architectural, structural, and MEP systems.", keyFeatures: ["Clash Detection", "Quantity Takeoffs", "4D Construction Sequencing"], techStack: ["Revit", "Navisworks", "Dynamo"], businessBenefit: "Reduced design conflicts by 40%", poster: "/carousel-samples/screenshot-3.jpg", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", accentColor: "from-blue-950/90" },
@@ -138,27 +138,27 @@ export const DEFAULT_COLLECTIONS: Record<CollectionName, Array<Record<string, un
     { order: 2, categoryLabel: "Content Writing", type: "Industry Insights", headline: "The Future of Urban Living: Post-Pandemic Design Strategies", metrics: "20K+ Reads", excerpt: "The pandemic has fundamentally shifted our expectations of the built environment. Forward-thinking developers are incorporating flexible workspaces, outdoor access, and wellness-focused amenities as core design features..." },
   ],
   capabilities: [
-    { order: 0, key: "01", title: "Architectural Design", description: "Creative architectural solutions from concept design through construction documentation and delivery.", chips: ["Concept Design", "Planning Consents", "Construction Docs"], metric: "40+", metricLabel: "Projects delivered", bg: "bg-accent", icon: "PenTool", big: true },
-    { order: 1, key: "02", title: "Construction Management", description: "End-to-end construction management with guaranteed quality, schedule, and budget adherence.", chips: ["Project Management", "Quality Control", "Health & Safety"], metric: "98%", metricLabel: "on-time delivery", bg: "bg-surface-1 dark:bg-[oklch(0.88_0.1_75)]", icon: "HardHat", big: false },
-    { order: 2, key: "03", title: "Sustainable Design", description: "Green building design, LEED certification, and low-carbon strategies for environmental responsibility.", chips: ["Green Building", "Energy Modeling", "Waste Reduction"], metric: "LEED", metricLabel: "Platinum Certified", bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]", icon: "Leaf", big: false },
-    { order: 3, key: "04", title: "Digital Construction", description: "BIM, VR walkthroughs, and construction management dashboards for precision project delivery.", chips: ["BIM", "3D Printing", "IoT Monitoring"], metric: "85%", metricLabel: "digital adoption", bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]", icon: "Layers", big: false },
+    { order: 0, key: "01", title: "Architecture", description: "Concept design, planning strategy, drawings, and spatial development for homes, workplaces, and civic settings.", chips: ["Concept Design", "Planning", "Construction Docs"], metric: "40+", metricLabel: "Projects shaped", bg: "bg-accent", icon: "PenTool", big: true },
+    { order: 1, key: "02", title: "Interior Design", description: "Material palettes, furniture planning, lighting, detailing, and procurement guidance for refined interiors.", chips: ["Materials", "Furniture", "Lighting"], metric: "98%", metricLabel: "client satisfaction", bg: "bg-surface-1 dark:bg-[oklch(0.88_0.1_75)]", icon: "Layers", big: false },
+    { order: 2, key: "03", title: "Sustainable Design", description: "Passive comfort, daylight, ventilation, and material decisions shaped for long-term performance.", chips: ["Daylight", "Ventilation", "Material Research"], metric: "35%", metricLabel: "local material share", bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]", icon: "Leaf", big: false },
+    { order: 3, key: "04", title: "Urban & Hospitality", description: "Public-realm, retail, workplace, and hospitality concepts with clear experiential sequencing.", chips: ["Masterplans", "Retail", "Guest Experience"], metric: "15+", metricLabel: "years of practice", bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]", icon: "Map", big: false },
   ],
   process: [
-    { order: 0, number: "01", title: "Discover", description: "Project visioning, site analysis, and stakeholder consultation.", icon: "Search", bg: "bg-accent" },
-    { order: 1, number: "02", title: "Design", description: "Concept development, design iteration, and architectural visualization.", icon: "PenTool", bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]" },
-    { order: 2, number: "03", title: "Develop", description: "Detailed documentation, engineering coordination, and planning approvals.", icon: "Layers", bg: "bg-surface-4 dark:bg-[oklch(0.82_0.14_25)]" },
-    { order: 3, number: "04", title: "Deliver", description: "Construction management, quality assurance, and project handover.", icon: "Rocket", bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]" },
-    { order: 4, number: "05", title: "Monitor", description: "Post-occupancy evaluation and building performance monitoring.", icon: "LineChart", bg: "bg-surface-6 dark:bg-[oklch(0.78_0.14_280)]" },
-    { order: 5, number: "06", title: "Optimise", description: "Continuous improvement and lifecycle management of built assets.", icon: "Repeat", bg: "bg-accent" },
+    { order: 0, number: "01", title: "Discover", description: "Project brief, site conditions, lifestyle needs, and design intent are clarified.", icon: "Search", bg: "bg-accent" },
+    { order: 1, number: "02", title: "Concept", description: "Spatial direction, massing, mood, and material language are shaped into a clear proposal.", icon: "PenTool", bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]" },
+    { order: 2, number: "03", title: "Detail", description: "Drawings, finishes, joinery, lighting, and consultant inputs are coordinated.", icon: "Layers", bg: "bg-surface-4 dark:bg-[oklch(0.82_0.14_25)]" },
+    { order: 3, number: "04", title: "Deliver", description: "Execution is guided through documentation, reviews, site coordination, and handover.", icon: "Rocket", bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]" },
+    { order: 4, number: "05", title: "Refine", description: "Final styling, corrections, and quality checks bring the space into alignment.", icon: "LineChart", bg: "bg-surface-6 dark:bg-[oklch(0.78_0.14_280)]" },
+    { order: 5, number: "06", title: "Care", description: "Post-handover guidance supports long-term use, maintenance, and future changes.", icon: "Repeat", bg: "bg-accent" },
   ],
   cases: [
     { order: 0, name: "Urban Tech Hub", sector: "Commercial Development", year: "2025", word: "INNOVATION", color: "bg-accent", problem: "Developers needed to create a future-proof office complex for tech tenants in a competitive market.", tags: ["Commercial", "Sustainability", "Smart"], rotation: -1.4, metrics: [{ key: "100%", value: "Leased" }, { key: "BREEAM", value: "Excellent" }, { key: "6mo", value: "Early completion" }] },
     { order: 1, name: "Coastal Wellness Resort", sector: "Hospitality - APAC", year: "2025", word: "TRANQUILITY", color: "bg-surface-4 dark:bg-[oklch(0.82_0.14_25)]", problem: "Creating a luxury eco-resort that blends seamlessly with sensitive coastal environment.", tags: ["Hospitality", "Sustainable", "Luxury"], rotation: 1.6, metrics: [{ key: "5-Star", value: "Resort Rating" }, { key: "Zero", value: "Carbon" }, { key: "12mo", value: "Construction" }] },
   ],
   engagements: [
-    { order: 0, name: "Feasibility", duration: "2-4 wks", description: "Initial concept development and feasibility assessment for your project.", bullets: ["Site analysis", "Cost estimation", "Planning guidance"], bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]", rotation: -1.2, tag: "Fastest", icon: "Zap" },
-    { order: 1, name: "Full Design", duration: "3-6 mo", description: "Comprehensive design and documentation services for planning approval and construction.", bullets: ["Concept design", "Technical drawings", "BIM models"], bg: "bg-accent", rotation: 0, tag: "Most popular", popular: true, icon: "PenTool" },
-    { order: 2, name: "Turnkey Build", duration: "6-24 mo", description: "Complete project delivery from concept to construction handover and beyond.", bullets: ["Project management", "Construction delivery", "Post-build warranty"], bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]", rotation: 1.4, tag: "Full service", icon: "Flame" },
+    { order: 0, name: "Concept Consultation", duration: "1-2 wks", description: "A focused starting point for site, brief, mood, and spatial direction.", bullets: ["Brief review", "Site inputs", "Concept direction"], bg: "bg-surface-3 dark:bg-[oklch(0.85_0.12_75)]", rotation: -1.2, tag: "Fastest", icon: "Zap" },
+    { order: 1, name: "Full Design", duration: "3-6 mo", description: "Complete architecture or interior design from concept through detailed documentation.", bullets: ["Concept design", "Material palette", "Technical drawings"], bg: "bg-accent", rotation: 0, tag: "Most popular", popular: true, icon: "PenTool" },
+    { order: 2, name: "Design + Execution Support", duration: "6-18 mo", description: "Design documentation with site reviews, vendor coordination, and handover guidance.", bullets: ["Site coordination", "Vendor guidance", "Quality checks"], bg: "bg-surface-2 dark:bg-[oklch(0.83_0.12_140)]", rotation: 1.4, tag: "Full service", icon: "Flame" },
   ],
   testimonials: [
     { order: 0, quote: "Imagine Design Studio transformed our home with exceptional architecture and interior design. Their professionalism, attention to detail, and ability to bring our vision to life made the entire experience outstanding.", author: "Mohit Patel", role: "2 months ago", verified: "Verified", stars: 5 },
@@ -171,51 +171,9 @@ export const DEFAULT_COLLECTIONS: Record<CollectionName, Array<Record<string, un
   stats: [
     { order: 0, value: "120+", label: "Projects completed" },
     { order: 1, value: "45+", label: "Active clients" },
-    { order: 2, value: "15+", label: "Countries served" },
-    { order: 3, value: "85%", label: "Repeat clients" },
+    { order: 2, value: "15+", label: "Years of practice" },
+    { order: 3, value: "85%", label: "Referral-led work" },
     { order: 4, value: "98%", label: "Client satisfaction" },
-  ],
-  visualAssets: [
-    {
-      order: 0,
-      image: "/carousel-samples/screenshot-2.jpg",
-      categoryLabel: "ARCHITECTURAL",
-      subcategory: "Facades",
-      title: "Curtain Wall Detailing",
-      description: "Precision engineered glass and metal facade systems with thermal performance optimization.",
-    },
-    {
-      order: 1,
-      image: "/carousel-samples/screenshot-1.jpg",
-      categoryLabel: "INTERIOR",
-      subcategory: "Residential",
-      title: "Contemporary Living Spaces",
-      description: "Open plan interiors with natural light optimization and minimalist furniture design.",
-    },
-    {
-      order: 2,
-      image: "/carousel-samples/screenshot-3.jpg",
-      categoryLabel: "ARCHITECTURAL",
-      subcategory: "Renderings",
-      title: "Photorealistic Visualizations",
-      description: "High-fidelity 3D renderings showcasing materiality and spatial experience.",
-    },
-    {
-      order: 3,
-      image: "/carousel-samples/screenshot-4.jpg",
-      categoryLabel: "CONSTRUCTION",
-      subcategory: "Structural",
-      title: "Steel Frame Architecture",
-      description: "Structural engineering solutions for high-rise construction and seismic resistance.",
-    },
-    {
-      order: 4,
-      image: "/carousel-samples/screenshot-6.jpg",
-      categoryLabel: "URBAN",
-      subcategory: "Landscape",
-      title: "Public Space Design",
-      description: "Integrated landscape architecture and urban design for city regeneration projects.",
-    },
   ],
 };
 

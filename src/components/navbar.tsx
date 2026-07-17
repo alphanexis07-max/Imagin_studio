@@ -47,9 +47,14 @@ export function Navbar() {
       className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-border/80 bg-background/82 shadow-xl shadow-black/5 backdrop-blur-xl" : "border-b border-border/60 bg-background/72 backdrop-blur-md"}`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3.5 sm:px-5 sm:py-4">
-        <a href="#" className="flex min-w-0 items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
-          <img src={logo} alt="Imagine Design Studio" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
-          <span className="truncate font-display text-lg font-bold sm:text-xl">Imagine Design Studio</span>
+        <a href="#" className="flex min-w-0 items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+          <span className="relative h-14 w-40 shrink-0 overflow-visible sm:h-16 sm:w-52">
+            <img
+              src={logo}
+              alt="Imagine Design Studio"
+              className="absolute left-0 top-1/2 h-24 w-40 max-w-none -translate-y-1/2 object-contain object-left sm:h-32 sm:w-52"
+            />
+          </span>
         </a>
         <div className="hidden items-center gap-8 text-sm md:flex">
           {["About", "Portfolio", "Work", "", "Contact"].map((l) => (
