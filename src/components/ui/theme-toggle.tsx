@@ -8,7 +8,7 @@ interface ThemeToggleProps {
   className?: string;
 }
 
-const THEME_STORAGE_KEY = "theme-preference";
+const THEME_STORAGE_KEY = "theme-preference-v2";
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
   // Determine initial theme synchronously to avoid visual flips on navigation
