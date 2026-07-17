@@ -13,14 +13,13 @@ const THEME_STORAGE_KEY = "theme-preference";
 export function ThemeToggle({ className }: ThemeToggleProps) {
   // Determine initial theme synchronously to avoid visual flips on navigation
   const getInitial = () => {
-    if (typeof window === "undefined") return true;
+    if (typeof window === "undefined") return false;
     try {
       const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
       if (saved === "dark") return true;
-      if (saved === "light") return false;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+      return false;
     } catch {
-      return true;
+      return false;
     }
   };
 

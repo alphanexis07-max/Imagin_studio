@@ -122,7 +122,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem("theme-preference");var d=t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){document.documentElement.classList.add("dark")}`,
+            __html: `try{var t=localStorage.getItem("theme-preference");document.documentElement.classList.toggle("dark",t==="dark")}catch(e){document.documentElement.classList.remove("dark")}`,
           }}
         />
         <HeadContent />
